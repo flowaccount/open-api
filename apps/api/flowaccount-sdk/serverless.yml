@@ -8,12 +8,17 @@ package:
 provider:
   name: aws
   region: ap-southeast-1
-
   runtime: nodejs14.x
+  environment:
+    FLOWACCOUNT_API_ENDPOINT: ${env:FLOWACCOUNT_API_ENDPOINT}
+    CLIENT_GRANT_TYPE: ${env:CLIENT_GRANT_TYPE}
+    CLIENT_SCOPE: ${env:CLIENT_SCOPE}
+    CLIENT_ID: ${env:CLIENT_ID}
+    CLIENT_SECRET: ${env:CLIENT_SECRET}
 functions:
-  hello-world:
-    handler: src/handler.helloWorld
+  create-cash-invoice:
+    handler: src/handler.createCashInvoice
     events:
       - http:
-          path: hello-world
-          method: get
+          path: cash-invoice
+          method: post
