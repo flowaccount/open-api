@@ -1,4 +1,118 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "flowaccount-sdk": {
+      "root": "apps/api/flowaccount-sdk",
+      "sourceRoot": "apps/api/flowaccount-sdk/src",
+      "projectType": "application",
+      "prefix": "flowaccount-sdk",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@flowaccount/nx-serverless:build",
+          "options": {
+            "outputPath": "dist/apps/api/flowaccount-sdk",
+            "package": "apps/api/flowaccount-sdk",
+            "serverlessConfig": "apps/api/flowaccount-sdk/serverless.yml",
+            "servicePath": "apps/api/flowaccount-sdk",
+            "tsConfig": "apps/api/flowaccount-sdk/tsconfig.app.json",
+            "provider": "aws",
+            "processEnvironmentFile": "env.json"
+          },
+          "configurations": {
+            "dev": {
+              "optimization": false,
+              "sourceMap": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/flowaccount-sdk/environment.ts",
+                  "with": "apps/api/flowaccount-sdk/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@flowaccount/nx-serverless:offline",
+          "options": {
+            "buildTarget": "flowaccount-sdk:build",
+            "config": "apps/api/flowaccount-sdk/serverless.yml",
+            "location": "dist/apps/api/flowaccount-sdk",
+            "port": 7777
+          },
+          "configurations": {
+            "dev": {
+              "buildTarget": "flowaccount-sdk:build:dev"
+            },
+            "production": {
+              "buildTarget": "flowaccount-sdk:build:production"
+            }
+          }
+        },
+        "deploy": {
+          "builder": "@flowaccount/nx-serverless:deploy",
+          "options": {
+            "buildTarget": "flowaccount-sdk:build:production",
+            "config": "apps/api/flowaccount-sdk/serverless.yml",
+            "location": "dist/apps/api/flowaccount-sdk",
+            "package": "dist/apps/api/flowaccount-sdk",
+            "stage": "dev"
+          }
+        },
+        "destroy": {
+          "builder": "@flowaccount/nx-serverless:destroy",
+          "options": {
+            "buildTarget": "flowaccount-sdk:build:production",
+            "config": "apps/api/flowaccount-sdk/serverless.yml",
+            "location": "dist/apps/api/flowaccount-sdk",
+            "package": "dist/apps/api/flowaccount-sdk"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/api/flowaccount-sdk/**/*"
+            ],
+            "tsConfig": [
+              "apps/api/flowaccount-sdk/tsconfig.spec.json"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/api/flowaccount-sdk"
+          ],
+          "options": {
+            "jestConfig": "apps/api/flowaccount-sdk/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
 }
