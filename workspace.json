@@ -1,4 +1,118 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "api-create-cashinvoices": {
+      "root": "apps/api/create-cashinvoices",
+      "sourceRoot": "apps/api/create-cashinvoices/src",
+      "projectType": "application",
+      "prefix": "api-create-cashinvoices",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@flowaccount/nx-serverless:build",
+          "options": {
+            "outputPath": "dist/apps/api/create-cashinvoices",
+            "package": "apps/api/create-cashinvoices",
+            "serverlessConfig": "apps/api/create-cashinvoices/serverless.yml",
+            "servicePath": "apps/api/create-cashinvoices",
+            "tsConfig": "apps/api/create-cashinvoices/tsconfig.app.json",
+            "provider": "aws",
+            "processEnvironmentFile": "env.json"
+          },
+          "configurations": {
+            "dev": {
+              "optimization": false,
+              "sourceMap": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/create-cashinvoices/environment.ts",
+                  "with": "apps/api/create-cashinvoices/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@flowaccount/nx-serverless:offline",
+          "options": {
+            "buildTarget": "api-create-cashinvoices:build",
+            "config": "apps/api/create-cashinvoices/serverless.yml",
+            "location": "dist/apps/api/create-cashinvoices",
+            "port": 7777
+          },
+          "configurations": {
+            "dev": {
+              "buildTarget": "api-create-cashinvoices:build:dev"
+            },
+            "production": {
+              "buildTarget": "api-create-cashinvoices:build:production"
+            }
+          }
+        },
+        "deploy": {
+          "builder": "@flowaccount/nx-serverless:deploy",
+          "options": {
+            "buildTarget": "api-create-cashinvoices:build:production",
+            "config": "apps/api/create-cashinvoices/serverless.yml",
+            "location": "dist/apps/api/create-cashinvoices",
+            "package": "dist/apps/api/create-cashinvoices",
+            "stage": "dev"
+          }
+        },
+        "destroy": {
+          "builder": "@flowaccount/nx-serverless:destroy",
+          "options": {
+            "buildTarget": "api-create-cashinvoices:build:production",
+            "config": "apps/api/create-cashinvoices/serverless.yml",
+            "location": "dist/apps/api/create-cashinvoices",
+            "package": "dist/apps/api/create-cashinvoices"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/api/create-cashinvoices/**/*"
+            ],
+            "tsConfig": [
+              "apps/api/create-cashinvoices/tsconfig.spec.json"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/api/create-cashinvoices"
+          ],
+          "options": {
+            "jestConfig": "apps/api/create-cashinvoices/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
 }

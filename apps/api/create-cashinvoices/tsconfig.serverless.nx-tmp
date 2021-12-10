@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "types": [
+      "node"
+    ],
+    "importHelpers": false
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    ".serverless_plugins/**"
+  ],
+  "include": [
+    "**/*.ts"
+  ]
+}

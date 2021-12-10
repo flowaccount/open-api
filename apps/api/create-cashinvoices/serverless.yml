@@ -1,0 +1,19 @@
+service: -api-create-cashinvoices
+frameworkVersion: '>=1.1.0'
+plugins:
+  - serverless-offline
+package:
+  individually: true
+  excludeDevDependencies: false
+provider:
+  name: aws
+  region: ap-southeast-1
+
+  runtime: nodejs10.x
+functions:
+  hello-world:
+    handler: src/handler.helloWorld
+    events:
+      - http:
+          path: hello-world
+          method: get
