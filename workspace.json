@@ -1,21 +1,21 @@
 {
   "version": 2,
   "projects": {
-    "api-create-cashinvoices": {
-      "root": "apps/api/create-cashinvoices",
-      "sourceRoot": "apps/api/create-cashinvoices/src",
+    "flowaccount-sdk": {
+      "root": "apps/api/flowaccount-sdk",
+      "sourceRoot": "apps/api/flowaccount-sdk/src",
       "projectType": "application",
-      "prefix": "api-create-cashinvoices",
+      "prefix": "flowaccount-sdk",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@flowaccount/nx-serverless:build",
           "options": {
-            "outputPath": "dist/apps/api/create-cashinvoices",
-            "package": "apps/api/create-cashinvoices",
-            "serverlessConfig": "apps/api/create-cashinvoices/serverless.yml",
-            "servicePath": "apps/api/create-cashinvoices",
-            "tsConfig": "apps/api/create-cashinvoices/tsconfig.app.json",
+            "outputPath": "dist/apps/api/flowaccount-sdk",
+            "package": "apps/api/flowaccount-sdk",
+            "serverlessConfig": "apps/api/flowaccount-sdk/serverless.yml",
+            "servicePath": "apps/api/flowaccount-sdk",
+            "tsConfig": "apps/api/flowaccount-sdk/tsconfig.app.json",
             "provider": "aws",
             "processEnvironmentFile": "env.json"
           },
@@ -47,8 +47,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/api/create-cashinvoices/environment.ts",
-                  "with": "apps/api/create-cashinvoices/environment.prod.ts"
+                  "replace": "apps/api/flowaccount-sdk/environment.ts",
+                  "with": "apps/api/flowaccount-sdk/environment.prod.ts"
                 }
               ]
             }
@@ -57,37 +57,37 @@
         "serve": {
           "builder": "@flowaccount/nx-serverless:offline",
           "options": {
-            "buildTarget": "api-create-cashinvoices:build",
-            "config": "apps/api/create-cashinvoices/serverless.yml",
-            "location": "dist/apps/api/create-cashinvoices",
+            "buildTarget": "flowaccount-sdk:build",
+            "config": "apps/api/flowaccount-sdk/serverless.yml",
+            "location": "dist/apps/api/flowaccount-sdk",
             "port": 7777
           },
           "configurations": {
             "dev": {
-              "buildTarget": "api-create-cashinvoices:build:dev"
+              "buildTarget": "flowaccount-sdk:build:dev"
             },
             "production": {
-              "buildTarget": "api-create-cashinvoices:build:production"
+              "buildTarget": "flowaccount-sdk:build:production"
             }
           }
         },
         "deploy": {
           "builder": "@flowaccount/nx-serverless:deploy",
           "options": {
-            "buildTarget": "api-create-cashinvoices:build:production",
-            "config": "apps/api/create-cashinvoices/serverless.yml",
-            "location": "dist/apps/api/create-cashinvoices",
-            "package": "dist/apps/api/create-cashinvoices",
+            "buildTarget": "flowaccount-sdk:build:production",
+            "config": "apps/api/flowaccount-sdk/serverless.yml",
+            "location": "dist/apps/api/flowaccount-sdk",
+            "package": "dist/apps/api/flowaccount-sdk",
             "stage": "dev"
           }
         },
         "destroy": {
           "builder": "@flowaccount/nx-serverless:destroy",
           "options": {
-            "buildTarget": "api-create-cashinvoices:build:production",
-            "config": "apps/api/create-cashinvoices/serverless.yml",
-            "location": "dist/apps/api/create-cashinvoices",
-            "package": "dist/apps/api/create-cashinvoices"
+            "buildTarget": "flowaccount-sdk:build:production",
+            "config": "apps/api/flowaccount-sdk/serverless.yml",
+            "location": "dist/apps/api/flowaccount-sdk",
+            "package": "dist/apps/api/flowaccount-sdk"
           }
         },
         "lint": {
@@ -95,20 +95,20 @@
           "options": {
             "exclude": [
               "**/node_modules/**",
-              "!apps/api/create-cashinvoices/**/*"
+              "!apps/api/flowaccount-sdk/**/*"
             ],
             "tsConfig": [
-              "apps/api/create-cashinvoices/tsconfig.spec.json"
+              "apps/api/flowaccount-sdk/tsconfig.spec.json"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/apps/api/create-cashinvoices"
+            "coverage/apps/api/flowaccount-sdk"
           ],
           "options": {
-            "jestConfig": "apps/api/create-cashinvoices/jest.config.js",
+            "jestConfig": "apps/api/flowaccount-sdk/jest.config.js",
             "passWithNoTests": true
           }
         }
