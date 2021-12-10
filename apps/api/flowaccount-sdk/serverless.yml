@@ -9,7 +9,7 @@ provider:
   name: aws
   region: ap-southeast-1
 
-  runtime: nodejs16.x
+  runtime: nodejs14.x
 functions:
   hello-world:
     handler: src/handler.helloWorld
