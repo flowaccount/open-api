@@ -1,15 +1,128 @@
 {
   "version": 2,
   "projects": {
+    "api-docs": {
+      "root": "libs/api-docs",
+      "sourceRoot": "libs/api-docs/src",
+      "projectType": "library",
+      "targets": {
+        "generate-sources": {
+          "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+          "options": {
+            "generator": "html",
+            "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+            "additionalProperties": "",
+            "globalProperties": ""
+          }
+        }
+      }
+    },
+    "api-fetch": {
+      "root": "libs/api-fetch",
+      "sourceRoot": "libs/api-fetch/src",
+      "projectType": "library",
+      "targets": {
+        "generate-sources": {
+          "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+          "options": {
+            "generator": "typescript-fetch",
+            "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+            "additionalProperties": "",
+            "globalProperties": ""
+          }
+        }
+      }
+    },
+    "api-netcore": {
+      "root": "libs/api-netcore",
+      "sourceRoot": "libs/api-netcore/src",
+      "projectType": "library",
+      "targets": {
+        "generate-sources": {
+          "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+          "options": {
+            "generator": "csharp-netcore",
+            "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+            "additionalProperties": "",
+            "globalProperties": ""
+          }
+        }
+      }
+    },
+    "api-spec": {
+      "root": "libs/api-spec",
+      "sourceRoot": "libs/api-spec/src",
+      "projectType": "library",
+      "targets": {}
+    },
+    "api-swift5": {
+      "root": "libs/api-swift5",
+      "sourceRoot": "libs/api-swift5/src",
+      "projectType": "library",
+      "targets": {
+        "generate-sources": {
+          "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+          "options": {
+            "generator": "swift5",
+            "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+            "additionalProperties": "",
+            "globalProperties": ""
+          }
+        }
+      }
+    },
+    "api-typescript-rxjs": {
+      "root": "libs/api-typescript-rxjs",
+      "sourceRoot": "libs/api-typescript-rxjs/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/api-typescript-rxjs/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api-typescript-rxjs"],
+          "options": {
+            "jestConfig": "libs/api-typescript-rxjs/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/js:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api-typescript-rxjs",
+            "tsConfig": "libs/api-typescript-rxjs/tsconfig.lib.json",
+            "packageJson": "libs/api-typescript-rxjs/package.json",
+            "main": "libs/api-typescript-rxjs/src/index.ts",
+            "assets": ["libs/api-typescript-rxjs/*.md"]
+          }
+        },
+        "generate-sources": {
+          "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+          "options": {
+            "generator": "typescript-rxjs",
+            "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+            "additionalProperties": "",
+            "globalProperties": ""
+          }
+        }
+      },
+      "tags": []
+    },
     "flowaccount-sdk": {
       "root": "apps/api/flowaccount-sdk",
       "sourceRoot": "apps/api/flowaccount-sdk/src",
       "projectType": "application",
       "prefix": "flowaccount-sdk",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "build": {
-          "builder": "@flowaccount/nx-serverless:build",
+          "executor": "@flowaccount/nx-serverless:build",
           "options": {
             "outputPath": "dist/apps/api/flowaccount-sdk",
             "package": "apps/api/flowaccount-sdk",
@@ -55,7 +168,7 @@
           }
         },
         "serve": {
-          "builder": "@flowaccount/nx-serverless:offline",
+          "executor": "@flowaccount/nx-serverless:offline",
           "options": {
             "buildTarget": "flowaccount-sdk:build",
             "config": "apps/api/flowaccount-sdk/serverless.yml",
@@ -72,7 +185,7 @@
           }
         },
         "deploy": {
-          "builder": "@flowaccount/nx-serverless:deploy",
+          "executor": "@flowaccount/nx-serverless:deploy",
           "options": {
             "buildTarget": "flowaccount-sdk:build:production",
             "config": "apps/api/flowaccount-sdk/serverless.yml",
@@ -82,7 +195,7 @@
           }
         },
         "destroy": {
-          "builder": "@flowaccount/nx-serverless:destroy",
+          "executor": "@flowaccount/nx-serverless:destroy",
           "options": {
             "buildTarget": "flowaccount-sdk:build:production",
             "config": "apps/api/flowaccount-sdk/serverless.yml",
@@ -91,22 +204,15 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/api/flowaccount-sdk/**/*"
-            ],
-            "tsConfig": [
-              "apps/api/flowaccount-sdk/tsconfig.spec.json"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/api/flowaccount-sdk/**/*"],
+            "tsConfig": ["apps/api/flowaccount-sdk/tsconfig.spec.json"]
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/api/flowaccount-sdk"
-          ],
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api/flowaccount-sdk"],
           "options": {
             "jestConfig": "apps/api/flowaccount-sdk/jest.config.js",
             "passWithNoTests": true
