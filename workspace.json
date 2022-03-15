@@ -114,7 +114,7 @@
       },
       "tags": []
     },
-    "flowaccount-sdk": {
+    "api-flowaccount-sdk": {
       "root": "apps/api/flowaccount-sdk",
       "sourceRoot": "apps/api/flowaccount-sdk/src",
       "projectType": "application",
