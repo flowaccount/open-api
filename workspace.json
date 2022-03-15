@@ -170,7 +170,7 @@
         "serve": {
           "executor": "@flowaccount/nx-serverless:offline",
           "options": {
-            "buildTarget": "flowaccount-sdk:build",
+            "buildTarget": "api-flowaccount-sdk:build",
             "config": "apps/api/flowaccount-sdk/serverless.yml",
             "location": "dist/apps/api/flowaccount-sdk",
             "port": 7777
@@ -187,7 +187,7 @@
         "deploy": {
           "executor": "@flowaccount/nx-serverless:deploy",
           "options": {
-            "buildTarget": "flowaccount-sdk:build:production",
+            "buildTarget": "api-flowaccount-sdk:build:production",
             "config": "apps/api/flowaccount-sdk/serverless.yml",
             "location": "dist/apps/api/flowaccount-sdk",
             "package": "dist/apps/api/flowaccount-sdk",
@@ -197,7 +197,7 @@
         "destroy": {
           "executor": "@flowaccount/nx-serverless:destroy",
           "options": {
-            "buildTarget": "flowaccount-sdk:build:production",
+            "buildTarget": "api-flowaccount-sdk:build:production",
             "config": "apps/api/flowaccount-sdk/serverless.yml",
             "location": "dist/apps/api/flowaccount-sdk",
             "package": "dist/apps/api/flowaccount-sdk"
