@@ -23,32 +23,47 @@ export class CashInvoiceService {
     /**
      * create document
      */
-    public async create(): Promise<boolean> {
+    public async create(datapayload): Promise<boolean> {
 
         const accessToken = await this.authenticationService.getAccessToken()
         if (!accessToken) {
             console.log("access token is null.")
             return Promise.resolve(false)
         }
+        
+        const payloaditems = datapayload.body.items
+        const items = []
 
+        for (var i in payloaditems) {
+            const item = new ProductItem()
+            item.name = payloaditems[i].name
+            item.quantity = payloaditems[i].quantity
+            item.pricePerUnit = payloaditems[i].price
+            item.total = payloaditems[i].subtotal
+
+            items.push(item)
+        }
+        
         // item
-        const item = new ProductItem()
-        item.name = "item name"
-        item.quantity = 1
-        item.pricePerUnit = 100
-        item.total = 100
+        // const item = new ProductItem()
+        // item.name = "item name"
+        // item.quantity = 1
+        // item.pricePerUnit = 100
+        // item.total = 100
 
+        const datamodel = datapayload.body
         // document
         const model = new SimpleDocument()
-        model.contactName = "contact name"
+        model.contactName = datamodel.customerName
         model.publishedOn = moment(new Date()).format("YYYY-MM-DD")
         model.dueDate = moment(new Date()).format("YYYY-MM-DD")
-        model.items = [item]
-        model.subTotal = 100
-        model.totalAfterDiscount = 100
-        model.isVat = true
-        model.vatAmount = 7
-        model.grandTotal = 107
+        model.items = items
+        model.subTotal = datamodel.subtotal
+        model.totalAfterDiscount = datamodel.total
+        model.isVat = datamodel.vatIncluded
+        model.vatAmount = datamodel.vat
+        model.grandTotal = datamodel.paidAmount
+
 
         // post create cash invoice
         return new Promise((resolve) => {

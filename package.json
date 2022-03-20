@@ -11,6 +11,7 @@
   "dependencies": {
     "@flowaccount/openapi-sdk": "^0.0.39",
     "@types/aws-lambda": "^8.10.86",
+    "ajv": "^6.12.6",
     "moment": "^2.29.1",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.0.0",
