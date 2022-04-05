@@ -2,6 +2,7 @@ import { CashInvoiceApi, ProductItem, SimpleDocument } from "@flowaccount/openap
 import moment = require("moment")
 import { inject, injectable, registry } from "tsyringe"
 import { AuthenticationService } from "./authenticationService"
+import { Payload } from '../src/models/payload';
 
 @injectable()
 @registry([
@@ -19,11 +20,10 @@ export class CashInvoiceService {
 
     constructor(@inject('authenticationService') private authenticationService: AuthenticationService, @inject('cashInvoiceApi') private cashInvoiceApi: CashInvoiceApi) {
     }
-
     /**
      * create document
      */
-    public async create(datapayload): Promise<boolean> {
+    public async create(payload: Payload): Promise<boolean> {
 
         const accessToken = await this.authenticationService.getAccessToken()
         if (!accessToken) {
@@ -31,7 +31,8 @@ export class CashInvoiceService {
             return Promise.resolve(false)
         }
         
-        const payloaditems = datapayload.body.items
+        // const datamodel = payload as Payload
+        const payloaditems = payload.items
         const items = []
 
         for (var i in payloaditems) {
@@ -51,19 +52,25 @@ export class CashInvoiceService {
         // item.pricePerUnit = 100
         // item.total = 100
 
-        const datamodel = datapayload.body
         // document
         const model = new SimpleDocument()
-        model.contactName = datamodel.customerName
+        model.recordId = payload.id
+        model.contactName = payload.customerName
+        model.contactAddress = payload.customerAddress
+        model.contactTaxId = payload.taxInvoiceNo
+        model.contactEmail = payload.customerEmail
+        model.contactNumber = payload.customerPhone
+        model.isVatInclusive = payload.vatIncluded
         model.publishedOn = moment(new Date()).format("YYYY-MM-DD")
         model.dueDate = moment(new Date()).format("YYYY-MM-DD")
         model.items = items
-        model.subTotal = datamodel.subtotal
-        model.totalAfterDiscount = datamodel.total
-        model.isVat = datamodel.vatIncluded
-        model.vatAmount = datamodel.vat
-        model.grandTotal = datamodel.paidAmount
-
+        model.subTotal = payload.subtotal
+        model.totalAfterDiscount = payload.total
+        model.isVat = payload.vatIncluded
+        model.vatAmount = payload.vat
+        model.discountAmount = payload.discount
+        model.grandTotal = payload.paidAmount
+        model.internalNotes = payload.note
 
         // post create cash invoice
         return new Promise((resolve) => {

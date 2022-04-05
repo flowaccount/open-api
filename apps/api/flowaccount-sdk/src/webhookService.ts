@@ -2,7 +2,6 @@ import { Payload } from '../src/models/payload';
 import { CashInvoiceService } from "./cashInvoiceService"
 import { inject, injectable, registry } from "tsyringe"
 import * as Ajv from 'ajv'
-
 import { payloadSchema } from '../src/schema/payload-schema';
 
 @injectable()

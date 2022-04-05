@@ -28,3 +28,9 @@ functions:
       - http:
           path: webhook
           method: post
+  subscribe-page365:
+    handler: src/handler.subscribe
+    events:
+      - http:
+          path: subscribe
+          method: post
