@@ -25,8 +25,10 @@ export class SubscribeService {
         const variables = data as SubscribePayload
 
         return new Promise((resolve) => {
-            const res = client.request(query, variables)
-            resolve(res)
+            client.request(query, variables).then(function (result) {
+                console.log(result)
+                resolve(result)
+            })
         })
     }
 }
