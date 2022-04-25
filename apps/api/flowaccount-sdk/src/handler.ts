@@ -44,12 +44,11 @@ export const subscribe: APIGatewayProxyHandler = async (event, _context, callbac
   const subscribeService = container.resolve<SubscribeService>('subscribeService')
   const data = JSON.parse(event.body)
   const result = subscribeService.subscribePage(data)
-  console.log(result);
+  // console.log(result);
 
   return {
     statusCode: 200,
     body: "OK",
   }
 }
-
 

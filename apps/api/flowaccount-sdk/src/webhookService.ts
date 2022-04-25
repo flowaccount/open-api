@@ -20,14 +20,16 @@ export class WebhookService {
 
         const ajv = new Ajv()
         const payload = data as Payload
+        console.log(payload);
+        
         const validate = ajv.compile(payloadSchema)
         const valid = validate(payload)
-
+       
         if (!valid) {
-            console.log(validate.errors)
+            // console.log(validate.errors)
         } else {
-            const result = await this.cashInvoice.create(payload)
-            console.log(result);
+            const result = await this.cashInvoice.create(payload.body)
+            // console.log(result);
         }
     }
 }
