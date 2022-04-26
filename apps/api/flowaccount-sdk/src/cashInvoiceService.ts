@@ -34,7 +34,8 @@ export class CashInvoiceService {
                 console.log("access token is null.")
                 return Promise.resolve(false)
             }
-            
+
+            // items
             const payloadbodyitems = payloadbody.items
             const items = []
     
@@ -45,7 +46,16 @@ export class CashInvoiceService {
                 item.quantity = payloadbodyitems[i].quantity
                 item.pricePerUnit = payloadbodyitems[i].price
                 item.total = payloadbodyitems[i].subtotal
-    
+                items.push(item)
+            }
+
+            if (payloadbody.shippingCost && payloadbody.shippingCost > 0) {
+                const item = new ProductItem()
+                item.name = "shippingCost"
+                item.description = "shipping cost"
+                item.quantity = 1
+                item.pricePerUnit = payloadbody.shippingCost
+                item.total = 0
                 items.push(item)
             }
             
@@ -58,26 +68,25 @@ export class CashInvoiceService {
 
             // document
             const model = new SimpleDocument()
-
-            model.isVat = payloadbody.vatIncluded
-
             model.contactName = payloadbody.customerName
             model.contactAddress = this.getAddress(payloadbody.customerAddress)
-            model.contactZipCode = this.getZipcode(payloadbody.customerAddress)
             model.contactTaxId = payloadbody.taxInvoiceNo
             model.contactEmail = payloadbody.customerEmail
             model.contactNumber = payloadbody.customerPhone
-            
-            model.publishedOn = moment(new Date()).format("YYYY-MM-DD")
-            model.dueDate = moment(new Date()).format("YYYY-MM-DD")
-            model.items = items
+            model.contactZipCode = this.getZipcode(payloadbody.customerAddress)
+            model.publishedOn = payloadbody.createdAt.toString()
+            model.dueDate = moment(payloadbody.expriesOn).format("YYYY-MM-DD")
+            model.isVatInclusive = payloadbody.vatIncluded
+            model.isVat = payloadbody.vatIncluded
+            model.vatAmount = payloadbody.vat
             model.subTotal = payloadbody.subtotal
             model.totalAfterDiscount = payloadbody.total
-
-            model.vatAmount = payloadbody.vat
             model.discountAmount = payloadbody.discount
             model.grandTotal = payloadbody.paidAmount
             model.internalNotes = payloadbody.note
+            // model.documentStructureType = "InlineDocument"
+            model.items = items
+
 
             // post create cash invoice
             return new Promise((resolve) => {
