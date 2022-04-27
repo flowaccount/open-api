@@ -114,6 +114,135 @@
       },
       "tags": []
     },
+    "api-typescript-node": {
+      "root": "libs/api-typescript-node",
+      "sourceRoot": "libs/api-typescript-node/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/api-typescript-node/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api-typescript-node"],
+          "options": {
+            "jestConfig": "libs/api-typescript-node/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/js:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api-typescript-node",
+            "tsConfig": "libs/api-typescript-node/tsconfig.lib.json",
+            "packageJson": "libs/api-typescript-node/package.json",
+            "main": "libs/api-typescript-node/src/index.ts",
+            "assets": ["libs/api-typescript-node/*.md"]
+          }
+        },
+        "generate-sources": {
+          "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+          "options": {
+            "generator": "typescript-node",
+            "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+            "additionalProperties": "",
+            "globalProperties": ""
+          }
+        }
+      },
+      "tags": []
+    },
+    "api-typescript-angular": {
+      "root": "libs/api-typescript-angular",
+      "sourceRoot": "libs/api-typescript-angular/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/api-typescript-angular/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api-typescript-angular"],
+          "options": {
+            "jestConfig": "libs/api-typescript-angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/js:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api-typescript-angular",
+            "tsConfig": "libs/api-typescript-angular/tsconfig.lib.json",
+            "packageJson": "libs/api-typescript-angular/package.json",
+            "main": "libs/api-typescript-angular/src/index.ts",
+            "assets": ["libs/api-typescript-angular/*.md"]
+          }
+        },
+        "generate-sources": {
+          "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+          "options": {
+            "generator": "typescript-angular",
+            "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+            "additionalProperties": "",
+            "globalProperties": ""
+          }
+        }
+      },
+      "tags": []
+    },
+    "api-typescript-axios": {
+      "root": "libs/api-typescript-axios",
+      "sourceRoot": "libs/api-typescript-axios/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/api-typescript-axios/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api-typescript-axios"],
+          "options": {
+            "jestConfig": "libs/api-typescript-axios/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/js:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api-typescript-axios",
+            "tsConfig": "libs/api-typescript-axios/tsconfig.lib.json",
+            "packageJson": "libs/api-typescript-axios/package.json",
+            "main": "libs/api-typescript-axios/src/index.ts",
+            "assets": ["libs/api-typescript-axios/*.md"]
+          }
+        },
+        "generate-sources": {
+          "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+          "options": {
+            "generator": "typescript-axios",
+            "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+            "additionalProperties": "",
+            "globalProperties": ""
+          }
+        }
+      },
+      "tags": []
+    },
     "api-flowaccount-sdk": {
       "root": "apps/api/flowaccount-sdk",
       "sourceRoot": "apps/api/flowaccount-sdk/src",
