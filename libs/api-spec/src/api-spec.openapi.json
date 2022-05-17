@@ -205,6 +205,54 @@
         ]
       }
     },
+    "/openapi/{culture}/cash-invoices/get-batch-import-org-file/{batchId}": {
+      "get": {
+        "tags": [
+          "CashInvoice"
+        ],
+        "operationId": "CashInvoice_GetOriginalFile",
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "culture",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
     "/openapi/{culture}/cash-invoices/batch-metadata": {
       "get": {
         "tags": [
@@ -584,6 +632,56 @@
         ]
       }
     },
+    "/openapi/{culture}/cash-invoices/get-presign-for-upload-simpledoc": {
+      "post": {
+        "tags": [
+          "CashInvoice"
+        ],
+        "operationId": "CashInvoice_PreSignUploadSimpleDocument",
+        "parameters": [
+          {
+            "name": "culture",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "payload",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreSignUploadSimpleDocumentPayload"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreSignUploadSimpleDocumentResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
     "/openapi/{culture}/cash-invoices/{documentId}/status-key/{statusKey}": {
       "post": {
         "tags": [
@@ -758,6 +856,10 @@
             "nullable": true
           },
           "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "companyId": {
             "type": "integer",
             "format": "int64"
           },
@@ -952,6 +1054,28 @@
           "documentCount": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "PreSignUploadSimpleDocumentPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "PreSignUploadSimpleDocumentResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "batchId": {
+            "type": "string"
           }
         }
       },
