@@ -22,3 +22,22 @@ functions:
       - http:
           path: cash-invoice
           method: post
+
+  employeeAddData:
+    handler: src/villa/lambdaService.employeeAddData
+    events:
+      - http:
+          path: employee-add-data
+          method: post
+  employeeSetData:
+    handler: src/villa/lambdaService.employeeSetData
+    events:
+      - http:
+          path: employee-set-data
+          method: post
+  employeeGetData:
+    handler: src/villa/lambdaService.employeeGetData
+    events:
+      - http:
+          path: employee-get-data
+          method: get
