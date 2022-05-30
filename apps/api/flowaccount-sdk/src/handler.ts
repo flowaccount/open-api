@@ -2,8 +2,8 @@ import 'reflect-metadata'
 import { APIGatewayProxyHandler } from 'aws-lambda'
 import { container } from 'tsyringe'
 import { CashInvoiceService } from './cashInvoiceService'
-import { WebhookService } from './webhookService'
-import { SubscribeService } from './subscribeService'
+import { WebhookService } from './page365//services/webhookService'
+import { SubscribeService } from './page365/services/subscribeService'
 
 export const createCashInvoice: APIGatewayProxyHandler = async (event, _context, callback) => {
 

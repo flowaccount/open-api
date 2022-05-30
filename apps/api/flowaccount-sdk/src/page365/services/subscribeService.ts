@@ -1,5 +1,5 @@
 import { GraphQLClient, gql } from 'graphql-request'
-import { SubscribePayload } from '../src/models/subscribe-payload';
+import { SubscribePayload } from '../models/subscribe-payload';
 
 export class SubscribeService {
     constructor() {
