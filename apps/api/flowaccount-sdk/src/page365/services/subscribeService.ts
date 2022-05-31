@@ -26,7 +26,6 @@ export class SubscribeService {
 
         return new Promise((resolve) => {
             client.request(query, variables).then(function (result) {
-                console.log(result)
                 resolve(result)
             })
         })

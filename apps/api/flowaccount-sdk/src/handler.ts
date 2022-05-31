@@ -28,11 +28,11 @@ export const webhook: APIGatewayProxyHandler = async (event, _context, callback)
   // create document
   const webhookService = container.resolve<WebhookService>('webhookService')
   const data = JSON.parse(event.body)
-  webhookService.inboundPayload(data)
+  const result = await  webhookService.inboundPayload(data)
 
   return {
     statusCode: 200,
-    body: "OK",
+    body: 'OK',
   }
 }
 
@@ -44,7 +44,6 @@ export const subscribe: APIGatewayProxyHandler = async (event, _context, callbac
   const subscribeService = container.resolve<SubscribeService>('subscribeService')
   const data = JSON.parse(event.body)
   const result = subscribeService.subscribePage(data)
-  // console.log(result);
 
   return {
     statusCode: 200,

@@ -1,7 +1,7 @@
+import "reflect-metadata"
 import { CashInvoiceApi, ProductItem, SimpleDocument } from "@flowaccount/openapi-sdk"
 import { inject, injectable, registry } from "tsyringe"
 import { AuthenticationService } from "./authenticationService"
-import "reflect-metadata"
 
 @injectable()
 @registry([
@@ -17,8 +17,10 @@ import "reflect-metadata"
 export class CashInvoiceService {
 
 
-    constructor(@inject('authenticationService') private authenticationService: AuthenticationService, @inject('cashInvoiceApi') private cashInvoiceApi: CashInvoiceApi) {
-    }
+    constructor(
+        @inject('authenticationService') private authenticationService: AuthenticationService,
+        @inject('cashInvoiceApi') private cashInvoiceApi: CashInvoiceApi
+    ) { }
     /**
      * create document
      */
@@ -48,5 +50,9 @@ export class CashInvoiceService {
                     resolve(false)
                 })
         })
+    }
+
+    public testCall() {
+        return 'ok'
     }
 }
