@@ -1,5 +1,5 @@
+import "reflect-metadata"
 import { CashInvoiceApi, ProductItem, SimpleDocument } from "@flowaccount/openapi-sdk"
-import moment = require("moment")
 import { inject, injectable, registry } from "tsyringe"
 import { AuthenticationService } from "./authenticationService"
 
@@ -17,13 +17,14 @@ import { AuthenticationService } from "./authenticationService"
 export class CashInvoiceService {
 
 
-    constructor(@inject('authenticationService') private authenticationService: AuthenticationService, @inject('cashInvoiceApi') private cashInvoiceApi: CashInvoiceApi) {
-    }
-
+    constructor(
+        @inject('authenticationService') private authenticationService: AuthenticationService,
+        @inject('cashInvoiceApi') private cashInvoiceApi: CashInvoiceApi
+    ) { }
     /**
      * create document
      */
-    public async create(): Promise<boolean> {
+    public async createCashInvoice(payload: SimpleDocument): Promise<boolean> {
 
         const accessToken = await this.authenticationService.getAccessToken()
         if (!accessToken) {
@@ -31,29 +32,10 @@ export class CashInvoiceService {
             return Promise.resolve(false)
         }
 
-        // item
-        const item = new ProductItem()
-        item.name = "item name"
-        item.quantity = 1
-        item.pricePerUnit = 100
-        item.total = 100
-
-        // document
-        const model = new SimpleDocument()
-        model.contactName = "contact name"
-        model.publishedOn = moment(new Date()).format("YYYY-MM-DD")
-        model.dueDate = moment(new Date()).format("YYYY-MM-DD")
-        model.items = [item]
-        model.subTotal = 100
-        model.totalAfterDiscount = 100
-        model.isVat = true
-        model.vatAmount = 7
-        model.grandTotal = 107
-
         // post create cash invoice
         return new Promise((resolve) => {
             this.cashInvoiceApi
-                .cashInvoicesPost("Bearer " + accessToken, model)
+                .cashInvoicesPost("Bearer " + accessToken, payload)
                 .then((response) => {
                     if (response && response.body && response.body.status === true) {
                         console.log("createCashInvoice -> success.")
@@ -68,5 +50,9 @@ export class CashInvoiceService {
                     resolve(false)
                 })
         })
+    }
+
+    public testCall() {
+        return 'ok'
     }
 }

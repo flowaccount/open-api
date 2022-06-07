@@ -11,7 +11,7 @@ provider:
   runtime: nodejs14.x
   environment:
     FLOWACCOUNT_API_ENDPOINT: ${env:FLOWACCOUNT_API_ENDPOINT}
-    CLIENT_GRANT_TYPE: ${env:CLIENT_GRANT_TYPE}
+    CLIENT_GRANT_TYPE: ${env:client_credentials}
     CLIENT_SCOPE: ${env:CLIENT_SCOPE}
     CLIENT_ID: ${env:CLIENT_ID}
     CLIENT_SECRET: ${env:CLIENT_SECRET}
@@ -21,4 +21,16 @@ functions:
     events:
       - http:
           path: cash-invoice
+          method: post
+  webhook:
+    handler: src/handler.webhook
+    events:
+      - http:
+          path: webhook
+          method: post
+  subscribe-page365:
+    handler: src/handler.subscribe
+    events:
+      - http:
+          path: subscribe
           method: post

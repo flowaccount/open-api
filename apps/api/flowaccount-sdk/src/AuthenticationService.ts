@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { AuthenticationApi } from "@flowaccount/openapi-sdk";
 import { inject, injectable, registry } from "tsyringe";
 
