@@ -120,6 +120,12 @@ export interface BatchImportMetadata {
     'userId'?: number;
     /**
      * 
+     * @type {number}
+     * @memberof BatchImportMetadata
+     */
+    'companyId'?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof BatchImportMetadata
      */
@@ -266,6 +272,25 @@ export interface BatchStatus {
      * @memberof BatchStatus
      */
     'metadata'?: BatchImportMetadata | null;
+}
+/**
+ * 
+ * @export
+ * @interface DateFormatType
+ */
+export interface DateFormatType {
+    /**
+     * 
+     * @type {string}
+     * @memberof DateFormatType
+     */
+    'format'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DateFormatType
+     */
+    'type'?: string | null;
 }
 /**
  * 
@@ -512,6 +537,12 @@ export interface Document {
      * @memberof Document
      */
     'externalId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'saleAndPurchaseChannel'?: string | null;
 }
 /**
  * 
@@ -838,6 +869,12 @@ export interface InlineDocument {
      * @memberof InlineDocument
      */
     'externalId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'saleAndPurchaseChannel'?: string | null;
     /**
      * 
      * @type {number}
@@ -1262,6 +1299,38 @@ export interface PaymentModel {
 /**
  * 
  * @export
+ * @interface PreSignUploadSimpleDocumentPayload
+ */
+export interface PreSignUploadSimpleDocumentPayload {
+    /**
+     * 
+     * @type {string}
+     * @memberof PreSignUploadSimpleDocumentPayload
+     */
+    'fileName'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface PreSignUploadSimpleDocumentResponse
+ */
+export interface PreSignUploadSimpleDocumentResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof PreSignUploadSimpleDocumentResponse
+     */
+    'url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PreSignUploadSimpleDocumentResponse
+     */
+    'batchId'?: string;
+}
+/**
+ * 
+ * @export
  * @interface ProductItem
  */
 export interface ProductItem {
@@ -1319,6 +1388,12 @@ export interface ProductItem {
      * @memberof ProductItem
      */
     'buyChartOfAccountCode'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductItem
+     */
+    'productCode'?: string | null;
 }
 /**
  * 
@@ -1568,6 +1643,12 @@ export interface SimpleDocument {
     'externalId'?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'saleAndPurchaseChannel'?: string | null;
+    /**
+     * 
      * @type {Array<SimpleProductItem>}
      * @memberof SimpleDocument
      */
@@ -1670,6 +1751,80 @@ export interface SimpleProductItem {
      * @memberof SimpleProductItem
      */
     'buyChartOfAccountCode'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItem
+     */
+    'productCode'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface SpreadsheetTemplate
+ */
+export interface SpreadsheetTemplate {
+    /**
+     * 
+     * @type {Array<SpreadsheetTemplateMetadata>}
+     * @memberof SpreadsheetTemplate
+     */
+    'metadataList'?: Array<SpreadsheetTemplateMetadata> | null;
+}
+/**
+ * 
+ * @export
+ * @interface SpreadsheetTemplateMetadata
+ */
+export interface SpreadsheetTemplateMetadata {
+    /**
+     * 
+     * @type {number}
+     * @memberof SpreadsheetTemplateMetadata
+     */
+    'id'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SpreadsheetTemplateMetadata
+     */
+    'name'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SpreadsheetTemplateMetadata
+     */
+    'sheetIndex'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SpreadsheetTemplateMetadata
+     */
+    'columns'?: string | null;
+    /**
+     * 
+     * @type {DateFormatType}
+     * @memberof SpreadsheetTemplateMetadata
+     */
+    'dateFormat'?: DateFormatType;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SpreadsheetTemplateMetadata
+     */
+    'ignoreLastRow'?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SpreadsheetTemplateMetadata
+     */
+    'imageUrl'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SpreadsheetTemplateMetadata
+     */
+    'formulas'?: string | null;
 }
 /**
  * 
@@ -1925,6 +2080,84 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         /**
          * 
          * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetCustomTemplates: async (culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceGetCustomTemplates', 'culture', culture)
+            const localVarPath = `/openapi/{culture}/cash-invoices/custom-template`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} batchId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetOriginalFile: async (batchId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'batchId' is not null or undefined
+            assertParamExists('cashInvoiceGetOriginalFile', 'batchId', batchId)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceGetOriginalFile', 'culture', culture)
+            const localVarPath = `/openapi/{culture}/cash-invoices/get-batch-import-org-file/{batchId}`
+                .replace(`{${"batchId"}}`, encodeURIComponent(String(batchId)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
          * @param {string} [pageSize] 
@@ -2061,6 +2294,49 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PreSignUploadSimpleDocumentPayload} preSignUploadSimpleDocumentPayload 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoicePreSignUploadSimpleDocument: async (culture: string, preSignUploadSimpleDocumentPayload: PreSignUploadSimpleDocumentPayload, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoicePreSignUploadSimpleDocument', 'culture', culture)
+            // verify required parameter 'preSignUploadSimpleDocumentPayload' is not null or undefined
+            assertParamExists('cashInvoicePreSignUploadSimpleDocument', 'preSignUploadSimpleDocumentPayload', preSignUploadSimpleDocumentPayload)
+            const localVarPath = `/openapi/{culture}/cash-invoices/get-presign-for-upload-simpledoc`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(preSignUploadSimpleDocumentPayload, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2322,6 +2598,27 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceGetCustomTemplates(culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SpreadsheetTemplate>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceGetCustomTemplates(culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} batchId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceGetOriginalFile(batchId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceGetOriginalFile(batchId, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
          * @param {string} [pageSize] 
@@ -2351,6 +2648,17 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
          */
         async cashInvoiceMarkViewed(culture: string, body: number, userId?: number, batchId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceMarkViewed(culture, body, userId, batchId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PreSignUploadSimpleDocumentPayload} preSignUploadSimpleDocumentPayload 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoicePreSignUploadSimpleDocument(culture: string, preSignUploadSimpleDocumentPayload: PreSignUploadSimpleDocumentPayload, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PreSignUploadSimpleDocumentResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoicePreSignUploadSimpleDocument(culture, preSignUploadSimpleDocumentPayload, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2465,6 +2773,25 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         /**
          * 
          * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetCustomTemplates(culture: string, options?: any): AxiosPromise<SpreadsheetTemplate> {
+            return localVarFp.cashInvoiceGetCustomTemplates(culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} batchId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetOriginalFile(batchId: string, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceGetOriginalFile(batchId, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
          * @param {string} [pageSize] 
@@ -2493,6 +2820,16 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
          */
         cashInvoiceMarkViewed(culture: string, body: number, userId?: number, batchId?: string, options?: any): AxiosPromise<boolean> {
             return localVarFp.cashInvoiceMarkViewed(culture, body, userId, batchId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PreSignUploadSimpleDocumentPayload} preSignUploadSimpleDocumentPayload 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoicePreSignUploadSimpleDocument(culture: string, preSignUploadSimpleDocumentPayload: PreSignUploadSimpleDocumentPayload, options?: any): AxiosPromise<PreSignUploadSimpleDocumentResponse> {
+            return localVarFp.cashInvoicePreSignUploadSimpleDocument(culture, preSignUploadSimpleDocumentPayload, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2612,6 +2949,29 @@ export class CashInvoiceApi extends BaseAPI {
     /**
      * 
      * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceGetCustomTemplates(culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceGetCustomTemplates(culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} batchId 
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceGetOriginalFile(batchId: string, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceGetOriginalFile(batchId, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
      * @param {string} [pageSize] 
@@ -2643,6 +3003,18 @@ export class CashInvoiceApi extends BaseAPI {
      */
     public cashInvoiceMarkViewed(culture: string, body: number, userId?: number, batchId?: string, options?: AxiosRequestConfig) {
         return CashInvoiceApiFp(this.configuration).cashInvoiceMarkViewed(culture, body, userId, batchId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {PreSignUploadSimpleDocumentPayload} preSignUploadSimpleDocumentPayload 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoicePreSignUploadSimpleDocument(culture: string, preSignUploadSimpleDocumentPayload: PreSignUploadSimpleDocumentPayload, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoicePreSignUploadSimpleDocument(culture, preSignUploadSimpleDocumentPayload, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

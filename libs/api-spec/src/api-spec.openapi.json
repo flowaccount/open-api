@@ -300,6 +300,46 @@
         ]
       }
     },
+    "/openapi/{culture}/cash-invoices/custom-template": {
+      "get": {
+        "tags": [
+          "CashInvoice"
+        ],
+        "operationId": "CashInvoice_GetCustomTemplates",
+        "parameters": [
+          {
+            "name": "culture",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpreadsheetTemplate"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    
+    
     "/openapi/{culture}/cash-invoices/batch-import-history": {
       "post": {
         "tags": [
@@ -805,6 +845,60 @@
   },
   "components": {
     "schemas": {
+      "SpreadsheetTemplateMetadata": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "sheetIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "columns": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateFormat": {
+            "$ref": "#/components/schemas/DateFormatType"
+          },
+          "ignoreLastRow": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "formulas": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      
+      "DateFormatType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "format": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "BatchImportMetadata": {
         "type": "object",
         "additionalProperties": false,
@@ -981,6 +1075,19 @@
             "nullable": true,
             "items": {
               "$ref": "#/components/schemas/BatchImportMetadata"
+            }
+          }
+        }
+      },
+      "SpreadsheetTemplate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "metadataList": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/SpreadsheetTemplateMetadata"
             }
           }
         }
@@ -1186,6 +1293,10 @@
           "buyChartOfAccountCode": {
             "type": "string",
             "nullable": true
+          },
+          "productCode": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -1351,6 +1462,10 @@
             "nullable": true
           },
           "externalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "saleAndPurchaseChannel": {
             "type": "string",
             "nullable": true
           }
