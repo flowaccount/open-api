@@ -1,0 +1,51 @@
+# Org.OpenAPITools.Model.SimpleDocument
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**RecordId** | **long** |  | [optional] 
+**ContactCode** | **string** |  | [optional] 
+**ContactName** | **string** |  | [optional] 
+**ContactAddress** | **string** |  | [optional] 
+**ContactTaxId** | **string** |  | [optional] 
+**ContactBranch** | **string** |  | [optional] 
+**ContactPerson** | **string** |  | [optional] 
+**ContactEmail** | **string** |  | [optional] 
+**ContactNumber** | **string** |  | [optional] 
+**ContactZipCode** | **string** |  | [optional] 
+**ContactGroup** | **int** |  | [optional] 
+**PublishedOn** | **DateTime** |  | [optional] 
+**CreditType** | **int** |  | [optional] 
+**CreditDays** | **int** |  | [optional] 
+**DueDate** | **DateTime** |  | [optional] 
+**SalesName** | **string** |  | [optional] 
+**ProjectName** | **string** |  | [optional] 
+**Reference** | **string** |  | [optional] 
+**IsVatInclusive** | **bool** |  | [optional] 
+**UseReceiptDeduction** | **bool** |  | [optional] 
+**SubTotal** | **decimal** |  | [optional] 
+**DiscountPercentage** | **int** |  | [optional] 
+**DiscountAmount** | **decimal** |  | [optional] 
+**TotalAfterDiscount** | **decimal** |  | [optional] 
+**IsVat** | **bool** |  | [optional] 
+**VatAmount** | **decimal** |  | [optional] 
+**GrandTotal** | **decimal** |  | [optional] 
+**DocumentShowWithholdingTax** | **bool** |  | [optional] 
+**DocumentWithholdingTaxPercentage** | **int** |  | [optional] 
+**DocumentWithholdingTaxAmount** | **decimal** |  | [optional] 
+**DocumentDeductionType** | **int** |  | [optional] 
+**DocumentDeductionAmount** | **decimal** |  | [optional] 
+**Remarks** | **string** |  | [optional] 
+**InternalNotes** | **string** |  | [optional] 
+**ShowSignatureOrStamp** | **bool** |  | [optional] 
+**DocumentStructureType** | **string** |  | [optional] 
+**ExternalId** | **string** |  | [optional] 
+**SaleAndPurchaseChannel** | **string** |  | [optional] 
+**RowIndex** | **string** |  | [optional] 
+**Items** | [**List&lt;SimpleProductItem&gt;**](SimpleProductItem.md) |  | [optional] 
+**DocumentReference** | [**List&lt;UpgradeDocument&gt;**](UpgradeDocument.md) |  | [optional] 
+**ExemptAmount** | **decimal?** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
