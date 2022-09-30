@@ -29,7 +29,7 @@
         "@nrwl/tao": "^13.9.5",
         "@nrwl/workspace": "^13.9.5",
         "@openapitools/openapi-generator-cli": "^2.4.26",
-        "@trumbitta/nx-plugin-openapi": "^1.10.0",
+        "@trumbitta/nx-plugin-openapi": "^1.12.1",
         "@types/jest": "^27.5.1",
         "@types/mocha": "^9.1.0",
         "@types/node": "16.11.7",

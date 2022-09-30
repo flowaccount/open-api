@@ -20,6 +20,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "To get details of a document",
         "operationId": "BatchImport_GenerateBacthIdMetadata",
         "parameters": [
           {
@@ -101,6 +102,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "Query the batch by id and status",
         "operationId": "BatchImport_QueryBatch",
         "parameters": [
           {
@@ -205,6 +207,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "Mark the batch as viewed in notification.",
         "operationId": "BatchImport_MarkViewed",
         "parameters": [
           {
@@ -267,6 +270,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "Get presign url to upload the file with payloads",
         "operationId": "BatchImport_GetPresign",
         "parameters": [
           {
@@ -325,6 +329,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "Get Original File",
         "operationId": "BatchImport_GetOrgingalFile",
         "parameters": [
           {
@@ -372,6 +377,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "Get data from Storage",
         "operationId": "BatchImport_GetBatchS3Data",
         "parameters": [
           {
@@ -419,6 +425,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "Create or Update (Upsert) custom template",
         "operationId": "BatchImport_UpsertCustomTemplate",
         "parameters": [
           {
@@ -468,6 +475,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "Get custom template",
         "operationId": "BatchImport_GetCustomTemplate",
         "parameters": [
           {
@@ -513,6 +521,7 @@
         "tags": [
           "BatchImport"
         ],
+        "summary": "Delete custom template",
         "operationId": "BatchImport_DeleteCustomTemplate",
         "parameters": [
           {
@@ -560,6 +569,7 @@
         "tags": [
           "CashInvoice"
         ],
+        "summary": "To query for documents.",
         "operationId": "CashInvoice_Index",
         "parameters": [
           {
@@ -696,12 +706,14 @@
         "tags": [
           "CashInvoice"
         ],
+        "summary": "To get details of a document",
         "operationId": "CashInvoice_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -741,6 +753,7 @@
         "tags": [
           "CashInvoice"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "CashInvoice_Delete",
         "parameters": [
           {
@@ -788,7 +801,8 @@
         "tags": [
           "CashInvoice"
         ],
-        "operationId": "CashInvoice_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "CashInvoice_Create",
         "parameters": [
           {
             "name": "culture",
@@ -836,7 +850,8 @@
         "tags": [
           "CashInvoice"
         ],
-        "operationId": "CashInvoice_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "CashInvoice_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -884,6 +899,7 @@
         "tags": [
           "CashInvoice"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "CashInvoice_Edit",
         "parameters": [
           {
@@ -943,6 +959,7 @@
         "tags": [
           "CashInvoice"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "CashInvoice_Edit2",
         "parameters": [
           {
@@ -1002,6 +1019,7 @@
         "tags": [
           "CashInvoice"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "CashInvoice_ChangeStatusByKey",
         "parameters": [
           {
@@ -1059,6 +1077,7 @@
         "tags": [
           "CashInvoice"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "CashInvoice_ReceivePayment",
         "parameters": [
           {
@@ -1118,6 +1137,7 @@
         "tags": [
           "BillingNote"
         ],
+        "summary": "To query for documents.",
         "operationId": "BillingNote_Index",
         "parameters": [
           {
@@ -1254,12 +1274,14 @@
         "tags": [
           "BillingNote"
         ],
+        "summary": "To get details of a document",
         "operationId": "BillingNote_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -1299,6 +1321,7 @@
         "tags": [
           "BillingNote"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "BillingNote_Delete",
         "parameters": [
           {
@@ -1346,7 +1369,8 @@
         "tags": [
           "BillingNote"
         ],
-        "operationId": "BillingNote_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "BillingNote_Create",
         "parameters": [
           {
             "name": "culture",
@@ -1394,7 +1418,8 @@
         "tags": [
           "BillingNote"
         ],
-        "operationId": "BillingNote_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "BillingNote_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -1442,6 +1467,7 @@
         "tags": [
           "BillingNote"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "BillingNote_Edit",
         "parameters": [
           {
@@ -1501,6 +1527,7 @@
         "tags": [
           "BillingNote"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "BillingNote_Edit2",
         "parameters": [
           {
@@ -1560,6 +1587,7 @@
         "tags": [
           "BillingNote"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "BillingNote_ChangeStatusByKey",
         "parameters": [
           {
@@ -1617,6 +1645,7 @@
         "tags": [
           "BillingNote"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "BillingNote_ReceivePayment",
         "parameters": [
           {
@@ -1770,6 +1799,7 @@
         "tags": [
           "Quotation"
         ],
+        "summary": "To query for documents.",
         "operationId": "Quotation_Index",
         "parameters": [
           {
@@ -1906,12 +1936,14 @@
         "tags": [
           "Quotation"
         ],
+        "summary": "To get details of a document",
         "operationId": "Quotation_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -1951,6 +1983,7 @@
         "tags": [
           "Quotation"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "Quotation_Delete",
         "parameters": [
           {
@@ -1998,7 +2031,8 @@
         "tags": [
           "Quotation"
         ],
-        "operationId": "Quotation_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "Quotation_Create",
         "parameters": [
           {
             "name": "culture",
@@ -2046,7 +2080,8 @@
         "tags": [
           "Quotation"
         ],
-        "operationId": "Quotation_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "Quotation_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -2094,6 +2129,7 @@
         "tags": [
           "Quotation"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "Quotation_Edit",
         "parameters": [
           {
@@ -2153,6 +2189,7 @@
         "tags": [
           "Quotation"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "Quotation_Edit2",
         "parameters": [
           {
@@ -2212,6 +2249,7 @@
         "tags": [
           "Quotation"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "Quotation_ChangeStatusByKey",
         "parameters": [
           {
@@ -2269,6 +2307,7 @@
         "tags": [
           "Quotation"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "Quotation_ReceivePayment",
         "parameters": [
           {
@@ -2402,6 +2441,7 @@
         "tags": [
           "Receipt"
         ],
+        "summary": "To query for documents.",
         "operationId": "Receipt_Index",
         "parameters": [
           {
@@ -2538,12 +2578,14 @@
         "tags": [
           "Receipt"
         ],
+        "summary": "To get details of a document",
         "operationId": "Receipt_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -2583,6 +2625,7 @@
         "tags": [
           "Receipt"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "Receipt_Delete",
         "parameters": [
           {
@@ -2630,7 +2673,8 @@
         "tags": [
           "Receipt"
         ],
-        "operationId": "Receipt_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "Receipt_Create",
         "parameters": [
           {
             "name": "culture",
@@ -2678,7 +2722,8 @@
         "tags": [
           "Receipt"
         ],
-        "operationId": "Receipt_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "Receipt_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -2726,6 +2771,7 @@
         "tags": [
           "Receipt"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "Receipt_Edit",
         "parameters": [
           {
@@ -2785,6 +2831,7 @@
         "tags": [
           "Receipt"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "Receipt_Edit2",
         "parameters": [
           {
@@ -2844,6 +2891,7 @@
         "tags": [
           "Receipt"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "Receipt_ChangeStatusByKey",
         "parameters": [
           {
@@ -2901,6 +2949,7 @@
         "tags": [
           "Receipt"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "Receipt_ReceivePayment",
         "parameters": [
           {
@@ -2960,6 +3009,7 @@
         "tags": [
           "ReceivableInvoice"
         ],
+        "summary": "To query for documents.",
         "operationId": "ReceivableInvoice_Index",
         "parameters": [
           {
@@ -3096,12 +3146,14 @@
         "tags": [
           "ReceivableInvoice"
         ],
+        "summary": "To get details of a document",
         "operationId": "ReceivableInvoice_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -3141,6 +3193,7 @@
         "tags": [
           "ReceivableInvoice"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "ReceivableInvoice_Delete",
         "parameters": [
           {
@@ -3188,7 +3241,8 @@
         "tags": [
           "ReceivableInvoice"
         ],
-        "operationId": "ReceivableInvoice_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "ReceivableInvoice_Create",
         "parameters": [
           {
             "name": "culture",
@@ -3236,7 +3290,8 @@
         "tags": [
           "ReceivableInvoice"
         ],
-        "operationId": "ReceivableInvoice_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "ReceivableInvoice_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -3284,6 +3339,7 @@
         "tags": [
           "ReceivableInvoice"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "ReceivableInvoice_Edit",
         "parameters": [
           {
@@ -3343,6 +3399,7 @@
         "tags": [
           "ReceivableInvoice"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "ReceivableInvoice_Edit2",
         "parameters": [
           {
@@ -3402,6 +3459,7 @@
         "tags": [
           "ReceivableInvoice"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "ReceivableInvoice_ChangeStatusByKey",
         "parameters": [
           {
@@ -3459,6 +3517,7 @@
         "tags": [
           "ReceivableInvoice"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "ReceivableInvoice_ReceivePayment",
         "parameters": [
           {
@@ -3564,6 +3623,7 @@
         "tags": [
           "TaxInvoice"
         ],
+        "summary": "To query for documents.",
         "operationId": "TaxInvoice_Index",
         "parameters": [
           {
@@ -3700,12 +3760,14 @@
         "tags": [
           "TaxInvoice"
         ],
+        "summary": "To get details of a document",
         "operationId": "TaxInvoice_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -3745,6 +3807,7 @@
         "tags": [
           "TaxInvoice"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "TaxInvoice_Delete",
         "parameters": [
           {
@@ -3792,7 +3855,8 @@
         "tags": [
           "TaxInvoice"
         ],
-        "operationId": "TaxInvoice_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "TaxInvoice_Create",
         "parameters": [
           {
             "name": "culture",
@@ -3840,7 +3904,8 @@
         "tags": [
           "TaxInvoice"
         ],
-        "operationId": "TaxInvoice_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "TaxInvoice_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -3888,6 +3953,7 @@
         "tags": [
           "TaxInvoice"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "TaxInvoice_Edit",
         "parameters": [
           {
@@ -3947,6 +4013,7 @@
         "tags": [
           "TaxInvoice"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "TaxInvoice_Edit2",
         "parameters": [
           {
@@ -4006,6 +4073,7 @@
         "tags": [
           "TaxInvoice"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "TaxInvoice_ChangeStatusByKey",
         "parameters": [
           {
@@ -4063,6 +4131,7 @@
         "tags": [
           "TaxInvoice"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "TaxInvoice_ReceivePayment",
         "parameters": [
           {
@@ -4168,6 +4237,7 @@
         "tags": [
           "CreditNote"
         ],
+        "summary": "To query for documents.",
         "operationId": "CreditNote_Index",
         "parameters": [
           {
@@ -4304,12 +4374,14 @@
         "tags": [
           "CreditNote"
         ],
+        "summary": "To get details of a document",
         "operationId": "CreditNote_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -4349,6 +4421,7 @@
         "tags": [
           "CreditNote"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "CreditNote_Delete",
         "parameters": [
           {
@@ -4396,7 +4469,8 @@
         "tags": [
           "CreditNote"
         ],
-        "operationId": "CreditNote_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "CreditNote_Create",
         "parameters": [
           {
             "name": "culture",
@@ -4444,7 +4518,8 @@
         "tags": [
           "CreditNote"
         ],
-        "operationId": "CreditNote_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "CreditNote_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -4492,6 +4567,7 @@
         "tags": [
           "CreditNote"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "CreditNote_Edit",
         "parameters": [
           {
@@ -4551,6 +4627,7 @@
         "tags": [
           "CreditNote"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "CreditNote_Edit2",
         "parameters": [
           {
@@ -4610,6 +4687,7 @@
         "tags": [
           "CreditNote"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "CreditNote_ChangeStatusByKey",
         "parameters": [
           {
@@ -4667,6 +4745,7 @@
         "tags": [
           "CreditNote"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "CreditNote_ReceivePayment",
         "parameters": [
           {
@@ -4772,6 +4851,7 @@
         "tags": [
           "DebitNote"
         ],
+        "summary": "To query for documents.",
         "operationId": "DebitNote_Index",
         "parameters": [
           {
@@ -4908,12 +4988,14 @@
         "tags": [
           "DebitNote"
         ],
+        "summary": "To get details of a document",
         "operationId": "DebitNote_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -4953,6 +5035,7 @@
         "tags": [
           "DebitNote"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "DebitNote_Delete",
         "parameters": [
           {
@@ -5000,7 +5083,8 @@
         "tags": [
           "DebitNote"
         ],
-        "operationId": "DebitNote_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "DebitNote_Create",
         "parameters": [
           {
             "name": "culture",
@@ -5048,7 +5132,8 @@
         "tags": [
           "DebitNote"
         ],
-        "operationId": "DebitNote_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "DebitNote_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -5096,6 +5181,7 @@
         "tags": [
           "DebitNote"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "DebitNote_Edit",
         "parameters": [
           {
@@ -5155,6 +5241,7 @@
         "tags": [
           "DebitNote"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "DebitNote_Edit2",
         "parameters": [
           {
@@ -5214,6 +5301,7 @@
         "tags": [
           "DebitNote"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "DebitNote_ChangeStatusByKey",
         "parameters": [
           {
@@ -5271,6 +5359,7 @@
         "tags": [
           "DebitNote"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "DebitNote_ReceivePayment",
         "parameters": [
           {
@@ -5478,6 +5567,7 @@
         "tags": [
           "Expense"
         ],
+        "summary": "To query for documents.",
         "operationId": "Expense_Index",
         "parameters": [
           {
@@ -5614,12 +5704,14 @@
         "tags": [
           "Expense"
         ],
+        "summary": "To get details of a document",
         "operationId": "Expense_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -5659,6 +5751,7 @@
         "tags": [
           "Expense"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "Expense_Delete",
         "parameters": [
           {
@@ -5706,7 +5799,8 @@
         "tags": [
           "Expense"
         ],
-        "operationId": "Expense_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "Expense_Create",
         "parameters": [
           {
             "name": "culture",
@@ -5754,7 +5848,8 @@
         "tags": [
           "Expense"
         ],
-        "operationId": "Expense_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "Expense_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -5802,6 +5897,7 @@
         "tags": [
           "Expense"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "Expense_Edit",
         "parameters": [
           {
@@ -5861,6 +5957,7 @@
         "tags": [
           "Expense"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "Expense_Edit2",
         "parameters": [
           {
@@ -5920,6 +6017,7 @@
         "tags": [
           "Expense"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "Expense_ChangeStatusByKey",
         "parameters": [
           {
@@ -5977,6 +6075,7 @@
         "tags": [
           "Expense"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "Expense_ReceivePayment",
         "parameters": [
           {
@@ -6036,6 +6135,7 @@
         "tags": [
           "Purchase"
         ],
+        "summary": "To query for documents.",
         "operationId": "Purchase_Index",
         "parameters": [
           {
@@ -6172,12 +6272,14 @@
         "tags": [
           "Purchase"
         ],
+        "summary": "To get details of a document",
         "operationId": "Purchase_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -6217,6 +6319,7 @@
         "tags": [
           "Purchase"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "Purchase_Delete",
         "parameters": [
           {
@@ -6264,7 +6367,8 @@
         "tags": [
           "Purchase"
         ],
-        "operationId": "Purchase_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "Purchase_Create",
         "parameters": [
           {
             "name": "culture",
@@ -6312,7 +6416,8 @@
         "tags": [
           "Purchase"
         ],
-        "operationId": "Purchase_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "Purchase_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -6360,6 +6465,7 @@
         "tags": [
           "Purchase"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "Purchase_Edit",
         "parameters": [
           {
@@ -6419,6 +6525,7 @@
         "tags": [
           "Purchase"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "Purchase_Edit2",
         "parameters": [
           {
@@ -6478,6 +6585,7 @@
         "tags": [
           "Purchase"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "Purchase_ChangeStatusByKey",
         "parameters": [
           {
@@ -6535,6 +6643,7 @@
         "tags": [
           "Purchase"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "Purchase_ReceivePayment",
         "parameters": [
           {
@@ -6594,6 +6703,7 @@
         "tags": [
           "PurchaseOrder"
         ],
+        "summary": "To query for documents.",
         "operationId": "PurchaseOrder_Index",
         "parameters": [
           {
@@ -6730,12 +6840,14 @@
         "tags": [
           "PurchaseOrder"
         ],
+        "summary": "To get details of a document",
         "operationId": "PurchaseOrder_Details",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Sql DocumentId",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -6775,6 +6887,7 @@
         "tags": [
           "PurchaseOrder"
         ],
+        "summary": "To delete the document given a list of documentids",
         "operationId": "PurchaseOrder_Delete",
         "parameters": [
           {
@@ -6822,7 +6935,8 @@
         "tags": [
           "PurchaseOrder"
         ],
-        "operationId": "PurchaseOrder_ActorCreate",
+        "summary": "To Create a document with SimpleDocument as the parameter",
+        "operationId": "PurchaseOrder_Create",
         "parameters": [
           {
             "name": "culture",
@@ -6870,7 +6984,8 @@
         "tags": [
           "PurchaseOrder"
         ],
-        "operationId": "PurchaseOrder_ActorCreateInline",
+        "summary": "To Create a document with InlineDocument as the parameter",
+        "operationId": "PurchaseOrder_Create2",
         "parameters": [
           {
             "name": "culture",
@@ -6918,6 +7033,7 @@
         "tags": [
           "PurchaseOrder"
         ],
+        "summary": "To Update a document with simpleDocument as the parameter",
         "operationId": "PurchaseOrder_Edit",
         "parameters": [
           {
@@ -6977,6 +7093,7 @@
         "tags": [
           "PurchaseOrder"
         ],
+        "summary": "To Update a document with inlineDocument as the parameter",
         "operationId": "PurchaseOrder_Edit2",
         "parameters": [
           {
@@ -7036,6 +7153,7 @@
         "tags": [
           "PurchaseOrder"
         ],
+        "summary": "To change status by the document id and key",
         "operationId": "PurchaseOrder_ChangeStatusByKey",
         "parameters": [
           {
@@ -7093,6 +7211,7 @@
         "tags": [
           "PurchaseOrder"
         ],
+        "summary": "To Accept payment with the paymentModel",
         "operationId": "PurchaseOrder_ReceivePayment",
         "parameters": [
           {
@@ -7152,7 +7271,45 @@
         "tags": [
           "Employee"
         ],
+        "summary": "Get employee by Id",
         "operationId": "Employee_GetById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Delete/Remove Employee by Id",
+        "operationId": "Employee_Remove",
         "parameters": [
           {
             "name": "id",
@@ -7186,10 +7343,11 @@
       }
     },
     "/Employee": {
-      "post": {
+      "get": {
         "tags": [
           "Employee"
         ],
+        "summary": "Get employee list with payrollQuery model",
         "operationId": "Employee_GetList",
         "requestBody": {
           "x-name": "queryStringModel",
@@ -7221,14 +7379,13 @@
             "bearer": []
           }
         ]
-      }
-    },
-    "/Employee/manage": {
+      },
       "post": {
         "tags": [
           "Employee"
         ],
-        "operationId": "Employee_AddEmployee",
+        "summary": "Create Employee",
+        "operationId": "Employee_Create",
         "requestBody": {
           "x-name": "employee",
           "content": {
@@ -7264,7 +7421,8 @@
         "tags": [
           "Employee"
         ],
-        "operationId": "Employee__update",
+        "summary": "Update Employee",
+        "operationId": "Employee_Edit",
         "requestBody": {
           "x-name": "employee",
           "content": {
@@ -7297,88 +7455,13 @@
         ]
       }
     },
-    "/Employee/manage/{id}/delete": {
-      "delete": {
-        "tags": [
-          "Employee"
-        ],
-        "operationId": "Employee__remove",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/Employee/manage/count": {
+    "/Employee/count": {
       "get": {
         "tags": [
           "Employee"
         ],
-        "operationId": "Employee_GetCount",
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/Employee/not-exist": {
-      "post": {
-        "tags": [
-          "Employee"
-        ],
-        "operationId": "Employee_NotExistList",
-        "requestBody": {
-          "x-name": "notExistEmployee",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NotExistEmployee"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
+        "summary": "Count employees",
+        "operationId": "Employee_Count",
         "responses": {
           "200": {
             "description": "",
@@ -7467,7 +7550,7 @@
       },
       "DocumentTypes": {
         "type": "integer",
-        "description": "",
+        "description": "1 = PurchaseOrder\n3 = Quotation\n5 = BillingNote\n7 = TaxInvoice\n9 = Receipt\n13 = Expense\n15 = Vendor\n17 = WithHoldingTax\n19 = BillingNotePartials\n21 = TaxInvoicePartails\n23 = Purchase\n24 = PurchaseTax\n25 = ReceivableInvoice\n29 = AdjustInventory\n31 = CreditNote\n33 = DebitNote\n35 = CashInvoice\n37 = PaymentSlip\n51 = JournalEntry\n53 = PurchaseVoucher\n55 = SalesVoucher\n57 = PaymentVoucher\n59 = ReceivedVoucher\n61 = ConversionBalance\n63 = Transaction\n65 = SupplierInvoice\n67 = BatchTaxFiling\n69 = FixedAsset\n71 = Depreciation\n73 = BankTransfer\n151 = DraftJournalEntry\n153 = DraftPurchaseVoucher\n155 = DraftSalesVoucher\n157 = DraftPaymentVoucher\n159 = DraftReceivedVoucher\n201 = Payroll\n202 = PayrollDetail\n203 = Employee\n204 = PayrollPayment",
         "x-enumNames": [
           "PurchaseOrder",
           "Quotation",
@@ -7553,7 +7636,7 @@
       },
       "BatchImportStatus": {
         "type": "integer",
-        "description": "",
+        "description": "0 = None\n1 = Awaiting\n3 = Pending\n5 = Failed\n6 = HandledDuplicated\n7 = Succeed",
         "x-enumNames": [
           "None",
           "Awaiting",
@@ -7729,10 +7812,10 @@
           "contactNumber": "",
           "contactZipCode": "",
           "contactGroup": 1,
-          "publishedOn": "2022-09-28T11:51:56.4173179+07:00",
+          "publishedOn": "2022-09-29T16:41:33.9516106+07:00",
           "creditType": 3,
           "creditDays": 0,
-          "dueDate": "2022-09-28T11:51:56.4173215+07:00",
+          "dueDate": "2022-09-29T16:41:33.9516124+07:00",
           "salesName": "Wongnai POS",
           "projectName": "",
           "reference": null,
@@ -8407,7 +8490,7 @@
       },
       "PaymentMethod": {
         "type": "integer",
-        "description": "",
+        "description": "0 = None\n1 = Cash\n3 = Cheque\n5 = Transfer\n7 = CreditCard\n9 = PushPay\n11 = PettyCash\n13 = Other\n51 = TransferByKConnect",
         "x-enumNames": [
           "None",
           "Cash",
@@ -8433,7 +8516,7 @@
       },
       "RemainingCollectedType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = CashShortOrOver\n3 = CashDiscount\n5 = ExchangeRateDiff\n51 = SalesCashShortOrOver\n53 = SalesDiscount\n55 = SalesBankFee\n57 = SalesExchangeRateDiff",
         "x-enumNames": [
           "CashShortOrOver",
           "CashDiscount",
@@ -8455,7 +8538,7 @@
       },
       "DeductionType": {
         "type": "integer",
-        "description": "",
+        "description": "0 = None\n1 = CashDiscount\n3 = Commission\n5 = ManagementFee\n7 = Roundings\n9 = Retentions",
         "x-enumNames": [
           "None",
           "CashDiscount",
@@ -8475,7 +8558,7 @@
       },
       "IncomeType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Salary\n3 = Commission\n5 = Licensing\n7 = Interest\n9 = NetProfit30\n11 = NetProfit25\n13 = NetProfit20\n15 = NetProfitOther\n17 = TaxExemption\n19 = DividenFromShareOfProfit\n21 = PortionOfNetProfit\n23 = RecognitionOfProfit\n25 = TaxOther\n27 = RevenueDepartmentTax\n29 = Others",
         "x-enumNames": [
           "Salary",
           "Commission",
@@ -8513,7 +8596,7 @@
       },
       "Entity": {
         "type": "integer",
-        "description": "",
+        "description": "1 = PND3\n3 = PND53\n5 = PND1K\n7 = PND1KSpecial\n9 = PND2\n11 = PND2K\n13 = PND3K\n15 = PND1",
         "x-enumNames": [
           "PND3",
           "PND53",
@@ -8663,7 +8746,7 @@
       },
       "PayrollType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = FirstVersion\n3 = PayrollPayment\n5 = Kconnect\n7 = Cash\n9 = Transfer",
         "x-enumNames": [
           "FirstVersion",
           "PayrollPayment",
@@ -8761,7 +8844,7 @@
       },
       "CustomDocumentModel": {
         "type": "integer",
-        "description": "",
+        "description": "1 = SwitchProductItemSellToBuy",
         "x-enumNames": [
           "SwitchProductItemSellToBuy"
         ],
@@ -8847,7 +8930,7 @@
       },
       "DateType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = PublishDate\n3 = PaymentDate\n5 = ExpenseDate\n7 = TransitionDate",
         "x-enumNames": [
           "PublishDate",
           "PaymentDate",
@@ -8863,7 +8946,7 @@
       },
       "DataRange": {
         "type": "integer",
-        "description": "",
+        "description": "1 = CurrentMonth\n3 = PreviousMonth\n5 = Manual\n7 = CurrentYear\n9 = PreviousYear\n11 = AsAt\n13 = Grid\n15 = FiscalYear\n17 = Months\n19 = Days",
         "x-enumNames": [
           "CurrentMonth",
           "PreviousMonth",
@@ -8891,7 +8974,7 @@
       },
       "ReportTypes": {
         "type": "integer",
-        "description": "",
+        "description": "10 = Sales\n11 = SalesTeamReport\n12 = SalesTax\n13 = SimpleSales\n14 = AccountReceivable\n15 = AccountReceivableAging\n20 = Purchase\n21 = PurchaseTax\n22 = AccountPayable\n23 = AccountPayableAging\n24 = PurchaseByProduct\n25 = PurchaseByProductAdvance\n30 = Clients\n40 = Vendor\n50 = PaymentCollection\n60 = SalesByProduct\n61 = SalesByProductAdvance\n62 = SalesByPerson\n63 = SalesByPersonAdvance\n64 = SalesByCustomer\n65 = SalesByCustomerAdvance\n70 = Quotation\n80 = BillingNote\n90 = ReceiveInventory\n91 = StocksReport\n92 = GroupStockReport\n100 = Expense\n110 = WithHoldingTax\n120 = ProfitAndLossOneMonth\n121 = ProfitAndLossMultipleMonth\n130 = Receipt\n140 = CreditNote\n150 = DebitNote\n160 = TaxInvoice\n170 = Payroll\n171 = PayrollSummary\n172 = PayrollGroup\n173 = PayrollSscSummary\n180 = ContactGrid\n190 = ProductGrid\n200 = ExportContact\n210 = ExportProduct\n220 = Receivables\n240 = Payables\n260 = GeneralLedger\n270 = JournalEntry\n280 = Payment\n290 = InputTax\n291 = OutputTax\n292 = FixedAsset\n293 = Depreciation\n300 = PaymentSlip",
         "x-enumNames": [
           "Sales",
           "SalesTeamReport",
@@ -9020,7 +9103,7 @@
       },
       "PredicateOperator": {
         "type": "integer",
-        "description": "",
+        "description": "0 = Or\n1 = And",
         "x-enumNames": [
           "Or",
           "And"
@@ -9045,7 +9128,7 @@
       },
       "OrderBy": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Asc\n3 = Desc",
         "x-enumNames": [
           "Asc",
           "Desc"
@@ -9076,7 +9159,7 @@
           "branch": null,
           "accountNumber": "1234567890",
           "accountType": 3,
-          "startDate": "2022-09-28T11:51:57.0084901+07:00",
+          "startDate": "2022-09-29T16:41:34.4019503+07:00",
           "endDate": null,
           "internalNote": null,
           "isActive": null,
@@ -9475,7 +9558,7 @@
       },
       "GenderPrefix": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Mr\n3 = Mrs\n5 = Ms",
         "x-enumNames": [
           "Mr",
           "Mrs",
@@ -9489,7 +9572,7 @@
       },
       "EmployeeTypes": {
         "type": "integer",
-        "description": "",
+        "description": "1 = EmpWithOutOT\n3 = EmpWithOT\n5 = EmpByDayHour\n7 = Owner",
         "x-enumNames": [
           "EmpWithOutOT",
           "EmpWithOT",
@@ -9505,7 +9588,7 @@
       },
       "ConditionsOfWithholdingTax": {
         "type": "integer",
-        "description": "",
+        "description": "1 = WithholdsTaxAtSource\n2 = PayEveryTime\n3 = PayOneTime",
         "x-enumNames": [
           "WithholdsTaxAtSource",
           "PayEveryTime",
@@ -9519,7 +9602,7 @@
       },
       "PaidPeriod": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Monthly\n3 = Daily",
         "x-enumNames": [
           "Monthly",
           "Daily"
@@ -9862,7 +9945,7 @@
       },
       "ChartOfAccountCategory": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Assets\n2 = Liabilities\n3 = Equity\n4 = Revenue\n5 = Expenses",
         "x-enumNames": [
           "Assets",
           "Liabilities",
@@ -10008,7 +10091,7 @@
       },
       "BankingChannelsStatus": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Active\n3 = InActive",
         "x-enumNames": [
           "Active",
           "InActive"
@@ -10165,7 +10248,7 @@
       },
       "CreditCardType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Personal\n3 = Business",
         "x-enumNames": [
           "Personal",
           "Business"
@@ -10253,7 +10336,7 @@
       },
       "PaymentChannelsType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = POS\n3 = PayemntGateWay\n5 = EDC\n7 = ECommerce",
         "x-enumNames": [
           "POS",
           "PayemntGateWay",
@@ -10269,7 +10352,7 @@
       },
       "OtherChannelsType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Receive\n3 = ReceivePay\n5 = Pay",
         "x-enumNames": [
           "Receive",
           "ReceivePay",
@@ -10547,7 +10630,7 @@
       },
       "CompanyTypeEnum": {
         "type": "integer",
-        "description": "",
+        "description": "10 = PrivateWithTax\n20 = PrivateWithoutTax\n30 = Personal\n40 = PersonalWithTax\n50 = PartnershipLimitedWithTax\n60 = PartnershipLimitedWithoutTax",
         "x-enumNames": [
           "PrivateWithTax",
           "PrivateWithoutTax",
@@ -10567,7 +10650,7 @@
       },
       "SalesType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Cash\n3 = Credit\n5 = Both",
         "x-enumNames": [
           "Cash",
           "Credit",
@@ -11239,7 +11322,7 @@
       },
       "BusinessType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = SellingProducts\n3 = SellingServices\n5 = SellingBoth\n7 = Custom",
         "x-enumNames": [
           "SellingProducts",
           "SellingServices",
@@ -11255,7 +11338,7 @@
       },
       "RunningNumberType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Default\n3 = YearMonth\n5 = Month\n7 = Year\n9 = FreeHand",
         "x-enumNames": [
           "Default",
           "YearMonth",
@@ -11273,7 +11356,7 @@
       },
       "DocumentTemplates": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Default\n3 = Template1\n5 = Template2\n7 = Template3\n9 = Template4\n11 = Template5\n13 = TemplateA5\n15 = Template9x11withOriginal\n17 = Template8\n101 = NativeDefault\n103 = Native1\n105 = Native3\n107 = Native5\n109 = Native7\n111 = Native9\n113 = Native11\n115 = Native13\n201 = Thermal1\n203 = Thermal2\n205 = SocialSlip\n301 = ShortCA1\n303 = ShortCA2\n305 = ShortCA3",
         "x-enumNames": [
           "Default",
           "Template1",
@@ -11327,7 +11410,7 @@
       },
       "TemplateFont": {
         "type": "integer",
-        "description": "",
+        "description": "1 = ChatThai\n3 = Rsu",
         "x-enumNames": [
           "ChatThai",
           "Rsu"
@@ -11424,7 +11507,7 @@
       },
       "KConnectProductCode": {
         "type": "integer",
-        "description": "",
+        "description": "1 = PCT\n3 = PPA\n5 = PPB",
         "x-enumNames": [
           "PCT",
           "PPA",
@@ -11573,7 +11656,7 @@
       },
       "PackageStatus": {
         "type": "integer",
-        "description": "",
+        "description": "10 = Pending\n30 = Approve\n50 = Suspend\n70 = Terminated\n90 = Delete",
         "x-enumNames": [
           "Pending",
           "Approve",
@@ -11591,7 +11674,7 @@
       },
       "UpgradeType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Upgrade\n3 = Renew\n5 = ChangePackage",
         "x-enumNames": [
           "Upgrade",
           "Renew",
@@ -11605,7 +11688,7 @@
       },
       "PaymentChannel": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Omise\n3 = InAppIOS\n5 = InAppAndriod\n7 = UssdAis\n9 = BankTranfer\n11 = PrePaidSerial",
         "x-enumNames": [
           "Omise",
           "InAppIOS",
@@ -11985,7 +12068,7 @@
       },
       "ProductTypes": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Service\n3 = ProductWithNoStock\n5 = ProductWithStock",
         "x-enumNames": [
           "Service",
           "ProductWithNoStock",
@@ -11999,7 +12082,7 @@
       },
       "ProductNonInventoryType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = NonStockProduct\n3 = SparepartProduct\n5 = SampleProduct\n7 = FreemiumProduct\n9 = SupplyProduct\n11 = OthersProduct",
         "x-enumNames": [
           "NonStockProduct",
           "SparepartProduct",
@@ -12382,7 +12465,7 @@
       },
       "JournalEntryStatus": {
         "type": "integer",
-        "description": "",
+        "description": "0 = Delete\n1 = Awaiting\n5 = Approved\n9 = Void",
         "x-enumNames": [
           "Delete",
           "Awaiting",
@@ -12398,7 +12481,7 @@
       },
       "JournalEntryTemplateType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Default\n3 = DocumentCreated\n5 = Payment\n7 = ChequeDate\n9 = TaxNoRefund\n11 = VATManagementHistory",
         "x-enumNames": [
           "Default",
           "DocumentCreated",
@@ -12597,7 +12680,7 @@
       },
       "ContactTypes": {
         "type": "integer",
-        "description": "",
+        "description": "0 = OwnCompany\n3 = Client\n5 = Vendor\n7 = VendorAndClient\n9 = ExpenseVendor",
         "x-enumNames": [
           "OwnCompany",
           "Client",
@@ -12615,7 +12698,7 @@
       },
       "ContactGroups": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Individual\n3 = Juristic\n9 = Undefined",
         "x-enumNames": [
           "Individual",
           "Juristic",
@@ -12676,7 +12759,7 @@
       },
       "FiscalYearStatus": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Current\n3 = Opening\n5 = Closed",
         "x-enumNames": [
           "Current",
           "Opening",
@@ -12690,7 +12773,7 @@
       },
       "RuleCompileStatus": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Pending\n3 = Execute\n5 = Success\n7 = Error\n9 = WHTWarning\n11 = NoMoreCompile\n13 = Ignore",
         "x-enumNames": [
           "Pending",
           "Execute",
@@ -12799,7 +12882,7 @@
       },
       "FinancialTransactionType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Debit\n3 = Credit",
         "x-enumNames": [
           "Debit",
           "Credit"
@@ -12811,7 +12894,7 @@
       },
       "BookOfAccountStatus": {
         "type": "integer",
-        "description": "",
+        "description": "0 = Delete\n1 = Awaiting\n5 = Approved\n9 = Void\n-9 = ResetVoid\n-5 = ResetApproved\n-1 = ResetAwaiting",
         "x-enumNames": [
           "Delete",
           "Awaiting",
@@ -12984,9 +13067,6 @@
             "type": "integer",
             "format": "int64"
           },
-          "category": {
-            "$ref": "#/components/schemas/ChartOfAccountCategory"
-          },
           "code": {
             "type": "string",
             "nullable": true
@@ -13006,6 +13086,9 @@
           "descriptionForeign": {
             "type": "string",
             "nullable": true
+          },
+          "category": {
+            "$ref": "#/components/schemas/ChartOfAccountCategory"
           },
           "parentId": {
             "type": "integer",
@@ -13367,7 +13450,7 @@
       },
       "ReceivableInvoiceStatus": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Awaiting\n3 = Approved\n5 = ApprovedAndProcessed\n7 = Void\n9 = Delete",
         "x-enumNames": [
           "Awaiting",
           "Approved",
@@ -13494,7 +13577,7 @@
       },
       "DocumentReferenceTypes": {
         "type": "integer",
-        "description": "",
+        "description": "1 = ImportDocument\n3 = PartialPayments\n5 = Batch\n7 = Etax\n9 = MiigratePartialPayments\n11 = BatchPartialPayments\n13 = DepositFirst\n15 = DepositLast",
         "x-enumNames": [
           "ImportDocument",
           "PartialPayments",
@@ -13518,7 +13601,7 @@
       },
       "PartialPaymentMethod": {
         "type": "integer",
-        "description": "",
+        "description": "0 = Default\n1 = None\n3 = Quantity\n5 = Price\n7 = Percentage\n11 = RECPartial",
         "x-enumNames": [
           "Default",
           "None",
@@ -14062,7 +14145,7 @@
       },
       "PayrollDetailStatus": {
         "type": "integer",
-        "description": "",
+        "description": "0 = Draft\n1 = Awaiting\n2 = Reset\n3 = Paid\n4 = Partial\n5 = Rejected\n7 = Approved\n11 = PushPayAwaiting\n13 = PushPayProcessed\n15 = PushPayRejected\n17 = PushPayPartial\n19 = PushPayPendingPayments\n50 = KConnectAwaiting\n52 = KConnectProcessed\n54 = KConnectRejected\n56 = KConnectPendingPayments\n58 = KConnectPartialPayments",
         "x-enumNames": [
           "Draft",
           "Awaiting",
@@ -14104,7 +14187,7 @@
       },
       "BankAccountType": {
         "type": "integer",
-        "description": "",
+        "description": "1 = SavingAccount\n3 = CurrentAccount\n5 = CreditCardAccount\n7 = DepositAccount",
         "x-enumNames": [
           "SavingAccount",
           "CurrentAccount",
@@ -14730,7 +14813,7 @@
       },
       "ExpenseStatus": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Awaiting\n3 = Approved\n4 = PendingPayment\n5 = Paid\n6 = PaidByPaymentSlip\n7 = Void\n9 = ApprovedAndProcessed\n11 = Received\n23 = ReceivedByPaymentSlip",
         "x-enumNames": [
           "Awaiting",
           "Approved",
@@ -14870,7 +14953,7 @@
       },
       "Currency": {
         "type": "integer",
-        "description": "",
+        "description": "1 = USD\n3 = GBP\n5 = EUR\n7 = JPY\n9 = HKD\n11 = CNY\n13 = THB\n15 = AUD\n33 = BDT\n35 = BHD\n37 = BND\n39 = KHR\n41 = CAD\n43 = DKK\n45 = INR\n47 = IDR\n49 = ILS\n53 = KRW\n55 = LAK\n57 = MOP\n59 = MYR\n61 = MMK\n63 = NPR\n65 = NZD\n67 = NOK\n69 = OMR\n71 = PKR\n73 = PHP\n75 = QAR\n77 = RUB\n79 = SAR\n81 = SEK\n83 = SGD\n85 = LKR\n87 = CHF\n89 = TWD\n91 = AED\n93 = VND\n95 = ZAR\n97 = MXN\n99 = KWD\n101 = CZK\n103 = KES\n105 = EGP\n107 = PLN\n109 = IQD\n111 = JOD\n113 = MVR\n115 = PGK\n117 = HUF",
         "x-enumNames": [
           "USD",
           "GBP",
@@ -15424,7 +15507,7 @@
       },
       "BatchTaxFilingStatus": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Awaiting\n3 = Refunded",
         "x-enumNames": [
           "Awaiting",
           "Refunded"
@@ -15436,7 +15519,7 @@
       },
       "SupplierInvoiceStatus": {
         "type": "integer",
-        "description": "",
+        "description": "0 = None\n1 = Awaiting\n3 = WaitingForRefund\n5 = CreatedBatchFilling\n7 = NoRefund",
         "x-enumNames": [
           "None",
           "Awaiting",
@@ -15668,7 +15751,7 @@
       },
       "PayrollStatus": {
         "type": "integer",
-        "description": "",
+        "description": "0 = Draft\n1 = Awaiting\n2 = Reset\n3 = Paid\n4 = Partial\n5 = Rejected\n7 = Approved\n11 = PushPayAwaiting\n13 = PushPayProcessed\n15 = PushPayRejected\n17 = PushPayPartial\n19 = PushPayPendingPayments\n50 = KConnectAwaiting\n52 = KConnectProcessed\n54 = KConnectRejected\n56 = KConnectPendingPayments",
         "x-enumNames": [
           "Draft",
           "Awaiting",
@@ -15708,7 +15791,7 @@
       },
       "SendEmailStatus": {
         "type": "integer",
-        "description": "",
+        "description": "1 = Sent\n3 = NoEmail",
         "x-enumNames": [
           "Sent",
           "NoEmail"
@@ -15777,26 +15860,6 @@
             "items": {
               "$ref": "#/components/schemas/Employee"
             }
-          }
-        }
-      },
-      "NotExistEmployee": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "idList": {
-            "type": "array",
-            "nullable": true,
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "payrollType": {
-            "$ref": "#/components/schemas/PayrollType"
-          },
-          "paidPeriod": {
-            "$ref": "#/components/schemas/PaidPeriod"
           }
         }
       }

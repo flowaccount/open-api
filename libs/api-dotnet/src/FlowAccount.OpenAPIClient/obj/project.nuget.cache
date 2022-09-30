@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "KW+YoVdkphf/tGYIxcV3Yn7bUvuxcQeA3Zkp47O0ZNbqCvf5PG5SLckDaSSvAsDOu8mQ+PsZv87IIuPogyUPLg==",
+  "success": true,
+  "projectFilePath": "D:\\projects\\flowaccount\\open-api\\libs\\api-dotnet\\src\\FlowAccount.OpenAPIClient\\FlowAccount.OpenAPIClient.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PF2WEQ6F\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\PF2WEQ6F\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\PF2WEQ6F\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\PF2WEQ6F\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

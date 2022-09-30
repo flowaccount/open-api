@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>FlowAccount.OpenAPIClient</id>
+    <version>0.0.1</version>
+    <authors>FlowAccount.OpenAPIClient</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Annotations" version="5.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\projects\flowaccount\open-api\dist\libs\api-dotnet\FlowAccount.OpenAPIClient.dll" target="lib\netstandard2.0\FlowAccount.OpenAPIClient.dll" />
+  </files>
+</package>
