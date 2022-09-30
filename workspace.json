@@ -231,6 +231,29 @@
             "assets": ["libs/api-typescript-axios/*.md"]
           }
         },
+        "custom-generate-sources": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+              "commands": [
+                {
+                  "command": "npx openapi-generator-cli generate -i libs/api-spec/src/api-spec.openapi.json -g typescript-axios -o libs/api-typescript-axios/src --skip-validate-spec",
+                  "forwardAllArgs": false
+                }
+              ],
+              "parallel": false
+          },
+          "configurations": {
+            "dev": {
+              "args": ""
+            },
+            "preprod": {
+              "args": ""
+            },
+            "production": {
+              "args": ""
+            }
+          }
+        },
         "generate-sources": {
           "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
           "options": {
@@ -274,6 +297,33 @@
             "assets": ["libs/api-dotnet/*.md"]
           }
         },
+        "package-nuget": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+              "commands": [
+                {
+                  "command": "dotnet build libs/api-dotnet/src/FlowAccount.OpenAPIClient/FlowAccount.OpenAPIClient.csproj -o dist/libs/api-dotnet/",
+                  "forwardAllArgs": false
+                },
+                {
+                  "command": "dotnet pack -c Release -p:PackageVersion=0.0.1 libs/api-dotnet/src/FlowAccount.OpenAPIClient/FlowAccount.OpenAPIClient.csproj --no-build --output dist/libs/api-dotnet/ /p:OutputPath=../../../../dist/libs/api-dotnet/",
+                  "forwardAllArgs": false
+                }
+              ],
+              "parallel": false
+          },
+          "configurations": {
+            "dev": {
+              "args": ""
+            },
+            "preprod": {
+              "args": ""
+            },
+            "production": {
+              "args": ""
+            }
+          }
+        },
         "generate-sources": {
           "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
           "options": {
@@ -315,6 +365,29 @@
             "packageJson": "libs/api-php/package.json",
             "main": "libs/api-php/src/index.ts",
             "assets": ["libs/api-php/*.md"]
+          }
+        },
+        "custom-generate-sources": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+              "commands": [
+                {
+                  "command": "npx openapi-generator-cli generate -i libs/api-spec/src/api-spec.openapi.json -g php -o libs/api-php/src --skip-validate-spec",
+                  "forwardAllArgs": false
+                }
+              ],
+              "parallel": false
+          },
+          "configurations": {
+            "dev": {
+              "args": ""
+            },
+            "preprod": {
+              "args": ""
+            },
+            "production": {
+              "args": ""
+            }
           }
         },
         "generate-sources": {

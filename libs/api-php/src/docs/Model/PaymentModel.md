@@ -1,0 +1,46 @@
+# # PaymentModel
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**cash_remarks** | **string** |  | [optional]
+**exclude_vat** | **double** |  | [optional]
+**cash_tax** | **int** |  | [optional]
+**credit_card_number** | **string** |  | [optional]
+**company_vat_rate** | **int** |  | [optional]
+**net** | **float** |  | [optional]
+**bank_account_number** | **string** |  | [optional]
+**bank_account_id** | **int** |  | [optional]
+**payment_method** | [**\OpenAPI\Client\Model\PaymentMethod**](PaymentMethod.md) |  | [optional]
+**date_now** | **\DateTime** |  | [optional]
+**amount_collected** | **float** |  | [optional]
+**amount_withheld** | **float** |  | [optional]
+**withholding_tax** | **float** |  | [optional]
+**remarks** | **string** |  | [optional]
+**transfer_bank_account_id** | **int** |  | [optional]
+**bank_account_credit_card_id** | **int** |  | [optional]
+**charge** | **float** |  | [optional]
+**cheque_date** | **\DateTime** |  | [optional]
+**cheque_number** | **string** |  | [optional]
+**cheque_bank_account_id** | **string** |  | [optional]
+**credit_card_bank_account_id** | **string** |  | [optional]
+**remaining_collected** | **float** |  | [optional]
+**remaining_collected_type** | [**OneOfRemainingCollectedType**](OneOfRemainingCollectedType.md) |  | [optional]
+**deduction_amount** | **float** |  | [optional]
+**payment_deduction_type** | [**OneOfDeductionType**](OneOfDeductionType.md) |  | [optional]
+**petty_cash_name** | **string** |  | [optional]
+**petty_cash_id** | **int** |  | [optional]
+**cheque_id** | **int** |  | [optional]
+**credit_card_id** | **int** |  | [optional]
+**other_channel_id** | **int** |  | [optional]
+**cheque_deposit_date** | **\DateTime** |  | [optional]
+**cheque_deposit_bank_id** | **int** |  | [optional]
+**cheque_cashing_date** | **\DateTime** |  | [optional]
+**auto_create_withholding_tax** | **bool** |  | [optional]
+**withholding_tax_income_type** | [**\OpenAPI\Client\Model\IncomeType**](IncomeType.md) |  | [optional]
+**withholding_tax_income_description** | **string** |  | [optional]
+**withholding_tax_entity** | [**\OpenAPI\Client\Model\Entity**](Entity.md) |  | [optional]
+**exchange_rate_fee** | **float** |  | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

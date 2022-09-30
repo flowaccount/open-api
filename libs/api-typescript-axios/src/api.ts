@@ -252,7 +252,7 @@ export interface BankAccount {
     'qrCode'?: string | null;
 }
 /**
- * 
+ * 1 = SavingAccount 3 = CurrentAccount 5 = CreditCardAccount 7 = DepositAccount
  * @export
  * @enum {string}
  */
@@ -268,7 +268,7 @@ export type BankAccountType = typeof BankAccountType[keyof typeof BankAccountTyp
 
 
 /**
- * 
+ * 1 = Active 3 = InActive
  * @export
  * @enum {string}
  */
@@ -442,7 +442,7 @@ export interface BatchImportRetry {
     'messageIds'?: Array<string> | null;
 }
 /**
- * 
+ * 0 = None 1 = Awaiting 3 = Pending 5 = Failed 6 = HandledDuplicated 7 = Succeed
  * @export
  * @enum {string}
  */
@@ -1640,7 +1640,7 @@ export interface BatchTaxFilingAllOf {
     'documentDeductionType'?: DeductionType | null;
 }
 /**
- * 
+ * 1 = Awaiting 3 = Refunded
  * @export
  * @enum {string}
  */
@@ -1654,7 +1654,7 @@ export type BatchTaxFilingStatus = typeof BatchTaxFilingStatus[keyof typeof Batc
 
 
 /**
- * 
+ * 0 = Delete 1 = Awaiting 5 = Approved 9 = Void -9 = ResetVoid -5 = ResetApproved -1 = ResetAwaiting
  * @export
  * @enum {string}
  */
@@ -1673,7 +1673,7 @@ export type BookOfAccountStatus = typeof BookOfAccountStatus[keyof typeof BookOf
 
 
 /**
- * 
+ * 1 = SellingProducts 3 = SellingServices 5 = SellingBoth 7 = Custom
  * @export
  * @enum {string}
  */
@@ -1858,7 +1858,7 @@ export interface ChartOfAccount {
     'systemChartOfAccount'?: SystemChartOfAccount | null;
 }
 /**
- * 
+ * 1 = Assets 2 = Liabilities 3 = Equity 4 = Revenue 5 = Expenses
  * @export
  * @enum {string}
  */
@@ -3212,7 +3212,7 @@ export interface CompanySubscription {
     'paySlipImageContact'?: string | null;
 }
 /**
- * 
+ * 10 = PrivateWithTax 20 = PrivateWithoutTax 30 = Personal 40 = PersonalWithTax 50 = PartnershipLimitedWithTax 60 = PartnershipLimitedWithoutTax
  * @export
  * @enum {string}
  */
@@ -3230,7 +3230,7 @@ export type CompanyTypeEnum = typeof CompanyTypeEnum[keyof typeof CompanyTypeEnu
 
 
 /**
- * 
+ * 1 = WithholdsTaxAtSource 2 = PayEveryTime 3 = PayOneTime
  * @export
  * @enum {string}
  */
@@ -3510,7 +3510,7 @@ export interface Contact {
     'isMigrate'?: boolean;
 }
 /**
- * 
+ * 1 = Individual 3 = Juristic 9 = Undefined
  * @export
  * @enum {string}
  */
@@ -3525,7 +3525,7 @@ export type ContactGroups = typeof ContactGroups[keyof typeof ContactGroups];
 
 
 /**
- * 
+ * 0 = OwnCompany 3 = Client 5 = Vendor 7 = VendorAndClient 9 = ExpenseVendor
  * @export
  * @enum {string}
  */
@@ -3657,7 +3657,7 @@ export interface CreditCard {
     'modifiedOn'?: string;
 }
 /**
- * 
+ * 1 = Personal 3 = Business
  * @export
  * @enum {string}
  */
@@ -3671,7 +3671,7 @@ export type CreditCardType = typeof CreditCardType[keyof typeof CreditCardType];
 
 
 /**
- * 
+ * 1 = USD 3 = GBP 5 = EUR 7 = JPY 9 = HKD 11 = CNY 13 = THB 15 = AUD 33 = BDT 35 = BHD 37 = BND 39 = KHR 41 = CAD 43 = DKK 45 = INR 47 = IDR 49 = ILS 53 = KRW 55 = LAK 57 = MOP 59 = MYR 61 = MMK 63 = NPR 65 = NZD 67 = NOK 69 = OMR 71 = PKR 73 = PHP 75 = QAR 77 = RUB 79 = SAR 81 = SEK 83 = SGD 85 = LKR 87 = CHF 89 = TWD 91 = AED 93 = VND 95 = ZAR 97 = MXN 99 = KWD 101 = CZK 103 = KES 105 = EGP 107 = PLN 109 = IQD 111 = JOD 113 = MVR 115 = PGK 117 = HUF
  * @export
  * @enum {string}
  */
@@ -3733,7 +3733,7 @@ export type Currency = typeof Currency[keyof typeof Currency];
 
 
 /**
- * 
+ * 1 = SwitchProductItemSellToBuy
  * @export
  * @enum {string}
  */
@@ -3850,7 +3850,7 @@ export interface CustomTemplateInfo {
     'columns'?: Array<object> | null;
 }
 /**
- * 
+ * 1 = CurrentMonth 3 = PreviousMonth 5 = Manual 7 = CurrentYear 9 = PreviousYear 11 = AsAt 13 = Grid 15 = FiscalYear 17 = Months 19 = Days
  * @export
  * @enum {string}
  */
@@ -3891,7 +3891,7 @@ export interface DateInfo {
     'type'?: string | null;
 }
 /**
- * 
+ * 1 = PublishDate 3 = PaymentDate 5 = ExpenseDate 7 = TransitionDate
  * @export
  * @enum {string}
  */
@@ -3907,7 +3907,7 @@ export type DateType = typeof DateType[keyof typeof DateType];
 
 
 /**
- * 
+ * 0 = None 1 = CashDiscount 3 = Commission 5 = ManagementFee 7 = Roundings 9 = Retentions
  * @export
  * @enum {string}
  */
@@ -4451,7 +4451,7 @@ export interface DocumentQueryAllOf {
     'customDocumentModels'?: Array<CustomDocumentModel> | null;
 }
 /**
- * 
+ * 1 = ImportDocument 3 = PartialPayments 5 = Batch 7 = Etax 9 = MiigratePartialPayments 11 = BatchPartialPayments 13 = DepositFirst 15 = DepositLast
  * @export
  * @enum {string}
  */
@@ -4471,7 +4471,7 @@ export type DocumentReferenceTypes = typeof DocumentReferenceTypes[keyof typeof 
 
 
 /**
- * 
+ * 1 = Default 3 = Template1 5 = Template2 7 = Template3 9 = Template4 11 = Template5 13 = TemplateA5 15 = Template9x11withOriginal 17 = Template8 101 = NativeDefault 103 = Native1 105 = Native3 107 = Native5 109 = Native7 111 = Native9 113 = Native11 115 = Native13 201 = Thermal1 203 = Thermal2 205 = SocialSlip 301 = ShortCA1 303 = ShortCA2 305 = ShortCA3
  * @export
  * @enum {string}
  */
@@ -4506,7 +4506,7 @@ export type DocumentTemplates = typeof DocumentTemplates[keyof typeof DocumentTe
 
 
 /**
- * 
+ * 1 = PurchaseOrder 3 = Quotation 5 = BillingNote 7 = TaxInvoice 9 = Receipt 13 = Expense 15 = Vendor 17 = WithHoldingTax 19 = BillingNotePartials 21 = TaxInvoicePartails 23 = Purchase 24 = PurchaseTax 25 = ReceivableInvoice 29 = AdjustInventory 31 = CreditNote 33 = DebitNote 35 = CashInvoice 37 = PaymentSlip 51 = JournalEntry 53 = PurchaseVoucher 55 = SalesVoucher 57 = PaymentVoucher 59 = ReceivedVoucher 61 = ConversionBalance 63 = Transaction 65 = SupplierInvoice 67 = BatchTaxFiling 69 = FixedAsset 71 = Depreciation 73 = BankTransfer 151 = DraftJournalEntry 153 = DraftPurchaseVoucher 155 = DraftSalesVoucher 157 = DraftPaymentVoucher 159 = DraftReceivedVoucher 201 = Payroll 202 = PayrollDetail 203 = Employee 204 = PayrollPayment
  * @export
  * @enum {string}
  */
@@ -5406,7 +5406,7 @@ export interface EmployeeModelAllOf {
     'reason'?: string | null;
 }
 /**
- * 
+ * 1 = EmpWithOutOT 3 = EmpWithOT 5 = EmpByDayHour 7 = Owner
  * @export
  * @enum {string}
  */
@@ -5422,7 +5422,7 @@ export type EmployeeTypes = typeof EmployeeTypes[keyof typeof EmployeeTypes];
 
 
 /**
- * 
+ * 1 = PND3 3 = PND53 5 = PND1K 7 = PND1KSpecial 9 = PND2 11 = PND2K 13 = PND3K 15 = PND1
  * @export
  * @enum {string}
  */
@@ -7023,7 +7023,7 @@ export interface ExpenseListAllOf {
     'projectNameAndProjectDeatil'?: string | null;
 }
 /**
- * 
+ * 1 = Awaiting 3 = Approved 4 = PendingPayment 5 = Paid 6 = PaidByPaymentSlip 7 = Void 9 = ApprovedAndProcessed 11 = Received 23 = ReceivedByPaymentSlip
  * @export
  * @enum {string}
  */
@@ -7069,7 +7069,7 @@ export interface FilterOptions {
     'columnPredicateOperator'?: PredicateOperator;
 }
 /**
- * 
+ * 1 = Debit 3 = Credit
  * @export
  * @enum {string}
  */
@@ -7144,7 +7144,7 @@ export interface FiscalYear {
     'company'?: Company | null;
 }
 /**
- * 
+ * 1 = Current 3 = Opening 5 = Closed
  * @export
  * @enum {string}
  */
@@ -7214,7 +7214,7 @@ export interface Gallery {
     'supplierInvoice'?: Array<SupplierInvoice> | null;
 }
 /**
- * 
+ * 1 = Mr 3 = Mrs 5 = Ms
  * @export
  * @enum {string}
  */
@@ -7357,12 +7357,6 @@ export interface IChartOfAccount {
     'id'?: number;
     /**
      * 
-     * @type {ChartOfAccountCategory}
-     * @memberof IChartOfAccount
-     */
-    'category'?: ChartOfAccountCategory;
-    /**
-     * 
      * @type {string}
      * @memberof IChartOfAccount
      */
@@ -7391,6 +7385,12 @@ export interface IChartOfAccount {
      * @memberof IChartOfAccount
      */
     'descriptionForeign'?: string | null;
+    /**
+     * 
+     * @type {ChartOfAccountCategory}
+     * @memberof IChartOfAccount
+     */
+    'category'?: ChartOfAccountCategory;
     /**
      * 
      * @type {number}
@@ -7833,7 +7833,7 @@ export interface IJournalEntryBase {
     'ruleCompileStatus'?: RuleCompileStatus;
 }
 /**
- * 
+ * 1 = Salary 3 = Commission 5 = Licensing 7 = Interest 9 = NetProfit30 11 = NetProfit25 13 = NetProfit20 15 = NetProfitOther 17 = TaxExemption 19 = DividenFromShareOfProfit 21 = PortionOfNetProfit 23 = RecognitionOfProfit 25 = TaxOther 27 = RevenueDepartmentTax 29 = Others
  * @export
  * @enum {string}
  */
@@ -8512,7 +8512,7 @@ export interface JournalEntry {
     'isResetDocument'?: boolean;
 }
 /**
- * 
+ * 0 = Delete 1 = Awaiting 5 = Approved 9 = Void
  * @export
  * @enum {string}
  */
@@ -8528,7 +8528,7 @@ export type JournalEntryStatus = typeof JournalEntryStatus[keyof typeof JournalE
 
 
 /**
- * 
+ * 1 = Default 3 = DocumentCreated 5 = Payment 7 = ChequeDate 9 = TaxNoRefund 11 = VATManagementHistory
  * @export
  * @enum {string}
  */
@@ -8546,7 +8546,7 @@ export type JournalEntryTemplateType = typeof JournalEntryTemplateType[keyof typ
 
 
 /**
- * 
+ * 1 = PCT 3 = PPA 5 = PPB
  * @export
  * @enum {string}
  */
@@ -8696,32 +8696,7 @@ export interface MessageSent {
     'externalDocumentId'?: string | null;
 }
 /**
- * 
- * @export
- * @interface NotExistEmployee
- */
-export interface NotExistEmployee {
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof NotExistEmployee
-     */
-    'idList'?: Array<number> | null;
-    /**
-     * 
-     * @type {PayrollType}
-     * @memberof NotExistEmployee
-     */
-    'payrollType'?: PayrollType;
-    /**
-     * 
-     * @type {PaidPeriod}
-     * @memberof NotExistEmployee
-     */
-    'paidPeriod'?: PaidPeriod;
-}
-/**
- * 
+ * 1 = Asc 3 = Desc
  * @export
  * @enum {string}
  */
@@ -8832,7 +8807,7 @@ export interface OtherChannels {
     'isDelete'?: boolean;
 }
 /**
- * 
+ * 1 = Receive 3 = ReceivePay 5 = Pay
  * @export
  * @enum {string}
  */
@@ -8896,7 +8871,7 @@ export interface PackageList {
     'displayNameEN'?: string | null;
 }
 /**
- * 
+ * 10 = Pending 30 = Approve 50 = Suspend 70 = Terminated 90 = Delete
  * @export
  * @enum {string}
  */
@@ -8913,7 +8888,7 @@ export type PackageStatus = typeof PackageStatus[keyof typeof PackageStatus];
 
 
 /**
- * 
+ * 1 = Monthly 3 = Daily
  * @export
  * @enum {string}
  */
@@ -8927,7 +8902,7 @@ export type PaidPeriod = typeof PaidPeriod[keyof typeof PaidPeriod];
 
 
 /**
- * 
+ * 0 = Default 1 = None 3 = Quantity 5 = Price 7 = Percentage 11 = RECPartial
  * @export
  * @enum {string}
  */
@@ -8945,7 +8920,7 @@ export type PartialPaymentMethod = typeof PartialPaymentMethod[keyof typeof Part
 
 
 /**
- * 
+ * 1 = Omise 3 = InAppIOS 5 = InAppAndriod 7 = UssdAis 9 = BankTranfer 11 = PrePaidSerial
  * @export
  * @enum {string}
  */
@@ -8963,7 +8938,7 @@ export type PaymentChannel = typeof PaymentChannel[keyof typeof PaymentChannel];
 
 
 /**
- * 
+ * 1 = POS 3 = PayemntGateWay 5 = EDC 7 = ECommerce
  * @export
  * @enum {string}
  */
@@ -8979,7 +8954,7 @@ export type PaymentChannelsType = typeof PaymentChannelsType[keyof typeof Paymen
 
 
 /**
- * 
+ * 0 = None 1 = Cash 3 = Cheque 5 = Transfer 7 = CreditCard 9 = PushPay 11 = PettyCash 13 = Other 51 = TransferByKConnect
  * @export
  * @enum {string}
  */
@@ -10041,7 +10016,7 @@ export interface PayrollDetail {
     'statusInt'?: number;
 }
 /**
- * 
+ * 0 = Draft 1 = Awaiting 2 = Reset 3 = Paid 4 = Partial 5 = Rejected 7 = Approved 11 = PushPayAwaiting 13 = PushPayProcessed 15 = PushPayRejected 17 = PushPayPartial 19 = PushPayPendingPayments 50 = KConnectAwaiting 52 = KConnectProcessed 54 = KConnectRejected 56 = KConnectPendingPayments 58 = KConnectPartialPayments
  * @export
  * @enum {string}
  */
@@ -10367,7 +10342,7 @@ export interface PayrollQueryAllOf {
     'payrollType'?: PayrollType;
 }
 /**
- * 
+ * 0 = Draft 1 = Awaiting 2 = Reset 3 = Paid 4 = Partial 5 = Rejected 7 = Approved 11 = PushPayAwaiting 13 = PushPayProcessed 15 = PushPayRejected 17 = PushPayPartial 19 = PushPayPendingPayments 50 = KConnectAwaiting 52 = KConnectProcessed 54 = KConnectRejected 56 = KConnectPendingPayments
  * @export
  * @enum {string}
  */
@@ -10395,7 +10370,7 @@ export type PayrollStatus = typeof PayrollStatus[keyof typeof PayrollStatus];
 
 
 /**
- * 
+ * 1 = FirstVersion 3 = PayrollPayment 5 = Kconnect 7 = Cash 9 = Transfer
  * @export
  * @enum {string}
  */
@@ -10509,7 +10484,7 @@ export interface PettyCash {
     'remainingBalance'?: number;
 }
 /**
- * 
+ * 0 = Or 1 = And
  * @export
  * @enum {string}
  */
@@ -10874,7 +10849,7 @@ export interface ProductList {
     'isMigrate'?: boolean;
 }
 /**
- * 
+ * 1 = NonStockProduct 3 = SparepartProduct 5 = SampleProduct 7 = FreemiumProduct 9 = SupplyProduct 11 = OthersProduct
  * @export
  * @enum {string}
  */
@@ -10892,7 +10867,7 @@ export type ProductNonInventoryType = typeof ProductNonInventoryType[keyof typeo
 
 
 /**
- * 
+ * 1 = Service 3 = ProductWithNoStock 5 = ProductWithStock
  * @export
  * @enum {string}
  */
@@ -11660,7 +11635,7 @@ export interface ReceivableInvoiceAllOf {
     'isMigrate'?: boolean;
 }
 /**
- * 
+ * 1 = Awaiting 3 = Approved 5 = ApprovedAndProcessed 7 = Void 9 = Delete
  * @export
  * @enum {string}
  */
@@ -11756,7 +11731,7 @@ export interface ReconciledDocument {
     'company'?: Company | null;
 }
 /**
- * 
+ * 1 = CashShortOrOver 3 = CashDiscount 5 = ExchangeRateDiff 51 = SalesCashShortOrOver 53 = SalesDiscount 55 = SalesBankFee 57 = SalesExchangeRateDiff
  * @export
  * @enum {string}
  */
@@ -11775,7 +11750,7 @@ export type RemainingCollectedType = typeof RemainingCollectedType[keyof typeof 
 
 
 /**
- * 
+ * 10 = Sales 11 = SalesTeamReport 12 = SalesTax 13 = SimpleSales 14 = AccountReceivable 15 = AccountReceivableAging 20 = Purchase 21 = PurchaseTax 22 = AccountPayable 23 = AccountPayableAging 24 = PurchaseByProduct 25 = PurchaseByProductAdvance 30 = Clients 40 = Vendor 50 = PaymentCollection 60 = SalesByProduct 61 = SalesByProductAdvance 62 = SalesByPerson 63 = SalesByPersonAdvance 64 = SalesByCustomer 65 = SalesByCustomerAdvance 70 = Quotation 80 = BillingNote 90 = ReceiveInventory 91 = StocksReport 92 = GroupStockReport 100 = Expense 110 = WithHoldingTax 120 = ProfitAndLossOneMonth 121 = ProfitAndLossMultipleMonth 130 = Receipt 140 = CreditNote 150 = DebitNote 160 = TaxInvoice 170 = Payroll 171 = PayrollSummary 172 = PayrollGroup 173 = PayrollSscSummary 180 = ContactGrid 190 = ProductGrid 200 = ExportContact 210 = ExportProduct 220 = Receivables 240 = Payables 260 = GeneralLedger 270 = JournalEntry 280 = Payment 290 = InputTax 291 = OutputTax 292 = FixedAsset 293 = Depreciation 300 = PaymentSlip
  * @export
  * @enum {string}
  */
@@ -11839,7 +11814,7 @@ export type ReportTypes = typeof ReportTypes[keyof typeof ReportTypes];
 
 
 /**
- * 
+ * 1 = Pending 3 = Execute 5 = Success 7 = Error 9 = WHTWarning 11 = NoMoreCompile 13 = Ignore
  * @export
  * @enum {string}
  */
@@ -11858,7 +11833,7 @@ export type RuleCompileStatus = typeof RuleCompileStatus[keyof typeof RuleCompil
 
 
 /**
- * 
+ * 1 = Default 3 = YearMonth 5 = Month 7 = Year 9 = FreeHand
  * @export
  * @enum {string}
  */
@@ -11875,7 +11850,7 @@ export type RunningNumberType = typeof RunningNumberType[keyof typeof RunningNum
 
 
 /**
- * 
+ * 1 = Cash 3 = Credit 5 = Both
  * @export
  * @enum {string}
  */
@@ -11890,7 +11865,7 @@ export type SalesType = typeof SalesType[keyof typeof SalesType];
 
 
 /**
- * 
+ * 1 = Sent 3 = NoEmail
  * @export
  * @enum {string}
  */
@@ -12492,7 +12467,7 @@ export interface SupplierInvoice {
     'gallery'?: Gallery | null;
 }
 /**
- * 
+ * 0 = None 1 = Awaiting 3 = WaitingForRefund 5 = CreatedBatchFilling 7 = NoRefund
  * @export
  * @enum {string}
  */
@@ -12546,7 +12521,7 @@ export interface SystemChartOfAccount {
     'chartOfAccountIdCredit'?: number | null;
 }
 /**
- * 
+ * 1 = ChatThai 3 = Rsu
  * @export
  * @enum {string}
  */
@@ -12585,7 +12560,7 @@ export interface UpgradeDocument {
     'referenceDocumentType'?: number;
 }
 /**
- * 
+ * 1 = Upgrade 3 = Renew 5 = ChangePackage
  * @export
  * @enum {string}
  */
@@ -12663,6 +12638,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
     return {
         /**
          * 
+         * @summary Delete custom template
          * @param {string} templateId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -12704,6 +12680,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To get details of a document
          * @param {string} culture 
          * @param {string} [fileName] 
          * @param {*} [options] Override http request option.
@@ -12746,6 +12723,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary Get data from Storage
          * @param {string} batchId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -12787,6 +12765,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary Get custom template
          * @param {string} templateId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -12828,6 +12807,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary Get Original File
          * @param {string} batchId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -12869,6 +12849,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary Get presign url to upload the file with payloads
          * @param {string} culture 
          * @param {BatchImportPayload} batchImportPayload 
          * @param {number} [id] 
@@ -12917,6 +12898,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary Mark the batch as viewed in notification.
          * @param {string} culture 
          * @param {number} body 
          * @param {number} [userId] 
@@ -12970,6 +12952,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary Query the batch by id and status
          * @param {string} culture 
          * @param {string} body 
          * @param {BatchImportStatus} [status] 
@@ -13098,6 +13081,7 @@ export const BatchImportApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary Create or Update (Upsert) custom template
          * @param {string} culture 
          * @param {CustomTemplate} customTemplate 
          * @param {*} [options] Override http request option.
@@ -13151,6 +13135,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Delete custom template
          * @param {string} templateId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13162,6 +13147,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To get details of a document
          * @param {string} culture 
          * @param {string} [fileName] 
          * @param {*} [options] Override http request option.
@@ -13173,6 +13159,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get data from Storage
          * @param {string} batchId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13184,6 +13171,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get custom template
          * @param {string} templateId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13195,6 +13183,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get Original File
          * @param {string} batchId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13206,6 +13195,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get presign url to upload the file with payloads
          * @param {string} culture 
          * @param {BatchImportPayload} batchImportPayload 
          * @param {number} [id] 
@@ -13218,6 +13208,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Mark the batch as viewed in notification.
          * @param {string} culture 
          * @param {number} body 
          * @param {number} [userId] 
@@ -13231,6 +13222,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Query the batch by id and status
          * @param {string} culture 
          * @param {string} body 
          * @param {BatchImportStatus} [status] 
@@ -13264,6 +13256,7 @@ export const BatchImportApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Create or Update (Upsert) custom template
          * @param {string} culture 
          * @param {CustomTemplate} customTemplate 
          * @param {*} [options] Override http request option.
@@ -13285,6 +13278,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
     return {
         /**
          * 
+         * @summary Delete custom template
          * @param {string} templateId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13295,6 +13289,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To get details of a document
          * @param {string} culture 
          * @param {string} [fileName] 
          * @param {*} [options] Override http request option.
@@ -13305,6 +13300,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary Get data from Storage
          * @param {string} batchId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13315,6 +13311,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary Get custom template
          * @param {string} templateId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13325,6 +13322,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary Get Original File
          * @param {string} batchId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13335,6 +13333,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary Get presign url to upload the file with payloads
          * @param {string} culture 
          * @param {BatchImportPayload} batchImportPayload 
          * @param {number} [id] 
@@ -13346,6 +13345,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary Mark the batch as viewed in notification.
          * @param {string} culture 
          * @param {number} body 
          * @param {number} [userId] 
@@ -13358,6 +13358,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary Query the batch by id and status
          * @param {string} culture 
          * @param {string} body 
          * @param {BatchImportStatus} [status] 
@@ -13388,6 +13389,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary Create or Update (Upsert) custom template
          * @param {string} culture 
          * @param {CustomTemplate} customTemplate 
          * @param {*} [options] Override http request option.
@@ -13408,6 +13410,7 @@ export const BatchImportApiFactory = function (configuration?: Configuration, ba
 export class BatchImportApi extends BaseAPI {
     /**
      * 
+     * @summary Delete custom template
      * @param {string} templateId 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -13420,6 +13423,7 @@ export class BatchImportApi extends BaseAPI {
 
     /**
      * 
+     * @summary To get details of a document
      * @param {string} culture 
      * @param {string} [fileName] 
      * @param {*} [options] Override http request option.
@@ -13432,6 +13436,7 @@ export class BatchImportApi extends BaseAPI {
 
     /**
      * 
+     * @summary Get data from Storage
      * @param {string} batchId 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -13444,6 +13449,7 @@ export class BatchImportApi extends BaseAPI {
 
     /**
      * 
+     * @summary Get custom template
      * @param {string} templateId 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -13456,6 +13462,7 @@ export class BatchImportApi extends BaseAPI {
 
     /**
      * 
+     * @summary Get Original File
      * @param {string} batchId 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -13468,6 +13475,7 @@ export class BatchImportApi extends BaseAPI {
 
     /**
      * 
+     * @summary Get presign url to upload the file with payloads
      * @param {string} culture 
      * @param {BatchImportPayload} batchImportPayload 
      * @param {number} [id] 
@@ -13481,6 +13489,7 @@ export class BatchImportApi extends BaseAPI {
 
     /**
      * 
+     * @summary Mark the batch as viewed in notification.
      * @param {string} culture 
      * @param {number} body 
      * @param {number} [userId] 
@@ -13495,6 +13504,7 @@ export class BatchImportApi extends BaseAPI {
 
     /**
      * 
+     * @summary Query the batch by id and status
      * @param {string} culture 
      * @param {string} body 
      * @param {BatchImportStatus} [status] 
@@ -13531,6 +13541,7 @@ export class BatchImportApi extends BaseAPI {
 
     /**
      * 
+     * @summary Create or Update (Upsert) custom template
      * @param {string} culture 
      * @param {CustomTemplate} customTemplate 
      * @param {*} [options] Override http request option.
@@ -13551,92 +13562,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        billingNoteActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('billingNoteActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('billingNoteActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/billing-notes/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        billingNoteActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('billingNoteActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('billingNoteActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/billing-notes/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -13682,6 +13608,95 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingNoteCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('billingNoteCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('billingNoteCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/billing-notes/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingNoteCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('billingNoteCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('billingNoteCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/billing-notes/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -13723,7 +13738,8 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -13764,6 +13780,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -13811,6 +13828,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -13858,6 +13876,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -13950,6 +13969,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -14007,28 +14027,7 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async billingNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async billingNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -14041,6 +14040,31 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -14052,7 +14076,8 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -14063,6 +14088,7 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -14075,6 +14101,7 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -14087,6 +14114,7 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -14108,6 +14136,7 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -14130,26 +14159,7 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        billingNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.billingNoteActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        billingNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.billingNoteActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -14161,6 +14171,29 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.billingNoteCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.billingNoteCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -14171,7 +14204,8 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -14181,6 +14215,7 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -14192,6 +14227,7 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -14203,6 +14239,7 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -14223,6 +14260,7 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -14244,30 +14282,7 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
 export class BillingNoteApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BillingNoteApi
-     */
-    public billingNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return BillingNoteApiFp(this.configuration).billingNoteActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BillingNoteApi
-     */
-    public billingNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return BillingNoteApiFp(this.configuration).billingNoteActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -14281,6 +14296,33 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingNoteApi
+     */
+    public billingNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return BillingNoteApiFp(this.configuration).billingNoteCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingNoteApi
+     */
+    public billingNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return BillingNoteApiFp(this.configuration).billingNoteCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -14293,7 +14335,8 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -14305,6 +14348,7 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -14318,6 +14362,7 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -14331,6 +14376,7 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -14353,6 +14399,7 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -14374,92 +14421,7 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        cashInvoiceActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('cashInvoiceActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('cashInvoiceActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/cash-invoices/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        cashInvoiceActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('cashInvoiceActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('cashInvoiceActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/cash-invoices/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -14505,6 +14467,95 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('cashInvoiceCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/cash-invoices/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('cashInvoiceCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/cash-invoices/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -14546,7 +14597,8 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -14587,6 +14639,7 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -14634,6 +14687,7 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -14681,6 +14735,7 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -14773,6 +14828,7 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -14830,28 +14886,7 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async cashInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async cashInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -14864,6 +14899,31 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -14875,7 +14935,8 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -14886,6 +14947,7 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -14898,6 +14960,7 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -14910,6 +14973,7 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -14931,6 +14995,7 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -14953,26 +15018,7 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        cashInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.cashInvoiceActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        cashInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.cashInvoiceActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -14984,6 +15030,29 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.cashInvoiceCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.cashInvoiceCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -14994,7 +15063,8 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -15004,6 +15074,7 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -15015,6 +15086,7 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -15026,6 +15098,7 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -15046,6 +15119,7 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -15067,30 +15141,7 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
 export class CashInvoiceApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CashInvoiceApi
-     */
-    public cashInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return CashInvoiceApiFp(this.configuration).cashInvoiceActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CashInvoiceApi
-     */
-    public cashInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return CashInvoiceApiFp(this.configuration).cashInvoiceActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -15104,6 +15155,33 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -15116,7 +15194,8 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -15128,6 +15207,7 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -15141,6 +15221,7 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -15154,6 +15235,7 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -15176,6 +15258,7 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -15197,92 +15280,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        creditNoteActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('creditNoteActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('creditNoteActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/credit-notes/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        creditNoteActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('creditNoteActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('creditNoteActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/credit-notes/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -15328,6 +15326,95 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        creditNoteCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('creditNoteCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('creditNoteCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/credit-notes/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        creditNoteCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('creditNoteCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('creditNoteCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/credit-notes/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -15369,7 +15456,8 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -15410,6 +15498,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -15457,6 +15546,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -15546,6 +15636,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -15638,6 +15729,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -15695,28 +15787,7 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async creditNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async creditNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -15729,6 +15800,31 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async creditNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async creditNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -15740,7 +15836,8 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -15751,6 +15848,7 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -15763,6 +15861,7 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -15786,6 +15885,7 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -15807,6 +15907,7 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -15829,26 +15930,7 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        creditNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.creditNoteActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        creditNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.creditNoteActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -15860,6 +15942,29 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        creditNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.creditNoteCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        creditNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.creditNoteCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -15870,7 +15975,8 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -15880,6 +15986,7 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -15891,6 +15998,7 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -15912,6 +16020,7 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -15932,6 +16041,7 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -15953,30 +16063,7 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
 export class CreditNoteApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CreditNoteApi
-     */
-    public creditNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return CreditNoteApiFp(this.configuration).creditNoteActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CreditNoteApi
-     */
-    public creditNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return CreditNoteApiFp(this.configuration).creditNoteActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -15990,6 +16077,33 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreditNoteApi
+     */
+    public creditNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return CreditNoteApiFp(this.configuration).creditNoteCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreditNoteApi
+     */
+    public creditNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CreditNoteApiFp(this.configuration).creditNoteCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -16002,7 +16116,8 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -16014,6 +16129,7 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -16027,6 +16143,7 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -16052,6 +16169,7 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -16074,6 +16192,7 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -16095,92 +16214,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        debitNoteActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('debitNoteActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('debitNoteActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/debit-notes/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        debitNoteActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('debitNoteActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('debitNoteActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/debit-notes/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -16226,6 +16260,95 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        debitNoteCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('debitNoteCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('debitNoteCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/debit-notes/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        debitNoteCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('debitNoteCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('debitNoteCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/debit-notes/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -16267,7 +16390,8 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -16308,6 +16432,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -16355,6 +16480,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -16444,6 +16570,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -16536,6 +16663,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -16593,28 +16721,7 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async debitNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async debitNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -16627,6 +16734,31 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async debitNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async debitNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -16638,7 +16770,8 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -16649,6 +16782,7 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -16661,6 +16795,7 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -16684,6 +16819,7 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -16705,6 +16841,7 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -16727,26 +16864,7 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        debitNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.debitNoteActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        debitNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.debitNoteActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -16758,6 +16876,29 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        debitNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.debitNoteCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        debitNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.debitNoteCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -16768,7 +16909,8 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -16778,6 +16920,7 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -16789,6 +16932,7 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -16810,6 +16954,7 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -16830,6 +16975,7 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -16851,30 +16997,7 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
 export class DebitNoteApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DebitNoteApi
-     */
-    public debitNoteActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return DebitNoteApiFp(this.configuration).debitNoteActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DebitNoteApi
-     */
-    public debitNoteActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return DebitNoteApiFp(this.configuration).debitNoteActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -16888,6 +17011,33 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DebitNoteApi
+     */
+    public debitNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return DebitNoteApiFp(this.configuration).debitNoteCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DebitNoteApi
+     */
+    public debitNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return DebitNoteApiFp(this.configuration).debitNoteCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -16900,7 +17050,8 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -16912,6 +17063,7 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -16925,6 +17077,7 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -16950,6 +17103,7 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -16972,6 +17126,7 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -16993,14 +17148,49 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
+         * @summary Count employees
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeCount: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/Employee/count`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create Employee
          * @param {EmployeeModel} employeeModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        employeeAddEmployee: async (employeeModel: EmployeeModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        employeeCreate: async (employeeModel: EmployeeModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'employeeModel' is not null or undefined
-            assertParamExists('employeeAddEmployee', 'employeeModel', employeeModel)
-            const localVarPath = `/Employee/manage`;
+            assertParamExists('employeeCreate', 'employeeModel', employeeModel)
+            const localVarPath = `/Employee`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -17032,6 +17222,47 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary Update Employee
+         * @param {EmployeeModel} employeeModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeEdit: async (employeeModel: EmployeeModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'employeeModel' is not null or undefined
+            assertParamExists('employeeEdit', 'employeeModel', employeeModel)
+            const localVarPath = `/Employee`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(employeeModel, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get employee by Id
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17069,39 +17300,7 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeGetCount: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/Employee/manage/count`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary Get employee list with payrollQuery model
          * @param {PayrollQuery} payrollQuery 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17117,7 +17316,7 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -17141,45 +17340,7 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {NotExistEmployee} notExistEmployee 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeNotExistList: async (notExistEmployee: NotExistEmployee, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'notExistEmployee' is not null or undefined
-            assertParamExists('employeeNotExistList', 'notExistEmployee', notExistEmployee)
-            const localVarPath = `/Employee/not-exist`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(notExistEmployee, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary Delete/Remove Employee by Id
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17187,7 +17348,7 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
         employeeRemove: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('employeeRemove', 'id', id)
-            const localVarPath = `/Employee/manage/{id}/delete`
+            const localVarPath = `/Employee/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -17215,45 +17376,6 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @param {EmployeeModel} employeeModel 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeUpdate: async (employeeModel: EmployeeModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'employeeModel' is not null or undefined
-            assertParamExists('employeeUpdate', 'employeeModel', employeeModel)
-            const localVarPath = `/Employee/manage`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(employeeModel, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -17266,16 +17388,39 @@ export const EmployeeApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {EmployeeModel} employeeModel 
+         * @summary Count employees
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async employeeAddEmployee(employeeModel: EmployeeModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeAddEmployee(employeeModel, options);
+        async employeeCount(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeCount(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
+         * @summary Create Employee
+         * @param {EmployeeModel} employeeModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async employeeCreate(employeeModel: EmployeeModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeCreate(employeeModel, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Update Employee
+         * @param {EmployeeModel} employeeModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async employeeEdit(employeeModel: EmployeeModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeEdit(employeeModel, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Get employee by Id
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17286,15 +17431,7 @@ export const EmployeeApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async employeeGetCount(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeGetCount(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary Get employee list with payrollQuery model
          * @param {PayrollQuery} payrollQuery 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17305,32 +17442,13 @@ export const EmployeeApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {NotExistEmployee} notExistEmployee 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async employeeNotExistList(notExistEmployee: NotExistEmployee, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeNotExistList(notExistEmployee, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary Delete/Remove Employee by Id
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async employeeRemove(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.employeeRemove(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {EmployeeModel} employeeModel 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async employeeUpdate(employeeModel: EmployeeModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeUpdate(employeeModel, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -17345,15 +17463,36 @@ export const EmployeeApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
+         * @summary Count employees
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeCount(options?: any): AxiosPromise<any> {
+            return localVarFp.employeeCount(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create Employee
          * @param {EmployeeModel} employeeModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        employeeAddEmployee(employeeModel: EmployeeModel, options?: any): AxiosPromise<any> {
-            return localVarFp.employeeAddEmployee(employeeModel, options).then((request) => request(axios, basePath));
+        employeeCreate(employeeModel: EmployeeModel, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeCreate(employeeModel, options).then((request) => request(axios, basePath));
         },
         /**
          * 
+         * @summary Update Employee
+         * @param {EmployeeModel} employeeModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeEdit(employeeModel: EmployeeModel, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeEdit(employeeModel, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get employee by Id
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17363,14 +17502,7 @@ export const EmployeeApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeGetCount(options?: any): AxiosPromise<any> {
-            return localVarFp.employeeGetCount(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary Get employee list with payrollQuery model
          * @param {PayrollQuery} payrollQuery 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17380,30 +17512,13 @@ export const EmployeeApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @param {NotExistEmployee} notExistEmployee 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeNotExistList(notExistEmployee: NotExistEmployee, options?: any): AxiosPromise<any> {
-            return localVarFp.employeeNotExistList(notExistEmployee, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary Delete/Remove Employee by Id
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         employeeRemove(id: number, options?: any): AxiosPromise<any> {
             return localVarFp.employeeRemove(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {EmployeeModel} employeeModel 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeUpdate(employeeModel: EmployeeModel, options?: any): AxiosPromise<any> {
-            return localVarFp.employeeUpdate(employeeModel, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -17417,17 +17532,42 @@ export const EmployeeApiFactory = function (configuration?: Configuration, baseP
 export class EmployeeApi extends BaseAPI {
     /**
      * 
+     * @summary Count employees
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EmployeeApi
+     */
+    public employeeCount(options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeCount(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create Employee
      * @param {EmployeeModel} employeeModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EmployeeApi
      */
-    public employeeAddEmployee(employeeModel: EmployeeModel, options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeAddEmployee(employeeModel, options).then((request) => request(this.axios, this.basePath));
+    public employeeCreate(employeeModel: EmployeeModel, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeCreate(employeeModel, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
+     * @summary Update Employee
+     * @param {EmployeeModel} employeeModel 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EmployeeApi
+     */
+    public employeeEdit(employeeModel: EmployeeModel, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeEdit(employeeModel, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get employee by Id
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -17439,16 +17579,7 @@ export class EmployeeApi extends BaseAPI {
 
     /**
      * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EmployeeApi
-     */
-    public employeeGetCount(options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeGetCount(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary Get employee list with payrollQuery model
      * @param {PayrollQuery} payrollQuery 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -17460,17 +17591,7 @@ export class EmployeeApi extends BaseAPI {
 
     /**
      * 
-     * @param {NotExistEmployee} notExistEmployee 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EmployeeApi
-     */
-    public employeeNotExistList(notExistEmployee: NotExistEmployee, options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeNotExistList(notExistEmployee, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary Delete/Remove Employee by Id
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -17478,17 +17599,6 @@ export class EmployeeApi extends BaseAPI {
      */
     public employeeRemove(id: number, options?: AxiosRequestConfig) {
         return EmployeeApiFp(this.configuration).employeeRemove(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {EmployeeModel} employeeModel 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EmployeeApi
-     */
-    public employeeUpdate(employeeModel: EmployeeModel, options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeUpdate(employeeModel, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -17501,92 +17611,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        expenseActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('expenseActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('expenseActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/expenses/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        expenseActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('expenseActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('expenseActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/expenses/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -17632,6 +17657,95 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        expenseCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('expenseCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('expenseCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/expenses/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        expenseCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('expenseCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('expenseCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/expenses/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -17673,7 +17787,8 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17714,6 +17829,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -17761,6 +17877,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -17956,6 +18073,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -18048,6 +18166,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -18105,28 +18224,7 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async expenseActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async expenseActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -18139,6 +18237,31 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async expenseCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async expenseCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -18150,7 +18273,8 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -18161,6 +18285,7 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -18173,6 +18298,7 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -18225,6 +18351,7 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -18246,6 +18373,7 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -18268,26 +18396,7 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        expenseActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.expenseActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        expenseActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.expenseActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -18299,6 +18408,29 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        expenseCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.expenseCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        expenseCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.expenseCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -18309,7 +18441,8 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -18319,6 +18452,7 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -18330,6 +18464,7 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -18377,6 +18512,7 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -18397,6 +18533,7 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -18418,30 +18555,7 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
 export class ExpenseApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExpenseApi
-     */
-    public expenseActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return ExpenseApiFp(this.configuration).expenseActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExpenseApi
-     */
-    public expenseActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ExpenseApiFp(this.configuration).expenseActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -18455,6 +18569,33 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExpenseApi
+     */
+    public expenseCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return ExpenseApiFp(this.configuration).expenseCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExpenseApi
+     */
+    public expenseCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ExpenseApiFp(this.configuration).expenseCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -18467,7 +18608,8 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -18479,6 +18621,7 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -18492,6 +18635,7 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -18549,6 +18693,7 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -18571,6 +18716,7 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -18592,92 +18738,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('purchaseActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/purchases/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('purchaseActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/purchases/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -18723,6 +18784,95 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('purchaseCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('purchaseCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/purchases/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('purchaseCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('purchaseCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/purchases/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -18764,7 +18914,8 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -18805,6 +18956,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -18852,6 +19004,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -18899,6 +19052,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -18991,6 +19145,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -19048,28 +19203,7 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async purchaseActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async purchaseActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -19082,6 +19216,31 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async purchaseCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async purchaseCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -19093,7 +19252,8 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -19104,6 +19264,7 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -19116,6 +19277,7 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -19128,6 +19290,7 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -19149,6 +19312,7 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -19171,26 +19335,7 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.purchaseActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.purchaseActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -19202,6 +19347,29 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.purchaseCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.purchaseCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -19212,7 +19380,8 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -19222,6 +19391,7 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -19233,6 +19403,7 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -19244,6 +19415,7 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -19264,6 +19436,7 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -19285,30 +19458,7 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
 export class PurchaseApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PurchaseApi
-     */
-    public purchaseActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return PurchaseApiFp(this.configuration).purchaseActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PurchaseApi
-     */
-    public purchaseActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return PurchaseApiFp(this.configuration).purchaseActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -19322,6 +19472,33 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PurchaseApi
+     */
+    public purchaseCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return PurchaseApiFp(this.configuration).purchaseCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PurchaseApi
+     */
+    public purchaseCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return PurchaseApiFp(this.configuration).purchaseCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -19334,7 +19511,8 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -19346,6 +19524,7 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -19359,6 +19538,7 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -19372,6 +19552,7 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -19394,6 +19575,7 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -19415,92 +19597,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseOrderActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseOrderActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('purchaseOrderActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/purchase-orders/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseOrderActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseOrderActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('purchaseOrderActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/purchase-orders/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -19546,6 +19643,95 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseOrderCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('purchaseOrderCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('purchaseOrderCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/purchase-orders/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseOrderCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('purchaseOrderCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('purchaseOrderCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/purchase-orders/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -19587,7 +19773,8 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -19628,6 +19815,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -19675,6 +19863,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -19722,6 +19911,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -19814,6 +20004,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -19871,28 +20062,7 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async purchaseOrderActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async purchaseOrderActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -19905,6 +20075,31 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async purchaseOrderCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async purchaseOrderCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -19916,7 +20111,8 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -19927,6 +20123,7 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -19939,6 +20136,7 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -19951,6 +20149,7 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -19972,6 +20171,7 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -19994,26 +20194,7 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseOrderActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.purchaseOrderActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseOrderActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.purchaseOrderActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -20025,6 +20206,29 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseOrderCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.purchaseOrderCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseOrderCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.purchaseOrderCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -20035,7 +20239,8 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -20045,6 +20250,7 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -20056,6 +20262,7 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -20067,6 +20274,7 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -20087,6 +20295,7 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -20108,30 +20317,7 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
 export class PurchaseOrderApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PurchaseOrderApi
-     */
-    public purchaseOrderActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return PurchaseOrderApiFp(this.configuration).purchaseOrderActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PurchaseOrderApi
-     */
-    public purchaseOrderActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return PurchaseOrderApiFp(this.configuration).purchaseOrderActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -20145,6 +20331,33 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PurchaseOrderApi
+     */
+    public purchaseOrderCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return PurchaseOrderApiFp(this.configuration).purchaseOrderCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PurchaseOrderApi
+     */
+    public purchaseOrderCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return PurchaseOrderApiFp(this.configuration).purchaseOrderCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -20157,7 +20370,8 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -20169,6 +20383,7 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -20182,6 +20397,7 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -20195,6 +20411,7 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -20217,6 +20434,7 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -20238,92 +20456,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        quotationActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('quotationActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('quotationActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/quotations/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        quotationActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('quotationActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('quotationActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/quotations/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -20361,6 +20494,94 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quotationCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('quotationCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('quotationCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/quotations/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quotationCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('quotationCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('quotationCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/quotations/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -20410,6 +20631,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -20451,7 +20673,8 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -20492,6 +20715,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -20539,6 +20763,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -20586,6 +20811,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -20719,6 +20945,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -20776,28 +21003,7 @@ export const QuotationApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async quotationActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async quotationActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -20806,6 +21012,30 @@ export const QuotationApiFp = function(configuration?: Configuration) {
          */
         async quotationChangeStatusByKey(documentId: number, statusKey: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.quotationChangeStatusByKey(documentId, statusKey, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async quotationCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async quotationCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationCreate2(culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -20821,6 +21051,7 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -20832,7 +21063,8 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -20843,6 +21075,7 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -20855,6 +21088,7 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -20867,6 +21101,7 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -20899,6 +21134,7 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -20921,26 +21157,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        quotationActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.quotationActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        quotationActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.quotationActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -20949,6 +21166,28 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
          */
         quotationChangeStatusByKey(documentId: number, statusKey: string, culture: string, options?: any): AxiosPromise<any> {
             return localVarFp.quotationChangeStatusByKey(documentId, statusKey, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quotationCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.quotationCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quotationCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.quotationCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -20962,6 +21201,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -20972,7 +21212,8 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -20982,6 +21223,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -20993,6 +21235,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -21004,6 +21247,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -21034,6 +21278,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -21055,30 +21300,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
 export class QuotationApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QuotationApi
-     */
-    public quotationActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return QuotationApiFp(this.configuration).quotationActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QuotationApi
-     */
-    public quotationActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return QuotationApiFp(this.configuration).quotationActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -21088,6 +21310,32 @@ export class QuotationApi extends BaseAPI {
      */
     public quotationChangeStatusByKey(documentId: number, statusKey: string, culture: string, options?: AxiosRequestConfig) {
         return QuotationApiFp(this.configuration).quotationChangeStatusByKey(documentId, statusKey, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuotationApi
+     */
+    public quotationCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return QuotationApiFp(this.configuration).quotationCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuotationApi
+     */
+    public quotationCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return QuotationApiFp(this.configuration).quotationCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -21104,6 +21352,7 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -21116,7 +21365,8 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -21128,6 +21378,7 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -21141,6 +21392,7 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -21154,6 +21406,7 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -21188,6 +21441,7 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -21209,92 +21463,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receiptActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receiptActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('receiptActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/receipts/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receiptActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receiptActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('receiptActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/receipts/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -21340,6 +21509,95 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receiptCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('receiptCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('receiptCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/receipts/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receiptCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('receiptCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('receiptCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/receipts/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -21381,7 +21639,8 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -21422,6 +21681,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -21469,6 +21729,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -21590,6 +21851,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -21682,6 +21944,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -21739,28 +22002,7 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async receiptActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async receiptActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -21773,6 +22015,31 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async receiptCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async receiptCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -21784,7 +22051,8 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -21795,6 +22063,7 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -21807,6 +22076,7 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -21839,6 +22109,7 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -21860,6 +22131,7 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -21882,26 +22154,7 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receiptActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.receiptActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receiptActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.receiptActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -21913,6 +22166,29 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receiptCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.receiptCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receiptCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.receiptCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -21923,7 +22199,8 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -21933,6 +22210,7 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -21944,6 +22222,7 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -21973,6 +22252,7 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -21993,6 +22273,7 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -22014,30 +22295,7 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
 export class ReceiptApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReceiptApi
-     */
-    public receiptActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return ReceiptApiFp(this.configuration).receiptActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReceiptApi
-     */
-    public receiptActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ReceiptApiFp(this.configuration).receiptActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -22051,6 +22309,33 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReceiptApi
+     */
+    public receiptCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return ReceiptApiFp(this.configuration).receiptCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReceiptApi
+     */
+    public receiptCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ReceiptApiFp(this.configuration).receiptCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -22063,7 +22348,8 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -22075,6 +22361,7 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -22088,6 +22375,7 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -22123,6 +22411,7 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -22145,6 +22434,7 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -22166,92 +22456,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receivableInvoiceActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receivableInvoiceActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('receivableInvoiceActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/receivable-invoices/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receivableInvoiceActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receivableInvoiceActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('receivableInvoiceActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/receivable-invoices/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -22297,6 +22502,95 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receivableInvoiceCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('receivableInvoiceCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('receivableInvoiceCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/receivable-invoices/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receivableInvoiceCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('receivableInvoiceCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('receivableInvoiceCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/receivable-invoices/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -22338,7 +22632,8 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -22379,6 +22674,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -22426,6 +22722,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -22473,6 +22770,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -22565,6 +22863,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -22622,28 +22921,7 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async receivableInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async receivableInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -22656,6 +22934,31 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async receivableInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async receivableInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -22667,7 +22970,8 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -22678,6 +22982,7 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -22690,6 +22995,7 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -22702,6 +23008,7 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -22723,6 +23030,7 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -22745,26 +23053,7 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receivableInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.receivableInvoiceActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receivableInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.receivableInvoiceActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -22776,6 +23065,29 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receivableInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.receivableInvoiceCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receivableInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.receivableInvoiceCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -22786,7 +23098,8 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -22796,6 +23109,7 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -22807,6 +23121,7 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -22818,6 +23133,7 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -22838,6 +23154,7 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -22859,30 +23176,7 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
 export class ReceivableInvoiceApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReceivableInvoiceApi
-     */
-    public receivableInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReceivableInvoiceApi
-     */
-    public receivableInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -22896,6 +23190,33 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReceivableInvoiceApi
+     */
+    public receivableInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReceivableInvoiceApi
+     */
+    public receivableInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -22908,7 +23229,8 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -22920,6 +23242,7 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -22933,6 +23256,7 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -22946,6 +23270,7 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -22968,6 +23293,7 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -22989,92 +23315,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        taxInvoiceActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('taxInvoiceActorCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('taxInvoiceActorCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/tax-invoices/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        taxInvoiceActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('taxInvoiceActorCreateInline', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('taxInvoiceActorCreateInline', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/tax-invoices/inline-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -23120,6 +23361,95 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        taxInvoiceCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('taxInvoiceCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('taxInvoiceCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/tax-invoices/simple-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        taxInvoiceCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('taxInvoiceCreate2', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('taxInvoiceCreate2', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/tax-invoices/inline-document`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -23161,7 +23491,8 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -23202,6 +23533,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -23249,6 +23581,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -23338,6 +23671,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -23430,6 +23764,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -23487,28 +23822,7 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async taxInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceActorCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async taxInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceActorCreateInline(culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -23521,6 +23835,31 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async taxInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async taxInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceCreate2(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -23532,7 +23871,8 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -23543,6 +23883,7 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -23555,6 +23896,7 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -23578,6 +23920,7 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -23599,6 +23942,7 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -23621,26 +23965,7 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
     return {
         /**
          * 
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        taxInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.taxInvoiceActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        taxInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.taxInvoiceActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
+         * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
          * @param {string} culture 
@@ -23652,6 +23977,29 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        taxInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.taxInvoiceCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        taxInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
+            return localVarFp.taxInvoiceCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
@@ -23662,7 +24010,8 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -23672,6 +24021,7 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To Update a document with simpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -23683,6 +24033,7 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To Update a document with inlineDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
@@ -23704,6 +24055,7 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To query for documents.
          * @param {string} culture 
          * @param {string} [sortBy] 
          * @param {string} [currentPage] 
@@ -23724,6 +24076,7 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary To Accept payment with the paymentModel
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -23745,30 +24098,7 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
 export class TaxInvoiceApi extends BaseAPI {
     /**
      * 
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TaxInvoiceApi
-     */
-    public taxInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return TaxInvoiceApiFp(this.configuration).taxInvoiceActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TaxInvoiceApi
-     */
-    public taxInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return TaxInvoiceApiFp(this.configuration).taxInvoiceActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
+     * @summary To change status by the document id and key
      * @param {number} documentId 
      * @param {string} statusKey 
      * @param {string} culture 
@@ -23782,6 +24112,33 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TaxInvoiceApi
+     */
+    public taxInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return TaxInvoiceApiFp(this.configuration).taxInvoiceCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TaxInvoiceApi
+     */
+    public taxInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return TaxInvoiceApiFp(this.configuration).taxInvoiceCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
      * @param {number} id 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
@@ -23794,7 +24151,8 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -23806,6 +24164,7 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with simpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -23819,6 +24178,7 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Update a document with inlineDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -23844,6 +24204,7 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To query for documents.
      * @param {string} culture 
      * @param {string} [sortBy] 
      * @param {string} [currentPage] 
@@ -23866,6 +24227,7 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary To Accept payment with the paymentModel
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
