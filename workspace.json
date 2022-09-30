@@ -433,6 +433,29 @@
             "assets": ["libs/api-ruby/*.md"]
           }
         },
+        "custom-generate-sources": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+              "commands": [
+                {
+                  "command": "npx openapi-generator-cli generate -i libs/api-spec/src/api-spec.openapi.json -g ruby -o libs/api-ruby/src --skip-validate-spec",
+                  "forwardAllArgs": false
+                }
+              ],
+              "parallel": false
+          },
+          "configurations": {
+            "dev": {
+              "args": ""
+            },
+            "preprod": {
+              "args": ""
+            },
+            "production": {
+              "args": ""
+            }
+          }
+        },
         "generate-sources": {
           "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
           "options": {
