@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5412b6f8-2b3a-4827-944c-d182dc4fc113": {
+      "ProjectGuid": "5412b6f8-2b3a-4827-944c-d182dc4fc113",
+      "DisplayName": "FlowAccount.OpenAPIClient",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
