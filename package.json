@@ -21,7 +21,7 @@
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
-        "@flowaccount/nx-serverless": "^0.5.4",
+        "@flowaccount/nx-serverless": "2.0.0-beta.7",
         "@nrwl/cli": "^13.9.5",
         "@nrwl/eslint-plugin-nx": "^13.9.5",
         "@nrwl/linter": "^13.9.5",
