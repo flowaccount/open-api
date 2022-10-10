@@ -8,10 +8,12 @@
   },
   "servers": [
     {
-      "url": "https://openapi.flowaccount.com/sandbox"
+      "url": "https://openapi.flowaccount.com/sandbox",
+      "description": "The sandbox server"
     },
     {
-      "url": "https://openapi.flowaccount.com/v3-alpha"
+      "url": "https://openapi.flowaccount.com/v3-alpha",
+      "description": "The prod server"
     }
   ],
   "paths": {
@@ -9328,10 +9330,10 @@
           "contactNumber": "",
           "contactZipCode": "",
           "contactGroup": 1,
-          "publishedOn": "2022-10-05T03:26:51.6995358+00:00",
+          "publishedOn": "2022-10-10T09:37:39.2943643+07:00",
           "creditType": 3,
           "creditDays": 0,
-          "dueDate": "2022-10-05T03:26:51.6995365+00:00",
+          "dueDate": "2022-10-10T09:37:39.294366+07:00",
           "salesName": "Wongnai POS",
           "projectName": "",
           "reference": null,
@@ -14174,7 +14176,7 @@
           "branch": null,
           "accountNumber": "1234567890",
           "accountType": 3,
-          "startDate": "2022-10-05T03:26:51.9427557+00:00",
+          "startDate": "2022-10-10T09:37:39.6155504+07:00",
           "endDate": null,
           "internalNote": null,
           "isActive": null,
@@ -17636,31 +17638,37 @@
       },
       "ObjectId": {
         "type": "object",
+        "description": "Represents an ObjectId (see also BsonObjectId).",
         "additionalProperties": false,
         "properties": {
           "Timestamp": {
             "type": "integer",
+            "description": "Gets the timestamp.",
             "format": "int32"
           },
           "Machine": {
             "type": "integer",
+            "description": "Gets the machine.",
             "format": "int32",
             "deprecated": true,
             "x-deprecatedMessage": "This property will be removed in a later release."
           },
           "Pid": {
             "type": "integer",
+            "description": "Gets the PID.",
             "deprecated": true,
             "x-deprecatedMessage": "This property will be removed in a later release."
           },
           "Increment": {
             "type": "integer",
+            "description": "Gets the increment.",
             "format": "int32",
             "deprecated": true,
             "x-deprecatedMessage": "This property will be removed in a later release."
           },
           "CreationTime": {
             "type": "string",
+            "description": "Gets the creation time (derived from the timestamp).",
             "format": "date-time"
           }
         }
