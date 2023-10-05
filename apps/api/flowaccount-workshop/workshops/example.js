@@ -1,5 +1,8 @@
+var bankStatement = require('../bankStatements.json');
+var expenseStatements = require('../expenseStatements.json');
 function example() {
-  //DO LOGIC Here
+  console.log(bankStatement);
+  console.log(expenseStatements);
 }
 
 module.exports = {
