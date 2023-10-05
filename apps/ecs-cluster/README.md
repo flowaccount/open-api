@@ -34,8 +34,15 @@ max: 2 instance
 
 ### Deploying Infrastructure
 
+
+**Deploying policies**
+
 ```bash
-yarn nx run flowaccount-ecs-stack:deploy-ecs-service --profile=dev_console --configuration=cluster-sandbox --stackName=servcice-a-production-service --stage=sandbox --serviceName=service-sandbox-a --asgName=sandbox-cluster-default --cpu=512 --memory=400 --imageName=service-sandbox-a --targetGroupArn=arn:aws:elasticloadbalancing:ap-southeast-1:697698820969:targetgroup/openapi-a-tg/47cbbb25a29e50ea
+yarn nx run ecs-cluster:deploy-ecs-service:instance-policy-public-sandbox --profile=dev_console --stage=sandbox
+```
+
+```bash
+yarn nx run flowaccount-ecs-stack:deploy-ecs-service --profile=dev_console --configuration=cluster-sandbox --stackName=servcice-a-production-service --stage=sandbox --serviceName=service-sandbox- --asgName=sandbox-cluster-default --cpu=512 --memory=400 --imageName=service-sandbox --targetGroupArn=arn:aws:elasticloadbalancing:ap-southeast-1:697698820969:targetgroup/openapi-a-tg/47cbbb25a29e50ea
 ```
 
 ### Deploying Application

@@ -703,19 +703,19 @@
         }
       }
     },
-    "ecs-stack": {
-      "root": "apps/ecs-stack",
-      "sourceRoot": "apps/ecs-stack/src",
+    "ecs-cluster": {
+      "root": "apps/ecs-cluster",
+      "sourceRoot": "apps/ecs-cluster/src",
       "projectType": "application",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:build",
+          "executor": "@nrwl/node:webpack",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/ecs-stack",
-            "main": "apps/ecs-stack/src/main.ts",
-            "tsConfig": "apps/ecs-stack/tsconfig.app.json",
-            "assets": ["apps/ecs-stack/src/assets"]
+            "outputPath": "dist/apps/ecs-cluster",
+            "main": "apps/ecs-cluster/src/main.ts",
+            "tsConfig": "apps/ecs-cluster/tsconfig.app.json",
+            "assets": ["apps/ecs-cluster/src/assets"]
           },
           "configurations": {
            
@@ -724,48 +724,48 @@
         "serve": {
           "executor": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "ecs-stack:build"
+            "buildTarget": "ecs-cluster:build"
           }
         },
         "deploy-ecs-service": {
           "executor": "@flowaccount/nx-aws-cdk:deploy",
           "options": {
-            "buildTarget": "ecs-stack:build",
+            "buildTarget": "ecs-cluster:build",
             "profile": "fadev-deploy",
             "debug": false,
             "verbose": false,
-            "output": "dist/cdkOutput/apps/ecs-stack/cdk.out"
+            "output": "dist/cdkOutput/apps/ecs-cluster/cdk.out"
           },
           "configurations": {
             "instance-policy-public-sandbox": {
               "profile": "dev_console",
               "stackName": "dotnet-sandbox-cluster-policy",
-              "buildTarget": "ecs-stack:build:dotnet-sandbox"
+              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
             },
             "task-execution-policy-public-sandbox": {
               "profile": "dev_console",
               "stackName": "dotnet-sandbox-task-execution-policy",
-              "buildTarget": "ecs-stack:build:dotnet-sandbox"
+              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
             },
             "task-policy-public-sandbox": {
               "profile": "dev_console",
               "stackName": "dotnet-sandbox-task-policy",
-              "buildTarget": "ecs-stack:build:dotnet-sandbox"
+              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
             },
             "cluster-public-sandbox": {
               "profile": "dev_console",
               "stackName": "cluster-dotnet-sandbox",
-              "buildTarget": "ecs-stack:build:dotnet-generic"
+              "buildTarget": "ecs-cluster:build:dotnet-generic"
             },
             "public-sandbox-cluster-default-asg": {
               "profile": "dev_console",
               "stackName": "stack-dotnet-sandbox-cluster-default",
-              "buildTarget": "ecs-stack:build:dotnet-sandbox"
+              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
             },
             "lighthouse-public-sandbox-asg": {
               "profile": "dev_console",
               "stackName": "stack-lighthouse-sandbox-asg",
-              "buildTarget": "ecs-stack:build:dotnet-sandbox"
+              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
             }
           }
         },
@@ -779,9 +779,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/ecs-stack/open-api"],
+          "outputs": ["coverage/apps/ecs-cluster/open-api"],
           "options": {
-            "jestConfig": "apps/ecs-stack/open-api/jest.config.js",
+            "jestConfig": "apps/ecs-cluster/open-api/jest.config.js",
             "passWithNoTests": true
           }
         }

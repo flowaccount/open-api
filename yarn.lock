@@ -1077,14 +1077,14 @@
     strip-json-comments "^3.1.1"
 
 "@flowaccount/aws-cdk-core@^1.0.0":
-  version "1.2.13"
-  resolved "https://registry.yarnpkg.com/@flowaccount/aws-cdk-core/-/aws-cdk-core-1.2.13.tgz#1c3d05085077851453c619b8f6c84703933c2ba9"
-  integrity sha512-anBS6NAWnoB90L+A8ncTA6AIkwVLiapJ0IUVBjE44SJZUEqh8InOF4zHUF0geqoy4c3A6uZ853PvQWuP9XyuiA==
+  version "1.2.14"
+  resolved "https://registry.yarnpkg.com/@flowaccount/aws-cdk-core/-/aws-cdk-core-1.2.14.tgz#71bdb33d11a515564de0afd3df84971bccac8a1d"
+  integrity sha512-dh8TGTYvViOpiaB4eBgZW+OKbykcX6NK+RrrSWIKOPAJdipburi0mRJc+vdVV68cr3Qm7FwMcwpD2NkSOYxCZg==
 
 "@flowaccount/aws-cdk-stack@^1.0.0":
-  version "1.2.13"
-  resolved "https://registry.yarnpkg.com/@flowaccount/aws-cdk-stack/-/aws-cdk-stack-1.2.13.tgz#7a4dbf2cad4ce5804eccb8eb4c43a3642ebcfaca"
-  integrity sha512-qUnneVryrgSaqldLZ+HiJ+nKxbDcnkJ8XczAbDAJbI9Ejf8Im96jjRvnzcwbbWd3OkjmtEZb5CEkwM3tjQVfUA==
+  version "1.2.14"
+  resolved "https://registry.yarnpkg.com/@flowaccount/aws-cdk-stack/-/aws-cdk-stack-1.2.14.tgz#0da4ac08d0629357381117c1c1af0bd27b15e2b9"
+  integrity sha512-31XlAIdkzq7lL8TYyBdOQp4AUB5wb0I1/nEMEbrOHBiYFi1xrkczEVAT/uVvbCb+Tskf3DexA8P33fT6WPgPqg==
   dependencies:
     "@angular-devkit/core" "12.2.11"
     "@angular-devkit/schematics" "11.2.13"
@@ -1111,10 +1111,10 @@
     tsyringe "4.7.0"
     uuid "9.0.0"
 
-"@flowaccount/nx-aws-cdk@^1.2.13":
-  version "1.2.13"
-  resolved "https://registry.yarnpkg.com/@flowaccount/nx-aws-cdk/-/nx-aws-cdk-1.2.13.tgz#b10c575797fb811928f675db4cbd27b255e4cf00"
-  integrity sha512-k/0jVzT0M9Qwd+PCWvezjnO5GErsaYweomkKa2XWi4HAW4je75BCwuQxMXCZyx4ZcExMhbJGpk76Qsw9qMhfqQ==
+"@flowaccount/nx-aws-cdk@^1.2.14":
+  version "1.2.14"
+  resolved "https://registry.yarnpkg.com/@flowaccount/nx-aws-cdk/-/nx-aws-cdk-1.2.14.tgz#fbb0c9dfee312b6651cb57c50d90cb1c0b76382d"
+  integrity sha512-/mry2WTDIQIrgM/oLx1X9Sc/j8cwQnRzpZlMy9GaLzec+P+G73ElCBAAqaBbYFAw+kvY1eFubaPFIWHeum7fWA==
   dependencies:
     "@flowaccount/aws-cdk-core" "^1.0.0"
     "@flowaccount/aws-cdk-stack" "^1.0.0"
@@ -4193,14 +4193,6 @@ boxen@^5.0.0, boxen@^5.1.2:
     widest-line "^3.1.0"
     wrap-ansi "^7.0.0"
 
-brace-expansion@^1.1.7:
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
-  integrity sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==
-  dependencies:
-    balanced-match "^1.0.0"
-    concat-map "0.0.1"
-
 brace-expansion@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-2.0.1.tgz#1edc459e0f0c548486ecf9fc99f2221364b9a0ae"
@@ -4881,11 +4873,6 @@ compression@^1.7.4:
     on-headers "~1.0.2"
     safe-buffer "5.1.2"
     vary "~1.1.2"
-
-concat-map@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
-  integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
 concurrently@6.5.1:
   version "6.5.1"
@@ -9138,45 +9125,10 @@ minimalistic-assert@^1.0.0:
   resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz#2e194de044626d4a10e7f7fbc00ce73e83e4d5c7"
   integrity sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==
 
-minimatch@3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
-  integrity sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==
-  dependencies:
-    brace-expansion "^1.1.7"
-
-minimatch@4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-4.2.1.tgz#40d9d511a46bdc4e563c22c3080cde9c0d8299b4"
-  integrity sha512-9Uq1ChtSZO+Mxa/CL1eGizn2vRn3MlLgzhT0Iz8zaY8NdvxvB0d5QdPFmCKf7JKA9Lerx5vRrnwO03jsSfGG9g==
-  dependencies:
-    brace-expansion "^1.1.7"
-
-minimatch@4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-4.2.3.tgz#b4dcece1d674dee104bb0fb833ebb85a78cbbca6"
-  integrity sha512-lIUdtK5hdofgCTu3aT0sOaHsYR37viUuIc0rwnnDXImbwFRcumyLMeZaM0t0I/fgxS6s6JMfu0rLD1Wz9pv1ng==
-  dependencies:
-    brace-expansion "^1.1.7"
-
-minimatch@>=3.0, minimatch@^9.0.1:
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-9.0.3.tgz#a6e00c3de44c3a542bfaae70abfc22420a6da825"
-  integrity sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==
-  dependencies:
-    brace-expansion "^2.0.1"
-
-minimatch@^3.0.2, minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
-  integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
-  dependencies:
-    brace-expansion "^1.1.7"
-
-minimatch@^5.0.1, minimatch@^5.1.0:
-  version "5.1.6"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.6.tgz#1cfcb8cf5522ea69952cd2af95ae09477f122a96"
-  integrity sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==
+minimatch@3.0.4, minimatch@4.2.1, minimatch@4.2.3, minimatch@6.2.0, minimatch@>=3.0, minimatch@^3.0.2, minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2, minimatch@^5.0.1, minimatch@^5.1.0, minimatch@^9.0.1:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-6.2.0.tgz#2b70fd13294178c69c04dfc05aebdb97a4e79e42"
+  integrity sha512-sauLxniAmvnhhRjFwPNnJKaPFYyddAgbYdeUpHULtCT/GhzdCx/MDNy+Y40lBxTQUrMzDE8e0S43Z5uqfO0REg==
   dependencies:
     brace-expansion "^2.0.1"
 

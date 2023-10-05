@@ -14,12 +14,13 @@ const _asgName: string = process.env.asgName;
 const _imageName: string = process.env.imageName;
 let _keyPairName: string = process.env.keyPairName;
 _keyPairName = _keyPairName === `undefined` ? 'flowsingapre' : _keyPairName;
+const existingCluster: boolean = process.env.existingCluster === `true` ? true : false;
 
 const _siteArg: string = process.env.site;
 
-const cloudmapServiceName: string = process.env.cloudmapServiceName;
-const cloudmapServiceArnArg: string = process.env.cloudmapServiceArn;
-const cloudmapServiceIdArg: string = process.env.cloudmapServiceId;
+const cloudmapServiceName: string = process.env.cloudmapServiceName ? process.env.cloudmapServiceName : 'undefined';
+const cloudmapServiceArnArg: string = process.env.cloudmapServiceArn ? process.env.cloudmapServiceArn : 'undefined';
+const cloudmapServiceIdArg: string = process.env.cloudmapServiceId ? process.env.cloudmapServiceId : 'undefined';
 const cpuArg: string | 512 = process.env.cpu ? process.env.cpu : 512;
 const memoryArg: string | 960 = process.env.memory ? process.env.memory : 960;
 const useServiceDiscovery: string = process.env.useServiceDiscovery ? process.env.useServiceDiscovery : 'false';
@@ -28,24 +29,21 @@ const _site = `${_siteArg}`;
 const _cpu: number = +cpuArg;
 const _memory: number = +memoryArg;
 const _region = `ap-southeast-1`;
-const _apiprefix = `dotnet`;
+const _apiprefix = `node`;
 const _apisuffix = `api`;
 const domainName = `flowaccount.com`;
 
-const clusterDNS: string = _site == 'production' ? 'dotnet-system' : `dotnet-system-${_stage}`;
+const clusterDNS: string = _site == 'production' ? 'public-sandbox-system' : `public-sandbox-system-${_stage}`;
 
 const service_environment: string = _stage !== `production` ? `${_stage}` : `Production`;
 const _ecr = `765141697745.dkr.ecr.ap-southeast-1.amazonaws.com/flowaccount`;
 
 // setup config
 let accountNumber = '765141697745';
-let _dotnetGeneralConfig = `arn:aws:secretsmanager:ap-southeast-1:${accountNumber}:secret:preprod/secret/dotnetcore-readonly-gMtTuY`;
-let _akka_hocon = `arn:aws:secretsmanager:ap-southeast-1:${accountNumber}:secret:production/akka-config/auditor-system-XMRZrD`;
 let certificateArn = `arn:aws:acm:ap-southeast-1:${accountNumber}:certificate/cc33dec0-9096-42f9-8e6b-47742389c7b8`;
 if (service_environment.toLowerCase() == 'sandbox') {
   accountNumber = '697698820969';
-  _dotnetGeneralConfig = `arn:aws:secretsmanager:ap-southeast-1:${accountNumber}:secret:sandbox/dotnetcore/secret-AOBsEL`;
-  _akka_hocon = `arn:aws:secretsmanager:ap-southeast-1:${accountNumber}:secret:sandbox/akka-config/auditor-system-Lr34VJ`;
+  // _dotnetGeneralConfig = `arn:aws:secretsmanager:ap-southeast-1:${accountNumber}:secret:sandbox/dotnetcore/secret-AOBsEL`;
   certificateArn = `arn:aws:acm:ap-southeast-1:${accountNumber}:certificate/80e66d5c-bff1-4e69-9d79-af5a96238f9f`;
 }
 
@@ -53,14 +51,13 @@ const api_environment_variables = {
   COMPlus_ThreadPool_ForceMinWorkerThreads: '100',
   ASPNETCORE_URLS: `http://+:5000`,
   ASPNETCORE_ENVIRONMENT: service_environment,
-  S3_CONFIG_BUCKET_NAME: 'app-production-config',
+  S3_CONFIG_BUCKET_NAME: 'app-public-sandbox-config',
   S3_CONFIG_PATH: `${clusterDNS}.json`,
 };
 
 const api_secrets = [
   {
-    GENERAL_CONFIG: _dotnetGeneralConfig,
-    ACTOR_HOCON_CONFIG: _akka_hocon,
+    // GENERAL_CONFIG: _dotnetGeneralConfig,
   },
 ];
 
@@ -93,13 +90,13 @@ export const environment: IECSStackEnvironmentConfig = {
   },
   vpc: {
     vpcAttributes: {
-      vpcId: `vpc-d35e92b6`,
+      vpcId: `vpc-0c1cde6ada35b3d70`,
       availabilityZones: [`${_region}a`, `${_region}b`],
-      privateSubnetIds: [`subnet-0396de0d82df96f3a`, `subnet-031960eba3dd6ce39`],
+      privateSubnetIds: [`subnet-0d0242b967352e6a4`, `subnet-0dd7d193b2d2df967`],
     },
     subnets: [
-      { subnetId: 'subnet-0396de0d82df96f3a', availabilityZone: '${_region}a' },
-      { subnetId: 'subnet-031960eba3dd6ce39', availabilityZone: '${_region}b' },
+      { subnetId: 'subnet-0d0242b967352e6a4', availabilityZone: '${_region}a' },
+      { subnetId: 'subnet-0dd7d193b2d2df967', availabilityZone: '${_region}b' },
     ],
   },
   applicationLoadBalancer: {
@@ -121,10 +118,11 @@ export const environment: IECSStackEnvironmentConfig = {
     ],
   },
   ecs: {
+    existingCluster: existingCluster,
     defaultServiceDiscoveryNamespace: {
       namespaceName: clusterDNS,
-      namespaceArn: 'arn:aws:servicediscovery:ap-southeast-1:765141697745:namespace/ns-wovrulcjdx2qtldy',
-      namespaceId: 'ns-wovrulcjdx2qtldy',
+      namespaceArn: 'xxxxx',
+      namespaceId: 'xxxxx',
     },
     instancePolicy: {
       statements: [
@@ -236,41 +234,7 @@ export const environment: IECSStackEnvironmentConfig = {
             ],
           },
         },
-      },
-      // `lighthouse-${_stage}-asg`
-      {
-        launchTemplate: {
-          name: `lighthouse-${_stage}-lt`,
-          imageId: `ami-02475bfb1c6cecc65`,
-          instanceType: 't4g.small',
-          keyName: _keyPairName,
-          version: 7,
-          volumeSize: 30,
-          volumeType: 'gp3',
-        },
-        asg: {
-          name: `lighthouse-${_stage}-asg`,
-          min: '1',
-          max: '3',
-          desired: '1',
-          overrides: [
-            {
-              InstanceType: 't4g.small',
-            },
-          ],
-          onDemandBaseCapacity: 0,
-          onDemandPercentage: 100,
-          protectionFromScaleIn: true,
-          instanceProfileName: `lighthouse-${_stage}-instance-profile`,
-          instanceSecurityGroup: {
-            name: `lighthouse-${_stage}-instance-sg`,
-            inboudRule: [
-              { peer: Peer.anyIpv4(), connection: Port.allTcp() },
-              { peer: Peer.anyIpv4(), connection: Port.udp(8125) },
-            ],
-          },
-        },
-      },
+      }
     ],
     clusterName: `${_apiprefix}-${_stage}-cluster`,
     defaultCloudMapNamespace: {
@@ -301,7 +265,7 @@ export const environment: IECSStackEnvironmentConfig = {
           memoryReservationMiB: _memory,
           cpu: _cpu,
           hostname: `${_serviceName}-${_stage}`,
-          environment: { ...api_environment_variables, AKKA__CLUSTER__DNS: clusterDNS },
+          environment: { ...api_environment_variables },
           // portMappings: api_portmappings,
           portMappings: [{ hostPort: 0, containerPort: 5000 }],
         },
