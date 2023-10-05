@@ -21,14 +21,14 @@
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
+        "@flowaccount/nx-aws-cdk": "^1.2.13",
         "@flowaccount/nx-serverless": "2.0.0-beta.10",
-        "@flowaccount/nx-aws-cdk": "1.2.8",
-        "@nrwl/cli": "^13.9.5",
-        "@nrwl/eslint-plugin-nx": "^13.9.5",
-        "@nrwl/linter": "^13.9.5",
-        "@nrwl/node": "^13.9.5",
-        "@nrwl/tao": "^13.9.5",
-        "@nrwl/workspace": "^13.9.5",
+        "@nrwl/cli": "14.1.5",
+        "@nrwl/eslint-plugin-nx": "14.1.5",
+        "@nrwl/linter": "14.1.5",
+        "@nrwl/node": "14.1.5",
+        "@nrwl/tao": "14.1.5",
+        "@nrwl/workspace": "14.1.5",
         "@openapitools/openapi-generator-cli": "^2.4.26",
         "@trumbitta/nx-plugin-openapi": "^1.12.1",
         "@types/jest": "^27.5.1",
@@ -38,10 +38,14 @@
         "@typescript-eslint/parser": "~5.10.0",
         "eslint": "~8.7.0",
         "eslint-config-prettier": "8.1.0",
+        "aws-cdk": "1.121.0",
         "mocha": "^9.2.2",
         "prettier": "^2.5.1",
-        "serverless-offline": "^8.3.1",
         "ts-jest": "^27.1.5",
         "typescript": "~4.5.2"
+    },
+    "resolutions": {
+        "constructs": "3.3.69",
+        "wrap-ansi": "7.0.0"
     }
 }
