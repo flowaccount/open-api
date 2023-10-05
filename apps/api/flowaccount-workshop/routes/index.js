@@ -9,11 +9,6 @@ router.get('/', function (req, res, next) {
       return res.status(500).send('Error reading README.md');
     }
 
-    // Render the README content as HTML
-    const marked = require('marked');
-    const htmlContent = marked(data);
-
-    // Render the HTML page
     res.send(`
         <!DOCTYPE html>
         <html>
@@ -21,7 +16,7 @@ router.get('/', function (req, res, next) {
             <title>README Viewer</title>
           </head>
           <body>
-            ${htmlContent}
+            ${data}
           </body>
         </html>
       `);

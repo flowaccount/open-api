@@ -33,7 +33,7 @@ function generateData() {
   const bankStmts = [];
   const expenses = [];
 
-  for (let i = 1; i <= 1000; i++) {
+  for (let i = 1; i <= 100000; i++) {
     bankStmts.push({
       id: `B${i.toString().padStart(4, '0')}`,
       amount: randomAmount(),
