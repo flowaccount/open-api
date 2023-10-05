@@ -20,4 +20,4 @@
 ## Run project
 1. to go workshop with command `"cd apps/api/flowaccount-workshop"`
 2. Run `npm start` or `"yarn start"`
-3. Open your browser and go to `http://localhost:3000/workshop/<YOUR TEAM>`
+3. Open your browser and go to `http://localhost:3000/workshop/<YOUR TEAM>` e.g. `http://localhost:3000/workshop/team-a`
