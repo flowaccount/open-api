@@ -1,4 +1,6 @@
-function example() {}
+function example() {
+  //DO LOGIC Here
+}
 
 module.exports = {
   example,
