@@ -18,6 +18,9 @@ jobs:
         working-directory: ${{ inputs.working-directory || github.workspace }}
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
     - name: Configure AWS credentials
       if: always()
       uses: aws-actions/configure-aws-credentials@v2
@@ -30,14 +33,18 @@ jobs:
         mask-password: 'true'
     - name: github.workspace path 
       run: echo ${{ github.workspace }}
-    - name: Get PR number
-      id: action
-      uses: kamatama41/get-pr-number-action@v0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Install packages
+      run: |
+        yarn install --prefer-offline --frozen-lockfile --non-interactive
+    - name: prepare contents
+      run: |
+        rsync -av -q . ../ --exclude .git
+        yarn nx run api-flowaccount-workshop:build
+        cp -r dist/apps/api/flowaccount-workshop/. docker/flowaccount-workshop/.
+        rm -rf dist/apps/api/flowaccount-workshop/*
     - name: docker build
       run: |
-        cd apps/api/flowaccount-workshop
+        cd docker/flowaccount-workshop
         ls
         docker build . -t 765141697745.dkr.ecr.ap-southeast-1.amazonaws.com/flowaccount/public-workshop-sandbox:latest-public-workshop-sandbox
     - name: docker push
