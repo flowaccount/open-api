@@ -844,33 +844,24 @@
           "configurations": {
             "instance-policy-public-sandbox": {
               "profile": "dev_console",
-              "stackName": "dotnet-sandbox-cluster-policy",
-              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
+              "stackName": "node-sandbox-cluster-policy",
+              "buildTarget": "ecs-cluster:build"
             },
             "task-execution-policy-public-sandbox": {
               "profile": "dev_console",
-              "stackName": "dotnet-sandbox-task-execution-policy",
-              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
+              "stackName": "node-sandbox-task-execution-policy"
             },
             "task-policy-public-sandbox": {
               "profile": "dev_console",
-              "stackName": "dotnet-sandbox-task-policy",
-              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
+              "stackName": "node-sandbox-task-policy"
             },
             "cluster-public-sandbox": {
               "profile": "dev_console",
-              "stackName": "cluster-dotnet-sandbox",
-              "buildTarget": "ecs-cluster:build:dotnet-generic"
+              "stackName": "cluster-node-sandbox"
             },
             "public-sandbox-cluster-default-asg": {
               "profile": "dev_console",
-              "stackName": "stack-dotnet-sandbox-cluster-default",
-              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
-            },
-            "lighthouse-public-sandbox-asg": {
-              "profile": "dev_console",
-              "stackName": "stack-lighthouse-sandbox-asg",
-              "buildTarget": "ecs-cluster:build:dotnet-sandbox"
+              "stackName": "stack-node-sandbox-cluster-default"
             }
           }
         },
@@ -878,7 +869,7 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/domain/accounting-domain/api/dotnetv2/**/*.ts"
+              "apps/ecs-stack/**/*.ts"
             ]
           }
         },

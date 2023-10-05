@@ -206,7 +206,7 @@ export const environment: IECSStackEnvironmentConfig = {
         launchTemplate: {
           name: `${_apiprefix}-${_stage}-cluster-lt`,
           imageId: `ami-02475bfb1c6cecc65`,
-          instanceType: 'c6g.large',
+          instanceType: 't4g.medium',
           keyName: _keyPairName,
           version: 1,
           volumeSize: 30,
@@ -214,12 +214,12 @@ export const environment: IECSStackEnvironmentConfig = {
         },
         asg: {
           name: `${_apiprefix}-${_stage}-cluster-default`,
-          min: '0',
-          max: '20',
-          desired: '0',
+          min: '1',
+          max: '2',
+          desired: '1',
           overrides: [
             {
-              InstanceType: 'c6g.large',
+              InstanceType: 't4g.medium',
             },
           ],
           onDemandBaseCapacity: 0,
