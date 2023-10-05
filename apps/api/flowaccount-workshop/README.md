@@ -1,8 +1,11 @@
 # Flowaccount Wrokshop
 
 ## Requirement
-1.
-2.
+1. Create `Naive Matching` function and find account that matching based on exact amounts
+2. Create `Fuzzy Matching` function and find account that matching based on approximate amounts
+
+## Expectation
+1. Correct and faster 
 
 ## Before start
 1. Require Node.js >= 16.0
