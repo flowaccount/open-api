@@ -597,21 +597,21 @@
       },
       "tags": []
     },
-    "api-flowaccount-sdk": {
-      "root": "apps/api/flowaccount-sdk",
-      "sourceRoot": "apps/api/flowaccount-sdk/src",
+    "api-flowaccount-webhook": {
+      "root": "apps/api/flowaccount-webhook",
+      "sourceRoot": "apps/api/flowaccount-webhook/src",
       "projectType": "application",
-      "prefix": "flowaccount-sdk",
+      "prefix": "flowaccount-webhook",
       "generators": {},
       "targets": {
         "build": {
           "executor": "@flowaccount/nx-serverless:build",
           "options": {
-            "outputPath": "dist/apps/api/flowaccount-sdk",
-            "package": "apps/api/flowaccount-sdk",
-            "serverlessConfig": "apps/api/flowaccount-sdk/serverless.yml",
-            "servicePath": "apps/api/flowaccount-sdk",
-            "tsConfig": "apps/api/flowaccount-sdk/tsconfig.app.json",
+            "outputPath": "dist/apps/api/flowaccount-webhook",
+            "package": "apps/api/flowaccount-webhook",
+            "serverlessConfig": "apps/api/flowaccount-webhook/serverless.yml",
+            "servicePath": "apps/api/flowaccount-webhook",
+            "tsConfig": "apps/api/flowaccount-webhook/tsconfig.app.json",
             "provider": "aws",
             "processEnvironmentFile": "env.json"
           },
@@ -643,8 +643,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/api/flowaccount-sdk/environment.ts",
-                  "with": "apps/api/flowaccount-sdk/environment.prod.ts"
+                  "replace": "apps/api/flowaccount-webhook/environment.ts",
+                  "with": "apps/api/flowaccount-webhook/environment.prod.ts"
                 }
               ]
             }
@@ -653,55 +653,138 @@
         "serve": {
           "executor": "@flowaccount/nx-serverless:offline",
           "options": {
-            "buildTarget": "api-flowaccount-sdk:build",
-            "config": "apps/api/flowaccount-sdk/serverless.yml",
-            "location": "dist/apps/api/flowaccount-sdk",
+            "buildTarget": "api-flowaccount-webhook:build",
+            "config": "apps/api/flowaccount-webhook/serverless.yml",
+            "location": "dist/apps/api/flowaccount-webhook",
             "port": 7777
           },
           "configurations": {
             "dev": {
-              "buildTarget": "flowaccount-sdk:build:dev"
+              "buildTarget": "flowaccount-webhook:build:dev"
             },
             "production": {
-              "buildTarget": "flowaccount-sdk:build:production"
+              "buildTarget": "flowaccount-webhook:build:production"
             }
           }
         },
         "deploy": {
           "executor": "@flowaccount/nx-serverless:deploy",
           "options": {
-            "buildTarget": "api-flowaccount-sdk:build:production",
-            "config": "apps/api/flowaccount-sdk/serverless.yml",
-            "location": "dist/apps/api/flowaccount-sdk",
-            "package": "dist/apps/api/flowaccount-sdk",
+            "buildTarget": "api-flowaccount-webhook:build:production",
+            "config": "apps/api/flowaccount-webhook/serverless.yml",
+            "location": "dist/apps/api/flowaccount-webhook",
+            "package": "dist/apps/api/flowaccount-webhook",
             "stage": "dev"
           }
         },
         "destroy": {
           "executor": "@flowaccount/nx-serverless:destroy",
           "options": {
-            "buildTarget": "api-flowaccount-sdk:build:production",
-            "config": "apps/api/flowaccount-sdk/serverless.yml",
-            "location": "dist/apps/api/flowaccount-sdk",
-            "package": "dist/apps/api/flowaccount-sdk"
+            "buildTarget": "api-flowaccount-webhook:build:production",
+            "config": "apps/api/flowaccount-webhook/serverless.yml",
+            "location": "dist/apps/api/flowaccount-webhook",
+            "package": "dist/apps/api/flowaccount-webhook"
           }
         },
         "lint": {
           "executor": "@angular-devkit/build-angular:tslint",
           "options": {
-            "exclude": ["**/node_modules/**", "!apps/api/flowaccount-sdk/**/*"],
-            "tsConfig": ["apps/api/flowaccount-sdk/tsconfig.spec.json"]
+            "exclude": ["**/node_modules/**", "!apps/api/flowaccount-webhook/**/*"],
+            "tsConfig": ["apps/api/flowaccount-webhook/tsconfig.spec.json"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api/flowaccount-sdk"],
+          "outputs": ["coverage/apps/api/flowaccount-webhook"],
           "options": {
-            "jestConfig": "apps/api/flowaccount-sdk/jest.config.js",
+            "jestConfig": "apps/api/flowaccount-webhook/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
-    }
+    },
+    "ecs-stack": {
+      "root": "apps/ecs-stack",
+      "sourceRoot": "apps/ecs-stack/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/ecs-stack",
+            "main": "apps/ecs-stack/src/main.ts",
+            "tsConfig": "apps/ecs-stack/tsconfig.app.json",
+            "assets": ["apps/ecs-stack/src/assets"]
+          },
+          "configurations": {
+           
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "ecs-stack:build"
+          }
+        },
+        "deploy-ecs-service": {
+          "executor": "@flowaccount/nx-aws-cdk:deploy",
+          "options": {
+            "buildTarget": "ecs-stack:build",
+            "profile": "fadev-deploy",
+            "debug": false,
+            "verbose": false,
+            "output": "dist/cdkOutput/apps/ecs-stack/cdk.out"
+          },
+          "configurations": {
+            "instance-policy-production": {
+              "profile": "prod_console",
+              "stackName": "dotnet-production-cluster-policy",
+              "buildTarget": "ecs-stack:build:dotnet-production"
+            },
+            "task-execution-policy-production": {
+              "profile": "prod_console",
+              "stackName": "dotnet-production-task-execution-policy",
+              "buildTarget": "ecs-stack:build:dotnet-production"
+            },
+            "task-policy-production": {
+              "profile": "prod_console",
+              "stackName": "dotnet-production-task-policy",
+              "buildTarget": "ecs-stack:build:dotnet-production"
+            },
+            "cluster-dotnet-production": {
+              "profile": "prod_console",
+              "stackName": "cluster-dotnet-production",
+              "buildTarget": "ecs-stack:build:dotnet-generic"
+            },
+            "production-cluster-default-asg": {
+              "profile": "prod_console",
+              "stackName": "stack-dotnet-production-cluster-default",
+              "buildTarget": "ecs-stack:build:dotnet-production"
+            },
+            "lighthouse-production-asg": {
+              "profile": "prod_console",
+              "stackName": "stack-lighthouse-production-asg",
+              "buildTarget": "ecs-stack:build:dotnet-production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/domain/accounting-domain/api/dotnetv2/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ecs-stack/open-api"],
+          "options": {
+            "jestConfig": "apps/ecs-stack/open-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
   }
 }

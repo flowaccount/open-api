@@ -1,5 +1,7 @@
 # Woocommerce Flowaccount API
 
+Version: 1.1
+
 Contributors: FlowAccount
 
 Tags: woocommerce plugin

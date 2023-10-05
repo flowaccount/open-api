@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Flowaccount API
  * Description: Open cash invoice on FlowAccount when order on WooCommerce is complete
- * Version: 1.0
+ * Version: 1.1
  * Author: FlowAccount
  * Author URI: https://flowaccount.com/
  * Requires at least: 5.2
