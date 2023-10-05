@@ -869,7 +869,7 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/ecs-stack/**/*.ts"
+              "apps/ecs-cluster/**/*.ts"
             ]
           }
         },
@@ -878,6 +878,46 @@
           "outputs": ["coverage/apps/ecs-cluster/open-api"],
           "options": {
             "jestConfig": "apps/ecs-cluster/open-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-flowaccount-workshop": {
+      "root": "apps/api/flowaccount-workshop",
+      "sourceRoot": "apps/api/flowaccount-workshop/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:webpack",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/api/flowaccount-workshop",
+            "main": "apps/api/flowaccount-workshop/src/main.ts",
+            "tsConfig": "apps/api/flowaccount-workshop/tsconfig.app.json",
+            "assets": ["apps/api/flowaccount-workshop/src/assets", "apps/api/flowaccount-workshop/src/README.md"]
+          },
+          "configurations": {}
+        },
+        "serve": {
+          "executor": "@nrwl/node:node",
+          "options": {
+            "buildTarget": "api-flowaccount-workshop:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/api/flowaccount-workshop/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api/flowaccount-workshop/open-api"],
+          "options": {
+            "jestConfig": "apps/api/flowaccount-workshop/open-api/jest.config.js",
             "passWithNoTests": true
           }
         }

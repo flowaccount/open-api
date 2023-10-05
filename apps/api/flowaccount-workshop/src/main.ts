@@ -1,11 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var workshopRouter = require('./routes/workshop');
+import * as  createError from 'http-errors';
+import * as express from 'express'
+import * as path from 'path';
+import * as cookieParser from 'cookie-parser';
+import * as logger from 'morgan';
+import { router as indexRouter }from './routes/index';
+import { router as workshopRouter } from './routes/workshop';
 
 var app = express();
 
@@ -38,4 +37,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(process.env.SERVER_PORT || 3000, () => {  console.log('listening!')});

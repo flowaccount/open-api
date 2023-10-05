@@ -1,4 +1,4 @@
-var fs = require('fs');
+import * as fs from 'fs';
 
 function randomAmount() {
   return +(Math.random() * 500).toFixed(2);
