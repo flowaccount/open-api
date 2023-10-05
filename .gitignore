@@ -8,6 +8,12 @@
 # dependencies
 /node_modules
 apps/api/flowaccount-workshop/node_modules
+
+# workshop resource
+apps/api/flowaccount-workshop/bankStatements.json
+apps/api/flowaccount-workshop/expenseStatements.json
+
+
 # IDEs and editors
 /.idea
 .project
