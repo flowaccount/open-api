@@ -39,7 +39,7 @@ jobs:
     - name: prepare contents
       run: |
         rsync -av -q . ../ --exclude .git
-        node --max-old-space-size=8100 node_modules/.bin/nx run api-flowaccount-workshop:build
+        yarn nx run api-flowaccount-workshop:build
         cp -r dist/apps/api/flowaccount-workshop/. docker/flowaccount-workshop/.
         rm -rf dist/apps/api/flowaccount-workshop/*
     - name: docker build
