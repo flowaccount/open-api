@@ -10,6 +10,9 @@ Here is our story...
 ## Infrastructure Diagram
 
 
+
+
+
 ### Auto scaling specifications
 
 CPUUtilization: 75%
@@ -18,7 +21,8 @@ CPUUtilization: 75%
 for more types [read here...](https://mafiaguy.medium.com/a-complete-guide-on-how-to-autoscale-your-ecs-based-application-using-cdk-36d5e0ec46da#:~:text=If%20the%20CPU%20utilization%20exceeds,based%20on%20a%20specific%20metric)
 
 ### EC2 Specifications
-type: t3.small
+type: t4g.small
+X Services
 1 instance > 2 tasks
 min: 1 instance
 max: 2 instance
@@ -26,10 +30,12 @@ max: 2 instance
 ## Operations
 
 
+
+
 ### Deploying Infrastructure
 
 ```bash
-yarn nx run ecs-stack:deploy-ecs-service --profile=prod_console --configuration=cluster-production --stackName=open-api-production-ns-service --stage=production --serviceName=open-api --asgName=production-cluster-default --cpu=1024 --memory=1500 --cloudmapServiceName=open-api --cloudmapServiceArn="arn:aws:servicediscovery:ap-southeast-1:765141697745:service/srv-ntdf4p6ldrlqrsk2" --cloudmapServiceId=srv-ntdf4p6ldrlqrsk2
+yarn nx run flowaccount-ecs-stack:deploy-ecs-service --profile=dev_console --configuration=cluster-sandbox --stackName=servcice-a-production-service --stage=sandbox --serviceName=service-sandbox-a --asgName=sandbox-cluster-default --cpu=512 --memory=400 --imageName=service-sandbox-a --targetGroupArn=arn:aws:elasticloadbalancing:ap-southeast-1:697698820969:targetgroup/openapi-a-tg/47cbbb25a29e50ea
 ```
 
 ### Deploying Application

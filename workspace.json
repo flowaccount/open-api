@@ -737,35 +737,35 @@
             "output": "dist/cdkOutput/apps/ecs-stack/cdk.out"
           },
           "configurations": {
-            "instance-policy-production": {
-              "profile": "prod_console",
-              "stackName": "dotnet-production-cluster-policy",
-              "buildTarget": "ecs-stack:build:dotnet-production"
+            "instance-policy-public-sandbox": {
+              "profile": "dev_console",
+              "stackName": "dotnet-sandbox-cluster-policy",
+              "buildTarget": "ecs-stack:build:dotnet-sandbox"
             },
-            "task-execution-policy-production": {
-              "profile": "prod_console",
-              "stackName": "dotnet-production-task-execution-policy",
-              "buildTarget": "ecs-stack:build:dotnet-production"
+            "task-execution-policy-public-sandbox": {
+              "profile": "dev_console",
+              "stackName": "dotnet-sandbox-task-execution-policy",
+              "buildTarget": "ecs-stack:build:dotnet-sandbox"
             },
-            "task-policy-production": {
-              "profile": "prod_console",
-              "stackName": "dotnet-production-task-policy",
-              "buildTarget": "ecs-stack:build:dotnet-production"
+            "task-policy-public-sandbox": {
+              "profile": "dev_console",
+              "stackName": "dotnet-sandbox-task-policy",
+              "buildTarget": "ecs-stack:build:dotnet-sandbox"
             },
-            "cluster-dotnet-production": {
-              "profile": "prod_console",
-              "stackName": "cluster-dotnet-production",
+            "cluster-public-sandbox": {
+              "profile": "dev_console",
+              "stackName": "cluster-dotnet-sandbox",
               "buildTarget": "ecs-stack:build:dotnet-generic"
             },
-            "production-cluster-default-asg": {
-              "profile": "prod_console",
-              "stackName": "stack-dotnet-production-cluster-default",
-              "buildTarget": "ecs-stack:build:dotnet-production"
+            "public-sandbox-cluster-default-asg": {
+              "profile": "dev_console",
+              "stackName": "stack-dotnet-sandbox-cluster-default",
+              "buildTarget": "ecs-stack:build:dotnet-sandbox"
             },
-            "lighthouse-production-asg": {
-              "profile": "prod_console",
-              "stackName": "stack-lighthouse-production-asg",
-              "buildTarget": "ecs-stack:build:dotnet-production"
+            "lighthouse-public-sandbox-asg": {
+              "profile": "dev_console",
+              "stackName": "stack-lighthouse-sandbox-asg",
+              "buildTarget": "ecs-stack:build:dotnet-sandbox"
             }
           }
         },

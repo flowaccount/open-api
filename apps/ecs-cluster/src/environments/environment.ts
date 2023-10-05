@@ -287,7 +287,7 @@ export const environment: IECSStackEnvironmentConfig = {
         targetType: TargetType.INSTANCE,
         port: 80,
         healthCheck: {
-          path: '/api/healthcheck',
+          path: '/healthcheck',
         },
       },
       networkMode: NetworkMode.BRIDGE,
@@ -347,7 +347,7 @@ export const environment: IECSStackEnvironmentConfig = {
         targetType: TargetType.INSTANCE,
         port: 80,
         healthCheck: {
-          path: '/api/healthcheck',
+          path: '/healthcheck',
         },
       },
       networkMode: NetworkMode.BRIDGE,

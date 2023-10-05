@@ -22,7 +22,6 @@
     },
     "devDependencies": {
         "@flowaccount/nx-serverless": "2.0.0-beta.10",
-        "@flowaccount/aws-cdk-core": "1.2.8",
         "@flowaccount/nx-aws-cdk": "1.2.8",
         "@nrwl/cli": "^13.9.5",
         "@nrwl/eslint-plugin-nx": "^13.9.5",

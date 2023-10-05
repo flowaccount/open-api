@@ -545,11 +545,6 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@flowaccount/aws-cdk-core@1.2.8":
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/@flowaccount/aws-cdk-core/-/aws-cdk-core-1.2.8.tgz#b176f699ce14c7bfea873d453a25c0185a898507"
-  integrity sha512-zBXd4PoD8eMgwJouUy0pOYw11TPteiAO75L5usowRYuAH8FAu6Flv5VKRcMuXvd17+gaV/2IX7laPRaHm6xW3g==
-
 "@flowaccount/nx-aws-cdk@1.2.8":
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/@flowaccount/nx-aws-cdk/-/nx-aws-cdk-1.2.8.tgz#007e1e0744cca85feff3e25e5cea7483844a3561"
