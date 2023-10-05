@@ -9,6 +9,6 @@ COPY . .
 
 RUN npm install
 
-CMD ["node", "./bin/www"]
+CMD ["node", "main.js"]
 
 EXPOSE 8081
