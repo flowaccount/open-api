@@ -4,12 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var generator = require('./services/generator');
+const data = generator.generateData();
+generator.writeToFile(data);
+
 var indexRouter = require('./routes/index');
 var workshopRouter = require('./routes/workshop');
 
-// var generator = require('./services/generator');
-// const data = generator.generateData();
-// generator.writeToFile(data);
 var app = express();
 
 // view engine setup

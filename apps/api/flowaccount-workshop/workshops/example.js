@@ -1,8 +1,8 @@
 var bankStatement = require('../bankStatements.json');
 var expenseStatements = require('../expenseStatements.json');
+
 function example() {
-  console.log(bankStatement);
-  console.log(expenseStatements);
+  console.log('Hello World')
 }
 
 module.exports = {
