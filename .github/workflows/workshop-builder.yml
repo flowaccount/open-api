@@ -8,7 +8,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
 jobs:
   main:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     permissions:
       contents: 'read'
       actions: 'write'
