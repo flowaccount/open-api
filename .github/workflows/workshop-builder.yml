@@ -19,8 +19,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
-        with:
-          node-version: 14
+      with:
+        node-version: 14
     - name: Configure AWS credentials
       if: always()
       uses: aws-actions/configure-aws-credentials@v2
