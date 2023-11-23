@@ -24,6 +24,31 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface APIResponse
+ */
+export interface APIResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof APIResponse
+     */
+    'status'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIResponse
+     */
+    'message'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof APIResponse
+     */
+    'code'?: number;
+}
+/**
+ * 
+ * @export
  * @interface APIResponseOfBoolean
  */
 export interface APIResponseOfBoolean {
@@ -49,6 +74,19 @@ export interface APIResponseOfBoolean {
      * 
      * @type {boolean}
      * @memberof APIResponseOfBoolean
+     */
+    'data'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface APIResponseOfBooleanAllOf
+ */
+export interface APIResponseOfBooleanAllOf {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof APIResponseOfBooleanAllOf
      */
     'data'?: boolean;
 }
@@ -82,6 +120,63 @@ export interface APIResponseOfISimpleListResultOfIProductResult {
      * @memberof APIResponseOfISimpleListResultOfIProductResult
      */
     'data'?: ISimpleListResultOfIProductResult | null;
+}
+/**
+ * 
+ * @export
+ * @interface APIResponseOfISimpleListResultOfIProductResultAllOf
+ */
+export interface APIResponseOfISimpleListResultOfIProductResultAllOf {
+    /**
+     * 
+     * @type {ISimpleListResultOfIProductResult}
+     * @memberof APIResponseOfISimpleListResultOfIProductResultAllOf
+     */
+    'data'?: ISimpleListResultOfIProductResult | null;
+}
+/**
+ * 
+ * @export
+ * @interface APIResponseOfISimpleListResultOfProductResponse
+ */
+export interface APIResponseOfISimpleListResultOfProductResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof APIResponseOfISimpleListResultOfProductResponse
+     */
+    'status'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIResponseOfISimpleListResultOfProductResponse
+     */
+    'message'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof APIResponseOfISimpleListResultOfProductResponse
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {ISimpleListResultOfProductResponse}
+     * @memberof APIResponseOfISimpleListResultOfProductResponse
+     */
+    'data'?: ISimpleListResultOfProductResponse | null;
+}
+/**
+ * 
+ * @export
+ * @interface APIResponseOfISimpleListResultOfProductResponseAllOf
+ */
+export interface APIResponseOfISimpleListResultOfProductResponseAllOf {
+    /**
+     * 
+     * @type {ISimpleListResultOfProductResponse}
+     * @memberof APIResponseOfISimpleListResultOfProductResponseAllOf
+     */
+    'data'?: ISimpleListResultOfProductResponse | null;
 }
 /**
  * 0 = Default 1 = DisastersFire 3 = StolenGoods 5 = StockWrittenOff 7 = StockTakingResults 9 = ReturnedStock 11 = DamagedGoods 13 = RawMaterialUsed 15 = FinishedGoodsTransfer 17 = Other
@@ -474,6 +569,12 @@ export interface BatchImportMetadata {
      * @memberof BatchImportMetadata
      */
     'isViewed'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BatchImportMetadata
+     */
+    'isDelete'?: boolean;
 }
 /**
  * 
@@ -526,7 +627,7 @@ export interface BatchImportRetry {
     'messageIds'?: Array<string> | null;
 }
 /**
- * 0 = None 1 = Awaiting 3 = Pending 5 = Failed 6 = HandledDuplicated 7 = Succeed
+ * 0 = None 1 = Awaiting 3 = Pending 4 = Retrying 5 = Failed 6 = HandledDuplicated 7 = Succeed
  * @export
  * @enum {string}
  */
@@ -535,6 +636,7 @@ export const BatchImportStatus = {
     NUMBER_0: 0,
     NUMBER_1: 1,
     NUMBER_3: 3,
+    NUMBER_4: 4,
     NUMBER_5: 5,
     NUMBER_6: 6,
     NUMBER_7: 7
@@ -543,6 +645,25 @@ export const BatchImportStatus = {
 export type BatchImportStatus = typeof BatchImportStatus[keyof typeof BatchImportStatus];
 
 
+/**
+ * 
+ * @export
+ * @interface BatchMessageSent
+ */
+export interface BatchMessageSent {
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchMessageSent
+     */
+    'batchId'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchMessageSent
+     */
+    'documentCount'?: number;
+}
 /**
  * 
  * @export
@@ -1181,6 +1302,18 @@ export interface BatchTaxFiling {
      * @memberof BatchTaxFiling
      */
     'documentDeductionType'?: DeductionType | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BatchTaxFiling
+     */
+    'isLockingPeriod'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BatchTaxFiling
+     */
+    'paymentIsLockingPeriod'?: boolean;
 }
 /**
  * 
@@ -1722,6 +1855,18 @@ export interface BatchTaxFilingAllOf {
      * @memberof BatchTaxFilingAllOf
      */
     'documentDeductionType'?: DeductionType | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BatchTaxFilingAllOf
+     */
+    'isLockingPeriod'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BatchTaxFilingAllOf
+     */
+    'paymentIsLockingPeriod'?: boolean;
 }
 /**
  * 1 = Awaiting 3 = Refunded
@@ -1956,6 +2101,166 @@ export const ChartOfAccountCategory = {
 } as const;
 
 export type ChartOfAccountCategory = typeof ChartOfAccountCategory[keyof typeof ChartOfAccountCategory];
+
+
+/**
+ * 100 = Cash 101 = AccountsReceivable 102 = Sales 103 = ServicesRevenue 104 = SalesTax 105 = UnamortizationSalesTax 106 = WithHeldTax 107 = FinishedGoods 108 = CostofGoodsSold 109 = Cheques 110 = ChequeReceivedInAdvance 111 = CurrentAccount 112 = SavingAccount 113 = CreditCardReceivable 114 = BankFees 115 = CreditCardFees 116 = OthersIncome 117 = TradePayable 118 = InputVat 119 = UndueInputVat 120 = WHT_PND2 121 = WHT_PND3 122 = WHT_PND53 123 = WHT_PND54 124 = CreditCardPayable 125 = Postdatedcheque 126 = CashShortCashOver 127 = Rounding 128 = ProfitAndLoss 129 = WHT_PND1 130 = CashOnHand 131 = OtherPayable 132 = ElectricityPayable 133 = WaterPlumbingPayable 134 = TelephonePayable 135 = InternetPayable 136 = InterestPayable 137 = SalaryPayable 138 = UnpaidexpensesClaim 139 = SocialSecurityPayable 140 = EmployeeBenefitPayable 141 = OtherTaxPayable 142 = RetainedEarningsSummary 143 = RetainedEarningsUnappropriated 144 = FixedDepositAccounts 145 = SalesDiscount 146 = SalesReturn 147 = CashDiscountsIncome 148 = AppropriatedOtherReserves 149 = UndueReceipt 150 = SellingExpenses 151 = UnclaimedPurchaseVAT 152 = VATReturns 153 = PayableToRevenueDepartment 154 = CustomerDeposits 155 = GainLossesFromSaleOfAssets 156 = PettyCash 157 = CreditCardPayables 158 = ChequePayment 159 = POS 160 = EDCAndOtherChannel 161 = GainLossesFromRealizedExchangeRate 162 = GainLossesFromUnRealizedExchangeRate 163 = Retentions 164 = UnpaidExpensesClaim 165 = IncomeGrantsRewards 200 = ProfitAndLossFolder 500 = PostEmploymentBenefitExpenses 501 = BonusExpenses 502 = ContributionCompensationFund 503 = DirectorsRemunerations 504 = UtilitiesExpensesOther 1001 = MarketingAdvertising 1002 = Promotions 1003 = Entertainment 1004 = TravelAccomodations 1005 = VehicleExpenses 1006 = FreightCourierLogistics 1007 = GoodsMaterialsPackaging 1008 = PurchasedForSell 1009 = PurchasedForServicing 1010 = PurchasedForSampleOrPremium 1011 = OfficeExpenses 1012 = ComputerITequipment 1013 = FurnitureOfficeEquipment 1014 = MessengerPostage 1015 = SoftwareApplications 1016 = OfficeSuppliesStationery 1017 = OfficeSpace 1018 = Telephone 1019 = Internet 1020 = ServiceContractorExpenses 1021 = GeneralServicesFreelance 1022 = AccountingServices 1023 = PayrollEmployeeBenefits 1024 = SalaryWages 1025 = Allowances 1026 = SocialSecurityFunds 1027 = EmployeeBenefits 1028 = Rent 1029 = DepositGuarantee 1030 = Insurance 1031 = BankCharges 1032 = TaxesAndLicenses 1033 = OtherExpenses 1034 = Personal 1035 = Commissions 1036 = RepairAndMaintenance 1037 = InterestExpenses 1038 = GeneralExpenses 1039 = OverTime 1040 = WaterPlumbing 1041 = Electricity 1042 = SalesmanCommission 1043 = FurnitureandFixture 1044 = Vehicle 1045 = ComputerSoftware 1046 = PurchaseFixedAssets 2001 = NonStockProduct 2002 = SparepartProduct 2003 = SampleProduct 2004 = FreemiumProduct 2005 = SupplyProduct 2100 = SalesFolder 2101 = ServicesRevenueFolder 2102 = PurchasedFolder 3001 = SalariesAndWages 3002 = CommissionsSalary 3003 = AdditionalAllowances 3004 = MedicalExpenses 3005 = AccommodateExpenses 3006 = DirectorsRemunerationsAccruedBenefits 3007 = CompensationAndPenalties 3008 = AccruedCommissions 3009 = AccruedBonus 3010 = AccruedSalariesOthers 3011 = TransactionBankFee 3012 = OtherDeduction 3013 = PayrollOvertime 4012 = DepreciationComputerITequipment 4013 = DepreciationFurnitureOfficeEquipment 4043 = DepreciationFurnitureandFixture 4044 = DepreciationVehicle 4045 = DepreciationComputerSoftware 4046 = DepreciationPurchaseFixedAssets 9001 = POFlowAccount 9002 = BankMigration 9003 = AccountSuspendedFromFlowAccount
+ * @export
+ * @enum {string}
+ */
+
+export const ChartOfAccountId = {
+    NUMBER_100: 100,
+    NUMBER_101: 101,
+    NUMBER_102: 102,
+    NUMBER_103: 103,
+    NUMBER_104: 104,
+    NUMBER_105: 105,
+    NUMBER_106: 106,
+    NUMBER_107: 107,
+    NUMBER_108: 108,
+    NUMBER_109: 109,
+    NUMBER_110: 110,
+    NUMBER_111: 111,
+    NUMBER_112: 112,
+    NUMBER_113: 113,
+    NUMBER_114: 114,
+    NUMBER_115: 115,
+    NUMBER_116: 116,
+    NUMBER_117: 117,
+    NUMBER_118: 118,
+    NUMBER_119: 119,
+    NUMBER_120: 120,
+    NUMBER_121: 121,
+    NUMBER_122: 122,
+    NUMBER_123: 123,
+    NUMBER_124: 124,
+    NUMBER_125: 125,
+    NUMBER_126: 126,
+    NUMBER_127: 127,
+    NUMBER_128: 128,
+    NUMBER_129: 129,
+    NUMBER_130: 130,
+    NUMBER_131: 131,
+    NUMBER_132: 132,
+    NUMBER_133: 133,
+    NUMBER_134: 134,
+    NUMBER_135: 135,
+    NUMBER_136: 136,
+    NUMBER_137: 137,
+    NUMBER_138: 138,
+    NUMBER_139: 139,
+    NUMBER_140: 140,
+    NUMBER_141: 141,
+    NUMBER_142: 142,
+    NUMBER_143: 143,
+    NUMBER_144: 144,
+    NUMBER_145: 145,
+    NUMBER_146: 146,
+    NUMBER_147: 147,
+    NUMBER_148: 148,
+    NUMBER_149: 149,
+    NUMBER_150: 150,
+    NUMBER_151: 151,
+    NUMBER_152: 152,
+    NUMBER_153: 153,
+    NUMBER_154: 154,
+    NUMBER_155: 155,
+    NUMBER_156: 156,
+    NUMBER_157: 157,
+    NUMBER_158: 158,
+    NUMBER_159: 159,
+    NUMBER_160: 160,
+    NUMBER_161: 161,
+    NUMBER_162: 162,
+    NUMBER_163: 163,
+    NUMBER_164: 164,
+    NUMBER_165: 165,
+    NUMBER_200: 200,
+    NUMBER_500: 500,
+    NUMBER_501: 501,
+    NUMBER_502: 502,
+    NUMBER_503: 503,
+    NUMBER_504: 504,
+    NUMBER_1001: 1001,
+    NUMBER_1002: 1002,
+    NUMBER_1003: 1003,
+    NUMBER_1004: 1004,
+    NUMBER_1005: 1005,
+    NUMBER_1006: 1006,
+    NUMBER_1007: 1007,
+    NUMBER_1008: 1008,
+    NUMBER_1009: 1009,
+    NUMBER_1010: 1010,
+    NUMBER_1011: 1011,
+    NUMBER_1012: 1012,
+    NUMBER_1013: 1013,
+    NUMBER_1014: 1014,
+    NUMBER_1015: 1015,
+    NUMBER_1016: 1016,
+    NUMBER_1017: 1017,
+    NUMBER_1018: 1018,
+    NUMBER_1019: 1019,
+    NUMBER_1020: 1020,
+    NUMBER_1021: 1021,
+    NUMBER_1022: 1022,
+    NUMBER_1023: 1023,
+    NUMBER_1024: 1024,
+    NUMBER_1025: 1025,
+    NUMBER_1026: 1026,
+    NUMBER_1027: 1027,
+    NUMBER_1028: 1028,
+    NUMBER_1029: 1029,
+    NUMBER_1030: 1030,
+    NUMBER_1031: 1031,
+    NUMBER_1032: 1032,
+    NUMBER_1033: 1033,
+    NUMBER_1034: 1034,
+    NUMBER_1035: 1035,
+    NUMBER_1036: 1036,
+    NUMBER_1037: 1037,
+    NUMBER_1038: 1038,
+    NUMBER_1039: 1039,
+    NUMBER_1040: 1040,
+    NUMBER_1041: 1041,
+    NUMBER_1042: 1042,
+    NUMBER_1043: 1043,
+    NUMBER_1044: 1044,
+    NUMBER_1045: 1045,
+    NUMBER_1046: 1046,
+    NUMBER_2001: 2001,
+    NUMBER_2002: 2002,
+    NUMBER_2003: 2003,
+    NUMBER_2004: 2004,
+    NUMBER_2005: 2005,
+    NUMBER_2100: 2100,
+    NUMBER_2101: 2101,
+    NUMBER_2102: 2102,
+    NUMBER_3001: 3001,
+    NUMBER_3002: 3002,
+    NUMBER_3003: 3003,
+    NUMBER_3004: 3004,
+    NUMBER_3005: 3005,
+    NUMBER_3006: 3006,
+    NUMBER_3007: 3007,
+    NUMBER_3008: 3008,
+    NUMBER_3009: 3009,
+    NUMBER_3010: 3010,
+    NUMBER_3011: 3011,
+    NUMBER_3012: 3012,
+    NUMBER_3013: 3013,
+    NUMBER_4012: 4012,
+    NUMBER_4013: 4013,
+    NUMBER_4043: 4043,
+    NUMBER_4044: 4044,
+    NUMBER_4045: 4045,
+    NUMBER_4046: 4046,
+    NUMBER_9001: 9001,
+    NUMBER_9002: 9002,
+    NUMBER_9003: 9003
+} as const;
+
+export type ChartOfAccountId = typeof ChartOfAccountId[keyof typeof ChartOfAccountId];
 
 
 /**
@@ -3609,205 +3914,6 @@ export type ContactGroups = typeof ContactGroups[keyof typeof ContactGroups];
 
 
 /**
- * 
- * @export
- * @interface ContactResult
- */
-export interface ContactResult {
-    /**
-     * 
-     * @type {number}
-     * @memberof ContactResult
-     */
-    'id'?: number;
-    /**
-     * 
-     * @type {ContactTypes}
-     * @memberof ContactResult
-     */
-    'contactType'?: ContactTypes;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'code'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'addressLocal'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'addressLocalLine2'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'addressLocalLine3'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'taxId'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'branch'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'branchCode'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'contactPerson'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'email'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'mobile'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContactResult
-     */
-    'defaultCreditDays'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'office'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'fax'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'website'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'shippingAddress'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'internalNotes'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'remarks'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'zipCode'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContactResult
-     */
-    'bankId'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'bankName'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'bankBranch'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'bankAccountNumber'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'swiftCode'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactResult
-     */
-    'bankAddress'?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ContactResult
-     */
-    'useForeignBank'?: boolean;
-    /**
-     * 
-     * @type {BankAccountType}
-     * @memberof ContactResult
-     */
-    'bankAccountType'?: BankAccountType | null;
-    /**
-     * 
-     * @type {ContactGroups}
-     * @memberof ContactResult
-     */
-    'contactGroup'?: ContactGroups;
-    /**
-     * 
-     * @type {Array<Media>}
-     * @memberof ContactResult
-     */
-    'media'?: Array<Media> | null;
-    /**
-     * 
-     * @type {Media}
-     * @memberof ContactResult
-     */
-    'qrCode'?: Media | null;
-}
-/**
  * 0 = OwnCompany 3 = Client 5 = Vendor 7 = VendorAndClient 9 = ExpenseVendor
  * @export
  * @enum {string}
@@ -4174,7 +4280,7 @@ export interface DateInfo {
     'type'?: string | null;
 }
 /**
- * 1 = PublishDate 3 = PaymentDate 5 = ExpenseDate 7 = TransitionDate
+ * 1 = PublishDate 3 = PaymentDate 5 = ExpenseDate 7 = TransitionDate 8 = AuditDate 9 = CreatedDate 10 = ModifiedDate
  * @export
  * @enum {string}
  */
@@ -4183,14 +4289,17 @@ export const DateType = {
     NUMBER_1: 1,
     NUMBER_3: 3,
     NUMBER_5: 5,
-    NUMBER_7: 7
+    NUMBER_7: 7,
+    NUMBER_8: 8,
+    NUMBER_9: 9,
+    NUMBER_10: 10
 } as const;
 
 export type DateType = typeof DateType[keyof typeof DateType];
 
 
 /**
- * 0 = None 1 = CashDiscount 3 = Commission 5 = ManagementFee 7 = Roundings 9 = Retentions
+ * 0 = None 1 = CashDiscount 3 = Commission 5 = ManagementFee 7 = Roundings 9 = Retentions 101 = RoundingUp
  * @export
  * @enum {string}
  */
@@ -4201,7 +4310,8 @@ export const DeductionType = {
     NUMBER_3: 3,
     NUMBER_5: 5,
     NUMBER_7: 7,
-    NUMBER_9: 9
+    NUMBER_9: 9,
+    NUMBER_101: 101
 } as const;
 
 export type DeductionType = typeof DeductionType[keyof typeof DeductionType];
@@ -4286,6 +4396,186 @@ export interface Department {
  * @interface Document
  */
 export interface Document {
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'documentPaymentStructureType'?: string | null;
+    /**
+     * 
+     * @type {PaymentMethod}
+     * @memberof Document
+     */
+    'paymentMethod'?: PaymentMethod;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'paymentChannel'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'paymentDate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'collected'?: number;
+    /**
+     * 
+     * @type {DeductionType}
+     * @memberof Document
+     */
+    'paymentDeductionType'?: DeductionType;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'paymentDeductionAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'withheldPercentage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'withheldAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'transferBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'bankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'bankAccountType'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'bankAccountName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'bankAccountNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'chequeDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'chequeNumber'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'chequeBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'otherChannelId'?: number;
+    /**
+     * 
+     * @type {PaymentChannelsType}
+     * @memberof Document
+     */
+    'otherChannelPaymentChannel'?: PaymentChannelsType;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'otherChannelName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'paymentRemarks'?: string | null;
+    /**
+     * 
+     * @type {RemainingCollectedType}
+     * @memberof Document
+     */
+    'remainingCollectedType'?: RemainingCollectedType;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'remainingCollected'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'paymentCharge'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'creditCardBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'pettyCashId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'pettyCashName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'bankChequeId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'creditCardId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    'creditCardNumber'?: string | null;
     /**
      * 
      * @type {number}
@@ -4438,10 +4728,22 @@ export interface Document {
     'isVat'?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof Document
+     */
+    'isDicountAsPercentage'?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof Document
      */
     'vatAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    'vatableAmount'?: number;
     /**
      * 
      * @type {number}
@@ -4454,6 +4756,12 @@ export interface Document {
      * @memberof Document
      */
     'documentShowWithholdingTax'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Document
+     */
+    'isWithholdingTax'?: boolean;
     /**
      * 
      * @type {number}
@@ -4507,7 +4815,7 @@ export interface Document {
      * @type {string}
      * @memberof Document
      */
-    'externalId'?: string | null;
+    'externalDocumentId'?: string | null;
     /**
      * 
      * @type {string}
@@ -4518,6 +4826,265 @@ export interface Document {
      * 
      * @type {string}
      * @memberof Document
+     */
+    'rowIndex'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface DocumentAllOf
+ */
+export interface DocumentAllOf {
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'recordId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactCode'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactAddress'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactTaxId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactBranch'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactPerson'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactEmail'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'contactZipCode'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'contactGroup'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'publishedOn'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'creditType'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'creditDays'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'dueDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'salesName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'projectName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'reference'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DocumentAllOf
+     */
+    'isVatInclusive'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DocumentAllOf
+     */
+    'useReceiptDeduction'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'subTotal'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'discountPercentage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'discountAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'totalAfterDiscount'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DocumentAllOf
+     */
+    'isVat'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DocumentAllOf
+     */
+    'isDicountAsPercentage'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'vatAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'vatableAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'grandTotal'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DocumentAllOf
+     */
+    'documentShowWithholdingTax'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DocumentAllOf
+     */
+    'isWithholdingTax'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'documentWithholdingTaxPercentage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'documentWithholdingTaxAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'documentDeductionType'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentAllOf
+     */
+    'documentDeductionAmount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'remarks'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'internalNotes'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DocumentAllOf
+     */
+    'showSignatureOrStamp'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'documentStructureType'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'externalDocumentId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
+     */
+    'saleAndPurchaseChannel'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentAllOf
      */
     'rowIndex'?: string | null;
 }
@@ -4545,6 +5112,12 @@ export interface DocumentQuery {
      * @memberof DocumentQuery
      */
     'totalRecords'?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof DocumentQuery
+     */
+    'documentIds'?: Array<number> | null;
     /**
      * 
      * @type {DateType}
@@ -6411,18 +6984,6 @@ export interface ExpenseList {
     'isManualVat'?: boolean | null;
     /**
      * 
-     * @type {string}
-     * @memberof ExpenseList
-     */
-    'externalDocumentId'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExpenseList
-     */
-    'batchId'?: string | null;
-    /**
-     * 
      * @type {Array<IDocumentReference>}
      * @memberof ExpenseList
      */
@@ -6565,6 +7126,18 @@ export interface ExpenseList {
      * @memberof ExpenseList
      */
     'projectNameAndProjectDeatil'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExpenseList
+     */
+    'isLockingPeriod'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExpenseList
+     */
+    'paymentIsLockingPeriod'?: boolean;
 }
 /**
  * 
@@ -7150,18 +7723,6 @@ export interface ExpenseListAllOf {
     'isManualVat'?: boolean | null;
     /**
      * 
-     * @type {string}
-     * @memberof ExpenseListAllOf
-     */
-    'externalDocumentId'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExpenseListAllOf
-     */
-    'batchId'?: string | null;
-    /**
-     * 
      * @type {Array<IDocumentReference>}
      * @memberof ExpenseListAllOf
      */
@@ -7304,6 +7865,18 @@ export interface ExpenseListAllOf {
      * @memberof ExpenseListAllOf
      */
     'projectNameAndProjectDeatil'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExpenseListAllOf
+     */
+    'isLockingPeriod'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExpenseListAllOf
+     */
+    'paymentIsLockingPeriod'?: boolean;
 }
 /**
  * 1 = Awaiting 3 = Approved 4 = PendingPayment 5 = Paid 6 = PaidByPaymentSlip 7 = Void 9 = ApprovedAndProcessed 11 = Received 23 = ReceivedByPaymentSlip
@@ -7948,6 +8521,12 @@ export interface IJournalEntryBase {
     'documentSerial'?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof IJournalEntryBase
+     */
+    'contactName'?: string | null;
+    /**
+     * 
      * @type {DocumentTypes}
      * @memberof IJournalEntryBase
      */
@@ -7982,6 +8561,12 @@ export interface IJournalEntryBase {
      * @memberof IJournalEntryBase
      */
     'voidDescription'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof IJournalEntryBase
+     */
+    'reference'?: string | null;
     /**
      * 
      * @type {string}
@@ -8024,12 +8609,6 @@ export interface IJournalEntryBase {
      * @memberof IJournalEntryBase
      */
     'templateType'?: JournalEntryTemplateType;
-    /**
-     * 
-     * @type {string}
-     * @memberof IJournalEntryBase
-     */
-    'contactName'?: string | null;
     /**
      * 
      * @type {number}
@@ -8084,12 +8663,6 @@ export interface IJournalEntryBase {
      * @memberof IJournalEntryBase
      */
     'fiscalYearId'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof IJournalEntryBase
-     */
-    'reference'?: string | null;
     /**
      * 
      * @type {number}
@@ -8343,6 +8916,18 @@ export interface IProductResult {
      * @memberof IProductResult
      */
     'stockCard'?: Array<IStockCard> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof IProductResult
+     */
+    'isLockingPeriod'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof IProductResult
+     */
+    'productMasterId'?: number | null;
 }
 /**
  * 
@@ -8356,6 +8941,19 @@ export interface ISimpleListResultOfIProductResult {
      * @memberof ISimpleListResultOfIProductResult
      */
     'list'?: Array<IProductResult> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ISimpleListResultOfProductResponse
+ */
+export interface ISimpleListResultOfProductResponse {
+    /**
+     * 
+     * @type {Array<ProductResponse>}
+     * @memberof ISimpleListResultOfProductResponse
+     */
+    'list'?: Array<ProductResponse> | null;
 }
 /**
  * 
@@ -8509,47 +9107,46 @@ export interface IStockCard {
     'remainingAmount'?: number;
     /**
      * 
+     * @type {number}
+     * @memberof IStockCard
+     */
+    'convertRatio'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof IStockCard
+     */
+    'originalDocumentQuantity'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof IStockCard
+     */
+    'multipleUnitId'?: number | null;
+    /**
+     * 
      * @type {Array<IStockCard>}
      * @memberof IStockCard
      */
     'transactions'?: Array<IStockCard> | null;
-}
-/**
- * 
- * @export
- * @interface ImageResult
- */
-export interface ImageResult {
-    /**
-     * 
-     * @type {number}
-     * @memberof ImageResult
-     */
-    'companyId'?: number;
     /**
      * 
      * @type {string}
-     * @memberof ImageResult
+     * @memberof IStockCard
      */
-    'fileName'?: string | null;
+    'multipleUnitName'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof IStockCard
+     */
+    'isMainProduct'?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof ImageResult
+     * @memberof IStockCard
      */
-    'url'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageResult
-     */
-    'previewURL'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageResult
-     */
-    'thumbURL'?: string | null;
+    'baseUnit'?: string | null;
 }
 /**
  * 1 = Salary 3 = Commission 5 = Licensing 7 = Interest 9 = NetProfit30 11 = NetProfit25 13 = NetProfit20 15 = NetProfitOther 17 = TaxExemption 19 = DividenFromShareOfProfit 21 = PortionOfNetProfit 23 = RecognitionOfProfit 25 = TaxOther 27 = RevenueDepartmentTax 29 = Others
@@ -8584,6 +9181,186 @@ export type IncomeType = typeof IncomeType[keyof typeof IncomeType];
  * @interface InlineDocument
  */
 export interface InlineDocument {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'documentPaymentStructureType'?: string | null;
+    /**
+     * 
+     * @type {PaymentMethod}
+     * @memberof InlineDocument
+     */
+    'paymentMethod'?: PaymentMethod;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'paymentChannel'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'paymentDate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'collected'?: number;
+    /**
+     * 
+     * @type {DeductionType}
+     * @memberof InlineDocument
+     */
+    'paymentDeductionType'?: DeductionType;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'paymentDeductionAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'withheldPercentage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'withheldAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'transferBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'bankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'bankAccountType'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'bankAccountName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'bankAccountNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'chequeDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'chequeNumber'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'chequeBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'otherChannelId'?: number;
+    /**
+     * 
+     * @type {PaymentChannelsType}
+     * @memberof InlineDocument
+     */
+    'otherChannelPaymentChannel'?: PaymentChannelsType;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'otherChannelName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'paymentRemarks'?: string | null;
+    /**
+     * 
+     * @type {RemainingCollectedType}
+     * @memberof InlineDocument
+     */
+    'remainingCollectedType'?: RemainingCollectedType;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'remainingCollected'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'paymentCharge'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'creditCardBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'pettyCashId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'pettyCashName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'bankChequeId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'creditCardId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineDocument
+     */
+    'creditCardNumber'?: string | null;
     /**
      * 
      * @type {number}
@@ -8736,10 +9513,22 @@ export interface InlineDocument {
     'isVat'?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof InlineDocument
+     */
+    'isDicountAsPercentage'?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof InlineDocument
      */
     'vatAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'vatableAmount'?: number | null;
     /**
      * 
      * @type {number}
@@ -8752,6 +9541,12 @@ export interface InlineDocument {
      * @memberof InlineDocument
      */
     'documentShowWithholdingTax'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineDocument
+     */
+    'isWithholdingTax'?: boolean;
     /**
      * 
      * @type {number}
@@ -8805,7 +9600,7 @@ export interface InlineDocument {
      * @type {string}
      * @memberof InlineDocument
      */
-    'externalId'?: string | null;
+    'externalDocumentId'?: string | null;
     /**
      * 
      * @type {string}
@@ -8818,6 +9613,18 @@ export interface InlineDocument {
      * @memberof InlineDocument
      */
     'rowIndex'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'companyId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocument
+     */
+    'userId'?: number;
     /**
      * 
      * @type {number}
@@ -8844,12 +9651,6 @@ export interface InlineDocument {
     'exemptAmount'?: number | null;
     /**
      * 
-     * @type {number}
-     * @memberof InlineDocument
-     */
-    'vatableAmount'?: number | null;
-    /**
-     * 
      * @type {Array<InlineProductItem>}
      * @memberof InlineDocument
      */
@@ -8867,6 +9668,18 @@ export interface InlineDocument {
  * @interface InlineDocumentAllOf
  */
 export interface InlineDocumentAllOf {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocumentAllOf
+     */
+    'companyId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineDocumentAllOf
+     */
+    'userId'?: number;
     /**
      * 
      * @type {number}
@@ -8981,7 +9794,37 @@ export interface InlineProductItem {
      * @type {number}
      * @memberof InlineProductItem
      */
+    'discountAmountPercentage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineProductItem
+     */
+    'discountAmountValue'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineProductItem
+     */
+    'productDiscountTypes'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineProductItem
+     */
+    'outOfScopeVat'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineProductItem
+     */
     'vatRate'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineProductItem
+     */
+    'sku'?: string | null;
 }
 /**
  * 3 = Initial 5 = BroughtForward 7 = In 11 = TransferIn 17 = Out 21 = TransferOut 25 = CreditNote 27 = DebitNote 29 = InternalUse 31 = Hold 35 = AdjustIn 39 = AdjustOut
@@ -9253,6 +10096,18 @@ export interface JournalEntry {
      * @memberof JournalEntry
      */
     'isResetDocument'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof JournalEntry
+     */
+    'isLockingPeriod'?: boolean;
+    /**
+     * 
+     * @type {Array<IDocumentReference>}
+     * @memberof JournalEntry
+     */
+    'documentReferences'?: Array<IDocumentReference> | null;
 }
 /**
  * 0 = Delete 1 = Awaiting 5 = Approved 9 = Void
@@ -9303,6 +10158,25 @@ export const KConnectProductCode = {
 export type KConnectProductCode = typeof KConnectProductCode[keyof typeof KConnectProductCode];
 
 
+/**
+ * 
+ * @export
+ * @interface KeyValuePairOfStringAndInteger
+ */
+export interface KeyValuePairOfStringAndInteger {
+    /**
+     * 
+     * @type {string}
+     * @memberof KeyValuePairOfStringAndInteger
+     */
+    'key'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof KeyValuePairOfStringAndInteger
+     */
+    'value'?: number;
+}
 /**
  * 
  * @export
@@ -9422,62 +10296,82 @@ export interface Media {
 /**
  * 
  * @export
- * @interface MessageSent
+ * @interface NotExistEmployee
  */
-export interface MessageSent {
+export interface NotExistEmployee {
     /**
      * 
-     * @type {string}
-     * @memberof MessageSent
+     * @type {Array<number>}
+     * @memberof NotExistEmployee
      */
-    'messageId'?: string | null;
+    'idList'?: Array<number> | null;
     /**
      * 
-     * @type {string}
-     * @memberof MessageSent
+     * @type {PayrollType}
+     * @memberof NotExistEmployee
      */
-    'externalDocumentId'?: string | null;
+    'payrollType'?: PayrollType;
+    /**
+     * 
+     * @type {PaidPeriod}
+     * @memberof NotExistEmployee
+     */
+    'paidPeriod'?: PaidPeriod;
 }
 /**
- * Represents an ObjectId (see also BsonObjectId).
+ * 
  * @export
  * @interface ObjectId
  */
 export interface ObjectId {
     /**
-     * Gets the timestamp.
+     * 
      * @type {number}
      * @memberof ObjectId
      */
     'Timestamp'?: number;
     /**
-     * Gets the machine.
+     * 
      * @type {number}
      * @memberof ObjectId
      * @deprecated
      */
     'Machine'?: number;
     /**
-     * Gets the PID.
+     * 
      * @type {number}
      * @memberof ObjectId
      * @deprecated
      */
     'Pid'?: number;
     /**
-     * Gets the increment.
+     * 
      * @type {number}
      * @memberof ObjectId
      * @deprecated
      */
     'Increment'?: number;
     /**
-     * Gets the creation time (derived from the timestamp).
+     * 
      * @type {string}
      * @memberof ObjectId
      */
     'CreationTime'?: string;
 }
+/**
+ * 1 = V1 3 = V3
+ * @export
+ * @enum {string}
+ */
+
+export const OpenApiVersionAlias = {
+    NUMBER_1: 1,
+    NUMBER_3: 3
+} as const;
+
+export type OpenApiVersionAlias = typeof OpenApiVersionAlias[keyof typeof OpenApiVersionAlias];
+
+
 /**
  * 1 = Asc 3 = Desc
  * @export
@@ -9702,6 +10596,193 @@ export const PartialPaymentMethod = {
 export type PartialPaymentMethod = typeof PartialPaymentMethod[keyof typeof PartialPaymentMethod];
 
 
+/**
+ * 
+ * @export
+ * @interface Payment
+ */
+export interface Payment {
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'documentPaymentStructureType'?: string | null;
+    /**
+     * 
+     * @type {PaymentMethod}
+     * @memberof Payment
+     */
+    'paymentMethod'?: PaymentMethod;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'paymentChannel'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'paymentDate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'collected'?: number;
+    /**
+     * 
+     * @type {DeductionType}
+     * @memberof Payment
+     */
+    'paymentDeductionType'?: DeductionType;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'paymentDeductionAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'withheldPercentage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'withheldAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'transferBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'bankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'bankAccountType'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'bankAccountName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'bankAccountNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'chequeDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'chequeNumber'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'chequeBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'otherChannelId'?: number;
+    /**
+     * 
+     * @type {PaymentChannelsType}
+     * @memberof Payment
+     */
+    'otherChannelPaymentChannel'?: PaymentChannelsType;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'otherChannelName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'paymentRemarks'?: string | null;
+    /**
+     * 
+     * @type {RemainingCollectedType}
+     * @memberof Payment
+     */
+    'remainingCollectedType'?: RemainingCollectedType;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'remainingCollected'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'paymentCharge'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'creditCardBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'pettyCashId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'pettyCashName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'bankChequeId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Payment
+     */
+    'creditCardId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Payment
+     */
+    'creditCardNumber'?: string | null;
+}
 /**
  * 1 = Omise 3 = InAppIOS 5 = InAppAndriod 7 = UssdAis 9 = BankTranfer 11 = PrePaidSerial
  * @export
@@ -10799,6 +11880,541 @@ export interface PayrollDetail {
     'statusInt'?: number;
 }
 /**
+ * 
+ * @export
+ * @interface PayrollDetailGrid
+ */
+export interface PayrollDetailGrid {
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'employeeId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'payrollId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'salary'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'socialSecurityValue'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'commission'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'bonus'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'deduction'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'withholdingTax'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'withheld'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'bankId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'accountNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'datePayment'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'fee'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'ref'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'accountNumberMasking'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'transactionId'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'amount'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'payStatus'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'remarks'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'overtime'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'otherAddition'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'otherDeduction'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'methodPayment'?: number | null;
+    /**
+     * 
+     * @type {PaymentMethod}
+     * @memberof PayrollDetailGrid
+     */
+    'methodPaymentEnum'?: PaymentMethod | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'advance'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'securityMoney'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'employerSocialSecurity'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollDetailGrid
+     */
+    'isDelete'?: boolean;
+    /**
+     * 
+     * @type {PayrollDetailStatus}
+     * @memberof PayrollDetailGrid
+     */
+    'status'?: PayrollDetailStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'statusName'?: string | null;
+    /**
+     * 
+     * @type {PayrollStatus}
+     * @memberof PayrollDetailGrid
+     */
+    'payrollStatus'?: PayrollStatus;
+    /**
+     * 
+     * @type {PayrollDetailStatus}
+     * @memberof PayrollDetailGrid
+     */
+    'payrollDetailStatus'?: PayrollDetailStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'payrollDetailStatusName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'allowance'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'cola'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'medicalExpense'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'accommodation'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'directorRemuneration'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'studentLoan'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'firstName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'lastName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'firstNameForeign'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'lastNameForeign'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'identitficationNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'profileImage'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'title'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'code'?: string | null;
+    /**
+     * 
+     * @type {GenderPrefix}
+     * @memberof PayrollDetailGrid
+     */
+    'prefix'?: GenderPrefix;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'email'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'employerAccountNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'employerAccountBranch'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'bankAccountId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'providentFund'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'value'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'note'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'lastModifiedBy'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'startDate'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'endDate'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollDetailGrid
+     */
+    'isSocialSecurityRegistered'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'bankBranchCode'?: string | null;
+    /**
+     * 
+     * @type {BankAccountType}
+     * @memberof PayrollDetailGrid
+     */
+    'accountType'?: BankAccountType;
+    /**
+     * 
+     * @type {PayrollTotalSummary}
+     * @memberof PayrollDetailGrid
+     */
+    'totalSummary'?: PayrollTotalSummary | null;
+    /**
+     * 
+     * @type {Array<KeyValuePairOfStringAndInteger>}
+     * @memberof PayrollDetailGrid
+     */
+    'actions'?: Array<KeyValuePairOfStringAndInteger> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'paymentRemarks'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'kcProcessingStatus'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollDetailGrid
+     */
+    'isMigrate'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'departmentId'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'departmentName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'departmentCode'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'workDays'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'wage'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollDetailGrid
+     */
+    'isSocialSecurityAutoCal'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'socialSecurityPercent'?: number;
+    /**
+     * 
+     * @type {SendEmailStatus}
+     * @memberof PayrollDetailGrid
+     */
+    'sendEmailStatus'?: SendEmailStatus | null;
+    /**
+     * 
+     * @type {ConditionsOfWithholdingTax}
+     * @memberof PayrollDetailGrid
+     */
+    'conditionsWithholdingTax'?: ConditionsOfWithholdingTax | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollDetailGrid
+     */
+    'conditionsWithholdingTaxName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'otherAdditionPND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'directorRemunerationPND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'accommodationPND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'medicalExpensePND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'colaPND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'allowancePND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'bonusPND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'commissionPND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'overtimePND'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'withholdingTax401'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollDetailGrid
+     */
+    'withholdingTax402'?: number;
+}
+/**
  * 0 = Draft 1 = Awaiting 2 = Reset 3 = Paid 4 = Partial 5 = Rejected 7 = Approved 11 = PushPayAwaiting 13 = PushPayProcessed 15 = PushPayRejected 17 = PushPayPartial 19 = PushPayPendingPayments 50 = KConnectAwaiting 52 = KConnectProcessed 54 = KConnectRejected 56 = KConnectPendingPayments 58 = KConnectPartialPayments
  * @export
  * @enum {string}
@@ -10827,6 +12443,796 @@ export const PayrollDetailStatus = {
 export type PayrollDetailStatus = typeof PayrollDetailStatus[keyof typeof PayrollDetailStatus];
 
 
+/**
+ * 
+ * @export
+ * @interface PayrollEmailTotalModel
+ */
+export interface PayrollEmailTotalModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollEmailTotalModel
+     */
+    'emailString'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollEmailTotalModel
+     */
+    'hasEmailCnt'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollEmailTotalModel
+     */
+    'noEmailCnt'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollEmailTotalModel
+     */
+    'employeesCnt'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollEmailTotalModel
+     */
+    'sentCnt'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PayrollGrid
+ */
+export interface PayrollGrid {
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'employeeId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'payrollId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'companyId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'startDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'endDate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'paymentCycle'?: number;
+    /**
+     * 
+     * @type {PaymentMethod}
+     * @memberof PayrollGrid
+     */
+    'methodPayment'?: PaymentMethod;
+    /**
+     * 
+     * @type {PayrollStatus}
+     * @memberof PayrollGrid
+     */
+    'status'?: PayrollStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'statusName'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollGrid
+     */
+    'isDelete'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'createdOn'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'modifiedOn'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'createdBy'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'modifiedBy'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'expenseId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'month'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'year'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'page'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'salary'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'overtime'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'advance'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'commission'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'otherAddition'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'bonus'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'deduction'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'securityMoney'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'otherDeduction'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'socialSecurityValue'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'employerSocialSecurity'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'withholdingTax'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'withheld'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'bankId'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'bankCode'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'accountNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'datePayment'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'fee'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'ref'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'accountNumberMasking'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'transactionId'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'amount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'payStatus'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'remarks'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'note'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'firstName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'lastName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'profileImage'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'code'?: string | null;
+    /**
+     * 
+     * @type {PayrollTotalSummary}
+     * @memberof PayrollGrid
+     */
+    'totalSummary'?: PayrollTotalSummary | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollGrid
+     */
+    'pushedRecord'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'identitficationNumber'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollGrid
+     */
+    'isActive'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'email'?: string | null;
+    /**
+     * 
+     * @type {Array<KeyValuePairOfStringAndInteger>}
+     * @memberof PayrollGrid
+     */
+    'actions'?: Array<KeyValuePairOfStringAndInteger> | null;
+    /**
+     * 
+     * @type {Array<PayrollDetailGrid>}
+     * @memberof PayrollGrid
+     */
+    'payrollDetailGrid'?: Array<PayrollDetailGrid> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'addAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'deAmount'?: number;
+    /**
+     * 
+     * @type {Array<Media>}
+     * @memberof PayrollGrid
+     */
+    'media'?: Array<Media> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'galleryId'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'publishedOn'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'documentDate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'totalPayrollCash'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'totalPayrollTransfer'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'netTotal'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'paymentRemarks'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'employeesCount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'employerAccountNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'employerAccountBranch'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'bankAccountId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'allowance'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'cola'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'medicalExpense'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'accommodation'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'directorRemuneration'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'studentLoan'?: number;
+    /**
+     * 
+     * @type {Array<PayrollPaymentViewModel>}
+     * @memberof PayrollGrid
+     */
+    'payments'?: Array<PayrollPaymentViewModel> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'outstandingPayment'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'payrollVersion'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollGrid
+     */
+    'isMigrate'?: boolean;
+    /**
+     * 
+     * @type {PaidPeriod}
+     * @memberof PayrollGrid
+     */
+    'paidPeriod'?: PaidPeriod;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollGrid
+     */
+    'socialSecurityPercent'?: number;
+    /**
+     * 
+     * @type {PayrollEmailTotalModel}
+     * @memberof PayrollGrid
+     */
+    'payrollEmailTotal'?: PayrollEmailTotalModel | null;
+    /**
+     * 
+     * @type {ConditionsOfWithholdingTax}
+     * @memberof PayrollGrid
+     */
+    'conditionsWithholdingTax'?: ConditionsOfWithholdingTax | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollGrid
+     */
+    'conditionsWithholdingTaxName'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollGrid
+     */
+    'isLockingPeriod'?: boolean;
+    /**
+     * 
+     * @type {Array<IJournalEntryBase>}
+     * @memberof PayrollGrid
+     */
+    'journals'?: Array<IJournalEntryBase> | null;
+}
+/**
+ * 
+ * @export
+ * @interface PayrollPaymentEmployee
+ */
+export interface PayrollPaymentEmployee {
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentEmployee
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollPaymentEmployee
+     */
+    'selected'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentEmployee
+     */
+    'profileImage'?: string | null;
+    /**
+     * 
+     * @type {GenderPrefix}
+     * @memberof PayrollPaymentEmployee
+     */
+    'prefix'?: GenderPrefix;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentEmployee
+     */
+    'code'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentEmployee
+     */
+    'name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentEmployee
+     */
+    'nameForeign'?: string | null;
+    /**
+     * 
+     * @type {PaymentMethod}
+     * @memberof PayrollPaymentEmployee
+     */
+    'paymentMethod'?: PaymentMethod;
+    /**
+     * 
+     * @type {PayrollDetailStatus}
+     * @memberof PayrollPaymentEmployee
+     */
+    'paymentStatus'?: PayrollDetailStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentEmployee
+     */
+    'paymentChannel'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentEmployee
+     */
+    'amount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentEmployee
+     */
+    'payrollDetailId'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PayrollPaymentViewModel
+ */
+export interface PayrollPaymentViewModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'period'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentViewModel
+     */
+    'payrollPaymentId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentViewModel
+     */
+    'payrollId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'companyBankAccount'?: string | null;
+    /**
+     * 
+     * @type {Array<PayrollPaymentEmployee>}
+     * @memberof PayrollPaymentViewModel
+     */
+    'employeePayments'?: Array<PayrollPaymentEmployee> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentViewModel
+     */
+    'bankFee'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'paymentDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'paymentRemarks'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentViewModel
+     */
+    'net'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentViewModel
+     */
+    'bankTransferAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentViewModel
+     */
+    'cashAmount'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollPaymentViewModel
+     */
+    'status'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentViewModel
+     */
+    'bankKConnectTransferAmount'?: number;
+    /**
+     * 
+     * @type {PayrollDetailStatus}
+     * @memberof PayrollPaymentViewModel
+     */
+    'payrollPaymentStatus'?: PayrollDetailStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'payrollPaymentStatusName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'fileName'?: string | null;
+    /**
+     * 
+     * @type {Array<UnPaidEmployeeModel>}
+     * @memberof PayrollPaymentViewModel
+     */
+    'unPaidEmployees'?: Array<UnPaidEmployeeModel> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'referenceId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'createdOn'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'sendBy'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollPaymentViewModel
+     */
+    'resetById'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'resetOn'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollPaymentViewModel
+     */
+    'resetReason'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayrollPaymentViewModel
+     */
+    'forceResetStatus'?: boolean;
+}
 /**
  * 
  * @export
@@ -10968,6 +13374,12 @@ export interface PayrollQuery {
     'totalRecords'?: number;
     /**
      * 
+     * @type {Array<number>}
+     * @memberof PayrollQuery
+     */
+    'documentIds'?: Array<number> | null;
+    /**
+     * 
      * @type {DateType}
      * @memberof PayrollQuery
      */
@@ -11104,6 +13516,12 @@ export interface PayrollQuery {
      * @memberof PayrollQuery
      */
     'payrollType'?: PayrollType;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollQuery
+     */
+    'searchString'?: string | null;
 }
 /**
  * 
@@ -11123,6 +13541,12 @@ export interface PayrollQueryAllOf {
      * @memberof PayrollQueryAllOf
      */
     'payrollType'?: PayrollType;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayrollQueryAllOf
+     */
+    'searchString'?: string | null;
 }
 /**
  * 0 = Draft 1 = Awaiting 2 = Reset 3 = Paid 4 = Partial 5 = Rejected 7 = Approved 11 = PushPayAwaiting 13 = PushPayProcessed 15 = PushPayRejected 17 = PushPayPartial 19 = PushPayPendingPayments 50 = KConnectAwaiting 52 = KConnectProcessed 54 = KConnectRejected 56 = KConnectPendingPayments
@@ -11152,6 +13576,49 @@ export const PayrollStatus = {
 export type PayrollStatus = typeof PayrollStatus[keyof typeof PayrollStatus];
 
 
+/**
+ * 
+ * @export
+ * @interface PayrollTotalSummary
+ */
+export interface PayrollTotalSummary {
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollTotalSummary
+     */
+    'payrollDetailId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollTotalSummary
+     */
+    'totalSalary'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollTotalSummary
+     */
+    'totalAdd'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollTotalSummary
+     */
+    'totalDe'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PayrollTotalSummary
+     */
+    'totalSum'?: number;
+    /**
+     * 
+     * @type {YearToDateAccumulated}
+     * @memberof PayrollTotalSummary
+     */
+    'ytdSummary'?: YearToDateAccumulated | null;
+}
 /**
  * 1 = FirstVersion 3 = PayrollPayment 5 = Kconnect 7 = Cash 9 = Transfer
  * @export
@@ -11316,6 +13783,12 @@ export interface ProductCategory {
      * @memberof ProductCategory
      */
     'resetTransactionId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductCategory
+     */
+    'companyId'?: number | null;
 }
 /**
  * 
@@ -11323,6 +13796,42 @@ export interface ProductCategory {
  * @interface ProductItem
  */
 export interface ProductItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductItem
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductItem
+     */
+    'productMasterId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductItem
+     */
+    'unitId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductItem
+     */
+    'mainUnitId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductItem
+     */
+    'mainUnitName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductItem
+     */
+    'convertRatio'?: number;
     /**
      * 
      * @type {number}
@@ -11383,6 +13892,12 @@ export interface ProductItem {
      * @memberof ProductItem
      */
     'productCode'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductItem
+     */
+    'sku'?: string | null;
 }
 /**
  * 
@@ -11630,6 +14145,164 @@ export interface ProductList {
      * @memberof ProductList
      */
     'isMigrate'?: boolean;
+    /**
+     * 
+     * @type {ProductMaster}
+     * @memberof ProductList
+     */
+    'productMaster'?: ProductMaster | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProductList
+     */
+    'isMainProduct'?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductList
+     */
+    'productMasterId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductList
+     */
+    'multipleUnitId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductList
+     */
+    'companyId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductList
+     */
+    'convertRatio'?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductMaster
+ */
+export interface ProductMaster {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductMaster
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductMaster
+     */
+    'name'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductMaster
+     */
+    'companyId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductMaster
+     */
+    'productCode'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductMaster
+     */
+    'mainUnitId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductMaster
+     */
+    'mainProductId'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProductMaster
+     */
+    'isDelete'?: boolean;
+    /**
+     * 
+     * @type {ProductTypes}
+     * @memberof ProductMaster
+     */
+    'type'?: ProductTypes;
+    /**
+     * 
+     * @type {Array<ProductMasterGallery>}
+     * @memberof ProductMaster
+     */
+    'productMasterGallerys'?: Array<ProductMasterGallery> | null;
+    /**
+     * 
+     * @type {Array<ProductList>}
+     * @memberof ProductMaster
+     */
+    'productList'?: Array<ProductList> | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ProductMaster
+     */
+    'productIds'?: Array<number> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductMaster
+     */
+    'categoryId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductMaster
+     */
+    'barcode'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductMasterGallery
+ */
+export interface ProductMasterGallery {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductMasterGallery
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductMasterGallery
+     */
+    'productMasterId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductMasterGallery
+     */
+    'image'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductMasterGallery
+     */
+    'index'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductMasterGallery
+     */
+    'originalName'?: string | null;
 }
 /**
  * 1 = NonStockProduct 3 = SparepartProduct 5 = SampleProduct 7 = FreemiumProduct 9 = SupplyProduct 11 = OthersProduct
@@ -11652,237 +14325,159 @@ export type ProductNonInventoryType = typeof ProductNonInventoryType[keyof typeo
 /**
  * 
  * @export
- * @interface ProductResult
+ * @interface ProductResponse
  */
-export interface ProductResult {
+export interface ProductResponse {
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'id'?: number;
     /**
      * 
      * @type {ProductTypes}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'type'?: ProductTypes;
     /**
      * 
      * @type {string}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'code'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'name'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof ProductResult
-     */
-    'barcode'?: string | null;
-    /**
-     * 
-     * @type {ImageResult}
-     * @memberof ProductResult
-     */
-    'image'?: ImageResult | null;
-    /**
-     * 
-     * @type {VatTypes}
-     * @memberof ProductResult
-     */
-    'buyVatType'?: VatTypes;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductResult
-     */
-    'buyPrice'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductResult
-     */
-    'buyPriceWithVat'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductResult
-     */
-    'buyDescription'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductResult
-     */
-    'buyChartOfAccountId'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductResult
-     */
-    'buyChartOfAccountCode'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductResult
-     */
-    'buyChartOfAccountNameLocal'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductResult
-     */
-    'buyChartOfAccountNameForeign'?: string | null;
-    /**
-     * 
-     * @type {VatTypes}
-     * @memberof ProductResult
-     */
-    'sellVatType'?: VatTypes;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductResult
-     */
-    'sellPrice'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductResult
-     */
-    'sellPriceWithVat'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'sellDescription'?: string | null;
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
-    'sellChartOfAccountId'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductResult
-     */
-    'sellChartOfAccountCode'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductResult
-     */
-    'sellChartOfAccountNameLocal'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductResult
-     */
-    'sellChartOfAccountNameForeign'?: string | null;
+    'sellPrice'?: number;
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
+     */
+    'sellPriceWithVat'?: number;
+    /**
+     * 
+     * @type {VatTypes}
+     * @memberof ProductResponse
+     */
+    'sellVatType'?: VatTypes;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductResponse
+     */
+    'unitName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductResponse
      */
     'categoryId'?: number | null;
     /**
      * 
      * @type {string}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'categoryName'?: string | null;
     /**
      * 
-     * @type {number}
-     * @memberof ProductResult
-     */
-    'unitId'?: number | null;
-    /**
-     * 
      * @type {string}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
-    'unitName'?: string | null;
+    'barcode'?: string | null;
     /**
      * 
      * @type {ProductNonInventoryType}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'productNonInventoryType'?: ProductNonInventoryType | null;
     /**
      * 
      * @type {string}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
-    'broughtForwardOn'?: string | null;
+    'buyDescription'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductResponse
+     */
+    'buyPrice'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductResponse
+     */
+    'buyPriceWithVat'?: number;
+    /**
+     * 
+     * @type {VatTypes}
+     * @memberof ProductResponse
+     */
+    'buyVatType'?: VatTypes;
     /**
      * 
      * @type {string}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'inventoryPublishedOn'?: string | null;
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'inventoryQuantity'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'inventoryPrice'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'inventoryTotal'?: number | null;
     /**
      * 
-     * @type {string}
-     * @memberof ProductResult
-     */
-    'inventoryRemark'?: string | null;
-    /**
-     * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'averageBuyPrice'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'averageSellPrice'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'remainingStock'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof ProductResult
+     * @memberof ProductResponse
      */
     'totalValueInHand'?: number | null;
-    /**
-     * 
-     * @type {Array<IStockCard>}
-     * @memberof ProductResult
-     */
-    'stockCard'?: Array<IStockCard> | null;
 }
 /**
  * 1 = Service 3 = ProductWithNoStock 5 = ProductWithStock
@@ -11929,6 +14524,115 @@ export interface ProductUnit {
      * @memberof ProductUnit
      */
     'isDelete'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductUnit
+     */
+    'companyId'?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductV1Request
+ */
+export interface ProductV1Request {
+    /**
+     * 
+     * @type {ProductTypes}
+     * @memberof ProductV1Request
+     */
+    'type'?: ProductTypes;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1Request
+     */
+    'code'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1Request
+     */
+    'name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1Request
+     */
+    'sellDescription'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductV1Request
+     */
+    'sellPrice'?: number | null;
+    /**
+     * 
+     * @type {VatTypes}
+     * @memberof ProductV1Request
+     */
+    'sellVatType'?: VatTypes | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductV1Request
+     */
+    'buyPriceWithVat'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1Request
+     */
+    'unitName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1Request
+     */
+    'categoryName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1Request
+     */
+    'barcode'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1Request
+     */
+    'buyDescription'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductV1Request
+     */
+    'buyPrice'?: number;
+    /**
+     * 
+     * @type {VatTypes}
+     * @memberof ProductV1Request
+     */
+    'buyVatType'?: VatTypes | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1Request
+     */
+    'inventoryPublishedOn'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductV1Request
+     */
+    'inventoryQuantity'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductV1Request
+     */
+    'inventoryPrice'?: number | null;
 }
 /**
  * 
@@ -12290,6 +14994,12 @@ export interface ReceivableInvoice {
      * @memberof ReceivableInvoice
      */
     'isMigrate'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReceivableInvoice
+     */
+    'isLockingPeriod'?: boolean;
 }
 /**
  * 
@@ -12651,6 +15361,12 @@ export interface ReceivableInvoiceAllOf {
      * @memberof ReceivableInvoiceAllOf
      */
     'isMigrate'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReceivableInvoiceAllOf
+     */
+    'isLockingPeriod'?: boolean;
 }
 /**
  * 1 = Awaiting 3 = Approved 5 = ApprovedAndProcessed 7 = Void 9 = Delete
@@ -12768,7 +15484,7 @@ export type RemainingCollectedType = typeof RemainingCollectedType[keyof typeof 
 
 
 /**
- * 10 = Sales 11 = SalesTeamReport 12 = SalesTax 13 = SimpleSales 14 = AccountReceivable 15 = AccountReceivableAging 20 = Purchase 21 = PurchaseTax 22 = AccountPayable 23 = AccountPayableAging 24 = PurchaseByProduct 25 = PurchaseByProductAdvance 30 = Clients 40 = Vendor 50 = PaymentCollection 60 = SalesByProduct 61 = SalesByProductAdvance 62 = SalesByPerson 63 = SalesByPersonAdvance 64 = SalesByCustomer 65 = SalesByCustomerAdvance 70 = Quotation 80 = BillingNote 90 = ReceiveInventory 91 = StocksReport 92 = GroupStockReport 100 = Expense 110 = WithHoldingTax 120 = ProfitAndLossOneMonth 121 = ProfitAndLossMultipleMonth 130 = Receipt 140 = CreditNote 150 = DebitNote 160 = TaxInvoice 170 = Payroll 171 = PayrollSummary 172 = PayrollGroup 173 = PayrollSscSummary 180 = ContactGrid 190 = ProductGrid 200 = ExportContact 210 = ExportProduct 220 = Receivables 240 = Payables 260 = GeneralLedger 270 = JournalEntry 280 = Payment 290 = InputTax 291 = OutputTax 292 = FixedAsset 293 = Depreciation 300 = PaymentSlip
+ * 10 = Sales 11 = SalesTeamReport 12 = SalesTax 13 = SimpleSales 14 = AccountReceivable 15 = AccountReceivableAging 20 = Purchase 21 = PurchaseTax 22 = AccountPayable 23 = AccountPayableAging 24 = PurchaseByProduct 25 = PurchaseByProductAdvance 30 = Clients 40 = Vendor 50 = PaymentCollection 60 = SalesByProduct 61 = SalesByProductAdvance 62 = SalesByPerson 63 = SalesByPersonAdvance 64 = SalesByCustomer 65 = SalesByCustomerAdvance 70 = Quotation 80 = BillingNote 90 = ReceiveInventory 91 = StocksReport 92 = GroupStockReport 93 = SimpleGroupStockReport 100 = Expense 110 = WithHoldingTax 120 = ProfitAndLossOneMonth 121 = ProfitAndLossMultipleMonth 130 = Receipt 140 = CreditNote 150 = DebitNote 160 = TaxInvoice 170 = Payroll 171 = PayrollSummary 172 = PayrollGroup 173 = PayrollSscSummary 180 = ContactGrid 190 = ProductGrid 200 = ExportContact 210 = ExportProduct 220 = Receivables 240 = Payables 260 = GeneralLedger 270 = JournalEntry 280 = Payment 290 = InputTax 291 = OutputTax 292 = FixedAsset 293 = Depreciation 300 = PaymentSlip
  * @export
  * @enum {string}
  */
@@ -12800,6 +15516,7 @@ export const ReportTypes = {
     NUMBER_90: 90,
     NUMBER_91: 91,
     NUMBER_92: 92,
+    NUMBER_93: 93,
     NUMBER_100: 100,
     NUMBER_110: 110,
     NUMBER_120: 120,
@@ -12832,7 +15549,7 @@ export type ReportTypes = typeof ReportTypes[keyof typeof ReportTypes];
 
 
 /**
- * 1 = Pending 3 = Execute 5 = Success 7 = Error 9 = WHTWarning 11 = NoMoreCompile 13 = Ignore
+ * 1 = Pending 3 = Execute 5 = Success 7 = Error 9 = WHTWarning 10 = WHTPND3 11 = NoMoreCompile 13 = Ignore
  * @export
  * @enum {string}
  */
@@ -12843,6 +15560,7 @@ export const RuleCompileStatus = {
     NUMBER_5: 5,
     NUMBER_7: 7,
     NUMBER_9: 9,
+    NUMBER_10: 10,
     NUMBER_11: 11,
     NUMBER_13: 13
 } as const;
@@ -12867,6 +15585,31 @@ export const RunningNumberType = {
 export type RunningNumberType = typeof RunningNumberType[keyof typeof RunningNumberType];
 
 
+/**
+ * 
+ * @export
+ * @interface S3TriggerMessage
+ */
+export interface S3TriggerMessage {
+    /**
+     * 
+     * @type {number}
+     * @memberof S3TriggerMessage
+     */
+    'companyId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof S3TriggerMessage
+     */
+    'userId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof S3TriggerMessage
+     */
+    's3Key'?: string | null;
+}
 /**
  * 1 = Cash 3 = Credit 5 = Both
  * @export
@@ -12902,6 +15645,186 @@ export type SendEmailStatus = typeof SendEmailStatus[keyof typeof SendEmailStatu
  * @interface SimpleDocument
  */
 export interface SimpleDocument {
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'documentPaymentStructureType'?: string | null;
+    /**
+     * 
+     * @type {PaymentMethod}
+     * @memberof SimpleDocument
+     */
+    'paymentMethod'?: PaymentMethod;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'paymentChannel'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'paymentDate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'collected'?: number;
+    /**
+     * 
+     * @type {DeductionType}
+     * @memberof SimpleDocument
+     */
+    'paymentDeductionType'?: DeductionType;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'paymentDeductionAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'withheldPercentage'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'withheldAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'transferBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'bankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'bankAccountType'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'bankAccountName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'bankAccountNumber'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'chequeDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'chequeNumber'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'chequeBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'otherChannelId'?: number;
+    /**
+     * 
+     * @type {PaymentChannelsType}
+     * @memberof SimpleDocument
+     */
+    'otherChannelPaymentChannel'?: PaymentChannelsType;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'otherChannelName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'paymentRemarks'?: string | null;
+    /**
+     * 
+     * @type {RemainingCollectedType}
+     * @memberof SimpleDocument
+     */
+    'remainingCollectedType'?: RemainingCollectedType;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'remainingCollected'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'paymentCharge'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'creditCardBankAccountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'pettyCashId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'pettyCashName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'bankChequeId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'creditCardId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleDocument
+     */
+    'creditCardNumber'?: string | null;
     /**
      * 
      * @type {number}
@@ -13054,10 +15977,22 @@ export interface SimpleDocument {
     'isVat'?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof SimpleDocument
+     */
+    'isDicountAsPercentage'?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof SimpleDocument
      */
     'vatAmount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'vatableAmount'?: number;
     /**
      * 
      * @type {number}
@@ -13070,6 +16005,12 @@ export interface SimpleDocument {
      * @memberof SimpleDocument
      */
     'documentShowWithholdingTax'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SimpleDocument
+     */
+    'isWithholdingTax'?: boolean;
     /**
      * 
      * @type {number}
@@ -13123,7 +16064,7 @@ export interface SimpleDocument {
      * @type {string}
      * @memberof SimpleDocument
      */
-    'externalId'?: string | null;
+    'externalDocumentId'?: string | null;
     /**
      * 
      * @type {string}
@@ -13154,6 +16095,18 @@ export interface SimpleDocument {
      * @memberof SimpleDocument
      */
     'exemptAmount'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'companyId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocument
+     */
+    'userId'?: number;
 }
 /**
  * 
@@ -13179,6 +16132,18 @@ export interface SimpleDocumentAllOf {
      * @memberof SimpleDocumentAllOf
      */
     'exemptAmount'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocumentAllOf
+     */
+    'companyId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleDocumentAllOf
+     */
+    'userId'?: number;
 }
 /**
  * 
@@ -13186,6 +16151,42 @@ export interface SimpleDocumentAllOf {
  * @interface SimpleProductItem
  */
 export interface SimpleProductItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItem
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItem
+     */
+    'productMasterId'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItem
+     */
+    'unitId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItem
+     */
+    'mainUnitId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItem
+     */
+    'mainUnitName'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItem
+     */
+    'convertRatio'?: number;
     /**
      * 
      * @type {number}
@@ -13246,6 +16247,127 @@ export interface SimpleProductItem {
      * @memberof SimpleProductItem
      */
     'productCode'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItem
+     */
+    'sku'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItem
+     */
+    'creditId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItem
+     */
+    'debitId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItem
+     */
+    'categoryId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItem
+     */
+    'nameLocal'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItem
+     */
+    'nameForeign'?: string | null;
+    /**
+     * 
+     * @type {ChartOfAccountCategory}
+     * @memberof SimpleProductItem
+     */
+    'creditCategory'?: ChartOfAccountCategory;
+    /**
+     * 
+     * @type {ChartOfAccountCategory}
+     * @memberof SimpleProductItem
+     */
+    'debitCategory'?: ChartOfAccountCategory;
+    /**
+     * 
+     * @type {ChartOfAccountId}
+     * @memberof SimpleProductItem
+     */
+    'systemCode'?: ChartOfAccountId;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItem
+     */
+    'expenseDescription'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface SimpleProductItemAllOf
+ */
+export interface SimpleProductItemAllOf {
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItemAllOf
+     */
+    'creditId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItemAllOf
+     */
+    'debitId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleProductItemAllOf
+     */
+    'categoryId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItemAllOf
+     */
+    'nameLocal'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItemAllOf
+     */
+    'nameForeign'?: string | null;
+    /**
+     * 
+     * @type {ChartOfAccountCategory}
+     * @memberof SimpleProductItemAllOf
+     */
+    'creditCategory'?: ChartOfAccountCategory;
+    /**
+     * 
+     * @type {ChartOfAccountCategory}
+     * @memberof SimpleProductItemAllOf
+     */
+    'debitCategory'?: ChartOfAccountCategory;
+    /**
+     * 
+     * @type {ChartOfAccountId}
+     * @memberof SimpleProductItemAllOf
+     */
+    'systemCode'?: ChartOfAccountId;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleProductItemAllOf
+     */
+    'expenseDescription'?: string | null;
 }
 /**
  * 
@@ -13271,6 +16393,12 @@ export interface SimpleQuery {
      * @memberof SimpleQuery
      */
     'totalRecords'?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof SimpleQuery
+     */
+    'documentIds'?: Array<number> | null;
     /**
      * 
      * @type {DateType}
@@ -13362,169 +16490,6 @@ export interface SortOptions {
      * @memberof SortOptions
      */
     'sortOrder'?: OrderBy;
-}
-/**
- * 
- * @export
- * @interface StockCard
- */
-export interface StockCard {
-    /**
-     * 
-     * @type {ObjectId}
-     * @memberof StockCard
-     */
-    'id'?: ObjectId;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'productId'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StockCard
-     */
-    'productName'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof StockCard
-     */
-    'productCode'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'inventoryId'?: number;
-    /**
-     * 
-     * @type {InventoryType}
-     * @memberof StockCard
-     */
-    'inventoryType'?: InventoryType;
-    /**
-     * 
-     * @type {string}
-     * @memberof StockCard
-     */
-    'date'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'quantity'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'unitId'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'unitPrice'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StockCard
-     */
-    'unitName'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'total'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'remaining'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'documentId'?: number;
-    /**
-     * 
-     * @type {DocumentTypes}
-     * @memberof StockCard
-     */
-    'documentType'?: DocumentTypes;
-    /**
-     * 
-     * @type {string}
-     * @memberof StockCard
-     */
-    'documentSerial'?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StockCard
-     */
-    'allowDelete'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof StockCard
-     */
-    'remarks'?: string | null;
-    /**
-     * 
-     * @type {AdjustInventoryReason}
-     * @memberof StockCard
-     */
-    'reason'?: AdjustInventoryReason;
-    /**
-     * 
-     * @type {string}
-     * @memberof StockCard
-     */
-    'contactName'?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StockCard
-     */
-    'isOverSold'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'rowIndex'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StockCard
-     */
-    'reasonDescription'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'averagePricePerUnit'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StockCard
-     */
-    'remainingAmount'?: number;
-    /**
-     * 
-     * @type {Array<IStockCard>}
-     * @memberof StockCard
-     */
-    'transactions'?: Array<IStockCard> | null;
 }
 /**
  * 
@@ -13718,6 +16683,73 @@ export type TemplateFont = typeof TemplateFont[keyof typeof TemplateFont];
 /**
  * 
  * @export
+ * @interface UnPaidEmployeeModel
+ */
+export interface UnPaidEmployeeModel {
+    /**
+     * 
+     * @type {number}
+     * @memberof UnPaidEmployeeModel
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UnPaidEmployeeModel
+     */
+    'employeeId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnPaidEmployeeModel
+     */
+    'title'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnPaidEmployeeModel
+     */
+    'firstName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnPaidEmployeeModel
+     */
+    'lastName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnPaidEmployeeModel
+     */
+    'firstNameForeign'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnPaidEmployeeModel
+     */
+    'lastNameForeign'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof UnPaidEmployeeModel
+     */
+    'amount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnPaidEmployeeModel
+     */
+    'profileImage'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof UnPaidEmployeeModel
+     */
+    'kcProcessingStatus'?: number;
+}
+/**
+ * 
+ * @export
  * @interface UpgradeDocument
  */
 export interface UpgradeDocument {
@@ -13826,930 +16858,31 @@ export const VatTypes = {
 export type VatTypes = typeof VatTypes[keyof typeof VatTypes];
 
 
-
 /**
- * BatchImportApi - axios parameter creator
+ * 
  * @export
+ * @interface YearToDateAccumulated
  */
-export const BatchImportApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Delete custom template
-         * @param {string} templateId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportDeleteCustomTemplate: async (templateId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'templateId' is not null or undefined
-            assertParamExists('batchImportDeleteCustomTemplate', 'templateId', templateId)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportDeleteCustomTemplate', 'culture', culture)
-            const localVarPath = `/{culture}/cash-invoices/custom-template/{templateId}`
-                .replace(`{${"templateId"}}`, encodeURIComponent(String(templateId)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To get details of a document
-         * @param {string} culture 
-         * @param {string} [fileName] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGenerateBacthIdMetadata: async (culture: string, fileName?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportGenerateBacthIdMetadata', 'culture', culture)
-            const localVarPath = `/{culture}/cash-invoices/batch-metadata`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fileName !== undefined) {
-                localVarQueryParameter['fileName'] = fileName;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get data from Storage
-         * @param {string} batchId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGetBatchS3Data: async (batchId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'batchId' is not null or undefined
-            assertParamExists('batchImportGetBatchS3Data', 'batchId', batchId)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportGetBatchS3Data', 'culture', culture)
-            const localVarPath = `/{culture}/cash-invoices/get-batch-s3-data/{batchId}`
-                .replace(`{${"batchId"}}`, encodeURIComponent(String(batchId)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get custom template
-         * @param {string} templateId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGetCustomTemplate: async (templateId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'templateId' is not null or undefined
-            assertParamExists('batchImportGetCustomTemplate', 'templateId', templateId)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportGetCustomTemplate', 'culture', culture)
-            const localVarPath = `/{culture}/cash-invoices/custom-template/{templateId}`
-                .replace(`{${"templateId"}}`, encodeURIComponent(String(templateId)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get Original File
-         * @param {string} batchId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGetOrgingalFile: async (batchId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'batchId' is not null or undefined
-            assertParamExists('batchImportGetOrgingalFile', 'batchId', batchId)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportGetOrgingalFile', 'culture', culture)
-            const localVarPath = `/{culture}/cash-invoices/get-batch-import-org-file/{batchId}`
-                .replace(`{${"batchId"}}`, encodeURIComponent(String(batchId)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get presign url to upload the file with payloads
-         * @param {string} culture 
-         * @param {BatchImportPayload} batchImportPayload 
-         * @param {number} [id] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGetPresign: async (culture: string, batchImportPayload: BatchImportPayload, id?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportGetPresign', 'culture', culture)
-            // verify required parameter 'batchImportPayload' is not null or undefined
-            assertParamExists('batchImportGetPresign', 'batchImportPayload', batchImportPayload)
-            const localVarPath = `/{culture}/cash-invoices/get-presign-for-upload-simpledoc`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (id !== undefined) {
-                localVarQueryParameter['id'] = id;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(batchImportPayload, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Mark the batch as viewed in notification.
-         * @param {string} culture 
-         * @param {number} body 
-         * @param {number} [userId] 
-         * @param {string} [batchId] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportMarkViewed: async (culture: string, body: number, userId?: number, batchId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportMarkViewed', 'culture', culture)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('batchImportMarkViewed', 'body', body)
-            const localVarPath = `/{culture}/cash-invoices/mark-viewed`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (userId !== undefined) {
-                localVarQueryParameter['userId'] = userId;
-            }
-
-            if (batchId !== undefined) {
-                localVarQueryParameter['batchId'] = batchId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Query the batch by id and status
-         * @param {string} culture 
-         * @param {string} body 
-         * @param {BatchImportStatus} [status] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportQueryBatch: async (culture: string, body: string, status?: BatchImportStatus, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportQueryBatch', 'culture', culture)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('batchImportQueryBatch', 'body', body)
-            const localVarPath = `/{culture}/cash-invoices/query-batch`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (status !== undefined) {
-                localVarQueryParameter['status'] = status;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportQueryBatchHistory: async (culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportQueryBatchHistory', 'culture', culture)
-            const localVarPath = `/{culture}/cash-invoices/batch-import-history`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {BatchImportRetry} batchImportRetry 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportRetrySimpleDocuments: async (culture: string, batchImportRetry: BatchImportRetry, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportRetrySimpleDocuments', 'culture', culture)
-            // verify required parameter 'batchImportRetry' is not null or undefined
-            assertParamExists('batchImportRetrySimpleDocuments', 'batchImportRetry', batchImportRetry)
-            const localVarPath = `/{culture}/cash-invoices/retry-simple-documents`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(batchImportRetry, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create or Update (Upsert) custom template
-         * @param {string} culture 
-         * @param {CustomTemplate} customTemplate 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportUpsertCustomTemplate: async (culture: string, customTemplate: CustomTemplate, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('batchImportUpsertCustomTemplate', 'culture', culture)
-            // verify required parameter 'customTemplate' is not null or undefined
-            assertParamExists('batchImportUpsertCustomTemplate', 'customTemplate', customTemplate)
-            const localVarPath = `/{culture}/cash-invoices/custom-template`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(customTemplate, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * BatchImportApi - functional programming interface
- * @export
- */
-export const BatchImportApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = BatchImportApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary Delete custom template
-         * @param {string} templateId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportDeleteCustomTemplate(templateId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportDeleteCustomTemplate(templateId, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To get details of a document
-         * @param {string} culture 
-         * @param {string} [fileName] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportGenerateBacthIdMetadata(culture: string, fileName?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchImportMetadata>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportGenerateBacthIdMetadata(culture, fileName, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Get data from Storage
-         * @param {string} batchId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportGetBatchS3Data(batchId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportGetBatchS3Data(batchId, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Get custom template
-         * @param {string} templateId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportGetCustomTemplate(templateId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportGetCustomTemplate(templateId, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Get Original File
-         * @param {string} batchId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportGetOrgingalFile(batchId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportGetOrgingalFile(batchId, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Get presign url to upload the file with payloads
-         * @param {string} culture 
-         * @param {BatchImportPayload} batchImportPayload 
-         * @param {number} [id] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportGetPresign(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportGetPresign(culture, batchImportPayload, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Mark the batch as viewed in notification.
-         * @param {string} culture 
-         * @param {number} body 
-         * @param {number} [userId] 
-         * @param {string} [batchId] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportMarkViewed(culture: string, body: number, userId?: number, batchId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportMarkViewed(culture, body, userId, batchId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Query the batch by id and status
-         * @param {string} culture 
-         * @param {string} body 
-         * @param {BatchImportStatus} [status] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportQueryBatch(culture: string, body: string, status?: BatchImportStatus, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportQueryBatch(culture, body, status, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportQueryBatchHistory(culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchHistory>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportQueryBatchHistory(culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {BatchImportRetry} batchImportRetry 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportRetrySimpleDocuments(culture: string, batchImportRetry: BatchImportRetry, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportRetrySimpleDocuments(culture, batchImportRetry, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Create or Update (Upsert) custom template
-         * @param {string} culture 
-         * @param {CustomTemplate} customTemplate 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async batchImportUpsertCustomTemplate(culture: string, customTemplate: CustomTemplate, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.batchImportUpsertCustomTemplate(culture, customTemplate, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * BatchImportApi - factory interface
- * @export
- */
-export const BatchImportApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = BatchImportApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary Delete custom template
-         * @param {string} templateId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportDeleteCustomTemplate(templateId: string, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.batchImportDeleteCustomTemplate(templateId, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To get details of a document
-         * @param {string} culture 
-         * @param {string} [fileName] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGenerateBacthIdMetadata(culture: string, fileName?: string, options?: any): AxiosPromise<BatchImportMetadata> {
-            return localVarFp.batchImportGenerateBacthIdMetadata(culture, fileName, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get data from Storage
-         * @param {string} batchId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGetBatchS3Data(batchId: string, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.batchImportGetBatchS3Data(batchId, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get custom template
-         * @param {string} templateId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGetCustomTemplate(templateId: string, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.batchImportGetCustomTemplate(templateId, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get Original File
-         * @param {string} batchId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGetOrgingalFile(batchId: string, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.batchImportGetOrgingalFile(batchId, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get presign url to upload the file with payloads
-         * @param {string} culture 
-         * @param {BatchImportPayload} batchImportPayload 
-         * @param {number} [id] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportGetPresign(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: any): AxiosPromise<any> {
-            return localVarFp.batchImportGetPresign(culture, batchImportPayload, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Mark the batch as viewed in notification.
-         * @param {string} culture 
-         * @param {number} body 
-         * @param {number} [userId] 
-         * @param {string} [batchId] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportMarkViewed(culture: string, body: number, userId?: number, batchId?: string, options?: any): AxiosPromise<boolean> {
-            return localVarFp.batchImportMarkViewed(culture, body, userId, batchId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Query the batch by id and status
-         * @param {string} culture 
-         * @param {string} body 
-         * @param {BatchImportStatus} [status] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportQueryBatch(culture: string, body: string, status?: BatchImportStatus, options?: any): AxiosPromise<BatchStatus> {
-            return localVarFp.batchImportQueryBatch(culture, body, status, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportQueryBatchHistory(culture: string, options?: any): AxiosPromise<BatchHistory> {
-            return localVarFp.batchImportQueryBatchHistory(culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {BatchImportRetry} batchImportRetry 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportRetrySimpleDocuments(culture: string, batchImportRetry: BatchImportRetry, options?: any): AxiosPromise<boolean> {
-            return localVarFp.batchImportRetrySimpleDocuments(culture, batchImportRetry, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create or Update (Upsert) custom template
-         * @param {string} culture 
-         * @param {CustomTemplate} customTemplate 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        batchImportUpsertCustomTemplate(culture: string, customTemplate: CustomTemplate, options?: any): AxiosPromise<any> {
-            return localVarFp.batchImportUpsertCustomTemplate(culture, customTemplate, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * BatchImportApi - object-oriented interface
- * @export
- * @class BatchImportApi
- * @extends {BaseAPI}
- */
-export class BatchImportApi extends BaseAPI {
+export interface YearToDateAccumulated {
     /**
      * 
-     * @summary Delete custom template
-     * @param {string} templateId 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
+     * @type {number}
+     * @memberof YearToDateAccumulated
      */
-    public batchImportDeleteCustomTemplate(templateId: string, culture: string, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportDeleteCustomTemplate(templateId, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
+    'earning'?: number;
     /**
      * 
-     * @summary To get details of a document
-     * @param {string} culture 
-     * @param {string} [fileName] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
+     * @type {number}
+     * @memberof YearToDateAccumulated
      */
-    public batchImportGenerateBacthIdMetadata(culture: string, fileName?: string, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportGenerateBacthIdMetadata(culture, fileName, options).then((request) => request(this.axios, this.basePath));
-    }
-
+    'withholdingTax'?: number;
     /**
      * 
-     * @summary Get data from Storage
-     * @param {string} batchId 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
+     * @type {number}
+     * @memberof YearToDateAccumulated
      */
-    public batchImportGetBatchS3Data(batchId: string, culture: string, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportGetBatchS3Data(batchId, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get custom template
-     * @param {string} templateId 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
-     */
-    public batchImportGetCustomTemplate(templateId: string, culture: string, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportGetCustomTemplate(templateId, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get Original File
-     * @param {string} batchId 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
-     */
-    public batchImportGetOrgingalFile(batchId: string, culture: string, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportGetOrgingalFile(batchId, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get presign url to upload the file with payloads
-     * @param {string} culture 
-     * @param {BatchImportPayload} batchImportPayload 
-     * @param {number} [id] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
-     */
-    public batchImportGetPresign(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportGetPresign(culture, batchImportPayload, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Mark the batch as viewed in notification.
-     * @param {string} culture 
-     * @param {number} body 
-     * @param {number} [userId] 
-     * @param {string} [batchId] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
-     */
-    public batchImportMarkViewed(culture: string, body: number, userId?: number, batchId?: string, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportMarkViewed(culture, body, userId, batchId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Query the batch by id and status
-     * @param {string} culture 
-     * @param {string} body 
-     * @param {BatchImportStatus} [status] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
-     */
-    public batchImportQueryBatch(culture: string, body: string, status?: BatchImportStatus, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportQueryBatch(culture, body, status, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
-     */
-    public batchImportQueryBatchHistory(culture: string, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportQueryBatchHistory(culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {BatchImportRetry} batchImportRetry 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
-     */
-    public batchImportRetrySimpleDocuments(culture: string, batchImportRetry: BatchImportRetry, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportRetrySimpleDocuments(culture, batchImportRetry, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create or Update (Upsert) custom template
-     * @param {string} culture 
-     * @param {CustomTemplate} customTemplate 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BatchImportApi
-     */
-    public batchImportUpsertCustomTemplate(culture: string, customTemplate: CustomTemplate, options?: AxiosRequestConfig) {
-        return BatchImportApiFp(this.configuration).batchImportUpsertCustomTemplate(culture, customTemplate, options).then((request) => request(this.axios, this.basePath));
-    }
+    'socialSecurity'?: number;
 }
-
 
 /**
  * BillingNoteApi - axios parameter creator
@@ -14773,7 +16906,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
             assertParamExists('billingNoteChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('billingNoteChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/billing-notes/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/billing-notes/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -14805,62 +16938,17 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        billingNoteCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('billingNoteCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('billingNoteCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/billing-notes/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        billingNoteCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        billingNoteCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('billingNoteCreate2', 'culture', culture)
+            assertParamExists('billingNoteCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('billingNoteCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/billing-notes/inline-document`
+            assertParamExists('billingNoteCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/billing-notes/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -14885,6 +16973,50 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingNoteCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('billingNoteCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('billingNoteCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/billing-notes`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -14977,7 +17109,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -14991,7 +17123,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
             assertParamExists('billingNoteEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('billingNoteEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/billing-notes/simple-document/{id}`
+            const localVarPath = `/{culture}/billing-notes/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -15025,21 +17157,21 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        billingNoteEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        billingNoteEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('billingNoteEdit2', 'id', id)
+            assertParamExists('billingNoteEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('billingNoteEdit2', 'culture', culture)
+            assertParamExists('billingNoteEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('billingNoteEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/billing-notes/inline-document/{id}`
+            assertParamExists('billingNoteEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/billing-notes/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -15075,17 +17207,17 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -15166,7 +17298,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -15180,7 +17312,7 @@ export const BillingNoteApiAxiosParamCreator = function (configuration?: Configu
             assertParamExists('billingNoteReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('billingNoteReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/billing-notes/{id}/payments`
+            const localVarPath = `/{culture}/billing-notes/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -15237,26 +17369,25 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async billingNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async billingNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteCreate2(culture, inlineDocument, options);
+        async billingNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -15285,7 +17416,7 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -15298,32 +17429,32 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async billingNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteEdit2(id, culture, inlineDocument, options);
+        async billingNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingNoteEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -15333,7 +17464,7 @@ export const BillingNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -15368,25 +17499,24 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        billingNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.billingNoteCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        billingNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.billingNoteCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        billingNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.billingNoteCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.billingNoteCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -15412,7 +17542,7 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -15424,31 +17554,31 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        billingNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.billingNoteEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        billingNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.billingNoteEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -15457,7 +17587,7 @@ export const BillingNoteApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -15493,28 +17623,27 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BillingNoteApi
-     */
-    public billingNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return BillingNoteApiFp(this.configuration).billingNoteCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BillingNoteApi
      */
-    public billingNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return BillingNoteApiFp(this.configuration).billingNoteCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public billingNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return BillingNoteApiFp(this.configuration).billingNoteCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingNoteApi
+     */
+    public billingNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return BillingNoteApiFp(this.configuration).billingNoteCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -15545,7 +17674,7 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -15559,7 +17688,7 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -15567,25 +17696,25 @@ export class BillingNoteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BillingNoteApi
      */
-    public billingNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return BillingNoteApiFp(this.configuration).billingNoteEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public billingNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return BillingNoteApiFp(this.configuration).billingNoteEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BillingNoteApi
@@ -15596,7 +17725,7 @@ export class BillingNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -15618,63 +17747,17 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
     return {
         /**
          * 
-         * @summary To change status by the document id and key
-         * @param {number} documentId 
-         * @param {string} statusKey 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        cashInvoiceChangeStatusByKey: async (documentId: number, statusKey: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'documentId' is not null or undefined
-            assertParamExists('cashInvoiceChangeStatusByKey', 'documentId', documentId)
-            // verify required parameter 'statusKey' is not null or undefined
-            assertParamExists('cashInvoiceChangeStatusByKey', 'statusKey', statusKey)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('cashInvoiceChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/cash-invoices/{documentId}/status-key/{statusKey}`
-                .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
-                .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary To Create a document with SimpleDocument as the parameter
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cashInvoiceActorCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('cashInvoiceCreate', 'culture', culture)
+            assertParamExists('cashInvoiceActorCreate', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('cashInvoiceCreate', 'simpleDocument', simpleDocument)
+            assertParamExists('cashInvoiceActorCreate', 'simpleDocument', simpleDocument)
             const localVarPath = `/{culture}/cash-invoices/simple-document`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -15714,11 +17797,11 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cashInvoiceActorCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('cashInvoiceCreate2', 'culture', culture)
+            assertParamExists('cashInvoiceActorCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('cashInvoiceCreate2', 'inlineDocument', inlineDocument)
+            assertParamExists('cashInvoiceActorCreateInline', 'inlineDocument', inlineDocument)
             const localVarPath = `/{culture}/cash-invoices/inline-document`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -15752,19 +17835,283 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary To delete the document given a list of documentids
-         * @param {number} id 
+         * @summary To change status by the document id and key
+         * @param {number} documentId 
+         * @param {string} statusKey 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceDelete: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('cashInvoiceDelete', 'id', id)
+        cashInvoiceChangeStatusByKey: async (documentId: number, statusKey: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'documentId' is not null or undefined
+            assertParamExists('cashInvoiceChangeStatusByKey', 'documentId', documentId)
+            // verify required parameter 'statusKey' is not null or undefined
+            assertParamExists('cashInvoiceChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('cashInvoiceDelete', 'culture', culture)
-            const localVarPath = `/{culture}/cash-invoices/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+            assertParamExists('cashInvoiceChangeStatusByKey', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices/{documentId}/status/{statusKey}`
+                .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
+                .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceCreate', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('cashInvoiceCreate', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/cash-invoices/simple-document-sync`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceCreateInline', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('cashInvoiceCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/cash-invoices/inline`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreateInlineSync: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceCreateInlineSync', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('cashInvoiceCreateInlineSync', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/cash-invoices/inline-document-sync`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {OpenApiVersionAlias} [versionAlias] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreateSimple: async (culture: string, simpleDocument: SimpleDocument, versionAlias?: OpenApiVersionAlias, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('cashInvoiceCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/cash-invoices`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (versionAlias !== undefined) {
+                localVarQueryParameter['versionAlias'] = versionAlias;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} batchId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceDeleteBatchMetadata: async (batchId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'batchId' is not null or undefined
+            assertParamExists('cashInvoiceDeleteBatchMetadata', 'batchId', batchId)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceDeleteBatchMetadata', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices/delete-batch-metadata/{batchId}`
+                .replace(`{${"batchId"}}`, encodeURIComponent(String(batchId)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} templateId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceDeleteCustomTemplate: async (templateId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'templateId' is not null or undefined
+            assertParamExists('cashInvoiceDeleteCustomTemplate', 'templateId', templateId)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceDeleteCustomTemplate', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices/custom-template/{templateId}`
+                .replace(`{${"templateId"}}`, encodeURIComponent(String(templateId)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -15836,22 +18183,16 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
-         * @param {number} id 
+         * @summary To get details of a document
          * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
+         * @param {string} [fileName] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceEdit: async (id: number, culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('cashInvoiceEdit', 'id', id)
+        cashInvoiceGenerateBacthIdMetadata: async (culture: string, fileName?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('cashInvoiceEdit', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('cashInvoiceEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/cash-invoices/simple-document/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+            assertParamExists('cashInvoiceGenerateBacthIdMetadata', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices/batch-metadata`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -15860,7 +18201,7 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -15868,14 +18209,15 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            if (fileName !== undefined) {
+                localVarQueryParameter['fileName'] = fileName;
+            }
+
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -15884,22 +18226,18 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
-         * @param {number} id 
+         * @param {string} batchId 
          * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('cashInvoiceEdit2', 'id', id)
+        cashInvoiceGetBatchS3Data: async (batchId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'batchId' is not null or undefined
+            assertParamExists('cashInvoiceGetBatchS3Data', 'batchId', batchId)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('cashInvoiceEdit2', 'culture', culture)
-            // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('cashInvoiceEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/cash-invoices/inline-document/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+            assertParamExists('cashInvoiceGetBatchS3Data', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices/get-batch-s3-data/{batchId}`
+                .replace(`{${"batchId"}}`, encodeURIComponent(String(batchId)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -15908,7 +18246,7 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -15918,12 +18256,187 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
 
 
     
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} templateId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetCustomTemplate: async (templateId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'templateId' is not null or undefined
+            assertParamExists('cashInvoiceGetCustomTemplate', 'templateId', templateId)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceGetCustomTemplate', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices/custom-template/{templateId}`
+                .replace(`{${"templateId"}}`, encodeURIComponent(String(templateId)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} batchId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetOrgingalFile: async (batchId: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'batchId' is not null or undefined
+            assertParamExists('cashInvoiceGetOrgingalFile', 'batchId', batchId)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceGetOrgingalFile', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices/get-batch-import-org-file/{batchId}`
+                .replace(`{${"batchId"}}`, encodeURIComponent(String(batchId)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportPayload} batchImportPayload 
+         * @param {number} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetPresign: async (culture: string, batchImportPayload: BatchImportPayload, id?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceGetPresign', 'culture', culture)
+            // verify required parameter 'batchImportPayload' is not null or undefined
+            assertParamExists('cashInvoiceGetPresign', 'batchImportPayload', batchImportPayload)
+            const localVarPath = `/{culture}/cash-invoices/get-presign-for-upload`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(batchImportPayload, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportPayload} batchImportPayload 
+         * @param {number} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetPresign2: async (culture: string, batchImportPayload: BatchImportPayload, id?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceGetPresign2', 'culture', culture)
+            // verify required parameter 'batchImportPayload' is not null or undefined
+            assertParamExists('cashInvoiceGetPresign2', 'batchImportPayload', batchImportPayload)
+            const localVarPath = `/{culture}/cash-invoices/get-presign-for-upload-simpledoc`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(batchImportPayload, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -15934,17 +18447,17 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -16025,7 +18538,135 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Mark the batch as viewed in notification.
+         * @param {string} culture 
+         * @param {string} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceMarkViewed: async (culture: string, body: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceMarkViewed', 'culture', culture)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('cashInvoiceMarkViewed', 'body', body)
+            const localVarPath = `/{culture}/cash-invoices/mark-viewed`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {string} body 
+         * @param {BatchImportStatus} [status] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceQueryBatch: async (culture: string, body: string, status?: BatchImportStatus, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceQueryBatch', 'culture', culture)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('cashInvoiceQueryBatch', 'body', body)
+            const localVarPath = `/{culture}/cash-invoices/query-batch`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceQueryBatchHistory: async (culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceQueryBatchHistory', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices/batch-import-history`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -16071,6 +18712,92 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportRetry} batchImportRetry 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceRetrySimpleDocuments: async (culture: string, batchImportRetry: BatchImportRetry, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceRetrySimpleDocuments', 'culture', culture)
+            // verify required parameter 'batchImportRetry' is not null or undefined
+            assertParamExists('cashInvoiceRetrySimpleDocuments', 'batchImportRetry', batchImportRetry)
+            const localVarPath = `/{culture}/cash-invoices/retry-simple-documents`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(batchImportRetry, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {CustomTemplate} customTemplate 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceUpsertCustomTemplate: async (culture: string, customTemplate: CustomTemplate, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceUpsertCustomTemplate', 'culture', culture)
+            // verify required parameter 'customTemplate' is not null or undefined
+            assertParamExists('cashInvoiceUpsertCustomTemplate', 'customTemplate', customTemplate)
+            const localVarPath = `/{culture}/cash-invoices/custom-template`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(customTemplate, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -16081,6 +18808,30 @@ export const CashInvoiceApiAxiosParamCreator = function (configuration?: Configu
 export const CashInvoiceApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CashInvoiceApiAxiosParamCreator(configuration)
     return {
+        /**
+         * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchMessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceActorCreate(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchMessageSent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceActorCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
         /**
          * 
          * @summary To change status by the document id and key
@@ -16096,38 +18847,70 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
+         * @summary To Create a document with SourceDocument as the parameter
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cashInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
+        async cashInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceCreate(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cashInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceCreate2(culture, inlineDocument, options);
+        async cashInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceCreateInline(culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @summary To delete the document given a list of documentids
-         * @param {number} id 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceCreateInlineSync(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceCreateInlineSync(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {OpenApiVersionAlias} [versionAlias] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, versionAlias?: OpenApiVersionAlias, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceCreateSimple(culture, simpleDocument, versionAlias, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} batchId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cashInvoiceDelete(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceDelete(id, culture, options);
+        async cashInvoiceDeleteBatchMetadata(batchId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceDeleteBatchMetadata(batchId, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} templateId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceDeleteCustomTemplate(templateId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceDeleteCustomTemplate(templateId, culture, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -16144,45 +18927,88 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
-         * @param {number} id 
+         * @summary To get details of a document
          * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
+         * @param {string} [fileName] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cashInvoiceEdit(id: number, culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceEdit(id, culture, simpleDocument, options);
+        async cashInvoiceGenerateBacthIdMetadata(culture: string, fileName?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchImportMetadata>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceGenerateBacthIdMetadata(culture, fileName, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
-         * @param {number} id 
+         * @param {string} batchId 
          * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cashInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceEdit2(id, culture, inlineDocument, options);
+        async cashInvoiceGetBatchS3Data(batchId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceGetBatchS3Data(batchId, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} templateId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceGetCustomTemplate(templateId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceGetCustomTemplate(templateId, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} batchId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceGetOrgingalFile(batchId: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceGetOrgingalFile(batchId, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportPayload} batchImportPayload 
+         * @param {number} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceGetPresign(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceGetPresign(culture, batchImportPayload, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportPayload} batchImportPayload 
+         * @param {number} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceGetPresign2(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceGetPresign2(culture, batchImportPayload, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -16192,7 +19018,40 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Mark the batch as viewed in notification.
+         * @param {string} culture 
+         * @param {string} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceMarkViewed(culture: string, body: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceMarkViewed(culture, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {string} body 
+         * @param {BatchImportStatus} [status] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceQueryBatch(culture: string, body: string, status?: BatchImportStatus, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceQueryBatch(culture, body, status, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceQueryBatchHistory(culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchHistory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceQueryBatchHistory(culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -16201,6 +19060,28 @@ export const CashInvoiceApiFp = function(configuration?: Configuration) {
          */
         async cashInvoiceReceivePayment(id: number, culture: string, paymentModel: PaymentModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceReceivePayment(id, culture, paymentModel, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportRetry} batchImportRetry 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceRetrySimpleDocuments(culture: string, batchImportRetry: BatchImportRetry, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceRetrySimpleDocuments(culture, batchImportRetry, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {CustomTemplate} customTemplate 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceUpsertCustomTemplate(culture: string, customTemplate: CustomTemplate, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceUpsertCustomTemplate(culture, customTemplate, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -16215,6 +19096,28 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
     return {
         /**
          * 
+         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<BatchMessageSent> {
+            return localVarFp.cashInvoiceActorCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<BatchMessageSent> {
+            return localVarFp.cashInvoiceActorCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary To change status by the document id and key
          * @param {number} documentId 
          * @param {string} statusKey 
@@ -16227,36 +19130,65 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
+         * @summary To Create a document with SourceDocument as the parameter
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
+        cashInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
             return localVarFp.cashInvoiceCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.cashInvoiceCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        cashInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary To delete the document given a list of documentids
-         * @param {number} id 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreateInlineSync(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceCreateInlineSync(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {OpenApiVersionAlias} [versionAlias] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, versionAlias?: OpenApiVersionAlias, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceCreateSimple(culture, simpleDocument, versionAlias, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} batchId 
          * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceDelete(id: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.cashInvoiceDelete(id, culture, options).then((request) => request(axios, basePath));
+        cashInvoiceDeleteBatchMetadata(batchId: string, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceDeleteBatchMetadata(batchId, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} templateId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceDeleteCustomTemplate(templateId: string, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceDeleteCustomTemplate(templateId, culture, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -16271,43 +19203,82 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
-         * @param {number} id 
+         * @summary To get details of a document
          * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
+         * @param {string} [fileName] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceEdit(id: number, culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.cashInvoiceEdit(id, culture, simpleDocument, options).then((request) => request(axios, basePath));
+        cashInvoiceGenerateBacthIdMetadata(culture: string, fileName?: string, options?: any): AxiosPromise<BatchImportMetadata> {
+            return localVarFp.cashInvoiceGenerateBacthIdMetadata(culture, fileName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
-         * @param {number} id 
+         * @param {string} batchId 
          * @param {string} culture 
-         * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cashInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.cashInvoiceEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        cashInvoiceGetBatchS3Data(batchId: string, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceGetBatchS3Data(batchId, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} templateId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetCustomTemplate(templateId: string, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceGetCustomTemplate(templateId, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} batchId 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetOrgingalFile(batchId: string, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceGetOrgingalFile(batchId, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportPayload} batchImportPayload 
+         * @param {number} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetPresign(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceGetPresign(culture, batchImportPayload, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportPayload} batchImportPayload 
+         * @param {number} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceGetPresign2(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceGetPresign2(culture, batchImportPayload, id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -16316,7 +19287,37 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Mark the batch as viewed in notification.
+         * @param {string} culture 
+         * @param {string} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceMarkViewed(culture: string, body: string, options?: any): AxiosPromise<boolean> {
+            return localVarFp.cashInvoiceMarkViewed(culture, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {string} body 
+         * @param {BatchImportStatus} [status] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceQueryBatch(culture: string, body: string, status?: BatchImportStatus, options?: any): AxiosPromise<BatchStatus> {
+            return localVarFp.cashInvoiceQueryBatch(culture, body, status, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceQueryBatchHistory(culture: string, options?: any): AxiosPromise<BatchHistory> {
+            return localVarFp.cashInvoiceQueryBatchHistory(culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -16325,6 +19326,26 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
          */
         cashInvoiceReceivePayment(id: number, culture: string, paymentModel: PaymentModel, options?: any): AxiosPromise<any> {
             return localVarFp.cashInvoiceReceivePayment(id, culture, paymentModel, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {BatchImportRetry} batchImportRetry 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceRetrySimpleDocuments(culture: string, batchImportRetry: BatchImportRetry, options?: any): AxiosPromise<boolean> {
+            return localVarFp.cashInvoiceRetrySimpleDocuments(culture, batchImportRetry, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {CustomTemplate} customTemplate 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceUpsertCustomTemplate(culture: string, customTemplate: CustomTemplate, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceUpsertCustomTemplate(culture, customTemplate, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -16336,6 +19357,32 @@ export const CashInvoiceApiFactory = function (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export class CashInvoiceApi extends BaseAPI {
+    /**
+     * 
+     * @summary To Create a document with SimpleDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceActorCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceActorCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with InlineDocument as the parameter
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceActorCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceActorCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary To change status by the document id and key
@@ -16352,7 +19399,7 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
+     * @summary To Create a document with SourceDocument as the parameter
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
      * @param {*} [options] Override http request option.
@@ -16365,28 +19412,63 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CashInvoiceApi
      */
-    public cashInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return CashInvoiceApiFp(this.configuration).cashInvoiceCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public cashInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary To delete the document given a list of documentids
-     * @param {number} id 
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceCreateInlineSync(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceCreateInlineSync(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {OpenApiVersionAlias} [versionAlias] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, versionAlias?: OpenApiVersionAlias, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceCreateSimple(culture, simpleDocument, versionAlias, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} batchId 
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CashInvoiceApi
      */
-    public cashInvoiceDelete(id: number, culture: string, options?: AxiosRequestConfig) {
-        return CashInvoiceApiFp(this.configuration).cashInvoiceDelete(id, culture, options).then((request) => request(this.axios, this.basePath));
+    public cashInvoiceDeleteBatchMetadata(batchId: string, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceDeleteBatchMetadata(batchId, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} templateId 
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceDeleteCustomTemplate(templateId: string, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceDeleteCustomTemplate(templateId, culture, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -16404,47 +19486,94 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
-     * @param {number} id 
+     * @summary To get details of a document
      * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
+     * @param {string} [fileName] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CashInvoiceApi
      */
-    public cashInvoiceEdit(id: number, culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return CashInvoiceApiFp(this.configuration).cashInvoiceEdit(id, culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    public cashInvoiceGenerateBacthIdMetadata(culture: string, fileName?: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceGenerateBacthIdMetadata(culture, fileName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
-     * @param {number} id 
+     * @param {string} batchId 
      * @param {string} culture 
-     * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CashInvoiceApi
      */
-    public cashInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return CashInvoiceApiFp(this.configuration).cashInvoiceEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public cashInvoiceGetBatchS3Data(batchId: string, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceGetBatchS3Data(batchId, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} templateId 
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceGetCustomTemplate(templateId: string, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceGetCustomTemplate(templateId, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} batchId 
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceGetOrgingalFile(batchId: string, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceGetOrgingalFile(batchId, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {BatchImportPayload} batchImportPayload 
+     * @param {number} [id] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceGetPresign(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceGetPresign(culture, batchImportPayload, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {BatchImportPayload} batchImportPayload 
+     * @param {number} [id] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceGetPresign2(culture: string, batchImportPayload: BatchImportPayload, id?: number, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceGetPresign2(culture, batchImportPayload, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CashInvoiceApi
@@ -16455,7 +19584,43 @@ export class CashInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Mark the batch as viewed in notification.
+     * @param {string} culture 
+     * @param {string} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceMarkViewed(culture: string, body: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceMarkViewed(culture, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {string} body 
+     * @param {BatchImportStatus} [status] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceQueryBatch(culture: string, body: string, status?: BatchImportStatus, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceQueryBatch(culture, body, status, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceApi
+     */
+    public cashInvoiceQueryBatchHistory(culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceQueryBatchHistory(culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -16466,754 +19631,38 @@ export class CashInvoiceApi extends BaseAPI {
     public cashInvoiceReceivePayment(id: number, culture: string, paymentModel: PaymentModel, options?: AxiosRequestConfig) {
         return CashInvoiceApiFp(this.configuration).cashInvoiceReceivePayment(id, culture, paymentModel, options).then((request) => request(this.axios, this.basePath));
     }
-}
 
-
-/**
- * CompanyCurrencyApi - axios parameter creator
- * @export
- */
-export const CompanyCurrencyApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Get company currencies except selected list
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        companyCurrencyGetCompanyCurrencies: async (culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('companyCurrencyGetCompanyCurrencies', 'culture', culture)
-            const localVarPath = `/{culture}/company-currency/currency`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get all currency which user selected for multi-currency
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        companyCurrencyGetList: async (culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('companyCurrencyGetList', 'culture', culture)
-            const localVarPath = `/{culture}/company-currency`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * CompanyCurrencyApi - functional programming interface
- * @export
- */
-export const CompanyCurrencyApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = CompanyCurrencyApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary Get company currencies except selected list
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async companyCurrencyGetCompanyCurrencies(culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.companyCurrencyGetCompanyCurrencies(culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Get all currency which user selected for multi-currency
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async companyCurrencyGetList(culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.companyCurrencyGetList(culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * CompanyCurrencyApi - factory interface
- * @export
- */
-export const CompanyCurrencyApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = CompanyCurrencyApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary Get company currencies except selected list
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        companyCurrencyGetCompanyCurrencies(culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.companyCurrencyGetCompanyCurrencies(culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get all currency which user selected for multi-currency
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        companyCurrencyGetList(culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.companyCurrencyGetList(culture, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * CompanyCurrencyApi - object-oriented interface
- * @export
- * @class CompanyCurrencyApi
- * @extends {BaseAPI}
- */
-export class CompanyCurrencyApi extends BaseAPI {
     /**
      * 
-     * @summary Get company currencies except selected list
      * @param {string} culture 
+     * @param {BatchImportRetry} batchImportRetry 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompanyCurrencyApi
+     * @memberof CashInvoiceApi
      */
-    public companyCurrencyGetCompanyCurrencies(culture: string, options?: AxiosRequestConfig) {
-        return CompanyCurrencyApiFp(this.configuration).companyCurrencyGetCompanyCurrencies(culture, options).then((request) => request(this.axios, this.basePath));
+    public cashInvoiceRetrySimpleDocuments(culture: string, batchImportRetry: BatchImportRetry, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceRetrySimpleDocuments(culture, batchImportRetry, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get all currency which user selected for multi-currency
      * @param {string} culture 
+     * @param {CustomTemplate} customTemplate 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompanyCurrencyApi
+     * @memberof CashInvoiceApi
      */
-    public companyCurrencyGetList(culture: string, options?: AxiosRequestConfig) {
-        return CompanyCurrencyApiFp(this.configuration).companyCurrencyGetList(culture, options).then((request) => request(this.axios, this.basePath));
+    public cashInvoiceUpsertCustomTemplate(culture: string, customTemplate: CustomTemplate, options?: AxiosRequestConfig) {
+        return CashInvoiceApiFp(this.configuration).cashInvoiceUpsertCustomTemplate(culture, customTemplate, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
 
 /**
- * ContactApi - axios parameter creator
+ * CashInvoiceOpenAPIApi - axios parameter creator
  * @export
  */
-export const ContactApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {ContactResult} contactResult 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactCreate: async (culture: string, contactResult: ContactResult, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('contactCreate', 'culture', culture)
-            // verify required parameter 'contactResult' is not null or undefined
-            assertParamExists('contactCreate', 'contactResult', contactResult)
-            const localVarPath = `/api/{culture}/contacts`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(contactResult, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactGetContactList: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('contactGetContactList', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('contactGetContactList', 'culture', culture)
-            const localVarPath = `/api/{culture}/contacts`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactGetContactList2: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('contactGetContactList2', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('contactGetContactList2', 'culture', culture)
-            const localVarPath = `/api/{culture}/contacts/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactRemoveContact: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('contactRemoveContact', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('contactRemoveContact', 'culture', culture)
-            const localVarPath = `/api/{culture}/contacts/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactSearch: async (culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('contactSearch', 'culture', culture)
-            const localVarPath = `/api/{culture}/contacts/search`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {ContactResult} contactResult 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactUpdate: async (id: number, culture: string, contactResult: ContactResult, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('contactUpdate', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('contactUpdate', 'culture', culture)
-            // verify required parameter 'contactResult' is not null or undefined
-            assertParamExists('contactUpdate', 'contactResult', contactResult)
-            const localVarPath = `/api/{culture}/contacts/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(contactResult, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} contactId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactUploadContactQRCode: async (contactId: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'contactId' is not null or undefined
-            assertParamExists('contactUploadContactQRCode', 'contactId', contactId)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('contactUploadContactQRCode', 'culture', culture)
-            const localVarPath = `/api/{culture}/contacts/{contactId}/update-contact-qrcode`
-                .replace(`{${"contactId"}}`, encodeURIComponent(String(contactId)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * ContactApi - functional programming interface
- * @export
- */
-export const ContactApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ContactApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {ContactResult} contactResult 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async contactCreate(culture: string, contactResult: ContactResult, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contactCreate(culture, contactResult, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async contactGetContactList(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contactGetContactList(id, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async contactGetContactList2(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contactGetContactList2(id, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async contactRemoveContact(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contactRemoveContact(id, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async contactSearch(culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contactSearch(culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {ContactResult} contactResult 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async contactUpdate(id: number, culture: string, contactResult: ContactResult, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contactUpdate(id, culture, contactResult, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} contactId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async contactUploadContactQRCode(contactId: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contactUploadContactQRCode(contactId, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * ContactApi - factory interface
- * @export
- */
-export const ContactApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ContactApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {ContactResult} contactResult 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactCreate(culture: string, contactResult: ContactResult, options?: any): AxiosPromise<any> {
-            return localVarFp.contactCreate(culture, contactResult, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactGetContactList(id: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.contactGetContactList(id, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactGetContactList2(id: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.contactGetContactList2(id, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactRemoveContact(id: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.contactRemoveContact(id, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactSearch(culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.contactSearch(culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {ContactResult} contactResult 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactUpdate(id: number, culture: string, contactResult: ContactResult, options?: any): AxiosPromise<any> {
-            return localVarFp.contactUpdate(id, culture, contactResult, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} contactId 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        contactUploadContactQRCode(contactId: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.contactUploadContactQRCode(contactId, culture, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * ContactApi - object-oriented interface
- * @export
- * @class ContactApi
- * @extends {BaseAPI}
- */
-export class ContactApi extends BaseAPI {
-    /**
-     * 
-     * @param {string} culture 
-     * @param {ContactResult} contactResult 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContactApi
-     */
-    public contactCreate(culture: string, contactResult: ContactResult, options?: AxiosRequestConfig) {
-        return ContactApiFp(this.configuration).contactCreate(culture, contactResult, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContactApi
-     */
-    public contactGetContactList(id: number, culture: string, options?: AxiosRequestConfig) {
-        return ContactApiFp(this.configuration).contactGetContactList(id, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContactApi
-     */
-    public contactGetContactList2(id: number, culture: string, options?: AxiosRequestConfig) {
-        return ContactApiFp(this.configuration).contactGetContactList2(id, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContactApi
-     */
-    public contactRemoveContact(id: number, culture: string, options?: AxiosRequestConfig) {
-        return ContactApiFp(this.configuration).contactRemoveContact(id, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContactApi
-     */
-    public contactSearch(culture: string, options?: AxiosRequestConfig) {
-        return ContactApiFp(this.configuration).contactSearch(culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id 
-     * @param {string} culture 
-     * @param {ContactResult} contactResult 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContactApi
-     */
-    public contactUpdate(id: number, culture: string, contactResult: ContactResult, options?: AxiosRequestConfig) {
-        return ContactApiFp(this.configuration).contactUpdate(id, culture, contactResult, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} contactId 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContactApi
-     */
-    public contactUploadContactQRCode(contactId: number, culture: string, options?: AxiosRequestConfig) {
-        return ContactApiFp(this.configuration).contactUploadContactQRCode(contactId, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * CreditNoteApi - axios parameter creator
- * @export
- */
-export const CreditNoteApiAxiosParamCreator = function (configuration?: Configuration) {
+export const CashInvoiceOpenAPIApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
@@ -17224,14 +19673,14 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        creditNoteChangeStatusByKey: async (documentId: number, statusKey: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cashInvoiceOpenAPIChangeStatusByKey: async (documentId: number, statusKey: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'documentId' is not null or undefined
-            assertParamExists('creditNoteChangeStatusByKey', 'documentId', documentId)
+            assertParamExists('cashInvoiceOpenAPIChangeStatusByKey', 'documentId', documentId)
             // verify required parameter 'statusKey' is not null or undefined
-            assertParamExists('creditNoteChangeStatusByKey', 'statusKey', statusKey)
+            assertParamExists('cashInvoiceOpenAPIChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('creditNoteChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/credit-notes/{documentId}/status-key/{statusKey}`
+            assertParamExists('cashInvoiceOpenAPIChangeStatusByKey', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices-open-api/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -17263,18 +19712,104 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPICreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPICreateInline', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPICreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/cash-invoices-open-api/inline`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPICreateInlinePaidDocument: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPICreateInlinePaidDocument', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPICreateInlinePaidDocument', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/cash-invoices-open-api/inline/with-payment`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        creditNoteCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cashInvoiceOpenAPICreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('creditNoteCreate', 'culture', culture)
+            assertParamExists('cashInvoiceOpenAPICreateSimple', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('creditNoteCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/credit-notes/simple-document`
+            assertParamExists('cashInvoiceOpenAPICreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/cash-invoices-open-api`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -17307,18 +19842,894 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Create a document with InlineDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPICreateSimplePaidDocument: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPICreateSimplePaidDocument', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPICreateSimplePaidDocument', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/cash-invoices-open-api/with-payment`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIDelete: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIDelete', 'id', id)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIDelete', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices-open-api/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIDetails: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIDetails', 'id', id)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIDetails', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices-open-api/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Update a document with SimpleDocument as the parameter
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIEdit: async (id: number, culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIEdit', 'id', id)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIEdit', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIEdit', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/cash-invoices-open-api/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Update a document with SimpleDocument as the parameter
+         * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        creditNoteCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cashInvoiceOpenAPIEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('creditNoteCreate2', 'culture', culture)
+            assertParamExists('cashInvoiceOpenAPIEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('creditNoteCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/credit-notes/inline-document`
+            assertParamExists('cashInvoiceOpenAPIEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/cash-invoices-open-api/inline/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To query for documents.
+         * @param {string} culture 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIIndex: async (culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIIndex', 'culture', culture)
+            const localVarPath = `/{culture}/cash-invoices-open-api`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (sortBy !== undefined) {
+                localVarQueryParameter['SortBy'] = sortBy;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['CurrentPage'] = currentPage;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['PageSize'] = pageSize;
+            }
+
+            if (filter !== undefined) {
+                localVarQueryParameter['Filter'] = filter;
+            }
+
+            if (searchString !== undefined) {
+                localVarQueryParameter['SearchString'] = searchString;
+            }
+
+            if (customDocumentModels !== undefined) {
+                localVarQueryParameter['CustomDocumentModels'] = customDocumentModels;
+            }
+
+            if (range !== undefined) {
+                localVarQueryParameter['Range'] = range;
+            }
+
+            if (month !== undefined) {
+                localVarQueryParameter['Month'] = month;
+            }
+
+            if (year !== undefined) {
+                localVarQueryParameter['Year'] = year;
+            }
+
+            if (startDate !== undefined) {
+                localVarQueryParameter['StartDate'] = startDate;
+            }
+
+            if (endDate !== undefined) {
+                localVarQueryParameter['EndDate'] = endDate;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Receieve Payments for the document id passed in
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {PaymentModel} paymentModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIReceivePayment: async (id: number, culture: string, paymentModel: PaymentModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIReceivePayment', 'id', id)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIReceivePayment', 'culture', culture)
+            // verify required parameter 'paymentModel' is not null or undefined
+            assertParamExists('cashInvoiceOpenAPIReceivePayment', 'paymentModel', paymentModel)
+            const localVarPath = `/{culture}/cash-invoices-open-api/{id}/payment`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(paymentModel, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CashInvoiceOpenAPIApi - functional programming interface
+ * @export
+ */
+export const CashInvoiceOpenAPIApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CashInvoiceOpenAPIApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary To change status by the document id and key
+         * @param {number} documentId 
+         * @param {string} statusKey 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPIChangeStatusByKey(documentId: number, statusKey: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPIChangeStatusByKey(documentId, statusKey, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPICreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPICreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPICreateInlinePaidDocument(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPICreateInlinePaidDocument(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPICreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPICreateSimple(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPICreateSimplePaidDocument(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPICreateSimplePaidDocument(culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPIDelete(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPIDelete(id, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPIDetails(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPIDetails(id, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Update a document with SimpleDocument as the parameter
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPIEdit(id: number, culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPIEdit(id, culture, simpleDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Update a document with SimpleDocument as the parameter
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPIEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPIEditInline(id, culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To query for documents.
+         * @param {string} culture 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPIIndex(culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPIIndex(culture, sortBy, currentPage, pageSize, filter, searchString, customDocumentModels, range, month, year, startDate, endDate, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Receieve Payments for the document id passed in
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {PaymentModel} paymentModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cashInvoiceOpenAPIReceivePayment(id: number, culture: string, paymentModel: PaymentModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cashInvoiceOpenAPIReceivePayment(id, culture, paymentModel, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * CashInvoiceOpenAPIApi - factory interface
+ * @export
+ */
+export const CashInvoiceOpenAPIApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CashInvoiceOpenAPIApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary To change status by the document id and key
+         * @param {number} documentId 
+         * @param {string} statusKey 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIChangeStatusByKey(documentId: number, statusKey: string, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPIChangeStatusByKey(documentId, statusKey, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPICreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPICreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPICreateInlinePaidDocument(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPICreateInlinePaidDocument(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPICreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPICreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPICreateSimplePaidDocument(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPICreateSimplePaidDocument(culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To delete the document given a list of documentids
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIDelete(id: number, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPIDelete(id, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To get details of a document
+         * @param {number} id Sql DocumentId
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIDetails(id: number, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPIDetails(id, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Update a document with SimpleDocument as the parameter
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIEdit(id: number, culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPIEdit(id, culture, simpleDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Update a document with SimpleDocument as the parameter
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPIEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To query for documents.
+         * @param {string} culture 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIIndex(culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPIIndex(culture, sortBy, currentPage, pageSize, filter, searchString, customDocumentModels, range, month, year, startDate, endDate, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Receieve Payments for the document id passed in
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {PaymentModel} paymentModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cashInvoiceOpenAPIReceivePayment(id: number, culture: string, paymentModel: PaymentModel, options?: any): AxiosPromise<any> {
+            return localVarFp.cashInvoiceOpenAPIReceivePayment(id, culture, paymentModel, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CashInvoiceOpenAPIApi - object-oriented interface
+ * @export
+ * @class CashInvoiceOpenAPIApi
+ * @extends {BaseAPI}
+ */
+export class CashInvoiceOpenAPIApi extends BaseAPI {
+    /**
+     * 
+     * @summary To change status by the document id and key
+     * @param {number} documentId 
+     * @param {string} statusKey 
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPIChangeStatusByKey(documentId: number, statusKey: string, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPIChangeStatusByKey(documentId, statusKey, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPICreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPICreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPICreateInlinePaidDocument(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPICreateInlinePaidDocument(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPICreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPICreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPICreateSimplePaidDocument(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPICreateSimplePaidDocument(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To delete the document given a list of documentids
+     * @param {number} id 
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPIDelete(id: number, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPIDelete(id, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To get details of a document
+     * @param {number} id Sql DocumentId
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPIDetails(id: number, culture: string, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPIDetails(id, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Update a document with SimpleDocument as the parameter
+     * @param {number} id 
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPIEdit(id: number, culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPIEdit(id, culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Update a document with SimpleDocument as the parameter
+     * @param {number} id 
+     * @param {string} culture 
+     * @param {InlineDocument} inlineDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPIEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPIEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To query for documents.
+     * @param {string} culture 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPIIndex(culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPIIndex(culture, sortBy, currentPage, pageSize, filter, searchString, customDocumentModels, range, month, year, startDate, endDate, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Receieve Payments for the document id passed in
+     * @param {number} id 
+     * @param {string} culture 
+     * @param {PaymentModel} paymentModel 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CashInvoiceOpenAPIApi
+     */
+    public cashInvoiceOpenAPIReceivePayment(id: number, culture: string, paymentModel: PaymentModel, options?: AxiosRequestConfig) {
+        return CashInvoiceOpenAPIApiFp(this.configuration).cashInvoiceOpenAPIReceivePayment(id, culture, paymentModel, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * CreditNoteApi - axios parameter creator
+ * @export
+ */
+export const CreditNoteApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary To change status by the document id and key
+         * @param {number} documentId 
+         * @param {string} statusKey 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        creditNoteChangeStatusByKey: async (documentId: number, statusKey: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'documentId' is not null or undefined
+            assertParamExists('creditNoteChangeStatusByKey', 'documentId', documentId)
+            // verify required parameter 'statusKey' is not null or undefined
+            assertParamExists('creditNoteChangeStatusByKey', 'statusKey', statusKey)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('creditNoteChangeStatusByKey', 'culture', culture)
+            const localVarPath = `/{culture}/credit-notes/{documentId}/status/{statusKey}`
+                .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
+                .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {InlineDocument} inlineDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        creditNoteCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('creditNoteCreateInline', 'culture', culture)
+            // verify required parameter 'inlineDocument' is not null or undefined
+            assertParamExists('creditNoteCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/credit-notes/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -17343,6 +20754,50 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        creditNoteCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('creditNoteCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('creditNoteCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/credit-notes`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -17435,7 +20890,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -17449,7 +20904,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('creditNoteEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('creditNoteEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/credit-notes/simple-document/{id}`
+            const localVarPath = `/{culture}/credit-notes/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -17483,21 +20938,21 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        creditNoteEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        creditNoteEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('creditNoteEdit2', 'id', id)
+            assertParamExists('creditNoteEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('creditNoteEdit2', 'culture', culture)
+            assertParamExists('creditNoteEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('creditNoteEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/credit-notes/inline-document/{id}`
+            assertParamExists('creditNoteEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/credit-notes/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -17531,61 +20986,19 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @param {string} culture 
-         * @param {string} [ids] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        creditNoteGetCumulativeDocumentReferenceList: async (culture: string, ids?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('creditNoteGetCumulativeDocumentReferenceList', 'culture', culture)
-            const localVarPath = `/{culture}/credit-notes/cumulative-references`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (ids !== undefined) {
-                localVarQueryParameter['ids'] = ids;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -17666,7 +21079,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -17680,7 +21093,7 @@ export const CreditNoteApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('creditNoteReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('creditNoteReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/credit-notes/{id}/payments`
+            const localVarPath = `/{culture}/credit-notes/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -17737,26 +21150,25 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async creditNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async creditNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteCreate2(culture, inlineDocument, options);
+        async creditNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async creditNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -17785,7 +21197,7 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -17798,43 +21210,32 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async creditNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteEdit2(id, culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {string} [ids] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async creditNoteGetCumulativeDocumentReferenceList(culture: string, ids?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteGetCumulativeDocumentReferenceList(culture, ids, options);
+        async creditNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.creditNoteEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -17844,7 +21245,7 @@ export const CreditNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -17879,25 +21280,24 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        creditNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.creditNoteCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        creditNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.creditNoteCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        creditNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.creditNoteCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        creditNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.creditNoteCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -17923,7 +21323,7 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -17935,41 +21335,31 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        creditNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.creditNoteEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {string} [ids] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        creditNoteGetCumulativeDocumentReferenceList(culture: string, ids?: string, options?: any): AxiosPromise<any> {
-            return localVarFp.creditNoteGetCumulativeDocumentReferenceList(culture, ids, options).then((request) => request(axios, basePath));
+        creditNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.creditNoteEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -17978,7 +21368,7 @@ export const CreditNoteApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -18014,28 +21404,27 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CreditNoteApi
-     */
-    public creditNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return CreditNoteApiFp(this.configuration).creditNoteCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CreditNoteApi
      */
-    public creditNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return CreditNoteApiFp(this.configuration).creditNoteCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public creditNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CreditNoteApiFp(this.configuration).creditNoteCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreditNoteApi
+     */
+    public creditNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return CreditNoteApiFp(this.configuration).creditNoteCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -18066,7 +21455,7 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -18080,7 +21469,7 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -18088,37 +21477,25 @@ export class CreditNoteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CreditNoteApi
      */
-    public creditNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return CreditNoteApiFp(this.configuration).creditNoteEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {string} [ids] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CreditNoteApi
-     */
-    public creditNoteGetCumulativeDocumentReferenceList(culture: string, ids?: string, options?: AxiosRequestConfig) {
-        return CreditNoteApiFp(this.configuration).creditNoteGetCumulativeDocumentReferenceList(culture, ids, options).then((request) => request(this.axios, this.basePath));
+    public creditNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return CreditNoteApiFp(this.configuration).creditNoteEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CreditNoteApi
@@ -18129,7 +21506,7 @@ export class CreditNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -18165,7 +21542,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
             assertParamExists('debitNoteChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('debitNoteChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/debit-notes/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/debit-notes/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -18197,62 +21574,17 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        debitNoteCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('debitNoteCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('debitNoteCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/debit-notes/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        debitNoteCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        debitNoteCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('debitNoteCreate2', 'culture', culture)
+            assertParamExists('debitNoteCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('debitNoteCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/debit-notes/inline-document`
+            assertParamExists('debitNoteCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/debit-notes/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -18277,6 +21609,50 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        debitNoteCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('debitNoteCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('debitNoteCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/debit-notes`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -18369,7 +21745,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -18383,7 +21759,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
             assertParamExists('debitNoteEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('debitNoteEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/debit-notes/simple-document/{id}`
+            const localVarPath = `/{culture}/debit-notes/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -18417,21 +21793,21 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        debitNoteEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        debitNoteEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('debitNoteEdit2', 'id', id)
+            assertParamExists('debitNoteEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('debitNoteEdit2', 'culture', culture)
+            assertParamExists('debitNoteEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('debitNoteEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/debit-notes/inline-document/{id}`
+            assertParamExists('debitNoteEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/debit-notes/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -18465,61 +21841,19 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {string} culture 
-         * @param {string} [ids] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        debitNoteGetCumulativeDocumentReferenceList: async (culture: string, ids?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('debitNoteGetCumulativeDocumentReferenceList', 'culture', culture)
-            const localVarPath = `/{culture}/debit-notes/cumulative-references`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (ids !== undefined) {
-                localVarQueryParameter['ids'] = ids;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -18600,7 +21934,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -18614,7 +21948,7 @@ export const DebitNoteApiAxiosParamCreator = function (configuration?: Configura
             assertParamExists('debitNoteReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('debitNoteReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/debit-notes/{id}/payments`
+            const localVarPath = `/{culture}/debit-notes/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -18671,26 +22005,25 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async debitNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async debitNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteCreate2(culture, inlineDocument, options);
+        async debitNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async debitNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -18719,7 +22052,7 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -18732,43 +22065,32 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async debitNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteEdit2(id, culture, inlineDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {string} [ids] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async debitNoteGetCumulativeDocumentReferenceList(culture: string, ids?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteGetCumulativeDocumentReferenceList(culture, ids, options);
+        async debitNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.debitNoteEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -18778,7 +22100,7 @@ export const DebitNoteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -18813,25 +22135,24 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        debitNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.debitNoteCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        debitNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.debitNoteCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        debitNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.debitNoteCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        debitNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.debitNoteCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -18857,7 +22178,7 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -18869,41 +22190,31 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        debitNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.debitNoteEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {string} [ids] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        debitNoteGetCumulativeDocumentReferenceList(culture: string, ids?: string, options?: any): AxiosPromise<any> {
-            return localVarFp.debitNoteGetCumulativeDocumentReferenceList(culture, ids, options).then((request) => request(axios, basePath));
+        debitNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.debitNoteEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -18912,7 +22223,7 @@ export const DebitNoteApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -18948,28 +22259,27 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DebitNoteApi
-     */
-    public debitNoteCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return DebitNoteApiFp(this.configuration).debitNoteCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DebitNoteApi
      */
-    public debitNoteCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return DebitNoteApiFp(this.configuration).debitNoteCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public debitNoteCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return DebitNoteApiFp(this.configuration).debitNoteCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DebitNoteApi
+     */
+    public debitNoteCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return DebitNoteApiFp(this.configuration).debitNoteCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -19000,7 +22310,7 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -19014,7 +22324,7 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -19022,37 +22332,25 @@ export class DebitNoteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DebitNoteApi
      */
-    public debitNoteEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return DebitNoteApiFp(this.configuration).debitNoteEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {string} [ids] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DebitNoteApi
-     */
-    public debitNoteGetCumulativeDocumentReferenceList(culture: string, ids?: string, options?: AxiosRequestConfig) {
-        return DebitNoteApiFp(this.configuration).debitNoteGetCumulativeDocumentReferenceList(culture, ids, options).then((request) => request(this.axios, this.basePath));
+    public debitNoteEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return DebitNoteApiFp(this.configuration).debitNoteEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DebitNoteApi
@@ -19063,7 +22361,7 @@ export class DebitNoteApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -19085,49 +22383,18 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
-         * @summary Count employees
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeCount: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/Employee/count`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create Employee
+         * @param {string} culture 
          * @param {EmployeeModel} employeeModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        employeeCreate: async (employeeModel: EmployeeModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        employeeAddEmployee: async (culture: string, employeeModel: EmployeeModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('employeeAddEmployee', 'culture', culture)
             // verify required parameter 'employeeModel' is not null or undefined
-            assertParamExists('employeeCreate', 'employeeModel', employeeModel)
-            const localVarPath = `/Employee`;
+            assertParamExists('employeeAddEmployee', 'employeeModel', employeeModel)
+            const localVarPath = `/{culture}/Employee/manage`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19159,15 +22426,223 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Update Employee
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeGetById: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('employeeGetById', 'id', id)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('employeeGetById', 'culture', culture)
+            const localVarPath = `/{culture}/Employee/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeGetCount: async (culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('employeeGetCount', 'culture', culture)
+            const localVarPath = `/{culture}/Employee/manage/count`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PayrollQuery} payrollQuery 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeGetList: async (culture: string, payrollQuery: PayrollQuery, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('employeeGetList', 'culture', culture)
+            // verify required parameter 'payrollQuery' is not null or undefined
+            assertParamExists('employeeGetList', 'payrollQuery', payrollQuery)
+            const localVarPath = `/{culture}/Employee`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(payrollQuery, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {NotExistEmployee} notExistEmployee 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeNotExistList: async (culture: string, notExistEmployee: NotExistEmployee, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('employeeNotExistList', 'culture', culture)
+            // verify required parameter 'notExistEmployee' is not null or undefined
+            assertParamExists('employeeNotExistList', 'notExistEmployee', notExistEmployee)
+            const localVarPath = `/{culture}/Employee/not-exist`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(notExistEmployee, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeRemove: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('employeeRemove', 'id', id)
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('employeeRemove', 'culture', culture)
+            const localVarPath = `/{culture}/Employee/manage/{id}/delete`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
          * @param {EmployeeModel} employeeModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        employeeEdit: async (employeeModel: EmployeeModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        employeeUpdate: async (culture: string, employeeModel: EmployeeModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('employeeUpdate', 'culture', culture)
             // verify required parameter 'employeeModel' is not null or undefined
-            assertParamExists('employeeEdit', 'employeeModel', employeeModel)
-            const localVarPath = `/Employee`;
+            assertParamExists('employeeUpdate', 'employeeModel', employeeModel)
+            const localVarPath = `/{culture}/Employee/manage`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19197,122 +22672,6 @@ export const EmployeeApiAxiosParamCreator = function (configuration?: Configurat
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @summary Get employee by Id
-         * @param {number} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeGetById: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('employeeGetById', 'id', id)
-            const localVarPath = `/Employee/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get employee list with payrollQuery model
-         * @param {PayrollQuery} payrollQuery 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeGetList: async (payrollQuery: PayrollQuery, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'payrollQuery' is not null or undefined
-            assertParamExists('employeeGetList', 'payrollQuery', payrollQuery)
-            const localVarPath = `/Employee`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(payrollQuery, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Delete/Remove Employee by Id
-         * @param {number} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeRemove: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('employeeRemove', 'id', id)
-            const localVarPath = `/Employee/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -19325,67 +22684,78 @@ export const EmployeeApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Count employees
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async employeeCount(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeCount(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Create Employee
+         * @param {string} culture 
          * @param {EmployeeModel} employeeModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async employeeCreate(employeeModel: EmployeeModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeCreate(employeeModel, options);
+        async employeeAddEmployee(culture: string, employeeModel: EmployeeModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeAddEmployee(culture, employeeModel, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @summary Update Employee
-         * @param {EmployeeModel} employeeModel 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async employeeEdit(employeeModel: EmployeeModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeEdit(employeeModel, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Get employee by Id
          * @param {number} id 
+         * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async employeeGetById(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeGetById(id, options);
+        async employeeGetById(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeGetById(id, culture, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @summary Get employee list with payrollQuery model
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async employeeGetCount(culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeGetCount(culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
          * @param {PayrollQuery} payrollQuery 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async employeeGetList(payrollQuery: PayrollQuery, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeGetList(payrollQuery, options);
+        async employeeGetList(culture: string, payrollQuery: PayrollQuery, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeGetList(culture, payrollQuery, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @summary Delete/Remove Employee by Id
-         * @param {number} id 
+         * @param {string} culture 
+         * @param {NotExistEmployee} notExistEmployee 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async employeeRemove(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeRemove(id, options);
+        async employeeNotExistList(culture: string, notExistEmployee: NotExistEmployee, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeNotExistList(culture, notExistEmployee, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async employeeRemove(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeRemove(id, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {EmployeeModel} employeeModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async employeeUpdate(culture: string, employeeModel: EmployeeModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.employeeUpdate(culture, employeeModel, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -19400,62 +22770,72 @@ export const EmployeeApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
-         * @summary Count employees
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeCount(options?: any): AxiosPromise<any> {
-            return localVarFp.employeeCount(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create Employee
+         * @param {string} culture 
          * @param {EmployeeModel} employeeModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        employeeCreate(employeeModel: EmployeeModel, options?: any): AxiosPromise<any> {
-            return localVarFp.employeeCreate(employeeModel, options).then((request) => request(axios, basePath));
+        employeeAddEmployee(culture: string, employeeModel: EmployeeModel, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeAddEmployee(culture, employeeModel, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Update Employee
-         * @param {EmployeeModel} employeeModel 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        employeeEdit(employeeModel: EmployeeModel, options?: any): AxiosPromise<any> {
-            return localVarFp.employeeEdit(employeeModel, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get employee by Id
          * @param {number} id 
+         * @param {string} culture 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        employeeGetById(id: number, options?: any): AxiosPromise<any> {
-            return localVarFp.employeeGetById(id, options).then((request) => request(axios, basePath));
+        employeeGetById(id: number, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeGetById(id, culture, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Get employee list with payrollQuery model
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeGetCount(culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeGetCount(culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
          * @param {PayrollQuery} payrollQuery 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        employeeGetList(payrollQuery: PayrollQuery, options?: any): AxiosPromise<any> {
-            return localVarFp.employeeGetList(payrollQuery, options).then((request) => request(axios, basePath));
+        employeeGetList(culture: string, payrollQuery: PayrollQuery, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeGetList(culture, payrollQuery, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Delete/Remove Employee by Id
-         * @param {number} id 
+         * @param {string} culture 
+         * @param {NotExistEmployee} notExistEmployee 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        employeeRemove(id: number, options?: any): AxiosPromise<any> {
-            return localVarFp.employeeRemove(id, options).then((request) => request(axios, basePath));
+        employeeNotExistList(culture: string, notExistEmployee: NotExistEmployee, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeNotExistList(culture, notExistEmployee, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id 
+         * @param {string} culture 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeRemove(id: number, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeRemove(id, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {EmployeeModel} employeeModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        employeeUpdate(culture: string, employeeModel: EmployeeModel, options?: any): AxiosPromise<any> {
+            return localVarFp.employeeUpdate(culture, employeeModel, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -19469,73 +22849,85 @@ export const EmployeeApiFactory = function (configuration?: Configuration, baseP
 export class EmployeeApi extends BaseAPI {
     /**
      * 
-     * @summary Count employees
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EmployeeApi
-     */
-    public employeeCount(options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeCount(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create Employee
+     * @param {string} culture 
      * @param {EmployeeModel} employeeModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EmployeeApi
      */
-    public employeeCreate(employeeModel: EmployeeModel, options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeCreate(employeeModel, options).then((request) => request(this.axios, this.basePath));
+    public employeeAddEmployee(culture: string, employeeModel: EmployeeModel, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeAddEmployee(culture, employeeModel, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Update Employee
-     * @param {EmployeeModel} employeeModel 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EmployeeApi
-     */
-    public employeeEdit(employeeModel: EmployeeModel, options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeEdit(employeeModel, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get employee by Id
      * @param {number} id 
+     * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EmployeeApi
      */
-    public employeeGetById(id: number, options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeGetById(id, options).then((request) => request(this.axios, this.basePath));
+    public employeeGetById(id: number, culture: string, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeGetById(id, culture, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get employee list with payrollQuery model
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EmployeeApi
+     */
+    public employeeGetCount(culture: string, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeGetCount(culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
      * @param {PayrollQuery} payrollQuery 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EmployeeApi
      */
-    public employeeGetList(payrollQuery: PayrollQuery, options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeGetList(payrollQuery, options).then((request) => request(this.axios, this.basePath));
+    public employeeGetList(culture: string, payrollQuery: PayrollQuery, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeGetList(culture, payrollQuery, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Delete/Remove Employee by Id
-     * @param {number} id 
+     * @param {string} culture 
+     * @param {NotExistEmployee} notExistEmployee 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EmployeeApi
      */
-    public employeeRemove(id: number, options?: AxiosRequestConfig) {
-        return EmployeeApiFp(this.configuration).employeeRemove(id, options).then((request) => request(this.axios, this.basePath));
+    public employeeNotExistList(culture: string, notExistEmployee: NotExistEmployee, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeNotExistList(culture, notExistEmployee, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id 
+     * @param {string} culture 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EmployeeApi
+     */
+    public employeeRemove(id: number, culture: string, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeRemove(id, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {EmployeeModel} employeeModel 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EmployeeApi
+     */
+    public employeeUpdate(culture: string, employeeModel: EmployeeModel, options?: AxiosRequestConfig) {
+        return EmployeeApiFp(this.configuration).employeeUpdate(culture, employeeModel, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -19562,7 +22954,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('expenseChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('expenseChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/expenses/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/expenses/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -19594,62 +22986,17 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        expenseCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('expenseCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('expenseCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/expenses/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        expenseCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        expenseCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('expenseCreate2', 'culture', culture)
+            assertParamExists('expenseCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('expenseCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/expenses/inline-document`
+            assertParamExists('expenseCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/expenses/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -19674,6 +23021,50 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        expenseCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('expenseCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('expenseCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/expenses`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -19766,7 +23157,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -19780,7 +23171,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('expenseEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('expenseEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/expenses/simple-document/{id}`
+            const localVarPath = `/{culture}/expenses/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -19814,21 +23205,21 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        expenseEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        expenseEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('expenseEdit2', 'id', id)
+            assertParamExists('expenseEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('expenseEdit2', 'culture', culture)
+            assertParamExists('expenseEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('expenseEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/expenses/inline-document/{id}`
+            assertParamExists('expenseEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/expenses/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -20012,17 +23403,17 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -20103,7 +23494,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -20117,7 +23508,7 @@ export const ExpenseApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('expenseReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('expenseReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/expenses/{id}/payments`
+            const localVarPath = `/{culture}/expenses/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -20174,26 +23565,25 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async expenseCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async expenseCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseCreate2(culture, inlineDocument, options);
+        async expenseCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async expenseCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -20222,7 +23612,7 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -20235,15 +23625,15 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async expenseEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseEdit2(id, culture, inlineDocument, options);
+        async expenseEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.expenseEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -20290,17 +23680,17 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -20310,7 +23700,7 @@ export const ExpenseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -20345,25 +23735,24 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        expenseCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.expenseCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        expenseCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.expenseCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        expenseCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.expenseCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        expenseCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.expenseCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -20389,7 +23778,7 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -20401,15 +23790,15 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        expenseEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.expenseEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        expenseEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.expenseEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -20451,17 +23840,17 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -20470,7 +23859,7 @@ export const ExpenseApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -20506,28 +23895,27 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExpenseApi
-     */
-    public expenseCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return ExpenseApiFp(this.configuration).expenseCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExpenseApi
      */
-    public expenseCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ExpenseApiFp(this.configuration).expenseCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public expenseCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ExpenseApiFp(this.configuration).expenseCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExpenseApi
+     */
+    public expenseCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return ExpenseApiFp(this.configuration).expenseCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -20558,7 +23946,7 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -20572,7 +23960,7 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -20580,8 +23968,8 @@ export class ExpenseApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ExpenseApi
      */
-    public expenseEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ExpenseApiFp(this.configuration).expenseEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public expenseEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ExpenseApiFp(this.configuration).expenseEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -20632,17 +24020,17 @@ export class ExpenseApi extends BaseAPI {
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExpenseApi
@@ -20653,7 +24041,7 @@ export class ExpenseApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -20668,24 +24056,191 @@ export class ExpenseApi extends BaseAPI {
 
 
 /**
- * ProductCategoryApi - axios parameter creator
+ * InternalApiApi - axios parameter creator
  * @export
  */
-export const ProductCategoryApiAxiosParamCreator = function (configuration?: Configuration) {
+export const InternalApiApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        internalApiIndex: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/internalapi`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {S3TriggerMessage} s3TriggerMessage 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        internalApiTriggerBatchFromS3: async (s3TriggerMessage: S3TriggerMessage, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 's3TriggerMessage' is not null or undefined
+            assertParamExists('internalApiTriggerBatchFromS3', 's3TriggerMessage', s3TriggerMessage)
+            const localVarPath = `/internalapi/trigger-batch-from-s3`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(s3TriggerMessage, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * InternalApiApi - functional programming interface
+ * @export
+ */
+export const InternalApiApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = InternalApiApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async internalApiIndex(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiIndex(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {S3TriggerMessage} s3TriggerMessage 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async internalApiTriggerBatchFromS3(s3TriggerMessage: S3TriggerMessage, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiTriggerBatchFromS3(s3TriggerMessage, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * InternalApiApi - factory interface
+ * @export
+ */
+export const InternalApiApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = InternalApiApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        internalApiIndex(options?: any): AxiosPromise<any> {
+            return localVarFp.internalApiIndex(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {S3TriggerMessage} s3TriggerMessage 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        internalApiTriggerBatchFromS3(s3TriggerMessage: S3TriggerMessage, options?: any): AxiosPromise<boolean> {
+            return localVarFp.internalApiTriggerBatchFromS3(s3TriggerMessage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * InternalApiApi - object-oriented interface
+ * @export
+ * @class InternalApiApi
+ * @extends {BaseAPI}
+ */
+export class InternalApiApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InternalApiApi
+     */
+    public internalApiIndex(options?: AxiosRequestConfig) {
+        return InternalApiApiFp(this.configuration).internalApiIndex(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {S3TriggerMessage} s3TriggerMessage 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InternalApiApi
+     */
+    public internalApiTriggerBatchFromS3(s3TriggerMessage: S3TriggerMessage, options?: AxiosRequestConfig) {
+        return InternalApiApiFp(this.configuration).internalApiTriggerBatchFromS3(s3TriggerMessage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * PayrollApi - axios parameter creator
+ * @export
+ */
+export const PayrollApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
          * @param {string} culture 
-         * @param {ProductCategory} productCategory 
+         * @param {PayrollGrid} payrollGrid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productCategoryCreateProductCategory: async (culture: string, productCategory: ProductCategory, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        payrollCreate: async (culture: string, payrollGrid: PayrollGrid, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productCategoryCreateProductCategory', 'culture', culture)
-            // verify required parameter 'productCategory' is not null or undefined
-            assertParamExists('productCategoryCreateProductCategory', 'productCategory', productCategory)
-            const localVarPath = `/{culture}/products/categories`
+            assertParamExists('payrollCreate', 'culture', culture)
+            // verify required parameter 'payrollGrid' is not null or undefined
+            assertParamExists('payrollCreate', 'payrollGrid', payrollGrid)
+            const localVarPath = `/{culture}/Payroll/manage`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -20709,7 +24264,7 @@ export const ProductCategoryApiAxiosParamCreator = function (configuration?: Con
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(productCategory, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(payrollGrid, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -20723,12 +24278,12 @@ export const ProductCategoryApiAxiosParamCreator = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productCategoryDeleteProductCategory: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        payrollDelete: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('productCategoryDeleteProductCategory', 'id', id)
+            assertParamExists('payrollDelete', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productCategoryDeleteProductCategory', 'culture', culture)
-            const localVarPath = `/{culture}/products/categories/{id}`
+            assertParamExists('payrollDelete', 'culture', culture)
+            const localVarPath = `/{culture}/Payroll/manage/{id}/delete`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -20759,16 +24314,18 @@ export const ProductCategoryApiAxiosParamCreator = function (configuration?: Con
         },
         /**
          * 
+         * @param {number} id 
          * @param {string} culture 
-         * @param {number} [currentPage] 
-         * @param {number} [pageSize] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productCategoryGetProductCategory: async (culture: string, currentPage?: number, pageSize?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        payrollGetById: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('payrollGetById', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productCategoryGetProductCategory', 'culture', culture)
-            const localVarPath = `/{culture}/products/categories`
+            assertParamExists('payrollGetById', 'culture', culture)
+            const localVarPath = `/{culture}/Payroll/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -20785,14 +24342,6 @@ export const ProductCategoryApiAxiosParamCreator = function (configuration?: Con
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
-            }
-
-            if (pageSize !== undefined) {
-                localVarQueryParameter['pageSize'] = pageSize;
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -20806,21 +24355,60 @@ export const ProductCategoryApiAxiosParamCreator = function (configuration?: Con
         },
         /**
          * 
-         * @param {number} id 
          * @param {string} culture 
-         * @param {ProductCategory} productCategory 
+         * @param {PayrollQuery} payrollQuery 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productCategoryUpdateProductCategory: async (id: number, culture: string, productCategory: ProductCategory, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('productCategoryUpdateProductCategory', 'id', id)
+        payrollGetList: async (culture: string, payrollQuery: PayrollQuery, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productCategoryUpdateProductCategory', 'culture', culture)
-            // verify required parameter 'productCategory' is not null or undefined
-            assertParamExists('productCategoryUpdateProductCategory', 'productCategory', productCategory)
-            const localVarPath = `/{culture}/products/categories/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+            assertParamExists('payrollGetList', 'culture', culture)
+            // verify required parameter 'payrollQuery' is not null or undefined
+            assertParamExists('payrollGetList', 'payrollQuery', payrollQuery)
+            const localVarPath = `/{culture}/Payroll`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(payrollQuery, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PayrollGrid} payrollGrid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        payrollUpdate: async (culture: string, payrollGrid: PayrollGrid, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('payrollUpdate', 'culture', culture)
+            // verify required parameter 'payrollGrid' is not null or undefined
+            assertParamExists('payrollUpdate', 'payrollGrid', payrollGrid)
+            const localVarPath = `/{culture}/Payroll/manage`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -20844,7 +24432,7 @@ export const ProductCategoryApiAxiosParamCreator = function (configuration?: Con
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(productCategory, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(payrollGrid, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -20855,21 +24443,21 @@ export const ProductCategoryApiAxiosParamCreator = function (configuration?: Con
 };
 
 /**
- * ProductCategoryApi - functional programming interface
+ * PayrollApi - functional programming interface
  * @export
  */
-export const ProductCategoryApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ProductCategoryApiAxiosParamCreator(configuration)
+export const PayrollApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PayrollApiAxiosParamCreator(configuration)
     return {
         /**
          * 
          * @param {string} culture 
-         * @param {ProductCategory} productCategory 
+         * @param {PayrollGrid} payrollGrid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async productCategoryCreateProductCategory(culture: string, productCategory: ProductCategory, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productCategoryCreateProductCategory(culture, productCategory, options);
+        async payrollCreate(culture: string, payrollGrid: PayrollGrid, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.payrollCreate(culture, payrollGrid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -20879,53 +24467,62 @@ export const ProductCategoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async productCategoryDeleteProductCategory(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productCategoryDeleteProductCategory(id, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {number} [currentPage] 
-         * @param {number} [pageSize] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productCategoryGetProductCategory(culture: string, currentPage?: number, pageSize?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ProductCategory>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productCategoryGetProductCategory(culture, currentPage, pageSize, options);
+        async payrollDelete(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.payrollDelete(id, culture, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} id 
          * @param {string} culture 
-         * @param {ProductCategory} productCategory 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async productCategoryUpdateProductCategory(id: number, culture: string, productCategory: ProductCategory, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productCategoryUpdateProductCategory(id, culture, productCategory, options);
+        async payrollGetById(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.payrollGetById(id, culture, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PayrollQuery} payrollQuery 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async payrollGetList(culture: string, payrollQuery: PayrollQuery, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.payrollGetList(culture, payrollQuery, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PayrollGrid} payrollGrid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async payrollUpdate(culture: string, payrollGrid: PayrollGrid, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.payrollUpdate(culture, payrollGrid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
- * ProductCategoryApi - factory interface
+ * PayrollApi - factory interface
  * @export
  */
-export const ProductCategoryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ProductCategoryApiFp(configuration)
+export const PayrollApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PayrollApiFp(configuration)
     return {
         /**
          * 
          * @param {string} culture 
-         * @param {ProductCategory} productCategory 
+         * @param {PayrollGrid} payrollGrid 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productCategoryCreateProductCategory(culture: string, productCategory: ProductCategory, options?: any): AxiosPromise<any> {
-            return localVarFp.productCategoryCreateProductCategory(culture, productCategory, options).then((request) => request(axios, basePath));
+        payrollCreate(culture: string, payrollGrid: PayrollGrid, options?: any): AxiosPromise<any> {
+            return localVarFp.payrollCreate(culture, payrollGrid, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -20934,741 +24531,59 @@ export const ProductCategoryApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productCategoryDeleteProductCategory(id: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.productCategoryDeleteProductCategory(id, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {number} [currentPage] 
-         * @param {number} [pageSize] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productCategoryGetProductCategory(culture: string, currentPage?: number, pageSize?: number, options?: any): AxiosPromise<Array<ProductCategory>> {
-            return localVarFp.productCategoryGetProductCategory(culture, currentPage, pageSize, options).then((request) => request(axios, basePath));
+        payrollDelete(id: number, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.payrollDelete(id, culture, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} id 
          * @param {string} culture 
-         * @param {ProductCategory} productCategory 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productCategoryUpdateProductCategory(id: number, culture: string, productCategory: ProductCategory, options?: any): AxiosPromise<any> {
-            return localVarFp.productCategoryUpdateProductCategory(id, culture, productCategory, options).then((request) => request(axios, basePath));
+        payrollGetById(id: number, culture: string, options?: any): AxiosPromise<any> {
+            return localVarFp.payrollGetById(id, culture, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PayrollQuery} payrollQuery 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        payrollGetList(culture: string, payrollQuery: PayrollQuery, options?: any): AxiosPromise<any> {
+            return localVarFp.payrollGetList(culture, payrollQuery, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} culture 
+         * @param {PayrollGrid} payrollGrid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        payrollUpdate(culture: string, payrollGrid: PayrollGrid, options?: any): AxiosPromise<any> {
+            return localVarFp.payrollUpdate(culture, payrollGrid, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * ProductCategoryApi - object-oriented interface
+ * PayrollApi - object-oriented interface
  * @export
- * @class ProductCategoryApi
+ * @class PayrollApi
  * @extends {BaseAPI}
  */
-export class ProductCategoryApi extends BaseAPI {
+export class PayrollApi extends BaseAPI {
     /**
      * 
      * @param {string} culture 
-     * @param {ProductCategory} productCategory 
+     * @param {PayrollGrid} payrollGrid 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductCategoryApi
+     * @memberof PayrollApi
      */
-    public productCategoryCreateProductCategory(culture: string, productCategory: ProductCategory, options?: AxiosRequestConfig) {
-        return ProductCategoryApiFp(this.configuration).productCategoryCreateProductCategory(culture, productCategory, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductCategoryApi
-     */
-    public productCategoryDeleteProductCategory(id: number, culture: string, options?: AxiosRequestConfig) {
-        return ProductCategoryApiFp(this.configuration).productCategoryDeleteProductCategory(id, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {number} [currentPage] 
-     * @param {number} [pageSize] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductCategoryApi
-     */
-    public productCategoryGetProductCategory(culture: string, currentPage?: number, pageSize?: number, options?: AxiosRequestConfig) {
-        return ProductCategoryApiFp(this.configuration).productCategoryGetProductCategory(culture, currentPage, pageSize, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id 
-     * @param {string} culture 
-     * @param {ProductCategory} productCategory 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductCategoryApi
-     */
-    public productCategoryUpdateProductCategory(id: number, culture: string, productCategory: ProductCategory, options?: AxiosRequestConfig) {
-        return ProductCategoryApiFp(this.configuration).productCategoryUpdateProductCategory(id, culture, productCategory, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * ProductInventoryApi - axios parameter creator
- * @export
- */
-export const ProductInventoryApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {StockCard} stockCard 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productInventoryAdjust: async (culture: string, stockCard: StockCard, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productInventoryAdjust', 'culture', culture)
-            // verify required parameter 'stockCard' is not null or undefined
-            assertParamExists('productInventoryAdjust', 'stockCard', stockCard)
-            const localVarPath = `/{culture}/product-inventories/adjust`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(stockCard, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productInventoryDeleteProductInventory: async (id: string, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('productInventoryDeleteProductInventory', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productInventoryDeleteProductInventory', 'culture', culture)
-            const localVarPath = `/{culture}/product-inventories/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productInventoryGetList: async (id: number, culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('productInventoryGetList', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productInventoryGetList', 'culture', culture)
-            const localVarPath = `/{culture}/product-inventories/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (sortBy !== undefined) {
-                localVarQueryParameter['SortBy'] = sortBy;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['CurrentPage'] = currentPage;
-            }
-
-            if (pageSize !== undefined) {
-                localVarQueryParameter['PageSize'] = pageSize;
-            }
-
-            if (filter !== undefined) {
-                localVarQueryParameter['Filter'] = filter;
-            }
-
-            if (searchString !== undefined) {
-                localVarQueryParameter['SearchString'] = searchString;
-            }
-
-            if (customDocumentModels !== undefined) {
-                localVarQueryParameter['CustomDocumentModels'] = customDocumentModels;
-            }
-
-            if (range !== undefined) {
-                localVarQueryParameter['Range'] = range;
-            }
-
-            if (month !== undefined) {
-                localVarQueryParameter['Month'] = month;
-            }
-
-            if (year !== undefined) {
-                localVarQueryParameter['Year'] = year;
-            }
-
-            if (startDate !== undefined) {
-                localVarQueryParameter['StartDate'] = startDate;
-            }
-
-            if (endDate !== undefined) {
-                localVarQueryParameter['EndDate'] = endDate;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * ProductInventoryApi - functional programming interface
- * @export
- */
-export const ProductInventoryApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ProductInventoryApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {StockCard} stockCard 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productInventoryAdjust(culture: string, stockCard: StockCard, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productInventoryAdjust(culture, stockCard, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productInventoryDeleteProductInventory(id: string, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productInventoryDeleteProductInventory(id, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productInventoryGetList(id: number, culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productInventoryGetList(id, culture, sortBy, currentPage, pageSize, filter, searchString, customDocumentModels, range, month, year, startDate, endDate, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * ProductInventoryApi - factory interface
- * @export
- */
-export const ProductInventoryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ProductInventoryApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {StockCard} stockCard 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productInventoryAdjust(culture: string, stockCard: StockCard, options?: any): AxiosPromise<any> {
-            return localVarFp.productInventoryAdjust(culture, stockCard, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productInventoryDeleteProductInventory(id: string, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.productInventoryDeleteProductInventory(id, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productInventoryGetList(id: number, culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options?: any): AxiosPromise<any> {
-            return localVarFp.productInventoryGetList(id, culture, sortBy, currentPage, pageSize, filter, searchString, customDocumentModels, range, month, year, startDate, endDate, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * ProductInventoryApi - object-oriented interface
- * @export
- * @class ProductInventoryApi
- * @extends {BaseAPI}
- */
-export class ProductInventoryApi extends BaseAPI {
-    /**
-     * 
-     * @param {string} culture 
-     * @param {StockCard} stockCard 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductInventoryApi
-     */
-    public productInventoryAdjust(culture: string, stockCard: StockCard, options?: AxiosRequestConfig) {
-        return ProductInventoryApiFp(this.configuration).productInventoryAdjust(culture, stockCard, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductInventoryApi
-     */
-    public productInventoryDeleteProductInventory(id: string, culture: string, options?: AxiosRequestConfig) {
-        return ProductInventoryApiFp(this.configuration).productInventoryDeleteProductInventory(id, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id 
-     * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductInventoryApi
-     */
-    public productInventoryGetList(id: number, culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options?: AxiosRequestConfig) {
-        return ProductInventoryApiFp(this.configuration).productInventoryGetList(id, culture, sortBy, currentPage, pageSize, filter, searchString, customDocumentModels, range, month, year, startDate, endDate, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * ProductUnitApi - axios parameter creator
- * @export
- */
-export const ProductUnitApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {ProductUnit} productUnit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUnitCreateProductUnit: async (culture: string, productUnit: ProductUnit, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productUnitCreateProductUnit', 'culture', culture)
-            // verify required parameter 'productUnit' is not null or undefined
-            assertParamExists('productUnitCreateProductUnit', 'productUnit', productUnit)
-            const localVarPath = `/{culture}/products/units`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(productUnit, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUnitDeleteProductUnit: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('productUnitDeleteProductUnit', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productUnitDeleteProductUnit', 'culture', culture)
-            const localVarPath = `/{culture}/products/units/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUnitGetProductUnitList: async (culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productUnitGetProductUnitList', 'culture', culture)
-            const localVarPath = `/{culture}/products/units`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {ProductUnit} productUnit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUnitUpdateProductUnit: async (id: number, culture: string, productUnit: ProductUnit, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('productUnitUpdateProductUnit', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('productUnitUpdateProductUnit', 'culture', culture)
-            // verify required parameter 'productUnit' is not null or undefined
-            assertParamExists('productUnitUpdateProductUnit', 'productUnit', productUnit)
-            const localVarPath = `/{culture}/products/units/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(productUnit, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * ProductUnitApi - functional programming interface
- * @export
- */
-export const ProductUnitApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ProductUnitApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {ProductUnit} productUnit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productUnitCreateProductUnit(culture: string, productUnit: ProductUnit, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productUnitCreateProductUnit(culture, productUnit, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productUnitDeleteProductUnit(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productUnitDeleteProductUnit(id, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productUnitGetProductUnitList(culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productUnitGetProductUnitList(culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {ProductUnit} productUnit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productUnitUpdateProductUnit(id: number, culture: string, productUnit: ProductUnit, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productUnitUpdateProductUnit(id, culture, productUnit, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * ProductUnitApi - factory interface
- * @export
- */
-export const ProductUnitApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ProductUnitApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {string} culture 
-         * @param {ProductUnit} productUnit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUnitCreateProductUnit(culture: string, productUnit: ProductUnit, options?: any): AxiosPromise<any> {
-            return localVarFp.productUnitCreateProductUnit(culture, productUnit, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUnitDeleteProductUnit(id: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.productUnitDeleteProductUnit(id, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUnitGetProductUnitList(culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.productUnitGetProductUnitList(culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {ProductUnit} productUnit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUnitUpdateProductUnit(id: number, culture: string, productUnit: ProductUnit, options?: any): AxiosPromise<any> {
-            return localVarFp.productUnitUpdateProductUnit(id, culture, productUnit, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * ProductUnitApi - object-oriented interface
- * @export
- * @class ProductUnitApi
- * @extends {BaseAPI}
- */
-export class ProductUnitApi extends BaseAPI {
-    /**
-     * 
-     * @param {string} culture 
-     * @param {ProductUnit} productUnit 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductUnitApi
-     */
-    public productUnitCreateProductUnit(culture: string, productUnit: ProductUnit, options?: AxiosRequestConfig) {
-        return ProductUnitApiFp(this.configuration).productUnitCreateProductUnit(culture, productUnit, options).then((request) => request(this.axios, this.basePath));
+    public payrollCreate(culture: string, payrollGrid: PayrollGrid, options?: AxiosRequestConfig) {
+        return PayrollApiFp(this.configuration).payrollCreate(culture, payrollGrid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -21677,34 +24592,46 @@ export class ProductUnitApi extends BaseAPI {
      * @param {string} culture 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductUnitApi
+     * @memberof PayrollApi
      */
-    public productUnitDeleteProductUnit(id: number, culture: string, options?: AxiosRequestConfig) {
-        return ProductUnitApiFp(this.configuration).productUnitDeleteProductUnit(id, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductUnitApi
-     */
-    public productUnitGetProductUnitList(culture: string, options?: AxiosRequestConfig) {
-        return ProductUnitApiFp(this.configuration).productUnitGetProductUnitList(culture, options).then((request) => request(this.axios, this.basePath));
+    public payrollDelete(id: number, culture: string, options?: AxiosRequestConfig) {
+        return PayrollApiFp(this.configuration).payrollDelete(id, culture, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} id 
      * @param {string} culture 
-     * @param {ProductUnit} productUnit 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductUnitApi
+     * @memberof PayrollApi
      */
-    public productUnitUpdateProductUnit(id: number, culture: string, productUnit: ProductUnit, options?: AxiosRequestConfig) {
-        return ProductUnitApiFp(this.configuration).productUnitUpdateProductUnit(id, culture, productUnit, options).then((request) => request(this.axios, this.basePath));
+    public payrollGetById(id: number, culture: string, options?: AxiosRequestConfig) {
+        return PayrollApiFp(this.configuration).payrollGetById(id, culture, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {PayrollQuery} payrollQuery 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayrollApi
+     */
+    public payrollGetList(culture: string, payrollQuery: PayrollQuery, options?: AxiosRequestConfig) {
+        return PayrollApiFp(this.configuration).payrollGetList(culture, payrollQuery, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} culture 
+     * @param {PayrollGrid} payrollGrid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayrollApi
+     */
+    public payrollUpdate(culture: string, payrollGrid: PayrollGrid, options?: AxiosRequestConfig) {
+        return PayrollApiFp(this.configuration).payrollUpdate(culture, payrollGrid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -21718,15 +24645,15 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {string} culture 
-         * @param {ProductResult} productResult 
+         * @param {ProductV1Request} productV1Request 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productsCreate: async (culture: string, productResult: ProductResult, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        productsCreate: async (culture: string, productV1Request: ProductV1Request, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('productsCreate', 'culture', culture)
-            // verify required parameter 'productResult' is not null or undefined
-            assertParamExists('productsCreate', 'productResult', productResult)
+            // verify required parameter 'productV1Request' is not null or undefined
+            assertParamExists('productsCreate', 'productV1Request', productV1Request)
             const localVarPath = `/{culture}/Products`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -21751,7 +24678,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(productResult, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(productV1Request, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -21802,17 +24729,17 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {number} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -21940,17 +24867,17 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -22033,17 +24960,17 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @param {number} id 
          * @param {string} culture 
-         * @param {ProductResult} productResult 
+         * @param {ProductV1Request} productV1Request 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productsUpdate: async (id: number, culture: string, productResult: ProductResult, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        productsUpdate: async (id: number, culture: string, productV1Request: ProductV1Request, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('productsUpdate', 'id', id)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('productsUpdate', 'culture', culture)
-            // verify required parameter 'productResult' is not null or undefined
-            assertParamExists('productsUpdate', 'productResult', productResult)
+            // verify required parameter 'productV1Request' is not null or undefined
+            assertParamExists('productsUpdate', 'productV1Request', productV1Request)
             const localVarPath = `/{culture}/Products/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -22069,7 +24996,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(productResult, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(productV1Request, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -22089,12 +25016,12 @@ export const ProductsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} culture 
-         * @param {ProductResult} productResult 
+         * @param {ProductV1Request} productV1Request 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async productsCreate(culture: string, productResult: ProductResult, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIResponseOfISimpleListResultOfIProductResult>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productsCreate(culture, productResult, options);
+        async productsCreate(culture: string, productV1Request: ProductV1Request, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIResponseOfISimpleListResultOfProductResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.productsCreate(culture, productV1Request, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -22104,29 +25031,29 @@ export const ProductsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async productsGetById(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIResponseOfISimpleListResultOfIProductResult>> {
+        async productsGetById(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIResponseOfISimpleListResultOfProductResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.productsGetById(id, culture, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {number} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async productsGetList(culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIResponseOfISimpleListResultOfIProductResult>> {
+        async productsGetList(culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIResponseOfISimpleListResultOfProductResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.productsGetList(culture, sortBy, currentPage, pageSize, filter, searchString, customDocumentModels, range, month, year, startDate, endDate, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -22144,17 +25071,17 @@ export const ProductsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -22166,12 +25093,12 @@ export const ProductsApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} id 
          * @param {string} culture 
-         * @param {ProductResult} productResult 
+         * @param {ProductV1Request} productV1Request 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async productsUpdate(id: number, culture: string, productResult: ProductResult, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIResponseOfISimpleListResultOfIProductResult>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productsUpdate(id, culture, productResult, options);
+        async productsUpdate(id: number, culture: string, productV1Request: ProductV1Request, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIResponseOfISimpleListResultOfProductResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.productsUpdate(id, culture, productV1Request, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -22187,12 +25114,12 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @param {string} culture 
-         * @param {ProductResult} productResult 
+         * @param {ProductV1Request} productV1Request 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productsCreate(culture: string, productResult: ProductResult, options?: any): AxiosPromise<APIResponseOfISimpleListResultOfIProductResult> {
-            return localVarFp.productsCreate(culture, productResult, options).then((request) => request(axios, basePath));
+        productsCreate(culture: string, productV1Request: ProductV1Request, options?: any): AxiosPromise<APIResponseOfISimpleListResultOfProductResponse> {
+            return localVarFp.productsCreate(culture, productV1Request, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -22201,28 +25128,28 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productsGetById(id: number, culture: string, options?: any): AxiosPromise<APIResponseOfISimpleListResultOfIProductResult> {
+        productsGetById(id: number, culture: string, options?: any): AxiosPromise<APIResponseOfISimpleListResultOfProductResponse> {
             return localVarFp.productsGetById(id, culture, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {number} [id] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productsGetList(culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, id?: number, options?: any): AxiosPromise<APIResponseOfISimpleListResultOfIProductResult> {
+        productsGetList(culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, id?: number, options?: any): AxiosPromise<APIResponseOfISimpleListResultOfProductResponse> {
             return localVarFp.productsGetList(culture, sortBy, currentPage, pageSize, filter, searchString, customDocumentModels, range, month, year, startDate, endDate, id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -22238,17 +25165,17 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -22259,12 +25186,12 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * 
          * @param {number} id 
          * @param {string} culture 
-         * @param {ProductResult} productResult 
+         * @param {ProductV1Request} productV1Request 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        productsUpdate(id: number, culture: string, productResult: ProductResult, options?: any): AxiosPromise<APIResponseOfISimpleListResultOfIProductResult> {
-            return localVarFp.productsUpdate(id, culture, productResult, options).then((request) => request(axios, basePath));
+        productsUpdate(id: number, culture: string, productV1Request: ProductV1Request, options?: any): AxiosPromise<APIResponseOfISimpleListResultOfProductResponse> {
+            return localVarFp.productsUpdate(id, culture, productV1Request, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -22279,13 +25206,13 @@ export class ProductsApi extends BaseAPI {
     /**
      * 
      * @param {string} culture 
-     * @param {ProductResult} productResult 
+     * @param {ProductV1Request} productV1Request 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApi
      */
-    public productsCreate(culture: string, productResult: ProductResult, options?: AxiosRequestConfig) {
-        return ProductsApiFp(this.configuration).productsCreate(culture, productResult, options).then((request) => request(this.axios, this.basePath));
+    public productsCreate(culture: string, productV1Request: ProductV1Request, options?: AxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).productsCreate(culture, productV1Request, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -22303,17 +25230,17 @@ export class ProductsApi extends BaseAPI {
     /**
      * 
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {number} [id] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -22338,17 +25265,17 @@ export class ProductsApi extends BaseAPI {
     /**
      * 
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApi
@@ -22361,13 +25288,13 @@ export class ProductsApi extends BaseAPI {
      * 
      * @param {number} id 
      * @param {string} culture 
-     * @param {ProductResult} productResult 
+     * @param {ProductV1Request} productV1Request 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApi
      */
-    public productsUpdate(id: number, culture: string, productResult: ProductResult, options?: AxiosRequestConfig) {
-        return ProductsApiFp(this.configuration).productsUpdate(id, culture, productResult, options).then((request) => request(this.axios, this.basePath));
+    public productsUpdate(id: number, culture: string, productV1Request: ProductV1Request, options?: AxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).productsUpdate(id, culture, productV1Request, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -22394,7 +25321,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('purchaseChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('purchaseChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/purchases/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/purchases/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -22426,62 +25353,17 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('purchaseCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/purchases/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        purchaseCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseCreate2', 'culture', culture)
+            assertParamExists('purchaseCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('purchaseCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/purchases/inline-document`
+            assertParamExists('purchaseCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/purchases/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -22506,6 +25388,50 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('purchaseCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('purchaseCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/purchases`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -22598,7 +25524,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -22612,7 +25538,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('purchaseEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('purchaseEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/purchases/simple-document/{id}`
+            const localVarPath = `/{culture}/purchases/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -22646,21 +25572,21 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        purchaseEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('purchaseEdit2', 'id', id)
+            assertParamExists('purchaseEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseEdit2', 'culture', culture)
+            assertParamExists('purchaseEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('purchaseEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/purchases/inline-document/{id}`
+            assertParamExists('purchaseEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/purchases/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -22696,17 +25622,17 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -22787,7 +25713,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -22801,7 +25727,7 @@ export const PurchaseApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('purchaseReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('purchaseReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/purchases/{id}/payments`
+            const localVarPath = `/{culture}/purchases/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -22858,26 +25784,25 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async purchaseCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async purchaseCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseCreate2(culture, inlineDocument, options);
+        async purchaseCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async purchaseCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -22906,7 +25831,7 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -22919,32 +25844,32 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async purchaseEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseEdit2(id, culture, inlineDocument, options);
+        async purchaseEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -22954,7 +25879,7 @@ export const PurchaseApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -22989,25 +25914,24 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.purchaseCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.purchaseCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        purchaseCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.purchaseCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.purchaseCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -23033,7 +25957,7 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -23045,31 +25969,31 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.purchaseEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        purchaseEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.purchaseEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -23078,7 +26002,7 @@ export const PurchaseApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -23114,28 +26038,27 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PurchaseApi
-     */
-    public purchaseCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return PurchaseApiFp(this.configuration).purchaseCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PurchaseApi
      */
-    public purchaseCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return PurchaseApiFp(this.configuration).purchaseCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public purchaseCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return PurchaseApiFp(this.configuration).purchaseCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PurchaseApi
+     */
+    public purchaseCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return PurchaseApiFp(this.configuration).purchaseCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -23166,7 +26089,7 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -23180,7 +26103,7 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -23188,25 +26111,25 @@ export class PurchaseApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PurchaseApi
      */
-    public purchaseEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return PurchaseApiFp(this.configuration).purchaseEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public purchaseEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return PurchaseApiFp(this.configuration).purchaseEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PurchaseApi
@@ -23217,7 +26140,7 @@ export class PurchaseApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -23253,7 +26176,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
             assertParamExists('purchaseOrderChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('purchaseOrderChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/purchase-orders/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/purchases-orders/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -23285,62 +26208,17 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseOrderCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseOrderCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('purchaseOrderCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/purchase-orders/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseOrderCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        purchaseOrderCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseOrderCreate2', 'culture', culture)
+            assertParamExists('purchaseOrderCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('purchaseOrderCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/purchase-orders/inline-document`
+            assertParamExists('purchaseOrderCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/purchases-orders/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23373,6 +26251,50 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseOrderCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('purchaseOrderCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('purchaseOrderCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/purchases-orders`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary To delete the document given a list of documentids
          * @param {number} id 
          * @param {string} culture 
@@ -23384,7 +26306,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
             assertParamExists('purchaseOrderDelete', 'id', id)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('purchaseOrderDelete', 'culture', culture)
-            const localVarPath = `/{culture}/purchase-orders/{id}`
+            const localVarPath = `/{culture}/purchases-orders/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -23426,7 +26348,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
             assertParamExists('purchaseOrderDetails', 'id', id)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('purchaseOrderDetails', 'culture', culture)
-            const localVarPath = `/{culture}/purchase-orders/{id}`
+            const localVarPath = `/{culture}/purchases-orders/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -23457,7 +26379,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -23471,7 +26393,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
             assertParamExists('purchaseOrderEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('purchaseOrderEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/purchase-orders/simple-document/{id}`
+            const localVarPath = `/{culture}/purchases-orders/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -23505,21 +26427,21 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseOrderEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        purchaseOrderEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('purchaseOrderEdit2', 'id', id)
+            assertParamExists('purchaseOrderEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('purchaseOrderEdit2', 'culture', culture)
+            assertParamExists('purchaseOrderEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('purchaseOrderEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/purchase-orders/inline-document/{id}`
+            assertParamExists('purchaseOrderEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/purchases-orders/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -23555,24 +26477,24 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         purchaseOrderIndex: async (culture: string, sortBy?: string, currentPage?: string, pageSize?: string, filter?: string, searchString?: string, customDocumentModels?: string, range?: string, month?: string, year?: string, startDate?: string, endDate?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('purchaseOrderIndex', 'culture', culture)
-            const localVarPath = `/{culture}/purchase-orders`
+            const localVarPath = `/{culture}/purchases-orders`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23646,7 +26568,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -23660,7 +26582,7 @@ export const PurchaseOrderApiAxiosParamCreator = function (configuration?: Confi
             assertParamExists('purchaseOrderReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('purchaseOrderReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/purchase-orders/{id}/payments`
+            const localVarPath = `/{culture}/purchases-orders/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -23717,26 +26639,25 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async purchaseOrderCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async purchaseOrderCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderCreate2(culture, inlineDocument, options);
+        async purchaseOrderCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async purchaseOrderCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -23765,7 +26686,7 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -23778,32 +26699,32 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async purchaseOrderEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderEdit2(id, culture, inlineDocument, options);
+        async purchaseOrderEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseOrderEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -23813,7 +26734,7 @@ export const PurchaseOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -23848,25 +26769,24 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        purchaseOrderCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.purchaseOrderCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseOrderCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.purchaseOrderCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        purchaseOrderCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.purchaseOrderCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        purchaseOrderCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.purchaseOrderCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -23892,7 +26812,7 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -23904,31 +26824,31 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseOrderEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.purchaseOrderEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        purchaseOrderEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.purchaseOrderEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -23937,7 +26857,7 @@ export const PurchaseOrderApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -23973,28 +26893,27 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PurchaseOrderApi
-     */
-    public purchaseOrderCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return PurchaseOrderApiFp(this.configuration).purchaseOrderCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PurchaseOrderApi
      */
-    public purchaseOrderCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return PurchaseOrderApiFp(this.configuration).purchaseOrderCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public purchaseOrderCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return PurchaseOrderApiFp(this.configuration).purchaseOrderCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PurchaseOrderApi
+     */
+    public purchaseOrderCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return PurchaseOrderApiFp(this.configuration).purchaseOrderCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -24025,7 +26944,7 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -24039,7 +26958,7 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -24047,25 +26966,25 @@ export class PurchaseOrderApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PurchaseOrderApi
      */
-    public purchaseOrderEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return PurchaseOrderApiFp(this.configuration).purchaseOrderEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public purchaseOrderEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return PurchaseOrderApiFp(this.configuration).purchaseOrderEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PurchaseOrderApi
@@ -24076,7 +26995,7 @@ export class PurchaseOrderApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -24112,7 +27031,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
             assertParamExists('quotationChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('quotationChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/quotations/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/quotations/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -24144,62 +27063,17 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        quotationCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('quotationCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('quotationCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/quotations/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        quotationCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        quotationCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('quotationCreate2', 'culture', culture)
+            assertParamExists('quotationCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('quotationCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/quotations/inline-document`
+            assertParamExists('quotationCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/quotations/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -24232,18 +27106,18 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To Create a document with SourceDocument as the parameter
          * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        quotationCreatePartialManualPayall: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('quotationCreatePartialManualPayall', 'id', id)
+        quotationCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('quotationCreatePartialManualPayall', 'culture', culture)
-            const localVarPath = `/{culture}/quotations/{id}/partial-manual-payall`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+            assertParamExists('quotationCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('quotationCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/quotations`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -24262,9 +27136,12 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -24357,7 +27234,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -24371,7 +27248,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
             assertParamExists('quotationEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('quotationEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/quotations/simple-document/{id}`
+            const localVarPath = `/{culture}/quotations/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -24405,21 +27282,21 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        quotationEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        quotationEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('quotationEdit2', 'id', id)
+            assertParamExists('quotationEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('quotationEdit2', 'culture', culture)
+            assertParamExists('quotationEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('quotationEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/quotations/inline-document/{id}`
+            assertParamExists('quotationEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/quotations/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -24455,17 +27332,17 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -24546,48 +27423,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        quotationPartialManualCancel: async (id: number, culture: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('quotationPartialManualCancel', 'id', id)
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('quotationPartialManualCancel', 'culture', culture)
-            const localVarPath = `/{culture}/quotations/{id}/partial-manual-cancel`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -24601,7 +27437,7 @@ export const QuotationApiAxiosParamCreator = function (configuration?: Configura
             assertParamExists('quotationReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('quotationReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/quotations/{id}/payments`
+            const localVarPath = `/{culture}/quotations/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -24658,37 +27494,25 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async quotationCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async quotationCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationCreate2(culture, inlineDocument, options);
+        async quotationCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationCreateInline(culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To Create a document with SourceDocument as the parameter
          * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async quotationCreatePartialManualPayall(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationCreatePartialManualPayall(id, culture, options);
+        async quotationCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -24717,7 +27541,7 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -24730,32 +27554,32 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async quotationEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationEdit2(id, culture, inlineDocument, options);
+        async quotationEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -24765,18 +27589,7 @@ export const QuotationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async quotationPartialManualCancel(id: number, culture: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.quotationPartialManualCancel(id, culture, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -24811,35 +27624,24 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        quotationCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.quotationCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        quotationCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.quotationCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        quotationCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.quotationCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id 
+         * @summary To Create a document with SourceDocument as the parameter
          * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        quotationCreatePartialManualPayall(id: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.quotationCreatePartialManualPayall(id, culture, options).then((request) => request(axios, basePath));
+        quotationCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.quotationCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -24865,7 +27667,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -24877,31 +27679,31 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        quotationEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.quotationEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        quotationEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.quotationEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -24910,17 +27712,7 @@ export const QuotationApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @param {number} id 
-         * @param {string} culture 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        quotationPartialManualCancel(id: number, culture: string, options?: any): AxiosPromise<any> {
-            return localVarFp.quotationPartialManualCancel(id, culture, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -24956,40 +27748,27 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QuotationApi
-     */
-    public quotationCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return QuotationApiFp(this.configuration).quotationCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof QuotationApi
      */
-    public quotationCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return QuotationApiFp(this.configuration).quotationCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public quotationCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return QuotationApiFp(this.configuration).quotationCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id 
+     * @summary To Create a document with SourceDocument as the parameter
      * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof QuotationApi
      */
-    public quotationCreatePartialManualPayall(id: number, culture: string, options?: AxiosRequestConfig) {
-        return QuotationApiFp(this.configuration).quotationCreatePartialManualPayall(id, culture, options).then((request) => request(this.axios, this.basePath));
+    public quotationCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return QuotationApiFp(this.configuration).quotationCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -25020,7 +27799,7 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -25034,7 +27813,7 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -25042,25 +27821,25 @@ export class QuotationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof QuotationApi
      */
-    public quotationEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return QuotationApiFp(this.configuration).quotationEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public quotationEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return QuotationApiFp(this.configuration).quotationEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof QuotationApi
@@ -25071,19 +27850,7 @@ export class QuotationApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} id 
-     * @param {string} culture 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QuotationApi
-     */
-    public quotationPartialManualCancel(id: number, culture: string, options?: AxiosRequestConfig) {
-        return QuotationApiFp(this.configuration).quotationPartialManualCancel(id, culture, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -25119,7 +27886,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('receiptChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('receiptChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/receipts/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/receipts/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -25151,62 +27918,17 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receiptCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receiptCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('receiptCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/receipts/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        receiptCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        receiptCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receiptCreate2', 'culture', culture)
+            assertParamExists('receiptCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('receiptCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/receipts/inline-document`
+            assertParamExists('receiptCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/receipts/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -25231,6 +27953,50 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receiptCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('receiptCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('receiptCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/receipts`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -25323,7 +28089,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -25337,7 +28103,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('receiptEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('receiptEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/receipts/simple-document/{id}`
+            const localVarPath = `/{culture}/receipts/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -25371,21 +28137,21 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        receiptEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        receiptEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('receiptEdit2', 'id', id)
+            assertParamExists('receiptEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receiptEdit2', 'culture', culture)
+            assertParamExists('receiptEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('receiptEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/receipts/inline-document/{id}`
+            assertParamExists('receiptEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/receipts/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -25495,17 +28261,17 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -25586,7 +28352,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -25600,7 +28366,7 @@ export const ReceiptApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('receiptReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('receiptReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/receipts/{id}/payments`
+            const localVarPath = `/{culture}/receipts/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -25657,26 +28423,25 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async receiptCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async receiptCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptCreate2(culture, inlineDocument, options);
+        async receiptCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async receiptCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -25705,7 +28470,7 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -25718,15 +28483,15 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async receiptEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptEdit2(id, culture, inlineDocument, options);
+        async receiptEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receiptEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -25753,17 +28518,17 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -25773,7 +28538,7 @@ export const ReceiptApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -25808,25 +28573,24 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receiptCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.receiptCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        receiptCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.receiptCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        receiptCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.receiptCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receiptCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.receiptCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -25852,7 +28616,7 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -25864,15 +28628,15 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        receiptEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.receiptEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        receiptEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.receiptEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -25896,17 +28660,17 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -25915,7 +28679,7 @@ export const ReceiptApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -25951,28 +28715,27 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReceiptApi
-     */
-    public receiptCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return ReceiptApiFp(this.configuration).receiptCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReceiptApi
      */
-    public receiptCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ReceiptApiFp(this.configuration).receiptCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public receiptCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ReceiptApiFp(this.configuration).receiptCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReceiptApi
+     */
+    public receiptCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return ReceiptApiFp(this.configuration).receiptCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -26003,7 +28766,7 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -26017,7 +28780,7 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -26025,8 +28788,8 @@ export class ReceiptApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ReceiptApi
      */
-    public receiptEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ReceiptApiFp(this.configuration).receiptEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public receiptEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ReceiptApiFp(this.configuration).receiptEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -26055,17 +28818,17 @@ export class ReceiptApi extends BaseAPI {
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReceiptApi
@@ -26076,7 +28839,7 @@ export class ReceiptApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -26112,7 +28875,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
             assertParamExists('receivableInvoiceChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('receivableInvoiceChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/receivable-invoices/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/receivable-invoices/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -26144,62 +28907,17 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receivableInvoiceCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receivableInvoiceCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('receivableInvoiceCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/receivable-invoices/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        receivableInvoiceCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        receivableInvoiceCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receivableInvoiceCreate2', 'culture', culture)
+            assertParamExists('receivableInvoiceCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('receivableInvoiceCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/receivable-invoices/inline-document`
+            assertParamExists('receivableInvoiceCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/receivable-invoices/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -26224,6 +28942,50 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receivableInvoiceCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('receivableInvoiceCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('receivableInvoiceCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/receivable-invoices`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -26316,7 +29078,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -26330,7 +29092,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
             assertParamExists('receivableInvoiceEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('receivableInvoiceEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/receivable-invoices/simple-document/{id}`
+            const localVarPath = `/{culture}/receivable-invoices/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -26364,21 +29126,21 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        receivableInvoiceEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        receivableInvoiceEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('receivableInvoiceEdit2', 'id', id)
+            assertParamExists('receivableInvoiceEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('receivableInvoiceEdit2', 'culture', culture)
+            assertParamExists('receivableInvoiceEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('receivableInvoiceEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/receivable-invoices/inline-document/{id}`
+            assertParamExists('receivableInvoiceEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/receivable-invoices/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -26414,17 +29176,17 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -26505,7 +29267,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -26519,7 +29281,7 @@ export const ReceivableInvoiceApiAxiosParamCreator = function (configuration?: C
             assertParamExists('receivableInvoiceReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('receivableInvoiceReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/receivable-invoices/{id}/payments`
+            const localVarPath = `/{culture}/receivable-invoices/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -26576,26 +29338,25 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async receivableInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async receivableInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceCreate2(culture, inlineDocument, options);
+        async receivableInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async receivableInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -26624,7 +29385,7 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -26637,32 +29398,32 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async receivableInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceEdit2(id, culture, inlineDocument, options);
+        async receivableInvoiceEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.receivableInvoiceEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -26672,7 +29433,7 @@ export const ReceivableInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -26707,25 +29468,24 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        receivableInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.receivableInvoiceCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        receivableInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.receivableInvoiceCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        receivableInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.receivableInvoiceCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        receivableInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.receivableInvoiceCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -26751,7 +29511,7 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -26763,31 +29523,31 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        receivableInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.receivableInvoiceEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        receivableInvoiceEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.receivableInvoiceEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -26796,7 +29556,7 @@ export const ReceivableInvoiceApiFactory = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -26832,28 +29592,27 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReceivableInvoiceApi
-     */
-    public receivableInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReceivableInvoiceApi
      */
-    public receivableInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public receivableInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReceivableInvoiceApi
+     */
+    public receivableInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -26884,7 +29643,7 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -26898,7 +29657,7 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -26906,25 +29665,25 @@ export class ReceivableInvoiceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ReceivableInvoiceApi
      */
-    public receivableInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public receivableInvoiceEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return ReceivableInvoiceApiFp(this.configuration).receivableInvoiceEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReceivableInvoiceApi
@@ -26935,7 +29694,7 @@ export class ReceivableInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 
@@ -26971,7 +29730,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('taxInvoiceChangeStatusByKey', 'statusKey', statusKey)
             // verify required parameter 'culture' is not null or undefined
             assertParamExists('taxInvoiceChangeStatusByKey', 'culture', culture)
-            const localVarPath = `/{culture}/tax-invoices/{documentId}/status-key/{statusKey}`
+            const localVarPath = `/{culture}/tax-invoices/{documentId}/status/{statusKey}`
                 .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
                 .replace(`{${"statusKey"}}`, encodeURIComponent(String(statusKey)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
@@ -27003,62 +29762,17 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        taxInvoiceCreate: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'culture' is not null or undefined
-            assertParamExists('taxInvoiceCreate', 'culture', culture)
-            // verify required parameter 'simpleDocument' is not null or undefined
-            assertParamExists('taxInvoiceCreate', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/tax-invoices/simple-document`
-                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        taxInvoiceCreate2: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        taxInvoiceCreateInline: async (culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('taxInvoiceCreate2', 'culture', culture)
+            assertParamExists('taxInvoiceCreateInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('taxInvoiceCreate2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/tax-invoices/inline-document`
+            assertParamExists('taxInvoiceCreateInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/tax-invoices/inline`
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -27083,6 +29797,50 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineDocument, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        taxInvoiceCreateSimple: async (culture: string, simpleDocument: SimpleDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'culture' is not null or undefined
+            assertParamExists('taxInvoiceCreateSimple', 'culture', culture)
+            // verify required parameter 'simpleDocument' is not null or undefined
+            assertParamExists('taxInvoiceCreateSimple', 'simpleDocument', simpleDocument)
+            const localVarPath = `/{culture}/tax-invoices`
+                .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(simpleDocument, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -27175,7 +29933,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -27189,7 +29947,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('taxInvoiceEdit', 'culture', culture)
             // verify required parameter 'simpleDocument' is not null or undefined
             assertParamExists('taxInvoiceEdit', 'simpleDocument', simpleDocument)
-            const localVarPath = `/{culture}/tax-invoices/simple-document/{id}`
+            const localVarPath = `/{culture}/tax-invoices/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -27223,21 +29981,21 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        taxInvoiceEdit2: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        taxInvoiceEditInline: async (id: number, culture: string, inlineDocument: InlineDocument, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('taxInvoiceEdit2', 'id', id)
+            assertParamExists('taxInvoiceEditInline', 'id', id)
             // verify required parameter 'culture' is not null or undefined
-            assertParamExists('taxInvoiceEdit2', 'culture', culture)
+            assertParamExists('taxInvoiceEditInline', 'culture', culture)
             // verify required parameter 'inlineDocument' is not null or undefined
-            assertParamExists('taxInvoiceEdit2', 'inlineDocument', inlineDocument)
-            const localVarPath = `/{culture}/tax-invoices/inline-document/{id}`
+            assertParamExists('taxInvoiceEditInline', 'inlineDocument', inlineDocument)
+            const localVarPath = `/{culture}/tax-invoices/inline/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -27315,17 +30073,17 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -27406,7 +30164,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -27420,7 +30178,7 @@ export const TaxInvoiceApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('taxInvoiceReceivePayment', 'culture', culture)
             // verify required parameter 'paymentModel' is not null or undefined
             assertParamExists('taxInvoiceReceivePayment', 'paymentModel', paymentModel)
-            const localVarPath = `/{culture}/tax-invoices/{id}/payments`
+            const localVarPath = `/{culture}/tax-invoices/{id}/payment`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"culture"}}`, encodeURIComponent(String(culture)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -27477,26 +30235,25 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async taxInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceCreate(culture, simpleDocument, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async taxInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageSent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceCreate2(culture, inlineDocument, options);
+        async taxInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceCreateInline(culture, inlineDocument, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async taxInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceCreateSimple(culture, simpleDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -27525,7 +30282,7 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -27538,15 +30295,15 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async taxInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceEdit2(id, culture, inlineDocument, options);
+        async taxInvoiceEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.taxInvoiceEditInline(id, culture, inlineDocument, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -27564,17 +30321,17 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -27584,7 +30341,7 @@ export const TaxInvoiceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -27619,25 +30376,24 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary To Create a document with SimpleDocument as the parameter
-         * @param {string} culture 
-         * @param {SimpleDocument} simpleDocument 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        taxInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.taxInvoiceCreate(culture, simpleDocument, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary To Create a document with InlineDocument as the parameter
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        taxInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<MessageSent> {
-            return localVarFp.taxInvoiceCreate2(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        taxInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.taxInvoiceCreateInline(culture, inlineDocument, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary To Create a document with SourceDocument as the parameter
+         * @param {string} culture 
+         * @param {SimpleDocument} simpleDocument 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        taxInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.taxInvoiceCreateSimple(culture, simpleDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -27663,7 +30419,7 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary To Update a document with simpleDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {SimpleDocument} simpleDocument 
@@ -27675,15 +30431,15 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary To Update a document with inlineDocument as the parameter
+         * @summary To Update a document with SimpleDocument as the parameter
          * @param {number} id 
          * @param {string} culture 
          * @param {InlineDocument} inlineDocument 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        taxInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
-            return localVarFp.taxInvoiceEdit2(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
+        taxInvoiceEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: any): AxiosPromise<any> {
+            return localVarFp.taxInvoiceEditInline(id, culture, inlineDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -27699,17 +30455,17 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
          * 
          * @summary To query for documents.
          * @param {string} culture 
-         * @param {string} [sortBy] 
-         * @param {string} [currentPage] 
-         * @param {string} [pageSize] 
-         * @param {string} [filter] 
-         * @param {string} [searchString] 
-         * @param {string} [customDocumentModels] 
-         * @param {string} [range] 
-         * @param {string} [month] 
-         * @param {string} [year] 
-         * @param {string} [startDate] 
-         * @param {string} [endDate] 
+         * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+         * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+         * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+         * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+         * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+         * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+         * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+         * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+         * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+         * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+         * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -27718,7 +30474,7 @@ export const TaxInvoiceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary To Accept payment with the paymentModel
+         * @summary Receieve Payments for the document id passed in
          * @param {number} id 
          * @param {string} culture 
          * @param {PaymentModel} paymentModel 
@@ -27754,28 +30510,27 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Create a document with SimpleDocument as the parameter
-     * @param {string} culture 
-     * @param {SimpleDocument} simpleDocument 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TaxInvoiceApi
-     */
-    public taxInvoiceCreate(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
-        return TaxInvoiceApiFp(this.configuration).taxInvoiceCreate(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary To Create a document with InlineDocument as the parameter
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TaxInvoiceApi
      */
-    public taxInvoiceCreate2(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return TaxInvoiceApiFp(this.configuration).taxInvoiceCreate2(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public taxInvoiceCreateInline(culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return TaxInvoiceApiFp(this.configuration).taxInvoiceCreateInline(culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary To Create a document with SourceDocument as the parameter
+     * @param {string} culture 
+     * @param {SimpleDocument} simpleDocument 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TaxInvoiceApi
+     */
+    public taxInvoiceCreateSimple(culture: string, simpleDocument: SimpleDocument, options?: AxiosRequestConfig) {
+        return TaxInvoiceApiFp(this.configuration).taxInvoiceCreateSimple(culture, simpleDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -27806,7 +30561,7 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with simpleDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {SimpleDocument} simpleDocument 
@@ -27820,7 +30575,7 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Update a document with inlineDocument as the parameter
+     * @summary To Update a document with SimpleDocument as the parameter
      * @param {number} id 
      * @param {string} culture 
      * @param {InlineDocument} inlineDocument 
@@ -27828,8 +30583,8 @@ export class TaxInvoiceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TaxInvoiceApi
      */
-    public taxInvoiceEdit2(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
-        return TaxInvoiceApiFp(this.configuration).taxInvoiceEdit2(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
+    public taxInvoiceEditInline(id: number, culture: string, inlineDocument: InlineDocument, options?: AxiosRequestConfig) {
+        return TaxInvoiceApiFp(this.configuration).taxInvoiceEditInline(id, culture, inlineDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -27848,17 +30603,17 @@ export class TaxInvoiceApi extends BaseAPI {
      * 
      * @summary To query for documents.
      * @param {string} culture 
-     * @param {string} [sortBy] 
-     * @param {string} [currentPage] 
-     * @param {string} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [searchString] 
-     * @param {string} [customDocumentModels] 
-     * @param {string} [range] 
-     * @param {string} [month] 
-     * @param {string} [year] 
-     * @param {string} [startDate] 
-     * @param {string} [endDate] 
+     * @param {string} [sortBy] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากเรียง ex. [{\&quot;name\&quot;:\&quot;name\&quot;,\&quot;sortOrder\&quot;:\&quot;asc\&quot;}]
+     * @param {string} [currentPage] เลขระบุหน้าของข้อมูลที่ค้นหา ex. 1
+     * @param {string} [pageSize] เลขระบุจำนวนข้อมูลต่อหน้าของข้อมูลที่ค้นหา ex. 20
+     * @param {string} [filter] เป็น json string ของ object array ที่ระบุข้อมูลที่อยากกรอง ex. [{\&quot;columnName\&quot;:\&quot;Type\&quot;,\&quot;columnValue\&quot;:\&quot;1\&quot;,\&quot;columnPredicateOperator\&quot;:\&quot;And\&quot;}]
+     * @param {string} [searchString] เป็น keyword ใช้ค้นหา ex. \&quot;ทดลอง\&quot;
+     * @param {string} [customDocumentModels] flag ของ DocumentService ที่ใช้ในการค้นหา Document ที่มีการเปลี่ยนจากฝั่งขายเป็นฝั่งซื้อ ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1 (ใช่) / 0 (ไม่ใช่)
+     * @param {string} [range] ค่าระบุรูปแบบค่าช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 0 (ไม่มี) / 1 (เดือนปัจจุบัน) / 3 (เดือนก่อน) เป็นต้น
+     * @param {string} [month] ค่าระบุเลขเดือนของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 1
+     * @param {string} [year] ค่าระบุเลขปีของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2022
+     * @param {string} [startDate] ค่าระบุวันที่เริ่มต้นของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex. 2023-08-01
+     * @param {string} [endDate] ค่าระบุวันที่สิ้นสุดของช่วงเวลาของข้อมูลที่จะค้นหา ของ DocumentService ที่ใช้ในการค้นหา Document ปล่อยว่างหรือไม่ระบุได้หากไม่มี ex.  2023-08-31
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TaxInvoiceApi
@@ -27869,7 +30624,7 @@ export class TaxInvoiceApi extends BaseAPI {
 
     /**
      * 
-     * @summary To Accept payment with the paymentModel
+     * @summary Receieve Payments for the document id passed in
      * @param {number} id 
      * @param {string} culture 
      * @param {PaymentModel} paymentModel 

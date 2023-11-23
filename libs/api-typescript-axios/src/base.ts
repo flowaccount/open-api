@@ -18,7 +18,7 @@ import { Configuration } from "./configuration";
 // @ts-ignore
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 
-export const BASE_PATH = "https://openapi.flowaccount.com/sandbox".replace(/\/+$/, "");
+export const BASE_PATH = "https://openapi.flowaccount.com/v3-alpha".replace(/\/+$/, "");
 
 /**
  *
