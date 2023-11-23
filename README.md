@@ -1,28 +1,32 @@
-# Flowaccount Wrokshop
+# How to generate open-api sdk for different client-side languages
 
-## Requirement
+First off, we use an nx-plugin called `@trumbitta/nx-plugin-openapi` to help us utilize the [open-api-generator](https://openapi-generator.tech/docs/generators/) in order to generate client sdk from `swagger.json` file
 
-1. Naive Matching:
-    Basic concept: Iterating through both lists and matching based on exact amounts.
-2. Fuzzy Matching:
-   - Matching based on approximate amounts to account for minor discrepancies.
-   - Using a tolerance range.
-3. Date & Description Matching:
-   - Enhancing matching by considering transaction date and using substring matching for descriptions.
+The swagger file is kept here --> `libs\api-spec\src\api-spec.openapi.json`
 
-## Before start
-1. Require Node.ts 14.x
-2. Require YARN
-3. Labtop or PC. up to you
+please make sure you replace the servers inside the json or re-check if its correct!
 
-## Setup project
-1. Clone `open-api` from repo `git@github.com:flowaccount/open-api.git`
-2. to go workshop with command `"cd apps/api/flowaccount-workshop"`
-2. Run `npm install` or `yarn` in your terminal for install node_module
-3. Run `npm start` or `yarn start` for generate data source file `bankStatements.json` and `expenseStatements.json`
-4. write you code in `apps/api/flowaccount-workshop/workshops/example.ts`
-5. have fun!!
+```json
+ "servers": [
+    {
+      "url": "https://openapi.flowaccount.com/sandbox",
+      "description": "The sandbox server"
+    },
+    {
+      "url": "https://openapi.flowaccount.com/v3-alpha",
+      "description": "The prod server"
+    }
+  ],
+```
 
-## Run project
-1. Run `yarn nx run api-flowaccount-workshop:serve --verbose --watch` on the root folder.
-2. Open your browser and go to `http://localhost:3000/workshop/<YOUR TEAM>` e.g. `http://localhost:3000/workshop/team-a`
+Currently we are setup to generate these sdk, right or wrong still have to be tested.
+
+![currently-supported-sdk](image.png)
+
+Before doing anything! run `yarn --frozen-lockfile`
+
+## Example for generating typescript-axios sdk
+
+you simply need to run `yarn nx run api-typescript-axios:custom-generate-sources` and the source will be generated into `libs\api-typescript-axios\src\` folder.
+
+If you want to publish and have the permission to, you simply login into and publish npm using CLI or GUI after fixing the `libs\api-typescript-axios\package.json` file to a new version.
