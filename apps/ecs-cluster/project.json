@@ -33,7 +33,7 @@
       "configurations": {
         "instance-policy-public-sandbox": {
           "profile": "dev_console",
-          "stackName": "node-sandbox-cluster-policy",
+          "stackName": "node-sandbox-cluster-policy", 
           "buildTarget": "ecs-cluster:build"
         },
         "task-execution-policy-public-sandbox": {
