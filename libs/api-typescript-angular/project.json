@@ -1,0 +1,44 @@
+{
+  "name": "api-typescript-angular",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-typescript-angular/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api-typescript-angular/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api-typescript-angular"],
+      "options": {
+        "jestConfig": "libs/api-typescript-angular/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api-typescript-angular",
+        "tsConfig": "libs/api-typescript-angular/tsconfig.lib.json",
+        "packageJson": "libs/api-typescript-angular/package.json",
+        "main": "libs/api-typescript-angular/src/index.ts",
+        "assets": ["libs/api-typescript-angular/*.md"]
+      }
+    },
+    "generate-sources": {
+      "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+      "options": {
+        "generator": "typescript-angular",
+        "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+        "additionalProperties": "",
+        "globalProperties": ""
+      }
+    }
+  },
+  "tags": []
+}

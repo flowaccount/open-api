@@ -1,0 +1,67 @@
+{
+  "name": "api-ruby",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-ruby/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api-ruby/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api-ruby"],
+      "options": {
+        "jestConfig": "libs/api-ruby/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api-ruby",
+        "tsConfig": "libs/api-ruby/tsconfig.lib.json",
+        "packageJson": "libs/api-ruby/package.json",
+        "main": "libs/api-ruby/src/index.ts",
+        "assets": ["libs/api-ruby/*.md"]
+      }
+    },
+    "custom-generate-sources": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx openapi-generator-cli generate -i libs/api-spec/src/api-spec.openapi.json -g ruby -o libs/api-ruby/src --skip-validate-spec",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "dev": {
+          "args": ""
+        },
+        "preprod": {
+          "args": ""
+        },
+        "production": {
+          "args": ""
+        }
+      }
+    },
+    "generate-sources": {
+      "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+      "options": {
+        "generator": "ruby",
+        "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+        "additionalProperties": "",
+        "globalProperties": ""
+      }
+    }
+  },
+  "tags": []
+}

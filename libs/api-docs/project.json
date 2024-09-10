@@ -1,0 +1,17 @@
+{
+  "name": "api-docs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-docs/src",
+  "projectType": "library",
+  "targets": {
+    "generate-sources": {
+      "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+      "options": {
+        "generator": "html",
+        "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+        "additionalProperties": "",
+        "globalProperties": ""
+      }
+    }
+  }
+}

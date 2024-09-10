@@ -1,0 +1,71 @@
+{
+  "name": "api-dotnet",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-dotnet/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api-dotnet/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api-dotnet"],
+      "options": {
+        "jestConfig": "libs/api-dotnet/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api-dotnet",
+        "tsConfig": "libs/api-dotnet/tsconfig.lib.json",
+        "packageJson": "libs/api-dotnet/package.json",
+        "main": "libs/api-dotnet/src/index.ts",
+        "assets": ["libs/api-dotnet/*.md"]
+      }
+    },
+    "package-nuget": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "dotnet build libs/api-dotnet/src/FlowAccount.OpenAPIClient/FlowAccount.OpenAPIClient.csproj -o dist/libs/api-dotnet/",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "dotnet pack -c Release -p:PackageVersion=0.0.1 libs/api-dotnet/src/FlowAccount.OpenAPIClient/FlowAccount.OpenAPIClient.csproj --no-build --output dist/libs/api-dotnet/ /p:OutputPath=../../../../dist/libs/api-dotnet/",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "dev": {
+          "args": ""
+        },
+        "preprod": {
+          "args": ""
+        },
+        "production": {
+          "args": ""
+        }
+      }
+    },
+    "generate-sources": {
+      "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+      "options": {
+        "generator": "csharp-netcore",
+        "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+        "additionalProperties": "packageName=FlowAccount",
+        "globalProperties": ""
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,44 @@
+{
+  "name": "api-go",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-go/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api-go/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api-go"],
+      "options": {
+        "jestConfig": "libs/api-go/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api-go",
+        "tsConfig": "libs/api-go/tsconfig.lib.json",
+        "packageJson": "libs/api-go/package.json",
+        "main": "libs/api-go/src/index.ts",
+        "assets": ["libs/api-go/*.md"]
+      }
+    },
+    "generate-sources": {
+      "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+      "options": {
+        "generator": "go",
+        "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+        "additionalProperties": "",
+        "globalProperties": ""
+      }
+    }
+  },
+  "tags": []
+}

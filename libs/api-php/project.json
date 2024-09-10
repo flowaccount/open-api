@@ -1,0 +1,67 @@
+{
+  "name": "api-php",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-php/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api-php/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api-php"],
+      "options": {
+        "jestConfig": "libs/api-php/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api-php",
+        "tsConfig": "libs/api-php/tsconfig.lib.json",
+        "packageJson": "libs/api-php/package.json",
+        "main": "libs/api-php/src/index.ts",
+        "assets": ["libs/api-php/*.md"]
+      }
+    },
+    "custom-generate-sources": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx openapi-generator-cli generate -i libs/api-spec/src/api-spec.openapi.json -g php -o libs/api-php/src --skip-validate-spec",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "dev": {
+          "args": ""
+        },
+        "preprod": {
+          "args": ""
+        },
+        "production": {
+          "args": ""
+        }
+      }
+    },
+    "generate-sources": {
+      "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+      "options": {
+        "generator": "php",
+        "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+        "additionalProperties": "",
+        "globalProperties": ""
+      }
+    }
+  },
+  "tags": []
+}

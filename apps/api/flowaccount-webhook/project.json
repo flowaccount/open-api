@@ -1,0 +1,107 @@
+{
+  "name": "api-flowaccount-webhook",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/flowaccount-webhook/src",
+  "projectType": "application",
+  "prefix": "flowaccount-webhook",
+  "generators": {},
+  "targets": {
+    "build": {
+      "executor": "@flowaccount/nx-serverless:build",
+      "options": {
+        "outputPath": "dist/apps/api/flowaccount-webhook",
+        "package": "apps/api/flowaccount-webhook",
+        "serverlessConfig": "apps/api/flowaccount-webhook/serverless.yml",
+        "servicePath": "apps/api/flowaccount-webhook",
+        "tsConfig": "apps/api/flowaccount-webhook/tsconfig.app.json",
+        "provider": "aws",
+        "processEnvironmentFile": "env.json"
+      },
+      "configurations": {
+        "dev": {
+          "optimization": false,
+          "sourceMap": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ]
+        },
+        "production": {
+          "optimization": true,
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/api/flowaccount-webhook/environment.ts",
+              "with": "apps/api/flowaccount-webhook/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@flowaccount/nx-serverless:offline",
+      "options": {
+        "buildTarget": "api-flowaccount-webhook:build",
+        "config": "apps/api/flowaccount-webhook/serverless.yml",
+        "location": "dist/apps/api/flowaccount-webhook",
+        "port": 7777
+      },
+      "configurations": {
+        "dev": {
+          "buildTarget": "flowaccount-webhook:build:dev"
+        },
+        "production": {
+          "buildTarget": "flowaccount-webhook:build:production"
+        }
+      }
+    },
+    "deploy": {
+      "executor": "@flowaccount/nx-serverless:deploy",
+      "options": {
+        "buildTarget": "api-flowaccount-webhook:build:production",
+        "config": "apps/api/flowaccount-webhook/serverless.yml",
+        "location": "dist/apps/api/flowaccount-webhook",
+        "package": "dist/apps/api/flowaccount-webhook",
+        "stage": "dev"
+      }
+    },
+    "destroy": {
+      "executor": "@flowaccount/nx-serverless:destroy",
+      "options": {
+        "buildTarget": "api-flowaccount-webhook:build:production",
+        "config": "apps/api/flowaccount-webhook/serverless.yml",
+        "location": "dist/apps/api/flowaccount-webhook",
+        "package": "dist/apps/api/flowaccount-webhook"
+      }
+    },
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "exclude": ["**/node_modules/**", "!apps/api/flowaccount-webhook/**/*"],
+        "tsConfig": ["apps/api/flowaccount-webhook/tsconfig.spec.json"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/api/flowaccount-webhook"],
+      "options": {
+        "jestConfig": "apps/api/flowaccount-webhook/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

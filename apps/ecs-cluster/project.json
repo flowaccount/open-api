@@ -1,0 +1,72 @@
+{
+  "name": "ecs-cluster",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ecs-cluster/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ecs-cluster",
+        "main": "apps/ecs-cluster/src/main.ts",
+        "tsConfig": "apps/ecs-cluster/tsconfig.app.json",
+        "assets": ["apps/ecs-cluster/src/assets"]
+      },
+      "configurations": {}
+    },
+    "serve": {
+      "executor": "@nx/node:execute",
+      "options": {
+        "buildTarget": "ecs-cluster:build"
+      }
+    },
+    "deploy-ecs-service": {
+      "executor": "@flowaccount/nx-aws-cdk:deploy",
+      "options": {
+        "buildTarget": "ecs-cluster:build",
+        "profile": "fadev-deploy",
+        "debug": false,
+        "verbose": false,
+        "output": "dist/cdkOutput/apps/ecs-cluster/cdk.out"
+      },
+      "configurations": {
+        "instance-policy-public-sandbox": {
+          "profile": "dev_console",
+          "stackName": "node-sandbox-cluster-policy",
+          "buildTarget": "ecs-cluster:build"
+        },
+        "task-execution-policy-public-sandbox": {
+          "profile": "dev_console",
+          "stackName": "node-sandbox-task-execution-policy"
+        },
+        "task-policy-public-sandbox": {
+          "profile": "dev_console",
+          "stackName": "node-sandbox-task-policy"
+        },
+        "cluster-public-sandbox": {
+          "profile": "dev_console",
+          "stackName": "cluster-node-sandbox"
+        },
+        "public-sandbox-cluster-default-asg": {
+          "profile": "dev_console",
+          "stackName": "stack-node-sandbox-cluster-default"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/ecs-cluster/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ecs-cluster/open-api"],
+      "options": {
+        "jestConfig": "apps/ecs-cluster/open-api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

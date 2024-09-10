@@ -1,0 +1,42 @@
+{
+  "name": "api-flowaccount-workshop",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/flowaccount-workshop/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/api/flowaccount-workshop",
+        "main": "apps/api/flowaccount-workshop/src/main.ts",
+        "tsConfig": "apps/api/flowaccount-workshop/tsconfig.app.json",
+        "assets": [
+          "apps/api/flowaccount-workshop/src/assets",
+          "apps/api/flowaccount-workshop/src/README.md"
+        ]
+      },
+      "configurations": {}
+    },
+    "serve": {
+      "executor": "@nx/node:node",
+      "options": {
+        "buildTarget": "api-flowaccount-workshop:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/api/flowaccount-workshop/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/api/flowaccount-workshop/open-api"],
+      "options": {
+        "jestConfig": "apps/api/flowaccount-workshop/open-api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

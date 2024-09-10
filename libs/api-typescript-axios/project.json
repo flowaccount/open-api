@@ -1,0 +1,67 @@
+{
+  "name": "api-typescript-axios",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-typescript-axios/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api-typescript-axios/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api-typescript-axios"],
+      "options": {
+        "jestConfig": "libs/api-typescript-axios/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api-typescript-axios",
+        "tsConfig": "libs/api-typescript-axios/tsconfig.lib.json",
+        "packageJson": "libs/api-typescript-axios/package.json",
+        "main": "libs/api-typescript-axios/src/index.ts",
+        "assets": ["libs/api-typescript-axios/*.md"]
+      }
+    },
+    "custom-generate-sources": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx openapi-generator-cli generate -i libs/api-spec/src/api-spec.openapi.json -g typescript-axios -o libs/api-typescript-axios/src --skip-validate-spec",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "dev": {
+          "args": ""
+        },
+        "preprod": {
+          "args": ""
+        },
+        "production": {
+          "args": ""
+        }
+      }
+    },
+    "generate-sources": {
+      "executor": "@trumbitta/nx-plugin-openapi:generate-api-lib-sources",
+      "options": {
+        "generator": "typescript-axios",
+        "sourceSpecPathOrUrl": "libs/api-spec/src/api-spec.openapi.json",
+        "additionalProperties": "",
+        "globalProperties": ""
+      }
+    }
+  },
+  "tags": []
+}
