@@ -1,9 +1,9 @@
-import { Peer, Port } from '@aws-cdk/aws-ec2';
-import { ContainerImage, NetworkMode, PlacementConstraint } from '@aws-cdk/aws-ecs';
-import { ServicePrincipal } from '@aws-cdk/aws-iam';
+import { Peer, Port } from 'aws-cdk-lib/aws-ec2';
+import { ContainerImage, NetworkMode, PlacementConstraint } from 'aws-cdk-lib/aws-ecs';
+import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { IECSStackEnvironmentConfig } from '@flowaccount/aws-cdk-stack';
-import { DnsRecordType, RoutingPolicy } from '@aws-cdk/aws-servicediscovery';
-import { ApplicationProtocol, IpAddressType, TargetType } from '@aws-cdk/aws-elasticloadbalancingv2';
+import { DnsRecordType, RoutingPolicy } from 'aws-cdk-lib/aws-servicediscovery';
+import { ApplicationProtocol, IpAddressType, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
 let _serviceName: string = process.env.serviceName;
 let _stage: string = process.env.stage;
@@ -118,7 +118,7 @@ export const environment: IECSStackEnvironmentConfig = {
     ],
   },
   ecs: {
-    existingCluster: existingCluster,
+    //existingCluster: existingCluster,
     defaultServiceDiscoveryNamespace: {
       namespaceName: clusterDNS,
       namespaceArn: 'xxxxx',
@@ -206,7 +206,7 @@ export const environment: IECSStackEnvironmentConfig = {
         launchTemplate: {
           name: `${_apiprefix}-${_stage}-cluster-lt`,
           imageId: `ami-02475bfb1c6cecc65`,
-          instanceType: 't4g.medium',
+          instanceType: 't4g.micro',
           keyName: _keyPairName,
           version: 1,
           volumeSize: 30,
@@ -219,7 +219,7 @@ export const environment: IECSStackEnvironmentConfig = {
           desired: '1',
           overrides: [
             {
-              InstanceType: 't4g.medium',
+              InstanceType: 't4g.micro',
             },
           ],
           onDemandBaseCapacity: 0,

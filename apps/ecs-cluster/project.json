@@ -5,21 +5,16 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/node:webpack",
+      "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/ecs-cluster",
         "main": "apps/ecs-cluster/src/main.ts",
         "tsConfig": "apps/ecs-cluster/tsconfig.app.json",
-        "assets": ["apps/ecs-cluster/src/assets"]
+        "assets": ["apps/ecs-cluster/src/assets"],
+        "webpackConfig": "apps/ecs-cluster/webpack.config.ts"
       },
       "configurations": {}
-    },
-    "serve": {
-      "executor": "@nx/node:execute",
-      "options": {
-        "buildTarget": "ecs-cluster:build"
-      }
     },
     "deploy-ecs-service": {
       "executor": "@flowaccount/nx-aws-cdk:deploy",

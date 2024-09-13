@@ -35,6 +35,10 @@ max: 2 instance
 
 ### Deploying Infrastructure
 
+**cdk boostrap**
+```bash
+yarn cdk bootstrap aws://778529894665/us-east-1 --profile=lab
+```
 
 **Deploying policies**
 

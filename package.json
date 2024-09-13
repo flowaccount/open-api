@@ -21,7 +21,7 @@
     "tsyringe": "^4.7.0"
   },
   "devDependencies": {
-    "@flowaccount/nx-aws-cdk": "^2.0.0",
+    "@flowaccount/nx-aws-cdk": "^2.0.3",
     "@flowaccount/nx-serverless": "^3.2.6",
     "@openapitools/openapi-generator-cli": "^2.4.26",
     "@trumbitta/nx-plugin-openapi": "^1.12.1",
@@ -39,9 +39,9 @@
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.5",
     "typescript": "~4.5.2",
-    "@nx/workspace": "19.7.0",
-    "@nx/eslint-plugin": "19.7.0",
-    "@nx/node": "19.7.0",
-    "@nx/eslint": "19.7.0"
+    "@nx/workspace": "18.0.4",
+    "@nx/eslint-plugin": "18.0.4",
+    "@nx/node": "18.0.4",
+    "@nx/eslint": "18.0.4"
   }
 }
