@@ -20,7 +20,7 @@
       "configurations": {}
     },
     "serve": {
-      "executor": "@nx/node:node",
+      "executor": "@nx/js:node",
       "options": {
         "buildTarget": "api-flowaccount-workshop:build"
       }
