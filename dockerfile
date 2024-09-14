@@ -5,9 +5,9 @@ ENV GIT_COMMIT_HASH=${GITCOMMIT}
 
 WORKDIR /app
 
-COPY . .
+COPY dist/apps/api/flowaccount-workshop/. .
 
-RUN npm install
+#RUN npm install
 
 CMD ["node", "main.js"]
 
