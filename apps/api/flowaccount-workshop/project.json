@@ -11,7 +11,7 @@
         "outputPath": "dist/apps/api/flowaccount-workshop",
         "main": "apps/api/flowaccount-workshop/src/main.ts",
         "tsConfig": "apps/api/flowaccount-workshop/tsconfig.app.json",
-        "isolatedConfig": false,
+        "webpackConfig": "apps/api/flowaccount-workshop/webpack.config.ts",
         "assets": [
           "apps/api/flowaccount-workshop/src/assets",
           "apps/api/flowaccount-workshop/src/README.md"
