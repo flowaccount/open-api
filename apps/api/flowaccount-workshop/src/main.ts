@@ -37,4 +37,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-app.listen(process.env.SERVER_PORT || 3000, () => {  console.log('listening!')});
+app.listen(process.env.SERVER_PORT || 8081, () => {  console.log('listening!')});

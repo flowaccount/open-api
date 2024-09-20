@@ -1,0 +1,42 @@
+{
+    "requiresCompatibilities": [
+       "FARGATE"
+   ],
+   "containerDefinitions": [
+       {
+           "name": "app-container",
+           "image": "697698820969.dkr.ecr.us-east-1.amazonaws.com/web-app:latest",
+           "cpu": 512,
+           "memoryReservation": 512,
+           "portMappings": [
+               {
+                   "containerPort": 3000,
+                   "hostPort": 3000,
+                   "protocol": "tcp"
+               }
+           ],
+           "essential": true,
+           "environment": [],
+           "mountPoints": [],
+           "volumesFrom": [],
+           "secrets": [
+              
+           ],
+           "logConfiguration": {
+               "logDriver": "awslogs",
+               "options": {
+                   "awslogs-group": "/ecs/web-app",
+                   "awslogs-region": "us-east-1",
+                   "awslogs-stream-prefix": "ecs"
+               }
+           }
+       }
+   ],
+   "family": "web-app-task-def",
+   "taskRoleArn": "arn:aws:iam::490425202190:role/ECSTaskExecutionRole",
+   "executionRoleArn": "arn:aws:iam::490425202190:role/ECSTaskExecutionRole",
+   "networkMode": "awsvpc",
+   "volumes": [],
+   "placementConstraints": [],
+   "tags": []
+}
