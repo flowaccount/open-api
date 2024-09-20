@@ -26,6 +26,12 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # Use the session token
         aws-region: us-east-1 # Change to your AWS region
+        
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::697698820969:role/GithubActionAssumeRole
+        aws-region: us-east-1
 
     - name: Log in to Amazon ECR
       id: login-ecr
@@ -34,7 +40,7 @@ jobs:
     - name: Build, tag, and push Docker image
       env:
         ECR_URI: "778529894665.dkr.ecr.us-east-1.amazonaws.com/web-app"
-        IMAGE_TAG: latest
+        IMAGE_TAG: latest-march
       run: |
         yarn --frozen-lockfile
         yarn nx build api-flowaccount-workshop
