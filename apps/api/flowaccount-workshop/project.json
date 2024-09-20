@@ -11,6 +11,7 @@
         "outputPath": "dist/apps/api/flowaccount-workshop",
         "main": "apps/api/flowaccount-workshop/src/main.ts",
         "tsConfig": "apps/api/flowaccount-workshop/tsconfig.app.json",
+        "webpackConfig": "apps/api/flowaccount-workshop/webpack.config.ts",
         "assets": [
           "apps/api/flowaccount-workshop/src/assets",
           "apps/api/flowaccount-workshop/src/README.md"
@@ -19,7 +20,7 @@
       "configurations": {}
     },
     "serve": {
-      "executor": "@nx/node:node",
+      "executor": "@nx/js:node",
       "options": {
         "buildTarget": "api-flowaccount-workshop:build"
       }
