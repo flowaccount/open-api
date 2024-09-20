@@ -3,7 +3,7 @@ name: Build and Push Docker Image to ECR
 on:
   push:
     branches:
-      - example/pipeline-kim # or specify any branch you want to trigger this workflow on
+      - 'example/pipeline-kim'
 
 jobs:
   build-and-push:
