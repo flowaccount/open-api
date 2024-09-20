@@ -5,6 +5,10 @@ on:
     branches:
       - example/pipeline-anda # or specify any branch you want to trigger this workflow on
 
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
