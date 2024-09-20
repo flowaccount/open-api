@@ -1,3 +1,5 @@
 is_global = true
 build_property.RootNamespace = FlowAccount.OpenAPIClient
-build_property.ProjectDir = d:\projects\open-api\libs\api-dotnet\src\FlowAccount.OpenAPIClient\
+build_property.ProjectDir = C:\Users\Bright Kunakorn\open-api\libs\api-dotnet\src\FlowAccount.OpenAPIClient\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
