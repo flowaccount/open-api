@@ -8,7 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read
-  
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
     - name: Build, tag, and push Docker image
       env:
         ECR_URI: "697698820969.dkr.ecr.us-east-1.amazonaws.com/web-app"
-        IMAGE_TAG: latest
+        IMAGE_TAG: latest-anda
       run: |
         yarn --frozen-lockfile
         yarn nx build api-flowaccount-workshop
