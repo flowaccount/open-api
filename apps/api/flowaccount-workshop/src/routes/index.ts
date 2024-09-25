@@ -1,19 +1,17 @@
 import * as express from 'express';
 import * as fs from 'fs';
-import rateLimit from 'express-rate-limit';
+import RateLimit from 'express-rate-limit';
 
 export const router = express.Router();
 
-const limiter = rateLimit({
+// set up rate limiter: maximum of 100 requests per 15 minutes
+const limiter = RateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // max 100 requests per windowMs
 });
 
-/* Apply rate limiter to all requests */
-router.use(limiter);
-
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', limiter, function (req, res, next) {
   try {
     fs.readFile('./README.md', 'utf8', (err, data) => {
       console.log('shit', err);
