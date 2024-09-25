@@ -11,7 +11,7 @@ const limiter = RateLimit({
 });
 
 /* GET home page. */
-router.get('/', limiter, function (req, res, next) {
+router.get('/', limiter, function (_req, res) {
   try {
     fs.readFile('./README.md', 'utf8', (err, data) => {
       console.log('shit', err);
