@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@flowaccount/nx-aws-cdk": "^2.0.3",
-    "@flowaccount/nx-serverless": "^3.2.6",
+    "@flowaccount/nx-serverless": "3.2.8",
     "@openapitools/openapi-generator-cli": "^2.4.26",
     "@trumbitta/nx-plugin-openapi": "^1.12.1",
     "@types/jest": "^27.5.1",
