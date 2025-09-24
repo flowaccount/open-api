@@ -11,6 +11,8 @@
   "dependencies": {
     "@flowaccount/openapi-sdk": "^0.0.39",
     "@types/aws-lambda": "^8.10.86",
+    "express-rate-limit": "^8.0.1",
+    "express-slow-down": "^3.0.0",
     "graphql": "^16.3.0",
     "graphql-language-service-parser": "^1.10.4",
     "graphql-request": "^4.2.0",
@@ -22,7 +24,7 @@
   },
   "devDependencies": {
     "@flowaccount/nx-aws-cdk": "^2.0.3",
-    "@flowaccount/nx-serverless": "^3.2.6",
+    "@flowaccount/nx-serverless": "3.2.8",
     "@openapitools/openapi-generator-cli": "^2.4.26",
     "@trumbitta/nx-plugin-openapi": "^1.12.1",
     "@types/jest": "^27.5.1",
