@@ -52,13 +52,13 @@ claude mcp add flowaccount-acme-api -- uv run --script /path/to/open-api/libs/ap
 
 ## Tools
 
-Read-only by default: 26 GET tools such as `list_tax_invoices`, `get_tax_invoice`,
-`list_receipts`, `list_expenses`, `list_contacts`, `list_products`, `get_company_info`,
-`get_bank_accounts`. Document lists take `currentPage`, `pageSize`, `sortBy`, `filter`, plus the v3
-filters `searchString`, `startDate`, `endDate` (`YYYY-MM-DD`).
+Read-only by default: 34 GET tools such as `list_tax_invoices`, `get_tax_invoice`,
+`list_receipts`, `list_expenses`, `list_contacts`, `list_product_masters`, `get_company_info`,
+`get_chart_of_accounts_accounts`, `get_bank_channel_bank_accounts`. Document lists take
+`currentPage`, `pageSize`, `searchString`, `startDate` / `endDate` (`YYYY-MM-DD`), `month`, `year`, `range`.
 
 `--allow-write` (or `"allow_write": true` in the profile) also exposes create / edit / status /
-payment / delete tools (`post_tax_invoices`, `put_tax_invoices_by_id`, ...). Those writes are real,
+payment / journal-entry / delete tools, 166 in total (`post_tax_invoices`, `put_tax_invoices_by_id`, ...). Those writes are real,
 so try them on sandbox first. GET tools carry `readOnlyHint` and DELETE tools carry `destructiveHint`.
 
 ```bash
@@ -68,10 +68,12 @@ nx run api-mcp:test         # offline selftest against a fake API
 
 ## How it works
 
-- **Spec**: `spec/openapi-v1.yaml` is the published Open API spec (the one
-  [flowaccount-openapi-sdk](https://github.com/flowaccount/flowaccount-openapi-sdk) is built from).
-  Override it with `--spec <path|url>` or `FLOWACCOUNT_OPENAPI_SPEC`. When the script is run from a URL
-  rather than a checkout, the spec is fetched from this repo and cached for a day.
+- **Spec**: the live spec behind the [API reference](https://developers.flowaccount.com/api-reference)
+  (`https://developers.flowaccount.com/swagger.yml`), cached for a day, so new endpoints show up
+  without a release. `spec/openapi.yaml` is a snapshot used offline and by the selftest. Override
+  with `--spec <path|url>` or `FLOWACCOUNT_OPENAPI_SPEC`. Two known spec quirks are handled:
+  Swagger-2 style `required: true` on properties is dropped, and response schemas are not
+  enforced (some documented types differ from real responses).
 - **Base URL**: `https://openapi.flowaccount.com/v1` (production) and `/test` (sandbox). `/v1` is the
   API Gateway stage. It routes to the v3 Open API service, so these are v3 endpoints.
   `libs/api-spec` is the older 2022 v3-alpha draft and is not used here.

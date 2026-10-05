@@ -14,7 +14,7 @@ Why this exists
 The hosted AI Connector (https://mcp.flowaccount.com/mcp) logs in with OAuth.
 The FlowAccount Open API (https://openapi.flowaccount.com) uses a client_id /
 client_secret pair that is issued per company. This server wraps that API
-(spec: libs/api-mcp/spec/openapi-v1.yaml) as MCP tools, so any MCP client can use those
+(spec: developers.flowaccount.com/swagger.yml) as MCP tools, so any MCP client can use those
 credentials too. One process (one MCP server name in the client) per company.
 
 "/v1" is the public gateway stage; behind it every call is served by the v3 Open API.
@@ -48,13 +48,12 @@ from pathlib import Path
 import httpx
 import yaml
 
-# The published Open API spec (same file the SDKs in flowaccount-openapi-sdk are built from).
-# Its paths are the v3 service's routes as the gateway exposes them. libs/api-spec is the
-# 2022 v3-alpha draft (/{culture}/..., simple-document, status-key) and no longer matches.
-# Read from the checkout when present, otherwise fetched (e.g. `uv run --script <raw url>`).
-LOCAL_SPEC = Path(__file__).resolve().parents[1] / "spec" / "openapi-v1.yaml"
-SPEC_URL = "https://raw.githubusercontent.com/flowaccount/open-api/main/libs/api-mcp/spec/openapi-v1.yaml"
-DEFAULT_SPEC = str(LOCAL_SPEC) if LOCAL_SPEC.exists() else SPEC_URL
+# The live spec behind https://developers.flowaccount.com/api-reference. Its paths are the v3
+# service's routes as the gateway exposes them. libs/api-spec is the 2022 v3-alpha draft
+# (/{culture}/..., simple-document, status-key) and no longer matches.
+SPEC_URL = "https://developers.flowaccount.com/swagger.yml"
+# Snapshot of SPEC_URL, used when it can't be fetched and nothing is cached (and by selftest.py).
+LOCAL_SPEC = Path(__file__).resolve().parents[1] / "spec" / "openapi.yaml"
 # The spec's own servers list is not used: these match the published developer docs.
 BASE_URLS = {
     "production": "https://openapi.flowaccount.com/v1",
@@ -76,7 +75,7 @@ def die(msg: str) -> None:
 # Spec
 # ----------------------------------------------------------------------------
 def load_spec(source: str) -> dict:
-    """Local path, or URL cached for a day (falls back to a stale cache when offline)."""
+    """Local path, or URL cached for a day (offline: stale cache, then the bundled snapshot)."""
     if not source.startswith(("http://", "https://")):
         return yaml.safe_load(Path(source).expanduser().read_text(encoding="utf-8"))
 
@@ -92,6 +91,9 @@ def load_spec(source: str) -> dict:
     except httpx.HTTPError as e:
         if cached.exists():
             return yaml.safe_load(cached.read_text(encoding="utf-8"))
+        if source == SPEC_URL and LOCAL_SPEC.exists():
+            print(f"flowaccount-openapi: cannot fetch {source} ({e}); using bundled snapshot", file=sys.stderr)
+            return yaml.safe_load(LOCAL_SPEC.read_text(encoding="utf-8"))
         die(f"cannot fetch spec {source}: {e}")
 
 
@@ -118,25 +120,19 @@ def tool_name(method: str, path: str, op: dict) -> str:
     return f"{method}_{'_'.join(words)}{suffix}"
 
 
-# v3 document lists accept more of QueryStringModel than the spec documents; these let the
-# model answer "invoices for customer X in August" without paging through everything.
-DOCUMENT_LIST_FILTERS = [
-    ("searchString", "Keyword search (document number, contact name, ...)"),
-    ("startDate", "Only documents dated on or after this day, YYYY-MM-DD"),
-    ("endDate", "Only documents dated on or before this day, YYYY-MM-DD"),
-]
-NON_DOCUMENT_LISTS = {"/products", "/contacts", "/bank-accounts"}
+def drop_boolean_required(node) -> None:
+    """Remove Swagger-2 style `required: true` on schema properties, which OpenAPI 3 rejects.
 
-
-def add_document_list_filters(op: dict) -> None:
-    params = op.setdefault("parameters", [])
-    if not any(p.get("name") == "currentPage" for p in params):
-        return
-    known = {p.get("name", "").lower() for p in params}
-    for name, description in DOCUMENT_LIST_FILTERS:
-        if name.lower() not in known:
-            params.append({"name": name, "in": "query", "required": False,
-                           "description": description, "schema": {"type": "string"}})
+    Parameters and request bodies legitimately use a boolean `required`, so those are kept.
+    """
+    if isinstance(node, dict):
+        if isinstance(node.get("required"), bool) and "in" not in node and "content" not in node:
+            del node["required"]
+        for value in node.values():
+            drop_boolean_required(value)
+    elif isinstance(node, list):
+        for value in node:
+            drop_boolean_required(value)
 
 
 def prepare_spec(spec: dict, allow_write: bool) -> dict:
@@ -156,8 +152,6 @@ def prepare_spec(spec: dict, allow_write: bool) -> dict:
                 p for p in op.get("parameters", [])
                 if not (p.get("in") == "header" and p.get("name", "").lower() in ("authorization", "content-type"))
             ]
-            if method == "get" and path.count("/") == 1 and path not in NON_DOCUMENT_LISTS:
-                add_document_list_filters(op)
             name = tool_name(method, path, op)
             while name in seen:
                 name += "_"
@@ -166,6 +160,7 @@ def prepare_spec(spec: dict, allow_write: bool) -> dict:
         if not any(m in item for m in HTTP_METHODS):
             del spec["paths"][path]
     spec.pop("security", None)
+    drop_boolean_required(spec.get("components", {}))
     return spec
 
 
@@ -254,6 +249,10 @@ def build_server(spec: dict, client: httpx.AsyncClient, name: str):
             readOnlyHint=route.method == "GET",
             destructiveHint=route.method == "DELETE",
         )
+        # The spec's response schemas are hand-written and don't always match real payloads
+        # (e.g. companyType is an int, documented as a string). Return plain JSON rather than
+        # let clients reject valid responses.
+        component.output_schema = None
 
     return FastMCP.from_openapi(
         openapi_spec=spec,
@@ -267,8 +266,8 @@ def build_server(spec: dict, client: httpx.AsyncClient, name: str):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--profile", help="entry in the credentials file (one per company)")
-    ap.add_argument("--spec", default=os.environ.get("FLOWACCOUNT_OPENAPI_SPEC", DEFAULT_SPEC),
-                    help="OpenAPI spec path or URL (default: spec/openapi-v1.yaml, local or from GitHub)")
+    ap.add_argument("--spec", default=os.environ.get("FLOWACCOUNT_OPENAPI_SPEC", SPEC_URL),
+                    help="OpenAPI spec path or URL (default: the live spec from developers.flowaccount.com)")
     ap.add_argument("--allow-write", action="store_true", help="also expose create/edit/status/delete tools")
     ap.add_argument("--list-tools", action="store_true", help="print the tool names and exit (no credentials needed)")
     args = ap.parse_args()

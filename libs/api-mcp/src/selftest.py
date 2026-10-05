@@ -4,8 +4,8 @@
 # dependencies = ["fastmcp>=3,<4", "httpx", "pyyaml"]
 # ///
 """
-Offline check of openapi/server.py against a fake FlowAccount API. No credentials, no network
-needed when run from a checkout (uses spec/openapi-v1.yaml).
+Offline check of server.py against a fake FlowAccount API. No credentials, no network
+needed (uses the bundled snapshot spec/openapi.yaml).
 
   uv run --script libs/api-mcp/src/selftest.py
 """
@@ -46,7 +46,7 @@ async def main():
         auth=server.ClientCredentialsAuth(f"{BASE}/token", creds),
         transport=httpx.MockTransport(fake_flowaccount),
     )
-    spec = server.prepare_spec(server.load_spec(server.DEFAULT_SPEC), allow_write=False)
+    spec = server.prepare_spec(server.load_spec(str(server.LOCAL_SPEC)), allow_write=False)
     mcp = server.build_server(spec, http, name="selftest")
 
     async with Client(mcp) as c:
@@ -55,7 +55,7 @@ async def main():
         assert not any(n.startswith(("post_", "put_", "delete_")) for n in tools), "writes leaked"
         assert all("Authorization" not in str(t.inputSchema) for t in tools.values()), "auth param leaked"
         assert tools["list_tax_invoices"].annotations.readOnlyHint is True
-        assert "startDate" in str(tools["list_tax_invoices"].inputSchema), "v3 list filters missing"
+        assert "startDate" in str(tools["list_tax_invoices"].inputSchema), "document list filters missing"
         assert "startDate" not in str(tools["list_contacts"].inputSchema), "filters on a non-document list"
 
         await c.call_tool("list_tax_invoices", {"currentPage": 1, "pageSize": 5, "startDate": "2026-08-01"})
@@ -65,7 +65,7 @@ async def main():
     assert calls["api"][0] == ("GET", "/test/tax-invoices", "Bearer tok1"), calls["api"]
     assert calls["query"][0].get("startDate") == "2026-08-01", calls["query"]
     assert calls["api"][-1] == ("GET", "/test/company/info", "Bearer tok2"), calls["api"]
-    print(f"ok: {len(tools)} read-only tools, bearer injected, v3 filters, 401 refresh works")
+    print(f"ok: {len(tools)} read-only tools, bearer injected, date filters, 401 refresh works")
 
 
 asyncio.run(main())
