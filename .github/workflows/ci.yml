@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch: # started by spec-drift.yml on its bot PR branch
 
 permissions: {}
 

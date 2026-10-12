@@ -1,5 +1,7 @@
 name: "spec drift: api-mcp snapshot"
-# Fails when libs/api-mcp/spec/openapi.yaml no longer matches the live spec. Fix: run spec_drift.py --update and commit.
+# Fails when libs/api-mcp/spec/openapi.yaml no longer matches the live spec. On the daily run it
+# also opens (or refreshes) one PR with the updated snapshot; CODEOWNERS are requested as
+# reviewers. The bot never merges: a human reviews the diff and merges, which clears the badge.
 # Runs daily against https://developers.flowaccount.com/swagger.yml. Kept out of ci.yml so a
 # change on the live portal never turns unrelated PRs red. The README badge shows the schedule run.
 
@@ -25,6 +27,8 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
+    outputs:
+      drifted: ${{ steps.check.outputs.drifted }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -34,10 +38,63 @@ jobs:
           version: "0.12.19"
           python-version: "3.12"
       - name: Compare with the live spec
+        id: check
         # Exit 1 = drift (fail). Exit 2 = live spec unreachable (warn, not drift).
         run: |
           set +e
           uv run --script libs/api-mcp/src/spec_drift.py --fail-on snapshot
           code=$?
+          [ $code -eq 1 ] && echo "drifted=true" >> "$GITHUB_OUTPUT"
           [ $code -eq 2 ] && exit 0
           exit $code
+
+  sync-pr:
+    name: open snapshot PR
+    needs: drift
+    # Never on pull_request: fork PRs must not get a write token.
+    if: always() && needs.drift.outputs.drifted == 'true' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write       # push the bot/ branch (main stays protected)
+      pull-requests: write  # open / refresh the PR
+      actions: write        # start ci.yml on the branch; PRs opened by GITHUB_TOKEN don't trigger it
+    env:
+      BRANCH: bot/spec-snapshot-sync
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true # zizmor: ignore[artipacked] needed for git push; nothing is uploaded
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.19"
+          python-version: "3.12"
+      - name: Update the snapshot
+        run: |
+          {
+            echo 'Opened automatically by `spec-drift.yml`: the live spec changed.'
+            echo
+            echo '- Review the diff of `libs/api-mcp/spec/openapi.yaml` (what changed is listed below).'
+            echo '- `ci` runs on this branch; check it is green.'
+            echo '- Merge to turn the README badge green. The bot never merges; it refreshes this PR daily while drift remains.'
+            echo
+            uv run --script libs/api-mcp/src/spec_drift.py --update --fail-on | grep -v '^updated '
+          } > "$RUNNER_TEMP/report.md"
+      - name: Open or refresh the PR
+        run: |
+          if git diff --quiet -- libs/api-mcp/spec; then
+            echo "snapshot unchanged after --update; nothing to propose"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$BRANCH"
+          git commit -q -m "chore(api-mcp): sync spec snapshot with developers.flowaccount.com/swagger.yml" -- libs/api-mcp/spec
+          git push -q --force origin "$BRANCH"
+          if [ "$(gh pr view "$BRANCH" --json state -q .state 2>/dev/null)" = "OPEN" ]; then
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/report.md"
+          else
+            gh pr create --base main --head "$BRANCH" --body-file "$RUNNER_TEMP/report.md" \
+              --title "chore(api-mcp): sync spec snapshot with the live spec"
+          fi
+          gh workflow run ci.yml --ref "$BRANCH"

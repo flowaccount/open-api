@@ -1,0 +1,7 @@
+# Review requests for the Open API spec, the MCP server and CI.
+# Code-owner approval is not required on main (2 approvals from anyone); these people are
+# requested automatically, including on the daily spec-sync PR opened by spec-drift.yml.
+/libs/api-mcp/       @wickstargazer @purett @thesisk-flowaccount @yimtheppariyapol
+/libs/api-spec/      @wickstargazer @purett @thesisk-flowaccount @yimtheppariyapol
+/.github/workflows/  @wickstargazer @purett @thesisk-flowaccount @yimtheppariyapol
+/.github/CODEOWNERS  @wickstargazer @purett @thesisk-flowaccount @yimtheppariyapol
