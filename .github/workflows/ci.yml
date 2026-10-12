@@ -32,5 +32,7 @@ jobs:
         run: uv run --script libs/api-mcp/src/selftest.py
       - name: Client config generator
         run: uv run --script libs/api-mcp/examples/test_generate.py
+      - name: Spec drift checker (offline)
+        run: uv run --script libs/api-mcp/src/test_spec_drift.py
       - name: List tools from the bundled spec
         run: uv run --script libs/api-mcp/src/server.py --list-tools --spec libs/api-mcp/spec/openapi.yaml

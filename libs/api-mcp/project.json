@@ -17,7 +17,8 @@
       "options": {
         "commands": [
           "uv run --script libs/api-mcp/src/selftest.py",
-          "uv run --script libs/api-mcp/examples/test_generate.py"
+          "uv run --script libs/api-mcp/examples/test_generate.py",
+          "uv run --script libs/api-mcp/src/test_spec_drift.py"
         ],
         "parallel": false
       }
