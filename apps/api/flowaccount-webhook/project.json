@@ -94,14 +94,6 @@
         "exclude": ["**/node_modules/**", "!apps/api/flowaccount-webhook/**/*"],
         "tsConfig": ["apps/api/flowaccount-webhook/tsconfig.spec.json"]
       }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/api/flowaccount-webhook"],
-      "options": {
-        "jestConfig": "apps/api/flowaccount-webhook/jest.config.js",
-        "passWithNoTests": true
-      }
     }
   }
 }

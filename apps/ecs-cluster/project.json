@@ -28,7 +28,7 @@
       "configurations": {
         "instance-policy-public-sandbox": {
           "profile": "dev_console",
-          "stackName": "node-sandbox-cluster-policy", 
+          "stackName": "node-sandbox-cluster-policy",
           "buildTarget": "ecs-cluster:build"
         },
         "task-execution-policy-public-sandbox": {
@@ -53,14 +53,6 @@
       "executor": "@nx/eslint:eslint",
       "options": {
         "lintFilePatterns": ["apps/ecs-cluster/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/ecs-cluster/open-api"],
-      "options": {
-        "jestConfig": "apps/ecs-cluster/open-api/jest.config.js",
-        "passWithNoTests": true
       }
     }
   }

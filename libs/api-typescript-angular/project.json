@@ -11,14 +11,6 @@
         "lintFilePatterns": ["libs/api-typescript-angular/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api-typescript-angular"],
-      "options": {
-        "jestConfig": "libs/api-typescript-angular/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
