@@ -68,4 +68,21 @@ async def main():
     print(f"ok: {len(tools)} read-only tools, bearer injected, date filters, 401 refresh works")
 
 
+async def rejected_client():
+    """The gateway rejects bad credentials with HTTP 200 + {"error": "invalid_client"}."""
+    bad = httpx.AsyncClient(
+        base_url=BASE,
+        auth=server.ClientCredentialsAuth(f"{BASE}/token", {"client_id": "x", "client_secret": "x"}),
+        transport=httpx.MockTransport(lambda r: httpx.Response(200, json={"error": "invalid_client"})),
+    )
+    try:
+        await bad.get("/company/info")
+    except RuntimeError as e:
+        assert "invalid_client" in str(e) and "client_id" in str(e), e
+    else:
+        raise AssertionError("bad credentials were not reported")
+
+
 asyncio.run(main())
+asyncio.run(rejected_client())
+print("ok: rejected credentials give a clear error")

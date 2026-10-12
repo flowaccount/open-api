@@ -209,12 +209,17 @@ class ClientCredentialsAuth(httpx.Auth):
         return httpx.Request("POST", self.token_url, data=self.form)
 
     def _store(self, response: httpx.Response) -> None:
-        if response.status_code != 200:
+        # The gateway answers a rejected client with HTTP 200 and {"error": "invalid_client"}.
+        try:
+            body = response.json()
+        except ValueError:
+            body = {}
+        if response.status_code != 200 or "access_token" not in body:
+            reason = body.get("error") or f"HTTP {response.status_code}"
             raise RuntimeError(
-                f"FlowAccount token request failed ({response.status_code}). "
+                f"FlowAccount token request failed ({reason}). "
                 "Check client_id / client_secret and the environment (production vs sandbox)."
             )
-        body = response.json()
         self.token = body["access_token"]
         self.expires_at = time.time() + int(body.get("expires_in", 3600)) - 60
 
