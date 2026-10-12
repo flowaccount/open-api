@@ -13,7 +13,7 @@ describe('Test Services', () => {
         const event: APIGatewayProxyEvent = {
             body: JSON.stringify({
                 "key": "order.update",
-                "merchantToken": "E7678A85176CE5B3418FE0E2317BC478",
+                "merchantToken": process.env.PAGE365_MERCHANT_TOKEN ?? "test-merchant-token",
                 "body": {
                     "id": 19,
                     "stage": "shipped",
