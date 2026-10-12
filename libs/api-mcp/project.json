@@ -8,6 +8,10 @@
       "executor": "nx:run-commands",
       "options": { "command": "uv run --script libs/api-mcp/src/server.py --list-tools" }
     },
+    "spec-drift": {
+      "executor": "nx:run-commands",
+      "options": { "command": "uv run --script libs/api-mcp/src/spec_drift.py" }
+    },
     "test": {
       "executor": "nx:run-commands",
       "options": {

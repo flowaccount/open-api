@@ -69,6 +69,7 @@ so try them on sandbox first. GET tools carry `readOnlyHint` and DELETE tools ca
 ```bash
 nx run api-mcp:list-tools   # or: uv run --script libs/api-mcp/src/server.py --list-tools [--allow-write]
 nx run api-mcp:test         # offline: server against a fake API, plus examples/generate.py
+nx run api-mcp:spec-drift   # compare spec/openapi.yaml and libs/api-spec with the live spec (daily in CI)
 ```
 
 ## How it works

@@ -1,0 +1,43 @@
+name: "spec drift: api-mcp snapshot"
+# Fails when libs/api-mcp/spec/openapi.yaml no longer matches the live spec. Fix: run spec_drift.py --update and commit.
+# Runs daily against https://developers.flowaccount.com/swagger.yml. Kept out of ci.yml so a
+# change on the live portal never turns unrelated PRs red. The README badge shows the schedule run.
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "libs/api-mcp/spec/**"
+      - "libs/api-mcp/src/spec_drift.py"
+      - ".github/workflows/spec-drift.yml"
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.19"
+          python-version: "3.12"
+      - name: Compare with the live spec
+        # Exit 1 = drift (fail). Exit 2 = live spec unreachable (warn, not drift).
+        run: |
+          set +e
+          uv run --script libs/api-mcp/src/spec_drift.py --fail-on snapshot
+          code=$?
+          [ $code -eq 2 ] && exit 0
+          exit $code
