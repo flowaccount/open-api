@@ -1,3 +1,13 @@
+[![ci](https://github.com/flowaccount/open-api/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/flowaccount/open-api/actions/workflows/ci.yml)
+[![MCP spec snapshot vs live](https://github.com/flowaccount/open-api/actions/workflows/spec-drift.yml/badge.svg?branch=main&event=schedule)](https://github.com/flowaccount/open-api/actions/workflows/spec-drift.yml)
+[![libs/api-spec vs live](https://github.com/flowaccount/open-api/actions/workflows/api-spec-drift.yml/badge.svg?branch=main&event=schedule)](https://github.com/flowaccount/open-api/actions/workflows/api-spec-drift.yml)
+
+> **Spec drift.** The live API is described by https://developers.flowaccount.com/swagger.yml.
+> The two spec-drift badges are checked daily against it. `libs/api-spec` (used below for the SDKs)
+> is the 2022 v3-alpha draft and is red until the SDKs move to the live spec; the job summary lists
+> what differs. `libs/api-mcp/spec/openapi.yaml` should always be green
+> (`nx run api-mcp:spec-drift`, fix with `uv run --script libs/api-mcp/src/spec_drift.py --update`).
+
 # How to generate open-api sdk for different client-side languages
 
 First off, we use an nx-plugin called `@trumbitta/nx-plugin-openapi` to help us utilize the [open-api-generator](https://openapi-generator.tech/docs/generators/) in order to generate client sdk from `swagger.json` file

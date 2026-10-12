@@ -1,0 +1,34 @@
+{
+  "mcpServers": {
+    "flowaccount-acme": {
+      "serverUrl": "https://mcp.flowaccount.com/mcp"
+    },
+    "flowaccount-acme-holding": {
+      "serverUrl": "https://mcp.flowaccount.com/mcp"
+    },
+    "flowaccount-sandbox": {
+      "serverUrl": "https://mcp.flowaccount.com/mcp"
+    },
+    "flowaccount-acme-api": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "/path/to/open-api/libs/api-mcp/src/server.py",
+        "--profile",
+        "flowaccount-acme-api"
+      ]
+    },
+    "flowaccount-sandbox-api": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "/path/to/open-api/libs/api-mcp/src/server.py",
+        "--profile",
+        "flowaccount-sandbox-api",
+        "--allow-write"
+      ]
+    }
+  }
+}

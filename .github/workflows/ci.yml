@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch: # started by spec-drift.yml on its bot PR branch
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  api-mcp:
+    name: api-mcp tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.19"
+          python-version: "3.12"
+      # Same commands as `nx run api-mcp:test` / `list-tools`, without installing the Node workspace.
+      - name: Server selftest (fake API, offline)
+        run: uv run --script libs/api-mcp/src/selftest.py
+      - name: Client config generator
+        run: uv run --script libs/api-mcp/examples/test_generate.py
+      - name: List tools from the bundled spec
+        run: uv run --script libs/api-mcp/src/server.py --list-tools --spec libs/api-mcp/spec/openapi.yaml

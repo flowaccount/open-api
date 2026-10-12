@@ -1,0 +1,33 @@
+{
+  "$comment": "Client-agnostic source of truth. Copy to companies.json, edit, then run: python3 generate.py",
+  "$comment_openapi": "Optional per company: \"openapi\": {...} adds <prefix>-<slug>-api, a local server on the FlowAccount Open API using that company's client_id/secret. See libs/api-mcp/README.md.",
+  "server": {
+    "label": "FlowAccount AI Connector",
+    "url": "https://mcp.flowaccount.com/mcp"
+  },
+  "prefix": "flowaccount",
+  "companies": [
+    {
+      "slug": "acme",
+      "name": "Acme Trading Co., Ltd.",
+      "note": "Main operating company (VAT registered)",
+      "openapi": {
+        "environment": "production"
+      }
+    },
+    {
+      "slug": "acme-holding",
+      "name": "Acme Holding Co., Ltd.",
+      "note": "Holding company, accrual basis"
+    },
+    {
+      "slug": "sandbox",
+      "name": "Acme Trading (sandbox copy)",
+      "note": "Sandbox company; add \"url\" here to override the server URL for one company",
+      "openapi": {
+        "environment": "sandbox",
+        "allow_write": true
+      }
+    }
+  ]
+}
