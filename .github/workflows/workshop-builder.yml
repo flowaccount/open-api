@@ -23,7 +23,7 @@ jobs:
         node-version: 14
     - name: Configure AWS credentials
       if: always()
-      uses: aws-actions/configure-aws-credentials@v2
+      uses: aws-actions/configure-aws-credentials@v6
       with:
         role-to-assume: arn:aws:iam::765141697745:role/GithubActionAssumeRole
         aws-region: ap-southeast-1
