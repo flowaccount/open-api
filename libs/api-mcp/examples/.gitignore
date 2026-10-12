@@ -1,0 +1,9 @@
+# Your real company list. Only the .example file is committed.
+companies.json
+
+# Generated output when you run generate.py without --out
+out/
+
+# Editor / OS noise
+.DS_Store
+.idea/

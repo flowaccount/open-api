@@ -1,0 +1,58 @@
+{
+  "mcpServers": {
+    "flowaccount-acme": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.flowaccount.com/mcp"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": "~/.mcp-auth/flowaccount-acme"
+      }
+    },
+    "flowaccount-acme-holding": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.flowaccount.com/mcp"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": "~/.mcp-auth/flowaccount-acme-holding"
+      }
+    },
+    "flowaccount-sandbox": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.flowaccount.com/mcp"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": "~/.mcp-auth/flowaccount-sandbox"
+      }
+    },
+    "flowaccount-acme-api": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "/path/to/open-api/libs/api-mcp/src/server.py",
+        "--profile",
+        "flowaccount-acme-api"
+      ]
+    },
+    "flowaccount-sandbox-api": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "/path/to/open-api/libs/api-mcp/src/server.py",
+        "--profile",
+        "flowaccount-sandbox-api",
+        "--allow-write"
+      ]
+    }
+  }
+}

@@ -50,6 +50,11 @@ Claude Code:
 claude mcp add flowaccount-acme-api -- uv run --script /path/to/open-api/libs/api-mcp/src/server.py --profile flowaccount-acme-api
 ```
 
+Several companies, or a client other than Claude? [`examples/`](examples/README.md) generates
+the config for Claude Code, Cursor, VS Code, Windsurf, Gemini CLI, Codex, Claude Desktop and
+any stdio host from one `companies.json`. It covers the hosted AI Connector too: an
+`"openapi": {}` block on a company adds its `<name>-api` entry for this server.
+
 ## Tools
 
 Read-only by default: 34 GET tools such as `list_tax_invoices`, `get_tax_invoice`,

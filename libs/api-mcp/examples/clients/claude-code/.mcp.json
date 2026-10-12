@@ -1,0 +1,39 @@
+{
+  "mcpServers": {
+    "flowaccount-acme": {
+      "type": "http",
+      "url": "https://mcp.flowaccount.com/mcp"
+    },
+    "flowaccount-acme-holding": {
+      "type": "http",
+      "url": "https://mcp.flowaccount.com/mcp"
+    },
+    "flowaccount-sandbox": {
+      "type": "http",
+      "url": "https://mcp.flowaccount.com/mcp"
+    },
+    "flowaccount-acme-api": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "/path/to/open-api/libs/api-mcp/src/server.py",
+        "--profile",
+        "flowaccount-acme-api"
+      ]
+    },
+    "flowaccount-sandbox-api": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "/path/to/open-api/libs/api-mcp/src/server.py",
+        "--profile",
+        "flowaccount-sandbox-api",
+        "--allow-write"
+      ]
+    }
+  }
+}

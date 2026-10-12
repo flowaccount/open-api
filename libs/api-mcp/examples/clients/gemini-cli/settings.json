@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "flowaccount-acme": {
+      "httpUrl": "https://mcp.flowaccount.com/mcp",
+      "oauth": {
+        "enabled": true
+      }
+    },
+    "flowaccount-acme-holding": {
+      "httpUrl": "https://mcp.flowaccount.com/mcp",
+      "oauth": {
+        "enabled": true
+      }
+    },
+    "flowaccount-sandbox": {
+      "httpUrl": "https://mcp.flowaccount.com/mcp",
+      "oauth": {
+        "enabled": true
+      }
+    },
+    "flowaccount-acme-api": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "/path/to/open-api/libs/api-mcp/src/server.py",
+        "--profile",
+        "flowaccount-acme-api"
+      ]
+    },
+    "flowaccount-sandbox-api": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        "/path/to/open-api/libs/api-mcp/src/server.py",
+        "--profile",
+        "flowaccount-sandbox-api",
+        "--allow-write"
+      ]
+    }
+  }
+}
