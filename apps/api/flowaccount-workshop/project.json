@@ -34,14 +34,6 @@
       "options": {
         "lintFilePatterns": ["apps/api/flowaccount-workshop/**/*.ts"]
       }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/api/flowaccount-workshop/open-api"],
-      "options": {
-        "jestConfig": "apps/api/flowaccount-workshop/open-api/jest.config.js",
-        "passWithNoTests": true
-      }
     }
   }
 }

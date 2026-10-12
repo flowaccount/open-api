@@ -11,14 +11,6 @@
         "lintFilePatterns": ["libs/api-dotnet/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api-dotnet"],
-      "options": {
-        "jestConfig": "libs/api-dotnet/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],

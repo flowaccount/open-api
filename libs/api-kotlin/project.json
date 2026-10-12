@@ -11,14 +11,6 @@
         "lintFilePatterns": ["libs/api-kotlin/**/*.ts"]
       }
     },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api-kotlin"],
-      "options": {
-        "jestConfig": "libs/api-kotlin/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
