@@ -14,7 +14,12 @@
         "assets": [
           "apps/api/flowaccount-workshop/src/assets",
           "apps/api/flowaccount-workshop/src/README.md"
-        ]
+        ],
+        "target": "node",
+        "compiler": "tsc",
+        "isolatedConfig": false,
+        "externalDependencies": "none",
+        "generatePackageJson": true
       },
       "configurations": {}
     },

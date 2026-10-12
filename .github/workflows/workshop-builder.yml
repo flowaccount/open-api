@@ -1,52 +1,75 @@
 name: build flowaccount-workshop
-on: 
+# PRs: build the app and the image (no AWS access).
+# main: build, then push :latest-public-workshop-sandbox to ECR.
+
+on:
   push:
-    branches:
-      - main
-      - 'feat/**'
+    branches: [main]
+    paths:
+      - "apps/api/flowaccount-workshop/**"
+      - "docker/flowaccount-workshop/**"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/workshop-builder.yml"
+  pull_request:
+    paths:
+      - "apps/api/flowaccount-workshop/**"
+      - "docker/flowaccount-workshop/**"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/workshop-builder.yml"
+  workflow_dispatch:
+
+permissions: {}
+
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  IMAGE: 765141697745.dkr.ecr.ap-southeast-1.amazonaws.com/flowaccount/public-workshop-sandbox:latest-public-workshop-sandbox
+
 jobs:
   main:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
-      contents: 'read'
-      actions: 'write'
-      id-token: 'write'
-    defaults:
-      run:
-        working-directory: ${{ inputs.working-directory || github.workspace }}
+      contents: read
+      id-token: write # OIDC role for ECR; only used on main, see the if: below
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 14
-    - name: Configure AWS credentials
-      if: always()
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        role-to-assume: arn:aws:iam::765141697745:role/GithubActionAssumeRole
-        aws-region: ap-southeast-1
-    - name: Login to Amazon ECR
-      uses: aws-actions/amazon-ecr-login@v1
-      with:
-        mask-password: 'true'
-    - name: github.workspace path 
-      run: echo ${{ github.workspace }}
-    - name: Install packages
-      run: |
-        yarn install --prefer-offline --frozen-lockfile --non-interactive
-    - name: prepare contents
-      run: |
-        rsync -av -q . ../ --exclude .git
-        yarn nx run api-flowaccount-workshop:build
-        cp -r dist/apps/api/flowaccount-workshop/. docker/flowaccount-workshop/.
-        rm -rf dist/apps/api/flowaccount-workshop/*
-    - name: docker build
-      run: |
-        cd docker/flowaccount-workshop
-        ls
-        docker build . -t 765141697745.dkr.ecr.ap-southeast-1.amazonaws.com/flowaccount/public-workshop-sandbox:latest-public-workshop-sandbox
-    - name: docker push
-      run: |
-        docker push 765141697745.dkr.ecr.ap-southeast-1.amazonaws.com/flowaccount/public-workshop-sandbox:latest-public-workshop-sandbox
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 20
+          cache: yarn
+      - name: Install packages
+        run: yarn install --prefer-offline --frozen-lockfile --non-interactive
+      - name: Build
+        run: |
+          yarn nx run api-flowaccount-workshop:build
+          cp -r dist/apps/api/flowaccount-workshop/. docker/flowaccount-workshop/.
+      - name: docker build
+        working-directory: docker/flowaccount-workshop
+        run: docker build . --build-arg "GITCOMMIT=${GITHUB_SHA}" -t "$IMAGE"
+      - name: Smoke test the image
+        run: |
+          docker run -d --name workshop -e SERVER_PORT=8081 -p 8081:8081 "$IMAGE"
+          for i in $(seq 1 20); do curl -fsS -o /dev/null http://localhost:8081/ && exit 0; sleep 1; done
+          docker logs workshop; exit 1
+
+      - name: Configure AWS credentials
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: arn:aws:iam::765141697745:role/GithubActionAssumeRole
+          aws-region: ap-southeast-1
+      - name: Login to Amazon ECR
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: aws-actions/amazon-ecr-login@03f1aad4c6c7ffd436567f42f9384779290529bd # v2.1.7
+        with:
+          mask-password: "true"
+      - name: docker push
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: docker push "$IMAGE"
