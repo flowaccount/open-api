@@ -8,6 +8,10 @@
 > what differs. `libs/api-mcp/spec/openapi.yaml` should always be green
 > (`nx run api-mcp:spec-drift`, fix with `uv run --script libs/api-mcp/src/spec_drift.py --update`).
 
+> **Connect Claude, Cursor, VS Code, Codex or any MCP client to FlowAccount:** see
+> [libs/api-mcp/examples](libs/api-mcp/examples/README.md) (one server name per company).
+> AI agents working in this repo: start with [AGENTS.md](AGENTS.md).
+
 # How to generate open-api sdk for different client-side languages
 
 First off, we use an nx-plugin called `@trumbitta/nx-plugin-openapi` to help us utilize the [open-api-generator](https://openapi-generator.tech/docs/generators/) in order to generate client sdk from `swagger.json` file
