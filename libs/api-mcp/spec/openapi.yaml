@@ -1040,6 +1040,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimpleDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -1092,6 +1099,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InlineDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -1144,6 +1158,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimpleDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -1196,6 +1217,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InlineDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -1353,7 +1381,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentResponse'
+                $ref: '#/components/schemas/PaymentDocumentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/PaymentDocumentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/PaymentDocumentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -1638,6 +1673,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimpleDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -1690,6 +1732,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InlineDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -1847,7 +1896,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentResponse'
+                $ref: '#/components/schemas/PaymentDocumentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/PaymentDocumentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/PaymentDocumentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -2131,6 +2187,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimpleDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -2183,6 +2246,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InlineDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -2235,6 +2305,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimpleDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -2287,6 +2364,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InlineDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -2443,7 +2527,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentResponse'
+                $ref: '#/components/schemas/PaymentDocumentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/PaymentDocumentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/PaymentDocumentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -3188,6 +3279,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimpleDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -3240,6 +3338,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InlineDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -3292,6 +3397,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimpleDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -3344,6 +3456,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InlineDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -3501,7 +3620,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentResponse'
+                $ref: '#/components/schemas/PaymentDocumentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/PaymentDocumentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/PaymentDocumentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -3785,6 +3911,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExpenseSimpleDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -3837,6 +3970,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExpenseInlineDocumentWithPaymentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/WithPaymentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/WithPaymentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -3993,7 +4133,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExpenseDocumentResponse'
+                $ref: '#/components/schemas/ExpensePaymentDocumentResponse'
+              examples:
+                SingleChannelCash:
+                  $ref: '#/components/examples/ExpensePaymentDocumentResponseSingleChannelCash'
+                MultiplePaymentChannel:
+                  $ref: '#/components/examples/ExpensePaymentDocumentResponseMultiplePaymentChannel'
+        '400':
+          $ref: '#/components/responses/PaymentBadRequest'
         '401':
           description: 401 response
         '500':
@@ -5638,12 +5785,22 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/SimpleDocumentWithPaymentReceiving'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/SimpleDocumentWithPaymentReceivingSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/SimpleDocumentWithPaymentReceivingMultiplePaymentChannel'
       required: true
     SimpleDocumentWithPaymentPaid:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/SimpleDocumentWithPaymentPaid'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/SimpleDocumentWithPaymentPaidSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/SimpleDocumentWithPaymentPaidMultiplePaymentChannel'
       required: true
     InlineDocument:
       content:
@@ -5662,12 +5819,22 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/InlineDocumentWithPaymentReceiving'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/InlineDocumentWithPaymentReceivingSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/InlineDocumentWithPaymentReceivingMultiplePaymentChannel'
       required: true
     InlineDocumentWithPaymentPaid:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/InlineDocumentWithPaymentPaid'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/InlineDocumentWithPaymentPaidSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/InlineDocumentWithPaymentPaidMultiplePaymentChannel'
       required: true
     UpdateAllDocument:
       content:
@@ -5709,24 +5876,44 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentReceiving'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/UpgradeSimpleDocumentWithPaymentReceivingSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/UpgradeSimpleDocumentWithPaymentReceivingMultiplePaymentChannel'
       required: true
     UpgradeInlineDocumentWithPaymentReceiving:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentReceiving'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/UpgradeInlineDocumentWithPaymentReceivingSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/UpgradeInlineDocumentWithPaymentReceivingMultiplePaymentChannel'
       required: true
     UpgradeSimpleDocumentWithPaymentPaid:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentPaid'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/UpgradeSimpleDocumentWithPaymentPaidSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/UpgradeSimpleDocumentWithPaymentPaidMultiplePaymentChannel'
       required: true
     UpgradeInlineDocumentWithPaymentPaid:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentPaid'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/UpgradeInlineDocumentWithPaymentPaidSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/UpgradeInlineDocumentWithPaymentPaidMultiplePaymentChannel'
       required: true
     UpdateAllExpenseDocument:
       content:
@@ -5745,6 +5932,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ExpenseSimpleDocumentWithPaymentPaid'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/ExpenseSimpleDocumentPaymentPaidSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/ExpenseSimpleDocumentPaymentPaidMultiplePaymentChannel'
       required: true
     ExpenseInlineDocument:
       content:
@@ -5757,18 +5949,33 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ExpenseInlineDocumentWithPaymentPaid'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/ExpenseInlineDocumentWithPaymentPaidSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/ExpenseInlineDocumentWithPaymentPaidMultiplePaymentChannel'
       required: true
     PaymentReceivingDocument:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/PaymentReceivingDocument'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/PaymentReceivingDocumentSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/PaymentOnlyMultiplePaymentChannel'
       required: true
     PaymentPaidDocument:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/PaymentPaidDocument'
+          examples:
+            SingleChannelCash:
+              $ref: '#/components/examples/PaymentPaidDocumentSingleChannelCash'
+            MultiplePaymentChannel:
+              $ref: '#/components/examples/PaymentOnlyMultiplePaymentChannel'
       required: true
     Contact:
       content:
@@ -5853,6 +6060,1176 @@ components:
             $ref: '#/components/schemas/ExportPdfTaxInvoiceRequest'
       required: true
             
+  examples:
+    SimpleDocumentWithPaymentReceivingSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+        contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ลูกค้า
+        contactEmail: contact@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        contactGroup: 1
+        publishedOn: '2021-01-01'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        salesName: พนักงาน ขายหน้าร้าน
+        projectName: project A
+        reference: INV2020010001
+        isVatInclusive: false
+        useReceiptDeduction: false
+        subTotal: 100.01
+        discountPercentage: 100.0001
+        discountAmount: 100.01
+        totalAfterDiscount: 10.51
+        isVat: false
+        isManualVat: false
+        vatAmount: 10.51
+        grandTotal: 321.01
+        documentShowWithholdingTax: false
+        documentWithholdingTaxPercentage: 0
+        documentWithholdingTaxAmount: 0
+        documentDeductionType: 0
+        documentDeductionAmount: 0
+        remarks: remarks
+        internalNotes: note
+        showSignatureOrStamp: true
+        externalDocumentId: platform-123456
+        items:
+        - id: 1
+          type: 1
+          name: Service
+          description: Type service
+          quantity: 1.1234
+          unitName: บริการ
+          pricePerUnit: 100.0001
+          total: 100.01
+          sellChartOfAccountCode: '41210'
+          buyChartOfAccountCode: ''
+        documentPaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        paymentDeductionType: 0
+        paymentDeductionAmount: 0
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    SimpleDocumentWithPaymentReceivingMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ลูกค้า จำกัด
+        publishedOn: '2026-09-30'
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        items:
+        - documentStructureType: SimpleDocument
+          name: ชุดอาหาร
+          quantity: 1
+          pricePerUnit: 250.0
+          total: 250.0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: &MultiplePaymentChannelRows
+          - paymentMethod: 1
+            collected: 100.0
+          - paymentMethod: 5
+            collected: 150.0
+            bankAccountId: 12345
+    InlineDocumentWithPaymentReceivingSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+        contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ลูกค้า
+        contactEmail: contact@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        contactGroup: 1
+        publishedOn: '2021-01-01'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        salesName: พนักงาน ขายหน้าร้าน
+        projectName: project A
+        reference: INV2020010001
+        isVatInclusive: false
+        useReceiptDeduction: false
+        subTotal: 100.01
+        discountPercentage: 100.0001
+        discountAmount: 100.01
+        totalAfterDiscount: 10.51
+        isVat: false
+        isManualVat: false
+        vatAmount: 10.51
+        grandTotal: 321.01
+        documentShowWithholdingTax: false
+        documentWithholdingTaxPercentage: 0
+        documentWithholdingTaxAmount: 0
+        documentDeductionType: 0
+        documentDeductionAmount: 0
+        remarks: remarks
+        internalNotes: note
+        showSignatureOrStamp: true
+        externalDocumentId: platform-123456
+        discountType: 1
+        useInlineDiscount: true
+        useInlineVat: false
+        exemptAmount: 10.51
+        vatableAmount: 10.51
+        items:
+        - id: 1
+          type: 1
+          name: Service
+          description: Type service
+          quantity: 1.1234
+          unitName: บริการ
+          pricePerUnit: 100.0001
+          total: 100.01
+          sellChartOfAccountCode: '41210'
+          buyChartOfAccountCode: ''
+          discountAmount: 100.01
+          vatRate: 7
+        documentPaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        paymentDeductionType: 0
+        paymentDeductionAmount: 0
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    InlineDocumentWithPaymentReceivingMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ลูกค้า จำกัด
+        publishedOn: '2026-09-30'
+        useInlineDiscount: true
+        useInlineVat: true
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        items:
+        - documentStructureType: InlineDocument
+          name: ชุดอาหาร
+          quantity: 1
+          pricePerUnit: 250.0
+          total: 250.0
+          discountAmount: 0
+          vatRate: 0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    UpgradeSimpleDocumentWithPaymentReceivingSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        companyName: ''
+        companyNameEn: ''
+        companyAddress: ''
+        companyAddressEn: ''
+        companyTaxId: ''
+        companyBranch: ''
+        companyBranchEn: ''
+        companyPhone: ''
+        companyMobile: ''
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+        contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ลูกค้า
+        contactEmail: contact@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        '...': '[Additional Properties Truncated]'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        documentReference:
+        - recordId: 1
+          referenceDocumentSerial: QT20200101
+          referenceDocumentType: 3
+        items:
+        - id: 1
+          type: 1
+          name: Service
+          description: Type service
+          quantity: 1.1234
+          unitName: บริการ
+          pricePerUnit: 100.0001
+          total: 100.01
+          sellChartOfAccountCode: '41210'
+          buyChartOfAccountCode: ''
+        documentPaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        paymentDeductionType: 0
+        paymentDeductionAmount: 0
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    UpgradeSimpleDocumentWithPaymentReceivingMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ลูกค้า จำกัด
+        publishedOn: '2026-09-30'
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        documentReference:
+        - recordId: 100001
+          referenceDocumentSerial: QT20260900001
+          referenceDocumentType: 3
+        items:
+        - documentStructureType: SimpleDocument
+          name: ชุดอาหาร
+          quantity: 1
+          pricePerUnit: 250.0
+          total: 250.0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    UpgradeInlineDocumentWithPaymentReceivingSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        companyName: ''
+        companyNameEn: ''
+        companyAddress: ''
+        companyAddressEn: ''
+        companyTaxId: ''
+        companyBranch: ''
+        companyBranchEn: ''
+        companyPhone: ''
+        companyMobile: ''
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+        contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ลูกค้า
+        contactEmail: contact@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        '...': '[Additional Properties Truncated]'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        documentReference:
+        - recordId: 1
+          referenceDocumentSerial: QT20200101
+          referenceDocumentType: 3
+        discountType: 1
+        useInlineDiscount: true
+        useInlineVat: false
+        exemptAmount: 10.51
+        vatableAmount: 10.51
+        items:
+        - id: 1
+          type: 1
+          name: Service
+          description: Type service
+          quantity: 1.1234
+          unitName: บริการ
+          pricePerUnit: 100.0001
+          total: 100.01
+          sellChartOfAccountCode: '41210'
+          buyChartOfAccountCode: ''
+          discountAmount: 100.01
+          vatRate: 7
+        documentPaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        paymentDeductionType: 0
+        paymentDeductionAmount: 0
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    UpgradeInlineDocumentWithPaymentReceivingMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ลูกค้า จำกัด
+        publishedOn: '2026-09-30'
+        useInlineDiscount: true
+        useInlineVat: true
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        documentReference:
+        - recordId: 100001
+          referenceDocumentSerial: QT20260900001
+          referenceDocumentType: 3
+        items:
+        - documentStructureType: InlineDocument
+          name: ชุดอาหาร
+          quantity: 1
+          pricePerUnit: 250.0
+          total: 250.0
+          discountAmount: 0
+          vatRate: 0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    PaymentReceivingDocumentSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        paymentStructureType: null
+        documentId: 1
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        paymentDeductionType: 0
+        paymentDeductionAmount: 0
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    SimpleDocumentWithPaymentPaidSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+        contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ลูกค้า
+        contactEmail: contact@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        contactGroup: 1
+        publishedOn: '2021-01-01'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        salesName: พนักงาน ขายหน้าร้าน
+        projectName: project A
+        reference: INV2020010001
+        isVatInclusive: false
+        useReceiptDeduction: false
+        subTotal: 100.01
+        discountPercentage: 100.0001
+        discountAmount: 100.01
+        totalAfterDiscount: 10.51
+        isVat: false
+        isManualVat: false
+        vatAmount: 10.51
+        grandTotal: 321.01
+        documentShowWithholdingTax: false
+        documentWithholdingTaxPercentage: 0
+        documentWithholdingTaxAmount: 0
+        documentDeductionType: 0
+        documentDeductionAmount: 0
+        remarks: remarks
+        internalNotes: note
+        showSignatureOrStamp: true
+        externalDocumentId: platform-123456
+        items:
+        - id: 1
+          type: 1
+          name: Service
+          description: Type service
+          quantity: 1.1234
+          unitName: บริการ
+          pricePerUnit: 100.0001
+          total: 100.01
+          sellChartOfAccountCode: '41210'
+          buyChartOfAccountCode: ''
+        documentPaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    SimpleDocumentWithPaymentPaidMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ผู้ขาย จำกัด
+        publishedOn: '2026-09-30'
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        items:
+        - documentStructureType: SimpleDocument
+          name: ชุดอาหาร
+          quantity: 1
+          pricePerUnit: 250.0
+          total: 250.0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    InlineDocumentWithPaymentPaidSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+        contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ลูกค้า
+        contactEmail: contact@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        contactGroup: 1
+        publishedOn: '2021-01-01'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        salesName: พนักงาน ขายหน้าร้าน
+        projectName: project A
+        reference: INV2020010001
+        isVatInclusive: false
+        useReceiptDeduction: false
+        subTotal: 100.01
+        discountPercentage: 100.0001
+        discountAmount: 100.01
+        totalAfterDiscount: 10.51
+        isVat: false
+        isManualVat: false
+        vatAmount: 10.51
+        grandTotal: 321.01
+        documentShowWithholdingTax: false
+        documentWithholdingTaxPercentage: 0
+        documentWithholdingTaxAmount: 0
+        documentDeductionType: 0
+        documentDeductionAmount: 0
+        remarks: remarks
+        internalNotes: note
+        showSignatureOrStamp: true
+        externalDocumentId: platform-123456
+        discountType: 1
+        useInlineDiscount: true
+        useInlineVat: false
+        exemptAmount: 10.51
+        vatableAmount: 10.51
+        items:
+        - id: 1
+          type: 1
+          name: Service
+          description: Type service
+          quantity: 1.1234
+          unitName: บริการ
+          pricePerUnit: 100.0001
+          total: 100.01
+          sellChartOfAccountCode: '41210'
+          buyChartOfAccountCode: ''
+          discountAmount: 100.01
+          vatRate: 7
+        documentPaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    InlineDocumentWithPaymentPaidMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ผู้ขาย จำกัด
+        publishedOn: '2026-09-30'
+        useInlineDiscount: true
+        useInlineVat: true
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        items:
+        - documentStructureType: InlineDocument
+          name: ชุดอาหาร
+          quantity: 1
+          pricePerUnit: 250.0
+          total: 250.0
+          discountAmount: 0
+          vatRate: 0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    UpgradeSimpleDocumentWithPaymentPaidSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        companyName: ''
+        companyNameEn: ''
+        companyAddress: ''
+        companyAddressEn: ''
+        companyTaxId: ''
+        companyBranch: ''
+        companyBranchEn: ''
+        companyPhone: ''
+        companyMobile: ''
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+        contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ลูกค้า
+        contactEmail: contact@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        '...': '[Additional Properties Truncated]'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        documentReference:
+        - recordId: 1
+          referenceDocumentSerial: QT20200101
+          referenceDocumentType: 3
+        items:
+        - id: 1
+          type: 1
+          name: Service
+          description: Type service
+          quantity: 1.1234
+          unitName: บริการ
+          pricePerUnit: 100.0001
+          total: 100.01
+          sellChartOfAccountCode: '41210'
+          buyChartOfAccountCode: ''
+        documentPaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    UpgradeSimpleDocumentWithPaymentPaidMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ผู้ขาย จำกัด
+        publishedOn: '2026-09-30'
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        documentReference:
+        - recordId: 100001
+          referenceDocumentSerial: PO20260900001
+          referenceDocumentType: 1
+        items:
+        - documentStructureType: SimpleDocument
+          name: ชุดอาหาร
+          quantity: 1
+          pricePerUnit: 250.0
+          total: 250.0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    UpgradeInlineDocumentWithPaymentPaidSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        companyName: ''
+        companyNameEn: ''
+        companyAddress: ''
+        companyAddressEn: ''
+        companyTaxId: ''
+        companyBranch: ''
+        companyBranchEn: ''
+        companyPhone: ''
+        companyMobile: ''
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+        contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ลูกค้า
+        contactEmail: contact@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        '...': '[Additional Properties Truncated]'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        documentReference:
+        - recordId: 1
+          referenceDocumentSerial: QT20200101
+          referenceDocumentType: 3
+        discountType: 1
+        useInlineDiscount: true
+        useInlineVat: false
+        exemptAmount: 10.51
+        vatableAmount: 10.51
+        items:
+        - id: 1
+          type: 1
+          name: Service
+          description: Type service
+          quantity: 1.1234
+          unitName: บริการ
+          pricePerUnit: 100.0001
+          total: 100.01
+          sellChartOfAccountCode: '41210'
+          buyChartOfAccountCode: ''
+          discountAmount: 100.01
+          vatRate: 7
+        documentPaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    UpgradeInlineDocumentWithPaymentPaidMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ผู้ขาย จำกัด
+        publishedOn: '2026-09-30'
+        useInlineDiscount: true
+        useInlineVat: true
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        documentReference:
+        - recordId: 100001
+          referenceDocumentSerial: PO20260900001
+          referenceDocumentType: 1
+        items:
+        - documentStructureType: InlineDocument
+          name: ชุดอาหาร
+          quantity: 1
+          pricePerUnit: 250.0
+          total: 250.0
+          discountAmount: 0
+          vatRate: 0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    PaymentPaidDocumentSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        paymentStructureType: null
+        documentId: 1
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 0
+    ExpenseSimpleDocumentPaymentPaidSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ผู้จำหน่าย จำกัด
+        contactAddress: ที่อยู่ ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ผู้จำหน่าย
+        contactEmail: supplier@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        contactGroup: 1
+        publishedOn: '2021-01-01'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        salesName: พนักงาน ขายหน้าร้าน
+        projectName: project A
+        reference: INV2020010001
+        isVatInclusive: false
+        isManualVat: false
+        expenseCategoryView: 3
+        subTotal: 100.01
+        discountPercentage: 100.0001
+        discountAmount: 100.01
+        totalAfterDiscount: 10.51
+        isVat: false
+        vatAmount: 10.51
+        grandTotal: 321.01
+        remarks: remarks
+        internalNotes: note
+        showSignatureOrStamp: true
+        externalDocumentId: platform-123456
+        items:
+        - systemCode: '1001'
+          categoryId: '40238'
+          description: ''
+          nameLocal: การตลาดและโฆษณา
+          nameForeign: Marketing & Advertising
+          creditId: '1081994'
+          creditCategory: '2'
+          creditCode: '21399'
+          creditNameLocal: 21399 / เจ้าหนี้อื่นๆ
+          creditNameForeign: 21399 / Other Payables
+          '...': '[Additional Properties Truncated]'
+        expensePaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    ExpenseSimpleDocumentPaymentPaidMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ผู้ขาย จำกัด
+        publishedOn: '2026-09-30'
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        items:
+        - quantity: 1
+          systemCode: 1001
+          categoryId: 40238
+          description: ค่าโฆษณา
+          nameLocal: การตลาดและโฆษณา
+          nameForeign: Marketing & Advertising
+          creditId: 1081994
+          creditCategory: 2
+          creditCode: '21399'
+          creditNameLocal: 21399 / เจ้าหนี้อื่นๆ
+          creditNameForeign: 21399 / Other Payables
+          debitId: 1082099
+          debitCategory: 5
+          debitCode: '53029'
+          debitNameLocal: 53029 / ค่าใช้จ่ายด้านโฆษณาและการตลาดอื่นๆ
+          debitNameForeign: 53029 / Other advertising and marketing expenses
+          pricePerUnit: 250.0
+          total: 250.0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    ExpenseInlineDocumentWithPaymentPaidSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        contactCode: '001'
+        contactId: 1
+        contactName: บริษัท ผู้จำหน่าย จำกัด
+        contactAddress: ที่อยู่ ผู้จำหน่าย
+        contactTaxId: '1234567890123'
+        contactBranch: สำนักงาน/สาขา
+        contactPerson: ผู้จำหน่าย
+        contactEmail: supplier@email.com
+        contactNumber: 099-999-9999
+        contactZipCode: '12345'
+        contactGroup: 1
+        publishedOn: '2021-01-01'
+        creditType: 3
+        creditDays: 0
+        dueDate: '2021-01-01'
+        salesName: พนักงาน ขายหน้าร้าน
+        projectName: project A
+        reference: INV2020010001
+        isVatInclusive: false
+        isManualVat: false
+        expenseCategoryView: 3
+        subTotal: 100.01
+        discountPercentage: 100.0001
+        discountAmount: 100.01
+        totalAfterDiscount: 10.51
+        isVat: false
+        vatAmount: 10.51
+        grandTotal: 321.01
+        remarks: remarks
+        internalNotes: note
+        showSignatureOrStamp: true
+        externalDocumentId: platform-123456
+        discountType: 1
+        useInlineDiscount: true
+        useInlineVat: false
+        exemptAmount: 10.51
+        vatableAmount: 10.51
+        items:
+        - systemCode: '1001'
+          categoryId: '40238'
+          description: ''
+          nameLocal: การตลาดและโฆษณา
+          nameForeign: Marketing & Advertising
+          creditId: '1081994'
+          creditCategory: '2'
+          creditCode: '21399'
+          creditNameLocal: 21399 / เจ้าหนี้อื่นๆ
+          creditNameForeign: 21399 / Other Payables
+          '...': '[Additional Properties Truncated]'
+          discountAmount: 100.01
+          vatRate: 7
+        expensePaymentStructureType: null
+        paymentMethod: 1
+        paymentDate: '2021-01-01'
+        collected: 100
+        withheldPercentage: 0
+        withheldAmount: 0
+        paymentRemarks: DocumentWithPayment
+        remainingCollectedType: 0
+        remainingCollected: 100.01
+    ExpenseInlineDocumentWithPaymentPaidMultiplePaymentChannel:
+      summary: "หลายช่องทาง บิล 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        contactName: บริษัท ผู้ขาย จำกัด
+        publishedOn: '2026-09-30'
+        dueDate: '2026-09-30'
+        useInlineDiscount: true
+        useInlineVat: true
+        isVatInclusive: false
+        isVat: false
+        subTotal: 250.0
+        totalAfterDiscount: 250.0
+        grandTotal: 250.0
+        items:
+        - quantity: 1
+          systemCode: 1001
+          categoryId: 40238
+          description: ค่าโฆษณา
+          nameLocal: การตลาดและโฆษณา
+          namelocal: การตลาดและโฆษณา
+          nameForeign: Marketing & Advertising
+          creditId: 1081994
+          creditCategory: 2
+          creditCode: '21399'
+          creditNameLocal: 21399 / เจ้าหนี้อื่นๆ
+          creditNameForeign: 21399 / Other Payables
+          debitId: 1082099
+          debitCategory: 5
+          debitCode: '53029'
+          debitNameLocal: 53029 / ค่าใช้จ่ายด้านโฆษณาและการตลาดอื่นๆ
+          debitNameForeign: 53029 / Other advertising and marketing expenses
+          pricePerUnit: 250.0
+          total: 250.0
+          discountAmount: 0
+          vatRate: 0
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    PaymentOnlyMultiplePaymentChannel:
+      summary: "หลายช่องทาง ยอด 250 = เงินสด 100 + โอน 150 (ต้องเปิดใช้ก่อน)"
+      value:
+        paymentMethod: 101
+        paymentDate: '2026-09-30'
+        collected: 250.0
+        paymentChannels: *MultiplePaymentChannelRows
+    WithPaymentResponseSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        status: true
+        message: ''
+        code: 0
+        data:
+          creditType: '3'
+          creditDays: '0'
+          dueDate: '2021-01-01'
+          payments:
+            paymentDate: '2021-01-01'
+            collected: '100.00'
+            paymentMethod: '1'
+            paymentChannel: เงินสด
+            paymentRemarks: DocumentWithPayment
+    WithPaymentResponseMultiplePaymentChannel:
+      summary: "หลายช่องทาง (paymentMethod = 101) · แถวอยู่ที่ data.payments.paymentChannels"
+      value:
+        status: true
+        message: ''
+        code: 0
+        data:
+          creditType: '3'
+          creditDays: '0'
+          dueDate: '2026-09-30'
+          payments:
+            paymentDate: '2026-09-30'
+            collected: '250.00'
+            paymentMethod: '101'
+            paymentChannels: &PaymentChannelResponseRows
+              - id: '90001'
+                paymentMethod: '1'
+                collected: '100.00'
+                paymentCharge: ''
+                paymentDate: '2026-09-30T00:00:00'
+                bankAccountId: ''
+                transferBankAccountId: ''
+                bankAccountName: ''
+                bankAccountType: ''
+                bankAccountNumber: ''
+                creditCardId: ''
+                creditCardNumber: ''
+                chequeNumber: ''
+                chequeDate: ''
+                chequeBankAccountId: ''
+                bankChequeId: ''
+                chequeDepositBankId: ''
+                chequeCashingDate: ''
+                chequeDepositDate: ''
+                chequeDepositBankName: ''
+                chequeDepositBankAccountType: ''
+                chequeDepositBankAccountNumber: ''
+                pettyCashId: ''
+                pettyCashName: ''
+                otherChannelId: ''
+                otherChannelName: ''
+                otherChannelPaymentChannel: ''
+              - id: '90002'
+                paymentMethod: '5'
+                collected: '150.00'
+                paymentCharge: ''
+                paymentDate: '2026-09-30T00:00:00'
+                bankAccountId: '12345'
+                transferBankAccountId: ''
+                bankAccountName: ธนาคารกสิกรไทย
+                bankAccountType: '1'
+                bankAccountNumber: 123-4-56789-0
+                creditCardId: ''
+                creditCardNumber: ''
+                chequeNumber: ''
+                chequeDate: ''
+                chequeBankAccountId: ''
+                bankChequeId: ''
+                chequeDepositBankId: ''
+                chequeCashingDate: ''
+                chequeDepositDate: ''
+                chequeDepositBankName: ''
+                chequeDepositBankAccountType: ''
+                chequeDepositBankAccountNumber: ''
+                pettyCashId: ''
+                pettyCashName: ''
+                otherChannelId: ''
+                otherChannelName: ''
+                otherChannelPaymentChannel: ''
+    PaymentDocumentResponseSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        status: true
+        message: ''
+        code: 0
+        data:
+          status: string
+          statusString: string
+          documentType: '3'
+          allowDelete: 'false'
+          recordId: 1
+          documentId: 1
+          documentSerial: string
+          contactCode: '001'
+          contactId: 1
+          contactName: บริษัท ลูกค้า จำกัด, คุณลูกค้า ซื้อประจำ
+          contactAddress: ที่อยู่ ลูกค้า/ผู้จำหน่าย
+          contactTaxId: '1234567890123'
+          contactEmail: contact@email.com
+          externalDocumentId: platform-123456
+          discountType: '1'
+          useInlineDiscount: 'false'
+          useInlineVat: 'false'
+          exemptAmount: '0'
+          items:
+          - id: 1
+            type: 1
+            name: Service
+            description: Type service
+            quantity: '1'
+            unitName: บริการ
+            pricePerUnit: '100'
+            total: '100'
+            sellChartOfAccountCode: '41210'
+            buyChartOfAccountCode: ''
+    PaymentDocumentResponseMultiplePaymentChannel:
+      summary: "หลายช่องทาง (paymentMethod = 101) · แถวอยู่ที่ data.payments.paymentChannels"
+      value:
+        status: true
+        message: ''
+        code: 0
+        data:
+          payments:
+            paymentChannels: *PaymentChannelResponseRows
+    ExpensePaymentDocumentResponseSingleChannelCash:
+      summary: "ช่องทางเดียว · เปิดเมนูนี้เพื่อดูแบบหลายช่องทาง (paymentMethod = 101)"
+      value:
+        status: true
+        message: ''
+        code: 0
+        data:
+          status: string
+          statusString: string
+          documentType: '3'
+          allowDelete: 'false'
+          recordId: 1
+          documentId: 1
+          documentSerial: string
+          contactCode: '001'
+          contactId: 1
+          contactName: บริษัท ผู้จำหน่าย จำกัด
+          contactAddress: ที่อยู่ ผู้จำหน่าย
+          contactEmail: supplier@email.com
+          discountType: '1'
+          useInlineDiscount: 'false'
+          useInlineVat: 'false'
+          exemptAmount: '0'
+          items:
+          - systemCode: '1001'
+            categoryId: '40238'
+            description: string
+            nameLocal: การตลาดและโฆษณา
+            nameForeign: Marketing & Advertising
+            creditId: '1081994'
+            creditCategory: '2'
+            creditCode: '21399'
+            creditNameLocal: 21399 / เจ้าหนี้อื่นๆ
+            creditNameForeign: 21399 / Other Payables
+    ExpensePaymentDocumentResponseMultiplePaymentChannel:
+      summary: "หลายช่องทาง (paymentMethod = 101) · แถวอยู่ที่ data.payments.paymentChannels"
+      value:
+        status: true
+        message: ''
+        code: 0
+        data:
+          payments:
+            paymentChannels: *PaymentChannelResponseRows
+  responses:
+    PaymentBadRequest:
+      description: "400 response — ข้อมูลการชำระไม่ถูกต้อง ใช้ code แยกกรณี<br>สร้างเอกสารพร้อมชำระ (with-payment) และแปลงเอกสารพร้อมชำระ (upgrade): ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารยังถูกสร้างไว้แต่ยังไม่ชำระ ให้ชำระด้วย POST /{documents}/{id}/payment แทนการส่งคำขอสร้างซ้ำ"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentErrorResponse'
+          examples:
+            ModelBinding:
+              summary: code 0 — อ่าน paymentChannels ไม่ได้ (ชนิดข้อมูลผิด เช่น collected เป็นข้อความ) · เกิดที่ทุก op
+              value:
+                status: false
+                code: 0
+                message: 'One or more validation errors occurred.'
+                data:
+                  validationErrors:
+                    - 'paymentChannels[0].collected: The value is not valid.'
+            NotEnabled:
+              summary: code 220021 — บริษัทยังไม่ได้เปิดใช้การรับชำระหลายช่องทาง · เกิดที่ทุก op
+              value:
+                status: false
+                code: 220021
+                message: 'บริษัทนี้ยังไม่เปิดใช้งานการชำระเงินหลายช่องทาง'
+                data: null
+            DestinationMissing:
+              summary: code 220013 — สองแถวผิด — แถว 1 ขาดบัญชีปลายทาง (item code 220009) และแถว 3 เช็คขาดวันที่ (item code 220011) · ข้อความของแถวเหล่านี้ใช้กฎเดียวกับการชำระช่องทางเดียว · เกิดที่ทุก op
+              value:
+                status: false
+                code: 220013
+                message: 'paymentChannels มี 2 แถวที่ไม่ถูกต้อง ดูรายละเอียดใน data.paymentChannelErrors'
+                data:
+                  paymentChannelErrors:
+                    - channelIndex: 1
+                      code: 220009
+                      field: null
+                      message: 'PaymentMethod Transfer requires bankAccountId'
+                    - channelIndex: 3
+                      code: 220011
+                      field: null
+                      message: 'PaymentMethod Cheque requires chequeDate'
+            BankChequeMissing:
+              summary: code 220013 — แถวเช็คฝั่งซื้อขาด bankChequeId (item code 220009) · เกิดที่ expenses/* และ purchases/* เท่านั้น
+              value:
+                status: false
+                code: 220013
+                message: 'paymentChannels มี 1 แถวที่ไม่ถูกต้อง ดูรายละเอียดใน data.paymentChannelErrors'
+                data:
+                  paymentChannelErrors:
+                    - channelIndex: 0
+                      code: 220009
+                      field: null
+                      message: 'PaymentMethod Cheque requires bankChequeId'
+            ChequeDateMissing:
+              summary: code 220013 — แถวเช็คขาดวันที่ (item code 220011) · เกิดที่ทุก op
+              value:
+                status: false
+                code: 220013
+                message: 'paymentChannels มี 1 แถวที่ไม่ถูกต้อง ดูรายละเอียดใน data.paymentChannelErrors'
+                data:
+                  paymentChannelErrors:
+                    - channelIndex: 0
+                      code: 220011
+                      field: null
+                      message: 'PaymentMethod Cheque requires chequeDate'
+            CollectedNegative:
+              summary: code 220013 — collected ของแถวติดลบ (item code 220011) · เกิดที่ทุก op
+              value:
+                status: false
+                code: 220013
+                message: 'paymentChannels มี 1 แถวที่ไม่ถูกต้อง ดูรายละเอียดใน data.paymentChannelErrors'
+                data:
+                  paymentChannelErrors:
+                    - channelIndex: 0
+                      code: 220011
+                      field: null
+                      message: 'Field collected cannot less than 0'
+            DestinationNotFoundFromPaymentEngine:
+              summary: code 220013 — บัญชีโอน · บัตรเครดิต · เงินสดย่อย · ช่องทางอื่นของแถวไม่อยู่ในบริษัท (ระบบบันทึกการชำระตรวจ · data null) · เกิดที่ทุก op · with-payment / upgrade บันทึกเอกสารก่อนแล้วจึงตรวจ ⇒ เอกสารยังไม่ชำระ
+              value:
+                status: false
+                code: 220013
+                message: 'BankAccountId 999 does not belong to this company.'
+                data: null
+            ExpenseNegativeLine:
+              summary: code 220013 — เอกสารค่าใช้จ่ายมีรายการสินค้ายอดติดลบ (ระบบบันทึกการชำระตรวจ · data null) · เกิดที่ expenses ทุก op · with-payment บันทึกเอกสารก่อนแล้วจึงตรวจ ⇒ เอกสารยังไม่ชำระ
+              value:
+                status: false
+                code: 220013
+                message: 'An expense line item cannot be negative (got -10).'
+                data: null
+            EngineRejected:
+              summary: code 220013 — ระบบบันทึกการชำระปฏิเสธ (เช่น มีแถวเดิมที่จะถูกแทน บนเอกสารที่กระทบยอดธนาคารแล้ว · ส่งช่องทางเดียวทับเอกสารที่รับหลายช่องทางแล้ว · ยอดรวมแถวไม่ลงตัว · จำนวนแถวเกินที่ระบบรับ) · เกิดที่ทุก op · data เป็น null
+              value:
+                status: false
+                code: 220013
+                message: 'This channel is matched in Bank Reconcile. Unmatch it before editing or deleting.'
+                data: null
   schemas:
     AuthenResponse:
       type: object
@@ -6417,11 +7794,32 @@ components:
           example: Wongnai POS
       required:
       - otherChannelId
+    PaymentMethodReceivingMultiplePaymentChannel:
+      type: object
+      properties:
+        paymentMethod:
+          type: integer
+          enum:
+            - 101
+          default: 101
+          description: ประเภทการเก็บเงิน <br> 101 = หลายช่องทาง (ต้องเปิดใช้ก่อน) ระบุแต่ละช่องทางใน paymentChannels · บริษัทที่ยังไม่เปิดใช้ จะได้ code 220021 <br> paymentCharge ระดับเอกสารให้เป็น 0 หรือไม่ส่ง · remainingCollected ที่ไม่ส่ง remainingCollectedType จะถูกบันทึกเป็นเงินขาด/เกิน
+          example: 101
+        paymentChannels:
+          type: array
+          description: รายการช่องทางชำระ ใช้คู่กับ paymentMethod = 101 เท่านั้น
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/PaymentChannelInSellDocument'
+      required:
+        - paymentMethod
+        - paymentChannels
     PaymentMethodPaidCreditCard:
       type: object
       properties:
         paymentMethod:
           type: integer
+          enum:
+            - 7
           description: ประเภทการชำระเงิน <br> 7 = บัตรเครดิตจ่าย
             <br> Required user to setup credit card channel before using Credit Card Payment Method in FlowAccount website,
             go to MyCompany > Banking Channel > Add Account > Credit Card
@@ -6469,6 +7867,8 @@ components:
       properties:
         paymentMethod:
           type: integer
+          enum:
+            - 11
           description: ประเภทการชำระเงิน <br> 11 = เงินสดย่อย
             <br> Required user to setup petty cash channel before using Credit Card Payment Method in FlowAccount website,
             go to MyCompany > Banking Channel > Add Account > Petty Cash
@@ -6490,6 +7890,25 @@ components:
             <br> <ex> Example : บัญชีเงินสดย่อยสำหรับซื้ออุปกรณ์สำนักงาน </ex>'
       required:
         - pettyCashId
+    PaymentMethodPaidMultiplePaymentChannel:
+      type: object
+      properties:
+        paymentMethod:
+          type: integer
+          enum:
+            - 101
+          default: 101
+          description: ประเภทการชำระเงิน <br> 101 = หลายช่องทาง (ต้องเปิดใช้ก่อน) ระบุแต่ละช่องทางใน paymentChannels · บริษัทที่ยังไม่เปิดใช้ จะได้ code 220021 <br> paymentCharge ระดับเอกสารให้เป็น 0 หรือไม่ส่ง · remainingCollected ที่ไม่ส่ง remainingCollectedType จะถูกบันทึกเป็นเงินขาด/เกิน
+          example: 101
+        paymentChannels:
+          type: array
+          description: รายการช่องทางชำระ ใช้คู่กับ paymentMethod = 101 เท่านั้น
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/PaymentChannelInBuyDocument'
+      required:
+        - paymentMethod
+        - paymentChannels
     PaymentReceivingInBuyDocument:
       type: object
       properties:
@@ -6544,6 +7963,86 @@ components:
       required:
         - paymentDate
         - collected
+    PaymentChannel:
+      type: object
+      description: 'แถวช่องทางชำระ 1 แถว ของ paymentMethod = 101 · มีเฉพาะช่องที่การชำระช่องทางเดียวมี · ไม่ต้องส่ง id ของแถว หรือข้อมูลการฝากเช็ค (ระบบไม่อ่าน) · แถวเช็คที่ส่งผ่าน API บันทึกเป็นเช็ค "ยังไม่ฝาก" · บันทึกการฝากต่อบนเว็บ FlowAccount'
+      properties:
+        paymentMethod:
+          type: integer
+          description: 'ช่องทางของแถวนี้ <br> 1 = เงินสด <br> 3 = เช็ค <br> 5 = โอนเงิน <br> 7 = บัตรเครดิต <br> 11 = เงินสดย่อย <br> 13 = ช่องทางอื่น ๆ'
+        collected:
+          type: number
+          format: decimal
+          description: 'ยอดเงินของแถวนี้ (มากกว่า 0 · ส่ง 0 ได้เฉพาะเมื่อมีแถวเดียว · ทศนิยมไม่เกิน 2 ตำแหน่ง) <br> ผลรวม collected ของทุกแถว + withheldAmount + remainingCollected ต้องเท่ากับ grandTotal ของเอกสาร · collected ระดับเอกสารระบบตั้งเป็นผลรวมนี้เอง'
+          example: 100.00
+        bankAccountId:
+          type: integer
+          format: int64
+          description: 'บัญชีธนาคารที่รับ/จ่าย บังคับเมื่อ paymentMethod = 5 · ฝั่งซื้อบังคับกับ paymentMethod = 3 ด้วย (ดึงจาก Bank Channel APIs)'
+          example: 12345
+        transferBankAccountId:
+          type: integer
+          format: int64
+          description: 'รหัสธนาคารของการโอน ใช้กับ paymentMethod = 5 · ไม่บังคับ'
+        chequeNumber:
+          type: string
+          description: 'เลขที่เช็ค ใช้กับ paymentMethod = 3'
+        chequeDate:
+          type: string
+          format: date
+          description: 'วันที่หน้าเช็ค รูปแบบ yyyy-MM-dd (ปี ค.ศ. เช่น 2026-10-05) บังคับเมื่อ paymentMethod = 3 · เช็คที่ส่งผ่าน API บันทึกเป็น "ยังไม่ฝาก" · บันทึกการฝากต่อบนเว็บ FlowAccount'
+        chequeBankAccountId:
+          type: integer
+          format: int64
+          example: 2
+          description: 'เลข id ธนาคารหน้าเช็ค ส่งเป็นตัวเลข เช่น 2 = ธนาคารกสิกรไทย (ชุดเดียวกับธนาคารหน้าเช็คของการชำระช่องทางเดียว: 1 = ธนาคารกรุงเทพ · 2 = ธนาคารกสิกรไทย · 3 = ธนาคารกรุงไทย …) บังคับเมื่อ paymentMethod = 3'
+        bankChequeId:
+          type: integer
+          format: int64
+          description: 'id เช็ค ใช้กับ paymentMethod = 3 · ฝั่งซื้อบังคับ เหมือนการชำระช่องทางเดียว (ดึงจาก Bank Channel APIs) · ฝั่งขายไม่บังคับ'
+        otherChannelId:
+          type: integer
+          format: int64
+          description: 'ช่องทางอื่น ๆ ของบริษัท ใช้กับ paymentMethod = 13 (ดึงจาก Bank Channel APIs)'
+      required:
+        - paymentMethod
+        - collected
+    PaymentChannelInSellDocument:
+      allOf:
+        - $ref: '#/components/schemas/PaymentChannel'
+        - type: object
+          properties:
+            paymentMethod:
+              type: integer
+              description: 'ช่องทางของแถวนี้ (ฝั่งขาย) <br> 1 = เงินสด <br> 3 = เช็ค <br> 5 = โอนเงิน <br> 13 = ช่องทางอื่น ๆ (รูดบัตรใช้ช่องทางอื่น ๆ ประเภทเครื่องรูดบัตร)'
+              enum:
+                - 1
+                - 3
+                - 5
+                - 13
+    PaymentChannelInBuyDocument:
+      allOf:
+        - $ref: '#/components/schemas/PaymentChannel'
+        - type: object
+          properties:
+            paymentMethod:
+              type: integer
+              description: 'ช่องทางของแถวนี้ (ฝั่งซื้อ) <br> 1 = เงินสด <br> 3 = เช็ค <br> 5 = โอนเงิน <br> 7 = บัตรเครดิต <br> 11 = เงินสดย่อย <br> 13 = ช่องทางอื่น ๆ'
+              enum:
+                - 1
+                - 3
+                - 5
+                - 7
+                - 11
+                - 13
+            creditCardId:
+              type: integer
+              format: int64
+              description: 'บัตรเครดิตของบริษัท ใช้กับ paymentMethod = 7 (ดึงจาก Bank Channel APIs)'
+            pettyCashId:
+              type: integer
+              format: int64
+              description: 'เงินสดย่อยของบริษัท ใช้กับ paymentMethod = 11 (ดึงจาก Bank Channel APIs)'
     SimpleDocumentWithPayment:
       allOf:
         - $ref: '#/components/schemas/Document'
@@ -6583,6 +8082,17 @@ components:
         - $ref: '#/components/schemas/SimpleDocumentWithPaymentReceivingCheque'
         - $ref: '#/components/schemas/SimpleDocumentWithPaymentReceivingTransfer'
         - $ref: '#/components/schemas/SimpleDocumentWithPaymentReceivingOtherChannel'
+        - $ref: '#/components/schemas/SimpleDocumentWithPaymentReceivingMultiplePaymentChannel'
+    SimpleDocumentWithPaymentReceivingMultiplePaymentChannel:
+      title: SimpleDocumentWithPaymentReceivingMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/SimpleDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInSellDocument'
+        - $ref: '#/components/schemas/PaymentMethodReceivingMultiplePaymentChannel'
+        - type: object
+          properties:
+            documentPaymentStructureType:
+              description: 'สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ยิงซ้ำด้วย body เดิม (เช่น เน็ตหลุดแล้วส่งใหม่) จะได้เอกสารใหม่อีกใบ ระบบไม่กันการยิงซ้ำให้ ต้องกันเองฝั่งผู้เรียก<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     SimpleDocumentWithPaymentReceivingCash:
       title: SimpleDocumentWithPaymentReceivingCash
       allOf:
@@ -6594,6 +8104,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการเก็บเงิน <br> 1 = เงินสด
               example: 1
     SimpleDocumentWithPaymentReceivingCheque:
@@ -6608,6 +8120,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการเก็บเงิน <br> 3 = เช็ค
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -6646,6 +8160,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการเก็บเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -6664,6 +8180,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ประเภทการเก็บเงิน <br> 13 = ช่องทางอื่น ๆ EDC, POS, Payment Gateway, Online Shop/E-Commerce
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Other Channels > Select Payment Channel as EDC,
@@ -6677,6 +8195,17 @@ components:
         - $ref: '#/components/schemas/SimpleDocumentWithPaymentPaidCreditCard'
         - $ref: '#/components/schemas/SimpleDocumentWithPaymentPaidPettyCash'
         - $ref: '#/components/schemas/SimpleDocumentWithPaymentPaidOtherChannel'
+        - $ref: '#/components/schemas/SimpleDocumentWithPaymentPaidMultiplePaymentChannel'
+    SimpleDocumentWithPaymentPaidMultiplePaymentChannel:
+      title: SimpleDocumentWithPaymentPaidMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/SimpleDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInBuyDocument'
+        - $ref: '#/components/schemas/PaymentMethodPaidMultiplePaymentChannel'
+        - type: object
+          properties:
+            documentPaymentStructureType:
+              description: 'สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ยิงซ้ำด้วย body เดิม (เช่น เน็ตหลุดแล้วส่งใหม่) จะได้เอกสารใหม่อีกใบ ระบบไม่กันการยิงซ้ำให้ ต้องกันเองฝั่งผู้เรียก<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     SimpleDocumentWithPaymentPaidCash:
       title: SimpleDocumentWithPaymentPaidCash
       allOf:
@@ -6688,6 +8217,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการชำระเงิน <br> 1 = เงินสด
               example: 1
     SimpleDocumentWithPaymentPaidCheque:
@@ -6702,6 +8233,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการชำระเงิน <br> 3 = บัญชีเช็คจ่าย
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -6766,6 +8299,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการชำระเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -6810,6 +8345,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ชำระเงิน ช่องทางอื่น ๆ ได้แก่ เครื่องบันทึกเงินสด (POS), เครื่องรูดบัตรเครดิต (EDC),
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
@@ -6822,6 +8359,17 @@ components:
         - $ref: '#/components/schemas/InlineDocumentWithPaymentReceivingCheque'
         - $ref: '#/components/schemas/InlineDocumentWithPaymentReceivingTransfer'
         - $ref: '#/components/schemas/InlineDocumentWithPaymentReceivingOtherChannel'
+        - $ref: '#/components/schemas/InlineDocumentWithPaymentReceivingMultiplePaymentChannel'
+    InlineDocumentWithPaymentReceivingMultiplePaymentChannel:
+      title: InlineDocumentWithPaymentReceivingMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/InlineDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInSellDocument'
+        - $ref: '#/components/schemas/PaymentMethodReceivingMultiplePaymentChannel'
+        - type: object
+          properties:
+            documentPaymentStructureType:
+              description: 'สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ยิงซ้ำด้วย body เดิม (เช่น เน็ตหลุดแล้วส่งใหม่) จะได้เอกสารใหม่อีกใบ ระบบไม่กันการยิงซ้ำให้ ต้องกันเองฝั่งผู้เรียก<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     InlineDocumentWithPaymentReceivingCash:
       title: InlineDocumentWithPaymentReceivingCash
       allOf:
@@ -6833,6 +8381,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการเก็บเงิน <br> 1 = เงินสด
               example: 1
     InlineDocumentWithPaymentReceivingCheque:
@@ -6847,6 +8397,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการเก็บเงิน <br> 3 = เช็ค
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -6885,6 +8437,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการเก็บเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -6903,6 +8457,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ประเภทการเก็บเงิน <br> 13 = ช่องทางอื่น ๆ EDC, POS, Payment Gateway, Online Shop/E-Commerce
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Other Channels > Select Payment Channel as EDC,
@@ -6916,6 +8472,17 @@ components:
         - $ref: '#/components/schemas/InlineDocumentWithPaymentPaidCreditCard'
         - $ref: '#/components/schemas/InlineDocumentWithPaymentPaidPettyCash'
         - $ref: '#/components/schemas/InlineDocumentWithPaymentPaidOtherChannel'
+        - $ref: '#/components/schemas/InlineDocumentWithPaymentPaidMultiplePaymentChannel'
+    InlineDocumentWithPaymentPaidMultiplePaymentChannel:
+      title: InlineDocumentWithPaymentPaidMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/InlineDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInBuyDocument'
+        - $ref: '#/components/schemas/PaymentMethodPaidMultiplePaymentChannel'
+        - type: object
+          properties:
+            documentPaymentStructureType:
+              description: 'สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ยิงซ้ำด้วย body เดิม (เช่น เน็ตหลุดแล้วส่งใหม่) จะได้เอกสารใหม่อีกใบ ระบบไม่กันการยิงซ้ำให้ ต้องกันเองฝั่งผู้เรียก<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     InlineDocumentWithPaymentPaidCash:
       title: InlineDocumentWithPaymentPaidCash
       allOf:
@@ -6927,6 +8494,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการชำระเงิน <br> 1 = เงินสด
               example: 1
     InlineDocumentWithPaymentPaidCheque:
@@ -6941,6 +8510,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการชำระเงิน <br> 3 = บัญชีเช็คจ่าย
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -7004,6 +8575,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการชำระเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -7048,6 +8621,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ชำระเงิน ช่องทางอื่น ๆ ได้แก่ เครื่องบันทึกเงินสด (POS), เครื่องรูดบัตรเครดิต (EDC),
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
@@ -7531,6 +9106,17 @@ components:
         - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentReceivingCheque'
         - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentReceivingTransfer'
         - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentReceivingOtherChannel'
+        - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentReceivingMultiplePaymentChannel'
+    UpgradeSimpleDocumentWithPaymentReceivingMultiplePaymentChannel:
+      title: UpgradeSimpleDocumentWithPaymentReceivingMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInSellDocument'
+        - $ref: '#/components/schemas/PaymentMethodReceivingMultiplePaymentChannel'
+        - type: object
+          properties:
+            documentPaymentStructureType:
+              description: 'สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     UpgradeSimpleDocumentWithPaymentReceivingCash:
       title: UpgradeSimpleDocumentWithPaymentReceivingCash
       allOf:
@@ -7542,6 +9128,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการเก็บเงิน <br> 1 = เงินสด
               example: 1
     UpgradeSimpleDocumentWithPaymentReceivingCheque:
@@ -7556,6 +9144,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการเก็บเงิน <br> 3 = เช็ค
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -7594,6 +9184,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการเก็บเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -7612,6 +9204,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมรับชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ประเภทการเก็บเงิน <br> 13 = ช่องทางอื่น ๆ EDC, POS, Payment Gateway, Online Shop/E-Commerce
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Other Channels > Select Payment Channel as EDC,
@@ -7625,6 +9219,17 @@ components:
         - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentPaidCreditCard'
         - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentPaidPettyCash'
         - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentPaidOtherChannel'
+        - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPaymentPaidMultiplePaymentChannel'
+    UpgradeSimpleDocumentWithPaymentPaidMultiplePaymentChannel:
+      title: UpgradeSimpleDocumentWithPaymentPaidMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/UpgradeSimpleDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInBuyDocument'
+        - $ref: '#/components/schemas/PaymentMethodPaidMultiplePaymentChannel'
+        - type: object
+          properties:
+            documentPaymentStructureType:
+              description: 'สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     UpgradeSimpleDocumentWithPaymentPaidCash:
       title: UpgradeSimpleDocumentWithPaymentPaidCash
       allOf:
@@ -7636,6 +9241,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการชำระเงิน <br> 1 = เงินสด
               example: 1
     UpgradeSimpleDocumentWithPaymentPaidCheque:
@@ -7650,6 +9257,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการชำระเงิน <br> 3 = บัญชีเช็คจ่าย
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -7714,6 +9323,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการชำระเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -7758,6 +9369,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ชำระเงิน ช่องทางอื่น ๆ ได้แก่ เครื่องบันทึกเงินสด (POS), เครื่องรูดบัตรเครดิต (EDC),
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
@@ -7770,6 +9383,17 @@ components:
         - $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentReceivingCheque'
         - $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentReceivingTransfer'
         - $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentReceivingOtherChannel'
+        - $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentReceivingMultiplePaymentChannel'
+    UpgradeInlineDocumentWithPaymentReceivingMultiplePaymentChannel:
+      title: UpgradeInlineDocumentWithPaymentReceivingMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/UpgradeInlineDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInSellDocument'
+        - $ref: '#/components/schemas/PaymentMethodReceivingMultiplePaymentChannel'
+        - type: object
+          properties:
+            documentPaymentStructureType:
+              description: 'สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     UpgradeInlineDocumentWithPaymentReceivingCash:
       title: UpgradeInlineDocumentWithPaymentReceivingCash
       allOf:
@@ -7781,6 +9405,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการเก็บเงิน <br> 1 = เงินสด
               example: 1
     UpgradeInlineDocumentWithPaymentReceivingCheque:
@@ -7795,6 +9421,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการเก็บเงิน <br> 3 = เช็ค
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -7833,6 +9461,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการเก็บเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -7851,6 +9481,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ประเภทการเก็บเงิน <br> 13 = ช่องทางอื่น ๆ EDC, POS, Payment Gateway, Online Shop/E-Commerce
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Other Channels > Select Payment Channel as EDC,
@@ -7864,6 +9496,17 @@ components:
         - $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentPaidCreditCard'
         - $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentPaidPettyCash'
         - $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentPaidOtherChannel'
+        - $ref: '#/components/schemas/UpgradeInlineDocumentWithPaymentPaidMultiplePaymentChannel'
+    UpgradeInlineDocumentWithPaymentPaidMultiplePaymentChannel:
+      title: UpgradeInlineDocumentWithPaymentPaidMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/UpgradeInlineDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInBuyDocument'
+        - $ref: '#/components/schemas/PaymentMethodPaidMultiplePaymentChannel'
+        - type: object
+          properties:
+            documentPaymentStructureType:
+              description: 'สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     UpgradeInlineDocumentWithPaymentPaidCash:
       title: UpgradeInlineDocumentWithPaymentPaidCash
       allOf:
@@ -7875,6 +9518,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการชำระเงิน <br> 1 = เงินสด
               example: 1
     UpgradeInlineDocumentWithPaymentPaidCheque:
@@ -7889,6 +9534,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการชำระเงิน <br> 3 = บัญชีเช็คจ่าย
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -7952,6 +9599,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการชำระเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -7996,6 +9645,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมรับชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ชำระเงิน ช่องทางอื่น ๆ ได้แก่ เครื่องบันทึกเงินสด (POS), เครื่องรูดบัตรเครดิต (EDC),
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
@@ -8530,6 +10181,111 @@ components:
                       description: รายการสินค้าใช้งานสำหรับเอกสาร Inline Document
                       items:
                         $ref: '#/components/schemas/ProductItemResponse'
+    PaymentChannelResponse:
+      type: object
+      description: 'แถวช่องทางชำระ 1 แถว ในผลลัพธ์ของเอกสารที่รับหลายช่องทาง · อยู่ใต้ data.payments.paymentChannels · ชื่อและชนิดเหมือน payments ของการชำระช่องทางเดียว: ทุกค่าเป็นข้อความ · ไม่มีค่า = "" · id · paymentCharge · ข้อมูลการฝากเช็ค (chequeDeposit* · chequeCashingDate) มีเฉพาะใน response เป็นค่าอ่านอย่างเดียว'
+      properties:
+        id:
+          type: string
+          description: 'รหัสของแถวนี้ · อ่านอย่างเดียว · ไม่ต้องส่งกลับใน request'
+        paymentMethod:
+          type: string
+          description: 'ช่องทางของแถวนี้ (ข้อความ) <br> 1 = เงินสด <br> 3 = เช็ค <br> 5 = โอนเงิน <br> 7 = บัตรเครดิต <br> 11 = เงินสดย่อย <br> 13 = ช่องทางอื่น ๆ'
+        collected:
+          type: string
+          description: 'ยอดเงินของแถวนี้ (ข้อความ เช่น 100.00)'
+        paymentCharge:
+          type: string
+          readOnly: true
+          description: 'ค่าธรรมเนียมของแถวนี้ · อ่านอย่างเดียว · ส่งมาใน request จะถูกข้าม'
+        paymentDate:
+          type: string
+          description: 'วันที่รับหรือจ่ายของแถวนี้ รูปแบบ yyyy-MM-ddTHH:mm:ss ไม่มี timezone (เช่น 2026-09-30T00:00:00)'
+        bankAccountId:
+          type: string
+          description: 'บัญชีธนาคารของแถวโอนเงิน'
+        transferBankAccountId:
+          type: string
+          description: 'รหัสธนาคารของการโอน · ถ้าค่าที่บันทึกไว้ไม่ใช่ตัวเลข จะได้ "" (ชื่อธนาคารยังอยู่ใน bankAccountName)'
+        bankAccountName:
+          type: string
+          description: 'ชื่อธนาคารของบัญชี bankAccountId'
+        bankAccountType:
+          type: string
+          description: 'ประเภทบัญชีของ bankAccountId'
+        bankAccountNumber:
+          type: string
+          description: 'เลขที่บัญชีของ bankAccountId'
+        creditCardId:
+          type: string
+          description: 'บัตรเครดิตของบริษัท (ฝั่งซื้อ)'
+        creditCardNumber:
+          type: string
+          description: 'เลขบัตรเครดิตของ creditCardId'
+        chequeNumber:
+          type: string
+          description: 'เลขที่เช็ค'
+        chequeDate:
+          type: string
+          description: 'วันที่หน้าเช็ค'
+        chequeBankAccountId:
+          type: string
+          description: 'รหัสธนาคารหน้าเช็ค · ถ้าค่าที่บันทึกไว้ไม่ใช่ตัวเลข จะได้ ""'
+        bankChequeId:
+          type: string
+          description: 'ใช้กับแถวเช็ค (paymentMethod = 3)'
+        chequeDepositBankId:
+          type: string
+          description: 'บัญชีที่นำเช็คฝาก'
+        chequeCashingDate:
+          type: string
+          description: 'วันที่เช็คขึ้นเงิน'
+        chequeDepositDate:
+          type: string
+          description: 'วันที่นำเช็คฝาก'
+        chequeDepositBankName:
+          type: string
+          description: 'ชื่อธนาคารของบัญชีที่นำเช็คฝาก'
+        chequeDepositBankAccountType:
+          type: string
+          description: 'ประเภทบัญชีที่นำเช็คฝาก'
+        chequeDepositBankAccountNumber:
+          type: string
+          description: 'เลขที่บัญชีที่นำเช็คฝาก'
+        pettyCashId:
+          type: string
+          description: 'เงินสดย่อยของบริษัท (ฝั่งซื้อ)'
+        pettyCashName:
+          type: string
+          description: 'ชื่อเงินสดย่อยของ pettyCashId'
+        otherChannelId:
+          type: string
+          description: 'ช่องทางอื่น ๆ ของบริษัท'
+        otherChannelName:
+          type: string
+          description: 'ชื่อช่องทางอื่น ๆ ของ otherChannelId'
+        otherChannelPaymentChannel:
+          type: string
+          description: 'ประเภทย่อยของช่องทางอื่น ๆ ของ otherChannelId'
+    PaymentChannelResponseList:
+      type: array
+      description: 'รายการช่องทางชำระของเอกสาร มีเฉพาะเอกสารที่รับหลายช่องทาง · เอกสารช่องทางเดียวไม่มี key นี้'
+      items:
+        $ref: '#/components/schemas/PaymentChannelResponse'
+      example: *PaymentChannelResponseRows
+    PaymentDocumentResponse:
+      allOf:
+        - $ref: '#/components/schemas/DocumentResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                payments:
+                  type: object
+                  properties:
+                    paymentChannels:
+                      $ref: '#/components/schemas/PaymentChannelResponseList'
     SimpleDocumentWithPaymentResponse:
       allOf:
         - $ref: '#/components/schemas/SimpleDocumentResponse'
@@ -8555,6 +10311,8 @@ components:
                       example: 'เงินสด'
                     paymentRemarks:
                       example: DocumentWithPayment
+                    paymentChannels:
+                      $ref: '#/components/schemas/PaymentChannelResponseList'
     InlineDocumentWithPaymentResponse:
       allOf:
         - $ref: '#/components/schemas/InlineDocumentResponse'
@@ -8580,6 +10338,8 @@ components:
                       example: 'เงินสด'
                     paymentRemarks:
                       example: DocumentWithPayment
+                    paymentChannels:
+                      $ref: '#/components/schemas/PaymentChannelResponseList'
     GetDocumentResponse:
       allOf:
         - $ref: '#/components/schemas/APIResponse'
@@ -9259,6 +11019,16 @@ components:
         - $ref: '#/components/schemas/PaymentReceivingCheque'
         - $ref: '#/components/schemas/PaymentReceivingTransfer'
         - $ref: '#/components/schemas/PaymentReceivingOtherChannel'
+        - $ref: '#/components/schemas/PaymentReceivingMultiplePaymentChannel'
+    PaymentReceivingMultiplePaymentChannel:
+      title: PaymentReceivingMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/PaymentReceiving'
+        - $ref: '#/components/schemas/PaymentMethodReceivingMultiplePaymentChannel'
+        - type: object
+          properties:
+            paymentStructureType:
+              description: 'รับชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ยิงซ้ำ = เขียนทับการรับชำระเดิมของเอกสารนี้ทั้งชุด (ไม่เกิดเอกสารใหม่) · แถวไม่มี id · ระบบจับคู่แต่ละแถวกับแถวที่บันทึกไว้ด้วย วันที่ · ช่องทาง · ยอด · ค่าธรรมเนียม · ปลายทาง · แถวที่ตรงกันคงแถวเดิม · แถวที่ไม่ตรงถือเป็นแถวใหม่ แทนแถวเดิมที่เหลือ และค่าธรรมเนียมของแถวเดิมนั้นหาย<br>ข้อควรระวัง — ถ้าเปลี่ยนสถานะเอกสารกลับเป็นรอชำระ แล้วส่งช่องทางเดียวมา ข้อมูลแยกช่องทางเดิมจะหายโดยไม่มี error'
     PaymentReceiving:
       type: object
       properties:
@@ -9346,6 +11116,8 @@ components:
               description: รับชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการเก็บเงิน <br> 1 = เงินสด
               example: 1
     PaymentReceivingCheque:
@@ -9359,6 +11131,8 @@ components:
               description: รับชำระเงิน ค้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการเก็บเงิน <br> 3 = เช็ค
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -9396,6 +11170,8 @@ components:
               description: รับชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการเก็บเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -9414,6 +11190,8 @@ components:
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ประเภทการเก็บเงิน <br> 13 = ช่องทางอื่น ๆ EDC, POS, Payment Gateway, Online Shop/E-Commerce
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Other Channels > Select Payment Channel as EDC,
@@ -9427,6 +11205,16 @@ components:
         - $ref: '#/components/schemas/PaymentPaidCreditCard'
         - $ref: '#/components/schemas/PaymentPaidPettyCash'
         - $ref: '#/components/schemas/PaymentPaidOtherChannel'
+        - $ref: '#/components/schemas/PaymentPaidMultiplePaymentChannel'
+    PaymentPaidMultiplePaymentChannel:
+      title: PaymentPaidMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/PaymentPaid'
+        - $ref: '#/components/schemas/PaymentMethodPaidMultiplePaymentChannel'
+        - type: object
+          properties:
+            paymentStructureType:
+              description: 'ชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ยิงซ้ำ = เขียนทับการชำระเดิมของเอกสารนี้ทั้งชุด (ไม่เกิดเอกสารใหม่) · แถวไม่มี id · ระบบจับคู่แต่ละแถวกับแถวที่บันทึกไว้ด้วย วันที่ · ช่องทาง · ยอด · ค่าธรรมเนียม · ปลายทาง · แถวที่ตรงกันคงแถวเดิม · แถวที่ไม่ตรงถือเป็นแถวใหม่ แทนแถวเดิมที่เหลือ และค่าธรรมเนียมของแถวเดิมนั้นหาย<br>ข้อควรระวัง — ถ้าเปลี่ยนสถานะเอกสารกลับเป็นรอชำระ แล้วส่งช่องทางเดียวมา ข้อมูลแยกช่องทางเดิมจะหายโดยไม่มี error'
     PaymentPaid:
       type: object
       properties:
@@ -9496,6 +11284,8 @@ components:
               description: ชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการชำระเงิน <br> 1 = เงินสด
               example: 1
     PaymentPaidCheque:
@@ -9509,6 +11299,8 @@ components:
               description: ชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการชำระเงิน <br> 3 = บัญชีเช็คจ่าย
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -9571,6 +11363,8 @@ components:
               description: ชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการชำระเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -9613,6 +11407,8 @@ components:
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ชำระเงิน ช่องทางอื่น ๆ ได้แก่ เครื่องบันทึกเงินสด (POS), เครื่องรูดบัตรเครดิต (EDC),
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
@@ -9824,6 +11620,17 @@ components:
         - $ref: '#/components/schemas/ExpenseSimpleDocumentWithPaymentPaidCreditCard'
         - $ref: '#/components/schemas/ExpenseSimpleDocumentWithPaymentPettyCash'
         - $ref: '#/components/schemas/ExpenseSimpleDocumentWithPaymentPaidOtherChannel'
+        - $ref: '#/components/schemas/ExpenseSimpleDocumentWithPaymentPaidMultiplePaymentChannel'
+    ExpenseSimpleDocumentWithPaymentPaidMultiplePaymentChannel:
+      title: ExpenseSimpleDocumentWithPaymentPaidMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/ExpenseSimpleDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInBuyDocument'
+        - $ref: '#/components/schemas/PaymentMethodPaidMultiplePaymentChannel'
+        - type: object
+          properties:
+            expensePaymentStructureType:
+              description: 'สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ยิงซ้ำด้วย body เดิม (เช่น เน็ตหลุดแล้วส่งใหม่) จะได้เอกสารใหม่อีกใบ ระบบไม่กันการยิงซ้ำให้ ต้องกันเองฝั่งผู้เรียก<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     ExpenseSimpleDocumentWithPaymentPaidCash:
       title: ExpenseSimpleDocumentWithPaymentPaidCash
       allOf:
@@ -9835,6 +11642,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการชำระเงิน <br> 1 = เงินสด
               example: 1
     ExpenseSimpleDocumentWithPaymentPaidCheque:
@@ -9849,6 +11658,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการชำระเงิน <br> 3 = บัญชีเช็คจ่าย
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -9915,6 +11726,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการชำระเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -9961,6 +11774,8 @@ components:
               description: สร้างเอกสารแบบ Simple พร้อมชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ชำระเงิน ช่องทางอื่น ๆ ได้แก่ เครื่องบันทึกเงินสด (POS), เครื่องรูดบัตรเครดิต (EDC),
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
@@ -10012,6 +11827,17 @@ components:
         - $ref: '#/components/schemas/ExpenseInlineDocumentWithPaymentPaidCreditCard'
         - $ref: '#/components/schemas/ExpenseInlineDocumentWithPaymentPaidPettyCash'
         - $ref: '#/components/schemas/ExpenseInlineDocumentWithPaymentPaidOtherChannel'
+        - $ref: '#/components/schemas/ExpenseInlineDocumentWithPaymentPaidMultiplePaymentChannel'
+    ExpenseInlineDocumentWithPaymentPaidMultiplePaymentChannel:
+      title: ExpenseInlineDocumentWithPaymentPaidMultiplePaymentChannel
+      allOf:
+        - $ref: '#/components/schemas/ExpenseInlineDocumentWithPayment'
+        - $ref: '#/components/schemas/PaymentReceivingInBuyDocument'
+        - $ref: '#/components/schemas/PaymentMethodPaidMultiplePaymentChannel'
+        - type: object
+          properties:
+            expensePaymentStructureType:
+              description: 'สร้างเอกสารแบบ Inline พร้อมชำระเงิน ด้วยหลายช่องทาง<br>ข้อควรระวัง — ยิงซ้ำด้วย body เดิม (เช่น เน็ตหลุดแล้วส่งใหม่) จะได้เอกสารใหม่อีกใบ ระบบไม่กันการยิงซ้ำให้ ต้องกันเองฝั่งผู้เรียก<br>ข้อควรระวัง — ระบบบันทึกเอกสารก่อน แล้วจึงบันทึกการชำระ ถ้าการชำระถูกปฏิเสธ เอกสารจะถูกสร้างไว้แล้วแต่ยังไม่ชำระ ส่งคำขอเดิมซ้ำจะได้เอกสารใหม่อีกใบ ให้ชำระเอกสารที่สร้างแล้วด้วย POST /{documents}/{id}/payment แทนการสร้างซ้ำ'
     ExpenseInlineDocumentWithPaymentPaidCash:
       title: ExpenseInlineDocumentWithPaymentPaidCash
       allOf:
@@ -10023,6 +11849,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมชำระเงิน ด้วยเงินสด
             paymentMethod:
               type: integer
+              enum:
+                - 1
               description: ประเภทการชำระเงิน <br> 1 = เงินสด
               example: 1
     ExpenseInlineDocumentWithPaymentPaidCheque:
@@ -10037,6 +11865,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมชำระเงิน ด้วยเช็ค
             paymentMethod:
               type: integer
+              enum:
+                - 3
               description: ประเภทการชำระเงิน <br> 3 = บัญชีเช็คจ่าย
                 <br> Required user to setup cheque banking channel before using Cheque Payment Method in FlowAccount website,
                 <br> go to MyCompany > Banking Channel > Add Account > Cheque
@@ -10103,6 +11933,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมชำระเงิน ด้วยการโอนเงิน
             paymentMethod:
               type: integer
+              enum:
+                - 5
               description: 'ประเภทการชำระเงิน <br> 5 = โอนเงิน
                 <br> Required user to setup bank account before using Transfer Payment Method.
                 <br> To setup banking channel, go to section MyCompany > Bank Channel > Create Bank Account
@@ -10151,6 +11983,8 @@ components:
               description: สร้างเอกสารแบบ Inline พร้อมชำระเงิน ด้วยช่องทางอื่น ๆ
             paymentMethod:
               type: integer
+              enum:
+                - 13
               description: ชำระเงิน ช่องทางอื่น ๆ ได้แก่ เครื่องบันทึกเงินสด (POS), เครื่องรูดบัตรเครดิต (EDC),
                 ช่องทางรับชำระออนไลน์ (Payment Gateway), ร้านค้าออนไลน์ (Online shop/E-Commerce)
                 <br> Required user to setup other channels before using OtherChannel Payment Method in FlowAccount website,
@@ -10425,6 +12259,19 @@ components:
                       description: รายการสินค้าใช้งานสำหรับเอกสาร Inline Expense
                       items:
                         $ref: '#/components/schemas/ExpenseProductItemResponse'
+    ExpensePaymentDocumentResponse:
+      allOf:
+        - $ref: '#/components/schemas/ExpenseDocumentResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                payments:
+                  type: object
+                  properties:
+                    paymentChannels:
+                      $ref: '#/components/schemas/PaymentChannelResponseList'
     ExpenseSimpleDocumentWithPaymentResponse:
       allOf:
         - $ref: '#/components/schemas/ExpenseSimpleDocumentResponse'
@@ -10450,6 +12297,8 @@ components:
                       example: 'เงินสด'
                     paymentRemarks:
                       example: DocumentWithPayment
+                    paymentChannels:
+                      $ref: '#/components/schemas/PaymentChannelResponseList'
     ExpenseInlineDocumentWithPaymentResponse:
       allOf:
         - $ref: '#/components/schemas/ExpenseInlineDocumentResponse'
@@ -10475,6 +12324,8 @@ components:
                       example: 'เงินสด'
                     paymentRemarks:
                       example: DocumentWithPayment
+                    paymentChannels:
+                      $ref: '#/components/schemas/PaymentChannelResponseList'
     AllExpenseDocumentResponse:
       type: object
       properties:
@@ -11923,6 +13774,48 @@ components:
           type: string
           description: ข้อความแสดงข้อผิดพลาดที่เกิดจากการตรวจสอบข้อมูล
           example: At least one of document.original or document.copy must be true.
+    PaymentErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        code:
+          type: integer
+          description: 'รหัสของกรณีที่ผิด ใช้ค่านี้แยกกรณี (ไม่ใช้ข้อความ)'
+        message:
+          type: string
+          description: 'ข้อความของกรณีที่ผิด · ถ้าผิดที่แถว: paymentChannels has {n} invalid row(s). See data.paymentChannelErrors.'
+        data:
+          type: object
+          nullable: true
+          description: 'ข้อมูลเพิ่ม ขึ้นกับกรณี · อาจเป็น null'
+          properties:
+            validationErrors:
+              type: array
+              items:
+                type: string
+            paymentChannelErrors:
+              type: array
+              description: 'แถวใน paymentChannels ที่ผิด · 1 รายการต่อ 1 แถว (ข้อผิดพลาดแรกของแถวนั้น) เรียงตามแถว · มาพร้อม code 220013 ระดับบนสุด'
+              items:
+                $ref: '#/components/schemas/PaymentChannelError'
+    PaymentChannelError:
+      type: object
+      properties:
+        channelIndex:
+          type: integer
+          description: 'ลำดับแถวใน paymentChannels เริ่มที่ 0'
+        code:
+          type: integer
+          description: 'รหัสของข้อผิดพลาดของแถวนี้ (รหัสเดียวกับการชำระช่องทางเดียว เช่น 220007 ไม่รองรับวิธีชำระกับเอกสารชนิดนี้ · 220009 ขาดข้อมูลช่องทางธนาคาร · 220011 ขาดข้อมูลการชำระ) ใช้ค่านี้แยกกรณี'
+        field:
+          type: string
+          nullable: true
+          description: 'เป็น null เสมอ · ดูสาเหตุจาก code และ message'
+        message:
+          type: string
+          description: 'ข้อความของแถวนี้'
     AttachmentBase64:
       type: object
       properties:
